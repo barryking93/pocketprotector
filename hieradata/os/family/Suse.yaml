@@ -1,0 +1,6 @@
+# hieradata/os/family/Suse.yaml
+
+pocketprotector::puppet::packages::client:
+  - puppet-agent
+pocketprotector::puppet::packages::server:
+  - puppetserver
