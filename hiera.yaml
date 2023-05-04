@@ -4,11 +4,12 @@ defaults:  # Used for any hierarchy level that omits these keys.
   data_hash: yaml_data  # Use the built-in YAML backend.
 
 hierarchy:
-  - name: "encrypted data: per os family, common"
+  - name: "encrypted data: common"
     lookup_key: eyaml_lookup_key
     paths:
-      - "nodes/%{::trusted.certname}.eyaml"
-      - "os/%{facts.os.name}.eyaml"
+      #- "nodes/%{::trusted.certname}.eyaml"
+      #- "os/%{facts.os.family}.eyaml"
+      #- "os/%{facts.os.name}.eyaml"
       #- "nodes/%{::pocketprotector.location}.eyaml"
       #- "nodes/%{::pocketprotector.network}.eyaml"
       #- "nodes/%{::pocketprotector.group}.eyaml"
