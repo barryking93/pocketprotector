@@ -14,10 +14,10 @@ class pocketprotector::accounts {
     }
     accounts::user { "${username}":
       home     => $tmphomedir,
-      uid      => lookup("pocketprotector::accounts.${name}.uid", undef, 'deep', undef),
+      uid      => lookup("pocketprotector::accounts.${name}.uid", undef, 'first', undef),
       groups   => lookup("pocketprotector::accounts.${name}.groups", undef, 'deep', ['users']),
-      password => lookup("pocketprotector::accounts.${name}.password", undef, 'deep', '!!'),
-      shell    => lookup("pocketprotector::accounts.${name}.shell", undef, 'deep', '/bin/bash'),
+      password => lookup("pocketprotector::accounts.${name}.password", undef, 'first', '!!'),
+      shell    => lookup("pocketprotector::accounts.${name}.shell", undef, 'first', '/bin/bash'),
       sshkeys  => lookup("pocketprotector::accounts.${name}.sshkeys", Array[String], 'deep', []),
     }
   }
