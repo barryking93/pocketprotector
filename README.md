@@ -24,14 +24,14 @@ a puppet framework for managing infrastructure services
 
 # BOOTSTRAP
 ```
-PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
-wget https://apt.puppet.com/puppet7-release-${PVER}.deb
-sudo dpkg -i puppet7-release-${PVER}.deb
-sudo apt update;sudo apt -y install puppet-agent
-sudo /opt/puppetlabs/puppet/bin/gem install rugged r10k
-ssh-keygen
-cd ~/.ssh ; ssh-keygen -f pocketprotector-deploy
+# PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
+# wget https://apt.puppet.com/puppet7-release-${PVER}.deb
+# dpkg -i puppet7-release-${PVER}.deb
+# apt update;apt -y install puppet-agent ruby-rugged r10k
+# ssh-keygen
+# cd ~/.ssh ; ssh-keygen -f pocketprotector-deploy
 ```
+copy .pub versions of above keys to appropriate git repositories
 
 create /etc/puppetlabs/r10k/r10k.yaml:
 ```
@@ -51,4 +51,8 @@ create /etc/puppetlabs/r10k/r10k.yaml:
   repositories:
     - remote: "git@github.com:barryking93/pocketprotector.git"
       private_key: "/root/.ssh/pocketprotector-deploy"
+```
+deploy
+```
+ # r10k deploy environment -p
 ```
