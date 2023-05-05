@@ -16,7 +16,7 @@ class pocketprotector::accounts {
       home     => $tmphomedir,
       uid      => lookup("pocketprotector::accounts.${name}.uid", undef, 'first', undef),
       groups   => lookup("pocketprotector::accounts.${name}.groups", undef, 'deep', ['users']),
-      password => lookup("pocketprotector::accounts.${name}.password", undef, 'first', '!!'),
+      password => lookup("pocketprotector::passwords.${name}", undef, 'first', '!!'),
       shell    => lookup("pocketprotector::accounts.${name}.shell", undef, 'first', '/bin/bash'),
       sshkeys  => lookup("pocketprotector::accounts.${name}.sshkeys", Array[String], 'deep', []),
     }
