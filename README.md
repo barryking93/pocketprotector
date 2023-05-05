@@ -28,7 +28,7 @@ a puppet framework for managing infrastructure services
 # wget https://apt.puppet.com/puppet7-release-${PVER}.deb
 # dpkg -i puppet7-release-${PVER}.deb
 # apt update;apt -y install puppet-agent ruby-rugged r10k
-# ssh-keygen
+# ssh-keygen -t ecdsa
 # cd ~/.ssh ; ssh-keygen -f pocketprotector-deploy
 ```
 copy .pub versions of above keys to appropriate git repositories
