@@ -1,6 +1,9 @@
 # manifests/puppet.pp
+#
+# managing client, server, and standalone instances of puppet
+#
 
-pocketprotector::puppet {
+class pocketprotector::puppet {
   case $::fqdn {
     lookup('pocketprotector::puppet::server'): {
       include pocketprotector::puppet::server
@@ -11,7 +14,7 @@ pocketprotector::puppet {
   }
 }
 
-pocketprotector::puppet::client {
+class pocketprotector::puppet::client {
   include pocketprotector::puppet::cron::client
   include pocketprotector::puppet::packages::client
 
@@ -22,7 +25,7 @@ pocketprotector::puppet::client {
   }
 }
 
-pocketprotector::puppet::server {
+class pocketprotector::puppet::server {
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
