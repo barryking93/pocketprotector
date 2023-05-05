@@ -2,7 +2,7 @@
 #
 
 class pocketprotector::accounts {
-  lookup('pocketprotector.accounts', undef, 'deep', undef).each |String $username| {
+  lookup('pocketprotector.accounts', undef, 'unique', undef).each |String $username| {
     #
     # accounts module doesn't like it if you specify the default home dir
     #
