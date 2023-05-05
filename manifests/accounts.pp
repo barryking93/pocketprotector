@@ -2,10 +2,11 @@
 #
 # account management
 #
-# crawl pocketprotector.accounts in all
+# crawl pocketprotector.accounts in hieradata for user list
+#
 
 class pocketprotector::accounts {
-  lookup('pocketprotector.accounts', undef, 'deep', undef).each |String $username, Hash $userhash| {
+  lookup('pocketprotector::accounts', undef, 'deep', undef).each |String $username, Hash $userhash| {
     #notify {"debug account for ${username}":}
     accounts::user { "${username}":
       home     => lookup("pocketprotector::accounts.${username}.home", undef, 'first', "/home/${username}"),
