@@ -5,7 +5,8 @@
 # crawl pocketprotector.accounts in all
 
 class pocketprotector::accounts {
-  lookup('pocketprotector.accounts', undef, 'deep', undef).each |String $username, Hash $userhash| {
+
+  lookup('pocketprotector.accounts', undef, 'deep', undef).each |String $username| {
     #notify {"debug account for ${username}":}
     accounts::user { "${username}":
       home     => lookup("pocketprotector::accounts.${username}.home", undef, 'first', "/home/${username}"),
