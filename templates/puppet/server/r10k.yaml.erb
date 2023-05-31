@@ -8,10 +8,3 @@
   :my-org:
     remote: '<%= scope().call_function('hiera',['pocketprotector::puppet::server::git::url']) %>'
     basedir: '/etc/puppetlabs/code/environments'
-
-:git:
-  # must use rugged to get per-repo custom private_key
-  provider: shellgit
-  repositories:
-    - remote: "git@github.com:barryking93/pocketprotector.git"
-      private_key: "/root/.ssh/pocketprotector-deploy"
