@@ -34,7 +34,7 @@
       mode   => '0755';
     '/etc/puppetlabs/r10k/r10k.yaml':
       mode    => '0644',
-      content => template('pocketprotector/puppet/server/defaults.erb'),
+      content => template('pocketprotector/puppet/server/r10k.yaml.erb'),
       notify  => [
         Exec['deploy r10k'],
         Service[lookup('pocketprotector::puppet::server::servicename')]
