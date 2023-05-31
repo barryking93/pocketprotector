@@ -8,20 +8,22 @@ considered an alpha product and under active development.  expect breaking chang
 # VISION:
 - full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
 
-# TO DO:
-## NEAR TERM
+# PROGRESS:
+# DONE:
 - user management
+## TO DO:
+### NEAR TERM
 - package management
 - ZFS support
 - samba support
 - NFS export / mount support
 
-## MID TERM
+### MID TERM
 - monitoring
   - pluggable support for nagios and prometheus
   - nagios is first target, as is known entity
 
-## LONGER TERM
+### LONGER TERM
 - FIPS 800-53 compliance
 - ZFS disk management
 
