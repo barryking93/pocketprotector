@@ -46,9 +46,10 @@ create /etc/puppetlabs/r10k/r10k.yaml:
     remote: 'git@github.com:barryking93/pocket-inerd.git'
     basedir: '/etc/puppetlabs/code/environments'
 :git:
-  # must use rugged to get per-repo custom private_key
-  provider: rugged
+  provider: shellgit
   repositories:
+    - remote: 'git@github.com:barryking93/pocket-inerd.git'
+      private_key: "/root/.ssh/id_ecdsa"
     - remote: "git@github.com:barryking93/pocketprotector.git"
       private_key: "/root/.ssh/pocketprotector-deploy"
 ```

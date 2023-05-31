@@ -3,29 +3,7 @@
 # managing client, server, and standalone instances of puppet
 #
 
-class pocketprotector::puppet {
-  case $::fqdn {
-    lookup('pocketprotector::puppet::server'): {
-      include pocketprotector::puppet::server
-    }
-    default: {
-      include pocketprotector::puppet::client
-    }
-  }
-}
-
-class pocketprotector::puppet::client {
-  include pocketprotector::puppet::cron::client
-  include pocketprotector::puppet::packages::client
-
-  service {
-    lookup('pocketprotector::puppet::client::servicename'):
-      ensure => 'running',
-      enable => 'true'
-  }
-}
-
-class pocketprotector::puppet::server {
+ pocketprotector::puppet::server {
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
