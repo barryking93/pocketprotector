@@ -19,7 +19,7 @@
     }
   }
 
-  command {
+  exec {
     'install r10k':
       command => '/opt/puppetlabs/puppet/bin/gem install r10k',
       creates => '/opt/puppetlabs/puppet/bin/r10k';
