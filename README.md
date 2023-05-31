@@ -9,7 +9,7 @@ considered an alpha product and under active development.  expect breaking chang
 - full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
 
 # PROGRESS:
-# DONE:
+## DONE:
 - user management
 ## TO DO:
 ### NEAR TERM
