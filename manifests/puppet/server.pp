@@ -36,7 +36,7 @@
       mode    => '0644',
       content => template('pocketprotector/puppet/server/defaults.erb'),
       notify  => [
-        Command['deploy r10k'],
+        Exec['deploy r10k'],
         Service[lookup('pocketprotector::puppet::server::servicename')]
       ]
   }
