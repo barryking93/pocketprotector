@@ -32,9 +32,7 @@ considered an alpha product and under active development.  expect breaking chang
 # PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
 # wget https://apt.puppet.com/puppet7-release-${PVER}.deb
 # dpkg -i puppet7-release-${PVER}.deb
-# apt update;apt -y install puppet-agent ruby-rugged r10k
-# ssh-keygen -t ecdsa
-# cd ~/.ssh ; ssh-keygen -f pocketprotector-deploy
+# apt update;apt -y install puppet-agent r10k
 ```
 copy .pub versions of above keys to appropriate git repositories
 
