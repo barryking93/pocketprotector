@@ -9,11 +9,9 @@ pocketprotector::puppet::packages::client:
   - puppet-agent
 pocketprotector::puppet::packages::server:
   - puppetserver
-pocketprotector::puppet::client::servicename:
-  - puppet
+pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::server::ramusage: 256m
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
 pocketprotector::puppet::server::report::directory::tidy: true
 pocketprotector::puppet::server::report::directory::tidy::period: 30d
-pocketprotector::puppet::server::servicename:
-  - puppetserver
+pocketprotector::puppet::server::servicename: puppetserver
