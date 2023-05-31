@@ -2,6 +2,9 @@
 
 a puppet framework for managing infrastructure services
 
+# WARNING:
+considered an alpha product and under active development.  expect breaking changes.
+
 # VISION:
 - full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
 
