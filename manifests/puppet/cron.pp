@@ -28,7 +28,7 @@ class pocketprotector::puppet::cron::server {
       hour    => '*',
       weekday => '*';
     'kill puppet':
-      ensure => 'absent'
+      ensure => 'absent',
   }
   # avoid infinite disk growth by only keep the last 30 days of yaml reports
   if lookup('pocketprotector::puppet::server::report::directory::tidy') == true {

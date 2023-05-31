@@ -3,7 +3,7 @@
 # managing client, server, and standalone instances of puppet
 #
 
- pocketprotector::puppet::server {
+ class pocketprotector::puppet::server {
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
