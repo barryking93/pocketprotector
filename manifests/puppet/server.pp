@@ -42,7 +42,7 @@
   }
 
   service {
-    lookup('pocketprotector::puppet::servicename'):
+    lookup('pocketprotector::puppet::server::servicename'):
       ensure => 'running',
       enable => 'true'
   }
