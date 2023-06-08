@@ -52,5 +52,5 @@ allowed_hosts=127.0.0.1,::1,<% scope().call_function('hiera',['pocketprotector::
 # Unlike Nagios, the command line cannot contain macros - it must be
 # typed exactly as it should be executed.
 <% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::commands']).each do |generated_command,commandhash| -%>
-command[<%= generated_command %>]=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::resources::commands.' + @generated_command) %>
+command[<%= generated_command %>]=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::resources::commands.' + @generated_command]) %>
 <% end %>
