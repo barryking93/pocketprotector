@@ -30,7 +30,7 @@ class pocketprotector::monitoring::nagios::server {
 
   lookup('pocketprotector::monitoring::nagios::resources',undef,deep,undef).each | String $nagiosresource, Hash $resourcehash | {
     case $nagiosresource {
-      command {
+      command: {
         lookup('pocketprotector::monitoring::nagios::resources.command',undef,deep,undef).each | String $nagioscommand, Hash $commandhash | {
           nagios_command {
             $nagioscommand: {
@@ -40,7 +40,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      contact {
+      contact: {
         lookup('pocketprotector::monitoring::nagios::resources.contact',undef,deep,undef).each | String $nagioscontact, Hash $contacthash | {
           nagios_contact {
             $nagioscontact: {
@@ -57,7 +57,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      contactgroup {
+      contactgroup: {
         lookup('pocketprotector::monitoring::nagios::resources.contactgroup',undef,deep,undef).each | String $nagioscontactgroup, Hash $contactgrouphash | {
           nagios_contactgroup {
             $nagioscontactgroup: {
@@ -67,7 +67,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      host {
+      host: {
         lookup('pocketprotector::monitoring::nagios::resources.host',undef,deep,undef).each | String $nagioshost, Hash $hosthash | {
           nagios_host {
             $nagioshost: {
@@ -94,7 +94,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      hostgroup {
+      hostgroup: {
         lookup('pocketprotector::monitoring::nagios::resources.hostgroup',undef,deep,undef).each | String $nagioshostgroup, Hash $hostgrouphash | {
           nagios_hostgroup {
             $nagioshostgroup: {
@@ -105,7 +105,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      service {
+      service: {
         lookup('pocketprotector::monitoring::nagios::resources.service',undef,deep,undef).each | String $nagiosservice, Hash $servicehash | {
           nagios_service {
             $nagiosservice: {
@@ -135,7 +135,7 @@ class pocketprotector::monitoring::nagios::server {
           }
         }
       }
-      timeperiod {
+      timeperiod: {
         lookup('pocketprotector::monitoring::nagios::resources.timeperiod',undef,deep,undef).each | String $nagiostimeperiod, Hash $timeperiodhash | {
           nagios_timeperiod {
             $nagiosservice: {
