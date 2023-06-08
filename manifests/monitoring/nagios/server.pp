@@ -21,11 +21,12 @@ class pocketprotector::monitoring::nagios::server {
       notify  => Service[lookup('pocketprotector::monitoring::nagios::service::server')],
       require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')];
   }
-  #include pocketprotector::monitoring::nagios::server::parseme
-  include pocketprotector::monitoring::nagios::server::feedme
+  include pocketprotector::monitoring::nagios::server::parseme
+  #include pocketprotector::monitoring::nagios::server::feedme
   include pocketprotector::monitoring::nagios::server::import
 }
 
+# bulk import of yaml
 class pocketprotector::monitoring::nagios::server::feedme {
   @@nagios_command {lookup('pocketprotector::monitoring::nagios::resources.command')}
   @@nagios_contact {lookup('pocketprotector::monitoring::nagios::resources.contact')}
@@ -36,13 +37,11 @@ class pocketprotector::monitoring::nagios::server::feedme {
   @@nagios_timeperiod {lookup('pocketprotector::monitoring::nagios::resources.timeperiod')}
 }
 
+# feeding yaml to nagios
+#
+# note: most of the custom work is to use a non-standard target specification
+# also note: there may be missing configuration options. this is an MVP.
 class pocketprotector::monitoring::nagios::server::parseme {
-  # feeding yaml to nagios
-  #
-  # note: most of the custom work is to use a non-standard target specification
-  # also note: there may be missing configuration options. this is an MVP.
-  #
-
   lookup('pocketprotector::monitoring::nagios::resources',undef,deep,undef).each | String $nagiosresource, Hash $resourcehash | {
     case $nagiosresource {
       command: {
