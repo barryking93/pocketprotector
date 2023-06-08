@@ -154,4 +154,11 @@ class pocketprotector::monitoring::nagios::server {
       }
     }
   }
+
+  #
+  # generate nagios host resources
+  #
+  Nagios_host <<||>> {
+    notify => lookup('pocketprotector::monitoring::nagios::service::server'),
+  }
 }
