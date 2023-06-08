@@ -20,13 +20,14 @@ class pocketprotector::monitoring::nagios::client {
     file {
       lookup('pocketprotector::monitoring::nagios::client::configfile'):
         mode    => '0444',
+        content => template('pocketprotector/monitoring/nagios/nrpe.cfg.erb'),
         notify  => Service[lookup('pocketprotector::monitoring::nagios::service::client')],
         require => Package[lookup('pocketprotector::monitoring::nagios::packages::client')];
     }
 
     # export host checks
     @@nagios_host { $::fqdn:
-      use           => generic-host,
+      use           => lookup('pocketprotector::monitoring::nagios::client::use',undef,undef,"production-host"),
       host_name     => $::fqdn,
       address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,"${::ip}"),
       alias         => $::fqdn,

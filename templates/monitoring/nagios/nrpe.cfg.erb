@@ -15,7 +15,7 @@ log_facility=daemon
 debug=0
 
 # PID FILE
-pid_file=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::pid']) %>
+pid_file=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::pid']) %>
 
 # PORT NUMBER
 # Port number we should wait for connections on.
@@ -34,8 +34,8 @@ server_port=5666
 #listen_queue_size=5
 
 # NRPE USER / GROUP
-nrpe_user=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::user']) %>
-nrpe_group=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::group']) %>
+nrpe_user=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::user']) %>
+nrpe_group=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::group']) %>
 
 # ALLOWED HOST ADDRESSES
 allowed_hosts=127.0.0.1,::1,<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::server::ip']) %>
@@ -51,6 +51,6 @@ allowed_hosts=127.0.0.1,::1,<% scope().call_function('hiera',['pocketprotector::
 #
 # Unlike Nagios, the command line cannot contain macros - it must be
 # typed exactly as it should be executed.
-<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::client::commands'],,'deep').each do |generated_command, hash| -%>
-command[<%= generated_command %>]=<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::resources::commands::' + @generated_command ]) %>
+<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::client::commands']).each do |commandname,commandline| -%>
+command[<%= commandname %>]=<%= commandline %>
 <% end %>
