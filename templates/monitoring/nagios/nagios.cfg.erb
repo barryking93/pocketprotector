@@ -15,13 +15,13 @@
 # for historical purposes.  This should be the first option specified
 # in the config file!!!
 
-log_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir') %>/nagios.log
+log_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir']) %>/nagios.log
 
-cfg_dir=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::configd') %>
-cfg_dir=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::config::plugins') %>
+cfg_dir=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::configd']) %>
+cfg_dir=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::config::plugins']) %>
 
-nagios_user=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::user') %>
-nagios_group=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::group') %>
+nagios_user=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::user']) %>
+nagios_group=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::group']) %>
 
 # EXTERNAL COMMAND OPTION
 # Values: 0 = disable commands, 1 = enable commands
@@ -34,7 +34,7 @@ check_external_commands=1
 # is running as (usually 'nobody').  Permissions should be set at the
 # directory level instead of on the file, as the file is deleted every
 # time its contents are processed.
-command_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::cmd') %>
+command_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::cmd']) %>
 
 # QUERY HANDLER INTERFACE
 # This is the socket that is created for the Query Handler interface
@@ -43,10 +43,10 @@ command_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::n
 # LOCK FILE
 # This is the lockfile that Nagios will use to store its PID number
 # in when it is running in daemon mode.
-lock_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::pid') %>
+lock_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::pid']) %>
 
 # TEMP FILE
-temp_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::tempfile') %>
+temp_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::tempfile']) %>
 
 # TEMP PATH
 # This is path where Nagios can create temp files for service and
@@ -73,7 +73,7 @@ log_rotation_method=d
 # LOG ARCHIVE PATH
 # This is the directory where archived (rotated) log files should be
 # placed (assuming you've chosen to do log rotation).
-log_archive_path=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir') %>/archives
+log_archive_path=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir']) %>/archives
 
 # LOGGING OPTIONS
 # If you want messages logged to the syslog facility, as well as the
@@ -254,7 +254,7 @@ max_check_result_reaper_time=30
 # Note: Make sure that only one instance of Nagios has access
 # to this directory!
 
-check_result_path=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::checkresults') %>
+check_result_path=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::checkresults']) %>
 
 
 
@@ -419,7 +419,7 @@ retain_state_information=1
 # This file is used only if the retain_state_information
 # variable is set to 1.
 
-state_retention_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::retentionfile') %>
+state_retention_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::retentionfile']) %>
 
 
 
@@ -1001,7 +1001,7 @@ debug_verbosity=1
 # DEBUG FILE
 # This option determines where Nagios should write debugging information.
 
-debug_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir') %>/nagios.debug
+debug_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::logdir']) %>/nagios.debug
 
 
 # MAX DEBUG FILE SIZE
