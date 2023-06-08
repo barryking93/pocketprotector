@@ -25,7 +25,8 @@ class pocketprotector::monitoring::nagios::client {
     }
 
     # export host checks
-    nagios_configd = lookup('pocketprotector::monitoring::nagios::server::configd')
+    $nagios_configd = lookup('pocketprotector::monitoring::nagios::server::configd')
+    
     @@nagios_host { $::fqdn:
       use           => generic-host,
       host_name     => $::fqdn,
