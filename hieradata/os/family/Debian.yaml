@@ -11,7 +11,7 @@ pocketprotector::monitoring::nagios::plugin::location: /usr/lib/nagios/plugins
 pocketprotector::monitoring::nagios::server::checkresults: /var/lib/nagios4/spool/checkresults
 pocketprotector::monitoring::nagios::server::cmd: /var/lib/nagios4/rw/nagios.cmd
 pocketprotector::monitoring::nagios::server::configd: /etc/nagios4/conf.d
-pocketprotector::monitoring::nagios::client::configfile: /etc/nagios4/nagios.cfg
+pocketprotector::monitoring::nagios::server::configfile: /etc/nagios4/nagios.cfg
 pocketprotector::monitoring::nagios::server::config::plugins: /etc/nagios-plugins/config
 pocketprotector::monitoring::nagios::server::logdir: /var/log/nagios4
 pocketprotector::monitoring::nagios::server::pid: /var/run/nagios4/nagios4.pid
