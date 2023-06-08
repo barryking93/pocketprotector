@@ -36,7 +36,7 @@ class pocketprotector::monitoring::nagios::server {
             $nagioscommand:
               ensure => present,
               target => "%{pocketprotector::monitoring::nagios::server::configd}/command.cfg",
-              command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}",
+              command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}");
           }
         }
       }
@@ -48,12 +48,12 @@ class pocketprotector::monitoring::nagios::server {
               target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",
               email => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",
-              host_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands",
-              host_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options",
-              host_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period",
-              service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands",
-              service_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options",
-              service_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period";
+              host_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands"),
+              host_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options"),
+              host_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period"),
+              service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands"),
+              service_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options"),
+              service_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period");
           }
         }
       }
@@ -63,7 +63,7 @@ class pocketprotector::monitoring::nagios::server {
             $nagioscontactgroup:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/contactgroup.cfg",
-              members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}",
+              members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}"),
           }
         }
       }
