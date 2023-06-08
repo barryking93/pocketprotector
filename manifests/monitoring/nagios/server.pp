@@ -100,7 +100,7 @@ class pocketprotector::monitoring::nagios::server {
             $nagioshostgroup:
               ensure => present,
               target => "%{pocketprotector::monitoring::nagios::server::configd}/hostgroups.cfg",
-              alias => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagios"%{lookup("pocketprotector::monitoring::nagios::server::configd")}/hostgroup}.alias",undef,deep,undef),
+              alias => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
               members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
           }
         }
