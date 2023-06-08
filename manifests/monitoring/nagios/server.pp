@@ -33,18 +33,17 @@ class pocketprotector::monitoring::nagios::server {
       command: {
         lookup('pocketprotector::monitoring::nagios::resources.command',undef,deep,undef).each | String $nagioscommand, Hash $commandhash | {
           @@nagios_command {
-            $nagioscommand: {
+            $nagioscommand:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/command.cfg",
               command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}",
-            }
           }
         }
       }
       contact: {
         lookup('pocketprotector::monitoring::nagios::resources.contact',undef,deep,undef).each | String $nagioscontact, Hash $contacthash | {
           @@nagios_contact {
-            $nagioscontact: {
+            $nagioscontact:
               ensure => present,
               target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",
@@ -55,25 +54,23 @@ class pocketprotector::monitoring::nagios::server {
               service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands",
               service_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options",
               service_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period";
-            }
           }
         }
       }
       contactgroup: {
         lookup('pocketprotector::monitoring::nagios::resources.contactgroup',undef,deep,undef).each | String $nagioscontactgroup, Hash $contactgrouphash | {
           @@nagios_contactgroup {
-            $nagioscontactgroup: {
+            $nagioscontactgroup:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/contactgroup.cfg",
               members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}",
-            }
           }
         }
       }
       host: {
         lookup('pocketprotector::monitoring::nagios::resources.host',undef,deep,undef).each | String $nagioshost, Hash $hosthash | {
           @@nagios_host {
-            $nagioshost: {
+            $nagioshost:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/host_${nagioshost}.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
@@ -94,26 +91,24 @@ class pocketprotector::monitoring::nagios::server {
               retain_nonstatus_information => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
               register => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.register",undef,deep,1),
               use => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
-            }
           }
         }
       }
       hostgroup: {
         lookup('pocketprotector::monitoring::nagios::resources.hostgroup',undef,deep,undef).each | String $nagioshostgroup, Hash $hostgrouphash | {
           @@nagios_hostgroup {
-            $nagioshostgroup: {
+            $nagioshostgroup:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/hostgroups.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
               members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
-            }
           }
         }
       }
       service: {
         lookup('pocketprotector::monitoring::nagios::resources.service',undef,deep,undef).each | String $nagiosservice, Hash $servicehash | {
           @@nagios_service {
-            $nagiosservice: {
+            $nagiosservice:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/service.cfg",
               active_checks_enabled => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,1),
@@ -137,14 +132,13 @@ class pocketprotector::monitoring::nagios::server {
               notification_interval => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_interval",undef,deep,undef),
               notification_period => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_period",undef,deep,undef),
               register => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.register",undef,deep,1),
-            }
           }
         }
       }
       timeperiod: {
         lookup('pocketprotector::monitoring::nagios::resources.timeperiod',undef,deep,undef).each | String $nagiostimeperiod, Hash $timeperiodhash | {
           @@nagios_timeperiod {
-            $nagiostimeperiod: {
+            $nagiostimeperiod:
               ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/timeperiod.cfg"
               alias => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.alias",undef,deep,undef),
@@ -155,7 +149,6 @@ class pocketprotector::monitoring::nagios::server {
               thursday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.thursday",undef,deep,undef),
               friday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.friday",undef,deep,undef),
               saturday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.saturday",undef,deep,undef),
-            }
           }
         }
       }
