@@ -20,7 +20,7 @@ class pocketprotector::monitoring::nagios::client {
     file {
       lookup('pocketprotector::monitoring::nagios::client::configfile'):
         mode    => '0444',
-        content => template(pocketprotector/monitoring/nagios/nrpe.cfg.erb),
+        content => template('pocketprotector/monitoring/nagios/nrpe.cfg.erb'),
         notify  => Service[lookup('pocketprotector::monitoring::nagios::service::client')],
         require => Package[lookup('pocketprotector::monitoring::nagios::packages::client')];
     }
