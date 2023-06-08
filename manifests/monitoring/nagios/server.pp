@@ -45,9 +45,9 @@ class pocketprotector::monitoring::nagios::server {
           @@nagios_contact {
             $nagioscontact:
               ensure => present,
-              target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg",
-              alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",
-              email => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",
+              target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg"),
+              alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias"),
+              email => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email"),
               host_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands"),
               host_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options"),
               host_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period"),
