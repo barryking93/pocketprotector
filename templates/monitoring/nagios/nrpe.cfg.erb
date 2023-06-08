@@ -1,0 +1,56 @@
+# templates/monitoring/nagios/nrpe.cfg.erb
+#
+# the NRPE config file, controlled by puppet
+# part of the nagios monitoring suite
+#
+
+# LOG FACILITY
+# The syslog facility that should be used for logging purposes.
+log_facility=daemon
+
+# DEBUGGING OPTION
+# This option determines whether or not debugging messages are logged to the
+# syslog facility.
+# Values: 0=debugging off, 1=debugging on
+debug=0
+
+# PID FILE
+pid_file=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::pid']) %>
+
+# PORT NUMBER
+# Port number we should wait for connections on.
+# NOTE: This must be a non-privileged port (i.e. > 1024).
+server_port=5666
+
+# SERVER ADDRESS
+# Address that nrpe should bind to in case there are more than one interface
+# and you do not want nrpe to bind on all interfaces.
+# NOTE: This option is ignored if NRPE is running under either inetd or xinetd
+#server_address=127.0.0.1
+
+# LISTEN QUEUE SIZE
+# Listen queue size (backlog) for serving incoming connections.
+# You may want to increase this value under high load.
+#listen_queue_size=5
+
+# NRPE USER / GROUP
+nrpe_user=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::user']) %>
+nrpe_group=<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::group']) %>
+
+# ALLOWED HOST ADDRESSES
+allowed_hosts=127.0.0.1,::1,<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::server::ip']) %>
+
+# COMMAND DEFINITIONS
+# Command definitions that this daemon will run.  Definitions
+# are in the following format:
+#
+# command[<command_name>]=<command_line>
+#
+# When the daemon receives a request to return the results of <command_name>
+# it will execute the command specified by the <command_line> argument.
+#
+# Unlike Nagios, the command line cannot contain macros - it must be
+# typed exactly as it should be executed.
+<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::client::commands'],,'deep').each do |generated_command, hash| -%>
+command[<%= generated_command %>]=<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::resources::commands::' + @generated_command ]) %>
+<% end %>
