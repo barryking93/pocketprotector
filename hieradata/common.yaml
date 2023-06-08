@@ -22,9 +22,9 @@ pocketprotector::monitoring::nagios::resources:
     check_alive_ping:
       command_line: $USER1$/check_ping -H $HOSTADDRESS$ -w 200.0,50% -c 1000.0,90% -p 5 -t 10
     notify-host-by-email:
-      command_line: /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$
+      command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$'
     notify-service-by-email:
-      command_line: /usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$
+      command_line: ''/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$'
   host:
     localhost:
       use: production-host
@@ -90,27 +90,7 @@ pocketprotector::monitoring::nagios::resources:
       register: 0
     workhours-service:
       active_checks_enabled: 1
-      passive_checks_enabled: 1      active_checks_enabled: 1
       passive_checks_enabled: 1
-      parallelize_check: 1
-      obsess_over_service: 1
-      check_freshness: 0
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      is_volatile: 0
-      check_period: twentyfourseven
-      max_check_attempts: 3
-      check_interval: 10
-      retry_interval: 2
-      contact_groups: alerts
-      notification_options:  w,u,c,r
-      notification_interval: 60
-      notification_period: twentyfourseven
-      register: 0
       parallelize_check: 1
       obsess_over_service: 1
       check_freshness: 0
@@ -122,27 +102,7 @@ pocketprotector::monitoring::nagios::resources:
       retain_nonstatus_information: 1
       is_volatile: 0
       check_period: workhours
-      max_check_attempts: 3      active_checks_enabled: 1
-      passive_checks_enabled: 1
-      parallelize_check: 1
-      obsess_over_service: 1
-      check_freshness: 0
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      is_volatile: 0
-      check_period: twentyfourseven
       max_check_attempts: 3
-      check_interval: 10
-      retry_interval: 2
-      contact_groups: alerts
-      notification_options:  w,u,c,r
-      notification_interval: 60
-      notification_period: twentyfourseven
-      register: 0
       check_interval: 10
       retry_interval: 2
       contact_groups: alerts
