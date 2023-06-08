@@ -6,7 +6,6 @@ class pocketprotector::monitoring::nagios::client {
     package {
       lookup('pocketprotector::monitoring::nagios::packages::client', undef, 'deep', undef):
         ensure => 'present'
-      }
     }
 
     # keep client service running
@@ -36,6 +35,6 @@ class pocketprotector::monitoring::nagios::client {
     }
 
     # parse and export further checks
-    lookup('pocketprotector::monitoring::nagios',undef,deep,undef)
+    #lookup('pocketprotector::monitoring::nagios',undef,deep,undef)
   }
 }
