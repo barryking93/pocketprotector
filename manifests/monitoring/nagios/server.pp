@@ -68,8 +68,8 @@ class pocketprotector::monitoring::nagios::server {
         }
       }
       host: {
-        lookup('pocketprotector::monitoring::nagios::resources.host',undef,deep,undef).each | String $nagioshost, Hash $hosthash | {
-          @@nagios_host {
+        @@nagios_host {
+          lookup('pocketprotector::monitoring::nagios::resources.host',undef,deep,undef).each | String $nagioshost, Hash $hosthash | {
             $nagioshost:
               ensure => present,
               target => "%{pocketprotector::monitoring::nagios::server::configd}/${nagioshost}.cfg",
