@@ -15,8 +15,9 @@ class pocketprotector::monitoring::nagios::server {
 
   # primary nagios config
   file {
-    lookup('pocketprotector::monitoring::nagios::client::configfile'):
+    lookup('pocketprotector::monitoring::nagios::server::configfile'):
       mode    => '0444',
+      content => template(pocketprotector/monitoring/nagios/nagios.cfg.erb),
       notify  => Service[lookup('pocketprotector::monitoring::nagios::service::server')],
       require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')];
   }
