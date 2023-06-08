@@ -140,7 +140,7 @@ class pocketprotector::monitoring::nagios::server {
           @@nagios_timeperiod {
             $nagiostimeperiod:
               ensure => present,
-              target => "%{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg"
+              target => "%{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.alias",undef,deep,undef),
               sunday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.sunday",undef,deep,undef),
               monday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.monday",undef,deep,undef),
