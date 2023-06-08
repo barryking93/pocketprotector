@@ -34,7 +34,8 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.command',undef,deep,undef).each | String $nagioscommand, Hash $commandhash | {
           @@nagios_command {
             $nagioscommand: {
-              target       => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/command.cfg",
+              ensure => present,
+              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/command.cfg",
               command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}",
             }
           }
@@ -44,15 +45,16 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.contact',undef,deep,undef).each | String $nagioscontact, Hash $contacthash | {
           @@nagios_contact {
             $nagioscontact: {
-              target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg"
-              alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias"
-              email => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email"
-              host_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands"
-              host_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options"
-              host_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period"
-              service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands"
-              service_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options"
-              service_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period"
+              ensure => present,
+              target => lookup("pocketprotector::monitoring::nagios::server::configd") + "/contact.cfg",
+              alias => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",
+              email => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",
+              host_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands",
+              host_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options",
+              host_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period",
+              service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands",
+              service_notification_options => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options",
+              service_notification_period => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period";
             }
           }
         }
@@ -61,7 +63,8 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.contactgroup',undef,deep,undef).each | String $nagioscontactgroup, Hash $contactgrouphash | {
           @@nagios_contactgroup {
             $nagioscontactgroup: {
-              target  => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/contactgroup.cfg"
+              ensure => present,
+              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/contactgroup.cfg",
               members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}",
             }
           }
@@ -71,7 +74,8 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.host',undef,deep,undef).each | String $nagioshost, Hash $hosthash | {
           @@nagios_host {
             $nagioshost: {
-              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/host_${nagioshost}.cfg"
+              ensure => present,
+              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/host_${nagioshost}.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
               address => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
               check_command => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.use",undef,deep,undef),
@@ -98,7 +102,8 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.hostgroup',undef,deep,undef).each | String $nagioshostgroup, Hash $hostgrouphash | {
           @@nagios_hostgroup {
             $nagioshostgroup: {
-              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/hostgroups.cfg"
+              ensure => present,
+              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/hostgroups.cfg",
               alias => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
               members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
             }
@@ -109,7 +114,8 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.service',undef,deep,undef).each | String $nagiosservice, Hash $servicehash | {
           @@nagios_service {
             $nagiosservice: {
-              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/service.cfg"
+              ensure => present,
+              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/service.cfg",
               active_checks_enabled => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,1),
               passive_checks_enabled => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.passive_checks_enabled",undef,deep,1),
               parallelize_check => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.parallelize_check",undef,deep,1),
@@ -139,6 +145,7 @@ class pocketprotector::monitoring::nagios::server {
         lookup('pocketprotector::monitoring::nagios::resources.timeperiod',undef,deep,undef).each | String $nagiostimeperiod, Hash $timeperiodhash | {
           @@nagios_timeperiod {
             $nagiostimeperiod: {
+              ensure => present,
               target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/timeperiod.cfg"
               alias => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.alias",undef,deep,undef),
               sunday => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.sunday",undef,deep,undef),
