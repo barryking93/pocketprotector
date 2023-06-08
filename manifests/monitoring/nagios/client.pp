@@ -26,7 +26,7 @@ class pocketprotector::monitoring::nagios::client {
 
     # export host checks
     @@nagios_host { $::fqdn:
-      use           => generic-host,
+      use           => production-host,
       host_name     => $::fqdn,
       address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,"${::ip}"),
       alias         => $::fqdn,
