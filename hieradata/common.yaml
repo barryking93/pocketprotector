@@ -64,7 +64,7 @@ pocketprotector::monitoring::nagios::resources:
   hostgroups:
     all:
       alias: All Servers
-      members: *
+      members: '*'
   service:
     production-service:
       active_checks_enabled: 1

@@ -8,7 +8,7 @@
 class pocketprotector::accounts {
   lookup('pocketprotector::accounts', undef, 'deep', undef).each |String $username, Hash $userhash| {
     #notify {"debug account for ${username}":}
-    accounts::user { "${username}":
+    accounts::user { ${username}:
       home     => lookup("pocketprotector::accounts.${username}.home", undef, 'first', "/home/${username}"),
       uid      => lookup("pocketprotector::accounts.${username}.uid", undef, 'first', undef),
       groups   => lookup("pocketprotector::accounts.${username}.groups", undef, 'deep', ['users']),

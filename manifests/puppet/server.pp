@@ -3,14 +3,14 @@
 # managing client, server, and standalone instances of puppet
 #
 
- class pocketprotector::puppet::server {
+class pocketprotector::puppet::server {
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
   include pocketprotector::utils::git
 
   # defaults for Debian-based systems
-  if lookup("pocketprotector::puppet::defaults", undef, undef, false) {
+  if lookup('pocketprotector::puppet::defaults', undef, undef, false) {
     file {
       '/etc/default/puppetserver':
         mode    => '0644',

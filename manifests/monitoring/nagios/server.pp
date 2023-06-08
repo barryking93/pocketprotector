@@ -1,7 +1,6 @@
 # manifests/monitoring/nagios/server.pp
 
 class pocketprotector::monitoring::nagios::server {
-  package install
   package {
     lookup('pocketprotector::monitoring::nagios::packages::server', undef, 'deep', undef):
       ensure => 'present'
@@ -107,7 +106,7 @@ class pocketprotector::monitoring::nagios::server {
         }
       }
       service {
-        lookup('pocketprotector::monitoring::nagios::resources.service',undef,deep,undef).each | String nagioshostgroup, Hash hash | {
+        lookup('pocketprotector::monitoring::nagios::resources.service',undef,deep,undef).each | String nagiosservice, Hash hash | {
           nagios_service {
             $nagiosservice: {
               target => lookup("pocketprotector::monitoring::nagios::server::configd")+"/service.cfg"
@@ -129,8 +128,8 @@ class pocketprotector::monitoring::nagios::server {
               retry_interval => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.retry_interval",undef,deep,undef),
               contact_groups => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.contact_groups",undef,deep,undef),
               notification_options => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_options",undef,deep,undef),
-              notification_interval => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_interval",undef,deep,1),
-              notification_period => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_period",undef,deep,1),
+              notification_interval => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_interval",undef,deep,undef),
+              notification_period => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.notification_period",undef,deep,undef),
               register => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.register",undef,deep,1),
             }
           }
