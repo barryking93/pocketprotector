@@ -29,7 +29,7 @@ class pocketprotector::monitoring::nagios::client {
     @@nagios_host { $::fqdn:
       use           => generic-host,
       host_name     => $::fqdn,
-      address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,${::ipaddress}),
+      address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,"${::ip}"),
       alias         => $::fqdn,
       check_command => 'check-host-alive!3000.0,80%!5000.0,100%!10',
       target        => lookup('pocketprotector::monitoring::nagios::server::configd')+"/host_${::fqdn}.cfg";
