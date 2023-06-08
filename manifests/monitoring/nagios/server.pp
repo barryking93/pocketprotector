@@ -35,7 +35,7 @@ class pocketprotector::monitoring::nagios::server {
           @@nagios_command {
             $nagioscommand:
               ensure => present,
-              target => "%{lookup("pocketprotector::monitoring::nagios::server::configd")}/command.cfg",
+              target => "%{pocketprotector::monitoring::nagios::server::configd}/command.cfg",
               command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}",
           }
         }
