@@ -1,5 +1,23 @@
 # hieradata/os/family/Debian.yaml
 
+pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
+pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
+pocketprotector::monitoring::nagios::packages::client:
+  - nagios-plugins-basic
+  - nagios-nrpe-server
+pocketprotector::monitoring::nagios::packages::server:
+  - nagios4-core
+pocketprotector::monitoring::nagios::plugin::location: /usr/lib/nagios/plugins
+pocketprotector::monitoring::nagios::server::checkresults: /var/lib/nagios4/spool/checkresults
+pocketprotector::monitoring::nagios::server::cmd: /var/lib/nagios4/rw/nagios.cmd
+pocketprotector::monitoring::nagios::server::configd: /etc/nagios4/conf.d
+pocketprotector::monitoring::nagios::server::config::plugins: /etc/nagios-plugins/config
+pocketprotector::monitoring::nagios::server::logdir: /var/log/nagios4
+pocketprotector::monitoring::nagios::server::pid: /var/run/nagios4/nagios4.pid
+pocketprotector::monitoring::nagios::server::retentionfile: /var/lib/nagios4/retention.dat
+pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
+pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
+
 pocketprotector::puppet::packages::client:
   - puppet-agent
 pocketprotector::puppet::packages::server:

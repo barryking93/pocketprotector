@@ -14,6 +14,7 @@ considered an alpha product and under active development.  expect breaking chang
 ## TO DO:
 ### NEAR TERM
 - package management
+- MTA support: postfix
 - ZFS support
 - samba support
 - NFS export / mount support
@@ -59,4 +60,15 @@ create /etc/puppetlabs/r10k/r10k.yaml:
 deploy
 ```
  # r10k deploy environment -p
+```
+# USAGE
+add some equivalent to the following to your Puppetfile
+```
+mod 'pocketprotector',
+ :git => 'https://github.com/barryking93/pocketprotector.git',
+ :branch => 'development'
+
+mod 'puppetlabs-accounts', :latest
+mod 'puppetlabs-stdlib', :latest
+mod 'puppetlabs-nagios_core', :latest
 ```
