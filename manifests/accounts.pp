@@ -1,10 +1,10 @@
 # manifests/accounts.pp
 #
 # account management
+
 #
 # crawl pocketprotector.accounts in hieradata for user list
 #
-
 class pocketprotector::accounts {
   lookup('pocketprotector::accounts', undef, 'deep', undef).each |String $username, Hash $userhash| {
     #notify {"debug account for ${username}":}

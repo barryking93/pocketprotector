@@ -3,7 +3,7 @@
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
 pocketprotector::monitoring::nagios::packages::client:
-  - nagios-plugins-basic
+  - monitoring-plugins-basic
   - nagios-nrpe-server
 pocketprotector::monitoring::nagios::packages::server:
   - nagios4-core
