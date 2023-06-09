@@ -23,7 +23,7 @@ class pocketprotector::monitoring::nagios::server {
   }
   include pocketprotector::monitoring::nagios::server::parseme
   #include pocketprotector::monitoring::nagios::server::feedme
-  include pocketprotector::monitoring::nagios::server::import
+  #include pocketprotector::monitoring::nagios::server::import
 }
 
 # bulk import of yaml
