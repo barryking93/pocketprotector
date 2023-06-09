@@ -42,7 +42,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
         ensure  => present,
         #export  => true,
         target  => "${nagconfigd}/contactgroup.cfg",
-        members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}");
+        members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}.members");
     }
   }
   # hosts
