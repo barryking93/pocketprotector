@@ -32,7 +32,7 @@ pocketprotector::monitoring::nagios::resources:
     localhost:
       #target: target: %{pocketprotector::monitoring::nagios::server::configd}/hosts.cfg
       use: production-host
-      hostname: localhost
+      host_name: localhost
       alias: localhost
       address: 127.0.0.1
     production-host:
