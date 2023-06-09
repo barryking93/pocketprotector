@@ -93,6 +93,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
         service_description          => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.service_description",undef,deep,undef),
         active_checks_enabled        => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,undef),
         passive_checks_enabled       => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.passive_checks_enabled",undef,deep,undef),
+        check_command                => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.check_command",undef,deep,undef),
         parallelize_check            => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.parallelize_check",undef,deep,undef),
         obsess_over_service          => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.obsess_over_service",undef,deep,undef),
         check_freshness              => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.check_freshness",undef,deep,undef),
