@@ -144,6 +144,7 @@ pocketprotector::monitoring::nagios::resources:
       saturday: 00:00-24:00
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
+pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
 pocketprotector::puppet::git::branch: master
 pocketprotector::puppet::packages::client:
   - puppet-agent
