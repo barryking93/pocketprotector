@@ -99,8 +99,8 @@ pocketprotector::monitoring::nagios::resources:
       notification_interval: 60
       notification_period: workhours
       register: 0
-    localhost_ping:
-      use: generic-service
+    localhost-ping:
+      use: production-service
       host_name: localhost
       service_description: PING
       check_command: 'check_ping!100.0,20%!500.0,60%'
