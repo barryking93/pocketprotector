@@ -35,7 +35,7 @@ class pocketprotector::monitoring::nagios::client {
       address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,"${::ip}"),
       alias         => $::fqdn,
       check_command => 'check-host-alive!3000.0,80%!5000.0,100%!10',
-      target        => "${nagconfigd}}/host_${::fqdn}.cfg";
+      target        => "${nagconfigd}/host_${::fqdn}.cfg";
     }
 
     # parse and export further checks
