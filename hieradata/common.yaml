@@ -102,7 +102,7 @@ pocketprotector::monitoring::nagios::resources:
     localping:
       use: production-service
       host_name: localhost
-      service_description: PING
+      #service_description: PING
       check_command: 'check_ping!100.0,20%!500.0,60%'
   timeperiod:
     twentyfourseven:
