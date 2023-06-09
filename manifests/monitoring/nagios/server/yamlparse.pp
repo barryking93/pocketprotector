@@ -5,13 +5,16 @@
 # note: most of the custom work is to use a non-standard target specification
 # also note: there may be missing configuration options. this is an MVP.
 class pocketprotector::monitoring::nagios::server::yamlparse {
+  # look up configd once, use as var, since we have to munge it a lot
+  $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
+
   # commands
   lookup('pocketprotector::monitoring::nagios::resources.command',undef,deep,undef).each | String $nagioscommand, Hash $commandhash | {
     @@nagios_command {
       $nagioscommand:
         ensure       => present,
         #export       => true,
-        target       => "%{pocketprotector::monitoring::nagios::server::configd}/command.cfg",
+        target       => "${nagconfigd}/command.cfg",
         command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}.command_line",undef,deep,undef);
     }
   }
@@ -21,7 +24,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioscontact:
         ensure                        => present,
         #export                        => true,
-        target                        => "%{pocketprotector::monitoring::nagios::server::configd}/contact.cfg",
+        target                        => "${nagconfigd}/contact.cfg",
         alias                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",undef,deep,undef),
         email                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",undef,deep,undef),
         host_notification_commands    => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands",undef,deep,undef),
@@ -38,7 +41,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioscontactgroup:
         ensure  => present,
         #export  => true,
-        target  => "%{pocketprotector::monitoring::nagios::server::configd}/contactgroup.cfg",
+        target  => "${nagconfigd}/contactgroup.cfg",
         members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}");
     }
   }
@@ -48,7 +51,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioshost:
         ensure                       => present,
         #export                       => true,
-        target                       => "%{pocketprotector::monitoring::nagios::server::configd}/${nagioshost}.cfg",
+        target                       => "${nagconfigd}/${nagioshost}.cfg",
         alias                        => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.alias",undef,deep,undef),
         address                      => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.address",undef,deep,undef),
         check_command                => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.check_command",undef,deep,undef),
@@ -75,7 +78,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioshostgroup:
         ensure  => present,
         #export  => true,
-        target  => '%{pocketprotector::monitoring::nagios::server::configd}/hostgroups.cfg',
+        target  => '${nagconfigd}/hostgroups.cfg',
         alias   => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
         members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
     }
@@ -86,7 +89,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagiosservice:
         ensure                       => present,
         #export                       => true,
-        target                       => "%{pocketprotector::monitoring::nagios::server::configd}/service.cfg",
+        target                       => "${nagconfigd}/service.cfg",
         active_checks_enabled        => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,1),
         passive_checks_enabled       => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.passive_checks_enabled",undef,deep,1),
         parallelize_check            => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.parallelize_check",undef,deep,1),
@@ -116,7 +119,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagiostimeperiod:
         ensure    => present,
         #export    => true,
-        target    => "%{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg",
+        target    => "${nagconfigd}/timeperiod.cfg",
         alias     => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.alias",undef,deep,undef),
         sunday    => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.sunday",undef,deep,undef),
         monday    => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.monday",undef,deep,undef),
