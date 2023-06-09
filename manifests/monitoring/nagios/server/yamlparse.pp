@@ -5,7 +5,7 @@
 # note: most of the custom work is to use a non-standard target specification
 # also note: there may be missing configuration options. this is an MVP.
 class pocketprotector::monitoring::nagios::server::yamlparse {
-  # look up configd once, use as var, since we have to munge it a lot
+  # look configd and use as var, so we can munge it
   $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
 
   # commands
