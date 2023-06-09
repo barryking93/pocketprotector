@@ -21,7 +21,7 @@ class pocketprotector::monitoring::nagios::server {
       notify  => Service[lookup('pocketprotector::monitoring::nagios::service::server')],
       require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')];
   }
-  include pocketprotector::monitoring::nagios::server::yamlparse
+  #include pocketprotector::monitoring::nagios::server::yamlparse
   #include pocketprotector::monitoring::nagios::server::feedme
   #include pocketprotector::monitoring::nagios::server::import
 }

@@ -1,4 +1,5 @@
 # manifests/monitoring/nagios/server/yamlparse.pp
+
 # feeding yaml to nagios
 #
 # note: most of the custom work is to use a non-standard target specification
