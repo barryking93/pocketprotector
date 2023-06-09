@@ -21,5 +21,6 @@ pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 
 pocketprotector::puppet::packages::client:
   - puppet-agent
+  - puppetdb-termini
 pocketprotector::puppet::packages::server:
   - puppetserver
