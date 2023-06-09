@@ -30,13 +30,11 @@ pocketprotector::monitoring::nagios::resources:
       command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$'
   host:
     localhost:
-      #target: target: %{pocketprotector::monitoring::nagios::server::configd}/hosts.cfg
       use: production-host
       host_name: localhost
       alias: localhost
       address: 127.0.0.1
-    production-host:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/hosts.cfg
+    generic-host:
       notifications_enabled: 1
       event_handler_enabled: 1
       flap_detection_enabled: 1
@@ -44,35 +42,28 @@ pocketprotector::monitoring::nagios::resources:
       retain_status_information: 1
       retain_nonstatus_information: 1
       check_command: check-host-alive
-      max_check_attempts: 3
-      notification_interval: 0
-      notification_period: twentyfourseven
-      notification_options: d,u,r
       contact_groups: alerts
       register: 0
-    workhours-host:
-      #target:  %{pocketprotector::monitoring::nagios::server::configd}/hosts.cfg
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      check_command: check-host-alive
+    production-host:
+      use: generic-host
       max_check_attempts: 3
       notification_interval: 0
       notification_period: twentyfourseven
       notification_options: d,u,r
-      contact_groups: alerts
+      register: 0
+    workhours-host:
+      use: generic-host
+      max_check_attempts: 3
+      notification_interval: 0
+      notification_period: twentyfourseven
+      notification_options: d,u,r
       register: 0
   hostgroup:
     all:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/hostgroup.cfg
       alias: All Servers
       members: '*'
   service:
-    production-service:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/service.cfg
+    generic-service:
       active_checks_enabled: 1
       passive_checks_enabled: 1
       parallelize_check: 1
@@ -85,6 +76,9 @@ pocketprotector::monitoring::nagios::resources:
       retain_status_information: 1
       retain_nonstatus_information: 1
       is_volatile: 0
+      register: 0
+    production-service:
+      use: generic-service
       check_period: twentyfourseven
       max_check_attempts: 3
       check_interval: 10
@@ -95,19 +89,7 @@ pocketprotector::monitoring::nagios::resources:
       notification_period: twentyfourseven
       register: 0
     workhours-service:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/service.cfg
-      active_checks_enabled: 1
-      passive_checks_enabled: 1
-      parallelize_check: 1
-      obsess_over_service: 1
-      check_freshness: 0
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      is_volatile: 0
+      use: generic-service
       check_period: workhours
       max_check_attempts: 3
       check_interval: 10
@@ -117,9 +99,14 @@ pocketprotector::monitoring::nagios::resources:
       notification_interval: 60
       notification_period: workhours
       register: 0
+    localhost-ping:
+      use: generic-service
+      host_name: localhost
+      service_description: PING
+      check_command: 'check_ping!100.0,20%!500.0,60%'
+
   timeperiod:
     twentyfourseven:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg
       timeperiod_name: twentyfourseven
       alias: 24 Hours A Day, 7 Days A Week
       sunday: 00:00-24:00
@@ -130,7 +117,6 @@ pocketprotector::monitoring::nagios::resources:
       friday: 00:00-24:00
       saturday: 00:00-24:00
     workhours:
-      #target: target: %{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg
       timeperiod_name: workhours
       alias: Normal Work Hours
       sunday: 00:00-24:00
