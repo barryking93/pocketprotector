@@ -58,7 +58,6 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
         contact_groups               => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.contact_groups",undef,deep,undef),
         event_handler_enabled        => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.event_handler_enabled",undef,deep,undef),
         flap_detection_enabled       => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.flap_detection_enabled",undef,deep,undef),
-        failure_prediction_enabled   => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.failure_prediction_enabled",undef,deep,undef),
         host_name                     => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.hostname",undef,deep,undef),
         max_check_attempts           => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.max_check_attempts",undef,deep,undef),
         notification_interval        => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.notification_interval",undef,deep,undef),

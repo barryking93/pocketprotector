@@ -21,6 +21,10 @@ class pocketprotector::monitoring::nagios::server::import {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
     require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
+  Nagios_contactgroup <<||>> {
+    notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
+    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+  }
   Nagios_host <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
     require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],

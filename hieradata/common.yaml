@@ -40,7 +40,6 @@ pocketprotector::monitoring::nagios::resources:
       notifications_enabled: 1
       event_handler_enabled: 1
       flap_detection_enabled: 1
-      failure_prediction_enabled: 1
       process_perf_data: 1
       retain_status_information: 1
       retain_nonstatus_information: 1
@@ -56,7 +55,6 @@ pocketprotector::monitoring::nagios::resources:
       notifications_enabled: 1
       event_handler_enabled: 1
       flap_detection_enabled: 1
-      failure_prediction_enabled: 1
       process_perf_data: 1
       retain_status_information: 1
       retain_nonstatus_information: 1
