@@ -9,7 +9,7 @@ class pocketprotector::monitoring::nagios::server::import {
 
   exec {
     'fix nagios perms':
-      command     => "chmod -R 644 ${nagconfigd}",
+      command     => "/usr/bin/chmod -R 644 ${nagconfigd}",
       refreshonly => 'true';
   }
 
