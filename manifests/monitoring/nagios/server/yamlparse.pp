@@ -11,7 +11,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioscommand:
         ensure       => present,
         target       => "%{pocketprotector::monitoring::nagios::server::configd}/command.cfg",
-        command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}.command_line");
+        command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}.command_line",undef,deep,undef);
     }
   }
   # contacts
@@ -20,14 +20,14 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioscontact:
         ensure                        => present,
         target                        => "%{pocketprotector::monitoring::nagios::server::configd}/contact.cfg",
-        alias                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias"),
-        email                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email"),
-        host_notification_commands    => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands"),
-        host_notification_options     => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options"),
-        host_notification_period      => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period"),
-        service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands"),
-        service_notification_options  => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options"),
-        service_notification_period   => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period");
+        alias                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",undef,deep,undef),
+        email                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",undef,deep,undef),
+        host_notification_commands    => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_commands",undef,deep,undef),
+        host_notification_options     => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_options",undef,deep,undef),
+        host_notification_period      => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.host_notification_period",undef,deep,undef),
+        service_notification_commands => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_commands",undef,deep,undef),
+        service_notification_options  => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_options",undef,deep,undef),
+        service_notification_period   => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.service_notification_period",undef,deep,undef);
     }
   }
   # contactgroups
