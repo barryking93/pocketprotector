@@ -1,8 +1,6 @@
 # manifests/monitoring/nagios/server.pp
 
 class pocketprotector::monitoring::nagios::server {
-  class {'puppetdb':}
-  
   package {
     lookup('pocketprotector::monitoring::nagios::packages::server', undef, 'deep', undef):
       ensure => 'present'
