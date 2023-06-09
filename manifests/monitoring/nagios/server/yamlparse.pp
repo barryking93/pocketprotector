@@ -89,6 +89,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
         ensure                       => present,
         #export                       => true,
         target                       => "${nagconfigd}/service.cfg",
+        use                          => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.use",undef,deep,undef),
         host_name                    => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.host_name",undef,deep,undef),
         service_description          => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.service_description",undef,deep,undef),
         active_checks_enabled        => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,undef),
