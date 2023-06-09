@@ -12,10 +12,16 @@ class pocketprotector::puppet {
     }
   }
 
-  file { lookup('pocketprotector::puppet::client::configfile'):
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('pocketprotector/puppet/client/puppet.conf.erb'),
+  file {
+    "%lookup{'pocketprotector::puppet::client::config'}/puppet.conf":
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('pocketprotector/puppet/client/puppet.conf.erb');
+    "%lookup{'pocketprotector::puppet::client::config'}/puppetdb.conf":
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('pocketprotector/puppet/client/puppetdb.conf.erb');
   }
 }
