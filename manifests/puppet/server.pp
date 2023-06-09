@@ -4,10 +4,8 @@
 #
 
 class pocketprotector::puppet::server {
-  class {
-    'puppetdb::database::postgresql':
-    'puppetdb':
-  }
+  class {'puppetdb': }
+  class {'puppetdb::database::postgresql': }
 
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
