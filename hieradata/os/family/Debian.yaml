@@ -18,6 +18,7 @@ pocketprotector::monitoring::nagios::server::pid: /var/run/nagios4/nagios4.pid
 pocketprotector::monitoring::nagios::server::retentionfile: /var/lib/nagios4/retention.dat
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
+pocketprotector::monitoring::nagios::service::server: nagios4
 
 pocketprotector::puppet::packages::client:
   - puppet-agent
