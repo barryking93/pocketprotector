@@ -67,7 +67,7 @@ pocketprotector::monitoring::nagios::resources:
       notification_options: d,u,r
       contact_groups: alerts
       register: 0
-  hostgroups:
+  hostgroup:
     all:
       #target: %{pocketprotector::monitoring::nagios::server::configd}/hostgroup.cfg
       alias: All Servers
