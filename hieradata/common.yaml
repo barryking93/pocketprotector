@@ -76,33 +76,27 @@ pocketprotector::monitoring::nagios::resources:
       retain_status_information: 1
       retain_nonstatus_information: 1
       is_volatile: 0
-      register: 0
-    production-service:
-      use: generic-service
-      check_period: twentyfourseven
       max_check_attempts: 3
       check_interval: 10
       retry_interval: 2
       contact_groups: alerts
       notification_options:  w,u,c,r
       notification_interval: 60
+      register: 0
+    production-service:
+      use: generic-service
+      check_period: twentyfourseven
       notification_period: twentyfourseven
       register: 0
     workhours-service:
       use: generic-service
       check_period: workhours
-      max_check_attempts: 3
-      check_interval: 10
-      retry_interval: 2
-      contact_groups: alerts
-      notification_options:  w,u,c,r
-      notification_interval: 60
       notification_period: workhours
       register: 0
     localping:
       use: production-service
       host_name: localhost
-      #service_description: PING
+      service_description: localhost PING
       check_command: 'check_ping!100.0,20%!500.0,60%'
   timeperiod:
     twentyfourseven:
