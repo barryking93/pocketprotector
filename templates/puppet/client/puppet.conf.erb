@@ -10,11 +10,11 @@
 [main]
   environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
 
-  # PuppetDB (to do)
-  #storeconfigs = true
-  #storeconfigs_backend = puppetdb
-  #report = true
-  #reports = puppetdb
+  # PuppetDB
+  storeconfigs = true
+  storeconfigs_backend = puppetdb
+  report = true
+  reports = puppetdb
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
   dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>
 <% end -%>
