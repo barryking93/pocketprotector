@@ -4,27 +4,27 @@
 #
 class pocketprotector::monitoring::nagios::server::import {
 
-  nagios_command <<||>> {
+  Nagios_command <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
-  nagios_contact <<||>> {
+  Nagios_contact <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
-  nagios_host <<||>> {
+  Nagios_host <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
-  nagios_hostgroup <<||>> {
+  Nagios_hostgroup <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
-  nagios_service <<||>> {
+  Nagios_service <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
-  nagios_timeperiod <<||>> {
+  Nagios_timeperiod <<||>> {
     notify  => lookup('pocketprotector::monitoring::nagios::service::server'),
 #    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
   }
