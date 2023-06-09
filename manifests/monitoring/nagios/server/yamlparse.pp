@@ -78,7 +78,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
       $nagioshostgroup:
         ensure  => present,
         #export  => true,
-        target  => '${nagconfigd}/hostgroups.cfg',
+        target  => "${nagconfigd}/hostgroups.cfg",
         alias   => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
         members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
     }

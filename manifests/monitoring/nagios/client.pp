@@ -25,6 +25,9 @@ class pocketprotector::monitoring::nagios::client {
         require => Package[lookup('pocketprotector::monitoring::nagios::packages::client')];
     }
 
+    # look configd and use as var, so we can munge it
+    $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
+
     # export host checks
     @@nagios_host { $::fqdn:
       use           => lookup('pocketprotector::monitoring::nagios::client::use',undef,undef,"production-host"),
@@ -32,7 +35,7 @@ class pocketprotector::monitoring::nagios::client {
       address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,undef,"${::ip}"),
       alias         => $::fqdn,
       check_command => 'check-host-alive!3000.0,80%!5000.0,100%!10',
-      target        => "%{lookup('pocketprotector::monitoring::nagios::server::configd')}/host_${::fqdn}.cfg";
+      target        => "${nagconfigd}}/host_${::fqdn}.cfg";
     }
 
     # parse and export further checks
