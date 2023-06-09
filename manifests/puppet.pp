@@ -13,12 +13,12 @@ class pocketprotector::puppet {
   }
 
   file {
-    lookup{'pocketprotector::puppet::client::configfile'}:
+    lookup('pocketprotector::puppet::client::configfile'):
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
       content => template('pocketprotector/puppet/client/puppet.conf.erb');
-    lookup{'pocketprotector::puppet::client::configpuppetdb'}:
+    lookup('pocketprotector::puppet::client::configpuppetdb'):
       owner   => 'root',
       group   => 'root',
       mode    => '0644',
