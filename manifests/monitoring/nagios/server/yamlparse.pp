@@ -10,7 +10,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_command {
       $nagioscommand:
         ensure       => present,
-        export       => true,
+        #export       => true,
         target       => "%{pocketprotector::monitoring::nagios::server::configd}/command.cfg",
         command_line => lookup("pocketprotector::monitoring::nagios::resources.command.${nagioscommand}.command_line",undef,deep,undef);
     }
@@ -20,7 +20,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_contact {
       $nagioscontact:
         ensure                        => present,
-        export                        => true,
+        #export                        => true,
         target                        => "%{pocketprotector::monitoring::nagios::server::configd}/contact.cfg",
         alias                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.alias",undef,deep,undef),
         email                         => lookup("pocketprotector::monitoring::nagios::resources.contact.${nagioscontact}.email",undef,deep,undef),
@@ -37,7 +37,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_contactgroup {
       $nagioscontactgroup:
         ensure  => present,
-        export  => true,
+        #export  => true,
         target  => "%{pocketprotector::monitoring::nagios::server::configd}/contactgroup.cfg",
         members => lookup("pocketprotector::monitoring::nagios::resources.contactgroup.${nagioscontactgroup}");
     }
@@ -47,7 +47,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_host {
       $nagioshost:
         ensure                       => present,
-        export                       => true,
+        #export                       => true,
         target                       => "%{pocketprotector::monitoring::nagios::server::configd}/${nagioshost}.cfg",
         alias                        => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.alias",undef,deep,undef),
         address                      => lookup("pocketprotector::monitoring::nagios::resources.host.${nagioshost}.address",undef,deep,undef),
@@ -74,7 +74,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_hostgroup {
       $nagioshostgroup:
         ensure  => present,
-        export  => true,
+        #export  => true,
         target  => '%{pocketprotector::monitoring::nagios::server::configd}/hostgroups.cfg',
         alias   => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.alias",undef,deep,undef),
         members => lookup("pocketprotector::monitoring::nagios::resources.hostgroup.${nagioshostgroup}.members",undef,deep,undef),
@@ -85,7 +85,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_service {
       $nagiosservice:
         ensure                       => present,
-        export                       => true,
+        #export                       => true,
         target                       => "%{pocketprotector::monitoring::nagios::server::configd}/service.cfg",
         active_checks_enabled        => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.active_checks_enabled",undef,deep,1),
         passive_checks_enabled       => lookup("pocketprotector::monitoring::nagios::resources.service.${nagiosservice}.passive_checks_enabled",undef,deep,1),
@@ -115,7 +115,7 @@ class pocketprotector::monitoring::nagios::server::yamlparse {
     @@nagios_timeperiod {
       $nagiostimeperiod:
         ensure    => present,
-        export    => true,
+        #export    => true,
         target    => "%{pocketprotector::monitoring::nagios::server::configd}/timeperiod.cfg",
         alias     => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.alias",undef,deep,undef),
         sunday    => lookup("pocketprotector::monitoring::nagios::resources.timeperiod.${nagiostimeperiod}.sunday",undef,deep,undef),
