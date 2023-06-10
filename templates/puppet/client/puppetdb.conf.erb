@@ -1,0 +1,3 @@
+
+[main]
+server_urls = https://<%= scope().call_function('hiera',['pocketprotector::puppetdb::server']) %>:8081

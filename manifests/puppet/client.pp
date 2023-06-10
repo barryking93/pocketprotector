@@ -12,11 +12,4 @@ class pocketprotector::puppet::client {
       ensure => 'stopped',
       enable => 'false'
   }
-
-  file { lookup('pocketprotector::puppet::client::configfile'):
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('pocketprotector/puppet/client/puppet.conf.erb'),
-  }
 }

@@ -4,6 +4,8 @@
 #
 
 class pocketprotector::puppet::server {
+  class {'puppetdb': }
+
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server

@@ -15,58 +15,54 @@ pocketprotector::monitoring::nagios::group: nagios
 pocketprotector::monitoring::nagios::client::commands:
   check_users: /usr/lib/nagios/plugins/check_users -w 5 -c 10
   check_load: /usr/lib/nagios/plugins/check_load -r -w .15,.10,.05 -c .30,.25,.20
-pocketprotector::monitoring::nagios::service::server: nagios
 pocketprotector::monitoring::nagios::user: nagios
 pocketprotector::monitoring::nagios::resources:
   command:
     check_alive_ping:
+      #target: %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: $USER1$/check_ping -H $HOSTADDRESS$ -w 200.0,50% -c 1000.0,90% -p 5 -t 10
     notify-host-by-email:
+      #target:  %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$'
     notify-service-by-email:
+      #target:  %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$'
   host:
     localhost:
       use: production-host
-      hostname: localhost
+      host_name: localhost
       alias: localhost
       address: 127.0.0.1
-    production-host:
+    generic-host:
       notifications_enabled: 1
       event_handler_enabled: 1
       flap_detection_enabled: 1
-      failure_prediction_enabled: 1
       process_perf_data: 1
       retain_status_information: 1
       retain_nonstatus_information: 1
       check_command: check-host-alive
+      contact_groups: alerts
+      register: 0
+    production-host:
+      use: generic-host
       max_check_attempts: 3
       notification_interval: 0
       notification_period: twentyfourseven
       notification_options: d,u,r
-      contact_groups: alerts
       register: 0
     workhours-host:
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      failure_prediction_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      check_command: check-host-alive
+      use: generic-host
       max_check_attempts: 3
       notification_interval: 0
       notification_period: twentyfourseven
       notification_options: d,u,r
-      contact_groups: alerts
       register: 0
-  hostgroups:
+  hostgroup:
     all:
       alias: All Servers
       members: '*'
   service:
-    production-service:
+    generic-service:
       active_checks_enabled: 1
       passive_checks_enabled: 1
       parallelize_check: 1
@@ -79,37 +75,28 @@ pocketprotector::monitoring::nagios::resources:
       retain_status_information: 1
       retain_nonstatus_information: 1
       is_volatile: 0
-      check_period: twentyfourseven
       max_check_attempts: 3
       check_interval: 10
       retry_interval: 2
       contact_groups: alerts
       notification_options:  w,u,c,r
       notification_interval: 60
+      register: 0
+    production-service:
+      use: generic-service
+      check_period: twentyfourseven
       notification_period: twentyfourseven
       register: 0
     workhours-service:
-      active_checks_enabled: 1
-      passive_checks_enabled: 1
-      parallelize_check: 1
-      obsess_over_service: 1
-      check_freshness: 0
-      notifications_enabled: 1
-      event_handler_enabled: 1
-      flap_detection_enabled: 1
-      process_perf_data: 1
-      retain_status_information: 1
-      retain_nonstatus_information: 1
-      is_volatile: 0
+      use: generic-service
       check_period: workhours
-      max_check_attempts: 3
-      check_interval: 10
-      retry_interval: 2
-      contact_groups: alerts
-      notification_options:  w,u,c,r
-      notification_interval: 60
       notification_period: workhours
       register: 0
+    localping:
+      use: production-service
+      host_name: localhost
+      service_description: localhost PING
+      check_command: 'check_ping!100.0,20%!500.0,60%'
   timeperiod:
     twentyfourseven:
       timeperiod_name: twentyfourseven
@@ -133,6 +120,7 @@ pocketprotector::monitoring::nagios::resources:
       saturday: 00:00-24:00
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
+pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
 pocketprotector::puppet::git::branch: master
 pocketprotector::puppet::packages::client:
   - puppet-agent
