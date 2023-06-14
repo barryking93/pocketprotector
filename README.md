@@ -9,24 +9,7 @@ considered an alpha product and under active development.  expect breaking chang
 - full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
 
 # PROGRESS:
-## DONE:
-- user management
-## TO DO:
-### NEAR TERM
-- package management
-- MTA support: postfix
-- ZFS support
-- samba support
-- NFS export / mount support
-
-### MID TERM
-- monitoring
-  - pluggable support for nagios and prometheus
-  - nagios is first target, as is known entity
-
-### LONGER TERM
-- FIPS 800-53 compliance
-- ZFS disk management
+Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
 # BOOTSTRAP
 ```
