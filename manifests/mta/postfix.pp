@@ -12,6 +12,7 @@ class pocketprotector::mta::postfix {
     }
     false: {
       class { 'postfix':
+        relayhost           => undef,
         smtp_listen         => lookup('pocketprotector::mta::options::smtp_listen'),
         root_mail_recipient => lookup('pocketprotector::mta::options::root_alias'),
         mta                 => true,
