@@ -1,7 +1,7 @@
 # manifests/mta/postfix.pp
 
 class pocketprotector::mta::postfix {
-  case lookup('pocketprotector::mta::postfix::options::satellite:') {
+  case lookup('pocketprotector::mta::postfix::options::satellite') {
     true: {
       class { 'postfix':
         relayhost           => lookup('pocketprotector::mta::options::relayhost'),
