@@ -11,7 +11,7 @@ considered an alpha product and under active development.  expect breaking chang
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
-# BOOTSTRAP
+# BOOTSTRAP (UBUNTU)
 ```
 # PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
 # wget https://apt.puppet.com/puppet7-release-${PVER}.deb

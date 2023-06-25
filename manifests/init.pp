@@ -4,4 +4,5 @@ class pocketprotector {
   include pocketprotector::accounts
   include pocketprotector::puppet
   include pocketprotector::monitoring
+  include pocketprotector::mta
 }

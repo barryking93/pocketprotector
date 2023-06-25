@@ -119,6 +119,9 @@ pocketprotector::monitoring::nagios::resources:
       friday: 00:00-24:00
       saturday: 00:00-24:00
 
+pocketprotector::mta::default: postfix
+pocketprotector::mta::postfix::options::satellite: true
+
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
 pocketprotector::puppet::git::branch: master

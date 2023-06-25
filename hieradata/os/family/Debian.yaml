@@ -20,6 +20,9 @@ pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.t
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
 
+pocketprotector::mta::postfix::packages:
+  - postfix
+
 pocketprotector::puppet::packages::client:
   - puppet-agent
   - puppetdb-termini
