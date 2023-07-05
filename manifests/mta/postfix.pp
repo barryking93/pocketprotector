@@ -2,22 +2,22 @@
 
 class pocketprotector::mta::postfix {
   class { 'postfix': }
-#  case lookup('pocketprotector::mta::postfix::options::satellite') {
-#    true: {
-#      class { 'postfix':
-#        relayhost           => lookup('pocketprotector::mta::options::relayhost'),
-#        myorigin            => $::fqdn,
-#        root_mail_recipient => lookup('pocketprotector::mta::options::root_alias'),
-#        satellite           => true,
-#      }
-#    }
-#    false: {
-#      class { 'postfix':
-#        relayhost           => direct,
-#        smtp_listen         => lookup('pocketprotector::mta::options::smtp_listen'),
-#        root_mail_recipient => lookup('pocketprotector::mta::options::root_alias'),
-#        mta                 => true,
-#      }
-#    }
-#  }
+  include pocketprotector::mta::postfix::aliases
+}
+
+class pocketprotector::mta::postfix::aliases {
+  exec {
+    'run newaliases':
+      refreshonly => true,
+      timeout     => 300,
+      command     => '/usr/bin/newaliases',
+      logoutput   => true,
+      environment => ['PAGER=/bin/cat','DISPLAY=:9'];
+  }
+  file {
+    '/etc/aliases':
+      mode    => '0444',
+      content => template('pocketprotector/mta/postfix/aliases.erb'),
+      notify  => Exec['run newaliases'],
+  }
 }
