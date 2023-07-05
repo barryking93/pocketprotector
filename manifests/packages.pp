@@ -37,8 +37,9 @@ class pocketprotector::packages::repositories {
           'sources.list.d' => true
         };
       }
-      apt::source {
-        lookup('pocketprotector::packages::repositories',undef,deep,undef)
+
+      lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
+        apt::source { $aptrepo: $aptrepohash }
       }
     }
     'dnf': {}
