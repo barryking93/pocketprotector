@@ -1,0 +1,6 @@
+# managed by puppet / pocketprotector
+# See man 5 aliases for format
+
+<% scope().call_function('hiera',['pocketprotector::mta::aliases']).each do |alias_local, alias_dest| -%>
+<%= alias_local %>: <%= alias_dest %>
+<% end -%>
