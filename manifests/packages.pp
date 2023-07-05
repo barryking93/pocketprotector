@@ -51,7 +51,7 @@ class pocketprotector::packages::repositories {
       }
     }
     default: {
-      notify{'the package repository for your OS is not (yet?) supported'}:
+      notify{'the package repository for your OS is not (yet?) supported':}
     }
   }
 }
