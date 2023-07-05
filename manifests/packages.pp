@@ -35,11 +35,11 @@ class pocketprotector::packages::repositories {
         purge => {
           'sources.list'   => true,
           'sources.list.d' => true
-        };
+        },
       }
 
       lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
-        apt::source { $aptrepo:
+        apt::source { ${aptrepo}:
           location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
           release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,first,undef),
           repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,first,undef),
