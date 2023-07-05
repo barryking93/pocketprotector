@@ -40,12 +40,12 @@ class pocketprotector::packages::repositories {
 }
 
 class pocketprotector::packages::repositories::apt {
-  class {'apt':
-    purge => {
-      'sources.list'   => true,
-      'sources.list.d' => true
-    },
-  }
+#  class {'apt':
+#    purge => {
+#      'sources.list'   => true,
+#      'sources.list.d' => true
+#    },
+#  }
 
   lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
     apt::source { $aptrepo:
