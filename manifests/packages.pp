@@ -39,13 +39,13 @@ class pocketprotector::packages::repositories {
       }
 
       lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
-        apt::source { ${aptrepo}:
+        apt::source { $aptrepo:
           location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
-          release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,first,undef),
-          repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,first,undef),
+          release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
+          repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
           key      => {
-            'id'     => lookup("pocketprotector::packages::repositories.${aptrepo}.key.id",undef,first,undef),
-            'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,first,undef),
+            'id'     => lookup("pocketprotector::packages::repositories.${aptrepo}.key.id",undef,deep,undef),
+            'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
           }
         }
       }
