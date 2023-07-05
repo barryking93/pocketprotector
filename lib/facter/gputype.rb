@@ -10,5 +10,6 @@ Facter.add(:gputype) do
       'amd'
     else
       ''
+    end
   end
 end
