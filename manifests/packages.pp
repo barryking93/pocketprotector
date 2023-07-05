@@ -39,7 +39,7 @@ class pocketprotector::packages::repositories {
   }
 }
 
-class pocketprotector::packages::provider::apt {
+class pocketprotector::packages::repositories::apt {
   class {'apt':
     purge => {
       'sources.list'   => true,
