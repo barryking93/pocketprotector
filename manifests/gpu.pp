@@ -24,6 +24,11 @@ class pocketprotector::gpu::nvidia {
           'source' => lookup('pocketprotector::gpu::nvidia::repository.key.source',undef,deep,undef),
         }
       }
+
+      package {
+        lookup('pocketprotector::gpu::nvidia::package'):
+          ensure => installed,
+      }
     }
     default: {
       notify{'the package repository for your OS is not (yet?) supported':}
