@@ -22,7 +22,7 @@ class pocketprotector::puppet::cron::server {
   cron {
     # run-puppet syntax is different for servers for bootstrap purposes
     'puppet':
-      command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p;puppet apply /etc/puppetlabs/code/environments/main/manifests/',
+      command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p;/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/main/manifests/',
       user    => 'root',
       minute  => '*/10',
       hour    => '*',
