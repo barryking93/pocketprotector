@@ -1,0 +1,28 @@
+# hieradata/os/name/Ubuntu/20.04.yaml
+
+pocketprotector::packages::repositories:
+  puppet:
+    location: http://apt.puppetlabs.com
+    release: focal
+    repos: puppet7
+    key:
+      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
+      source: https://pgp.mit.edu      
+  ubuntu-main:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: focal
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-updates:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: focal-updates
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-security:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: focal-security
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
