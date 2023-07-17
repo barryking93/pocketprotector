@@ -10,7 +10,7 @@ class pocketprotector {
   # accounts to establish fundamental owners for needed later ownership
   include pocketprotector::accounts
   # files for baseline file rollouts
-  include pocketprotector::file
+  include pocketprotector::files
   # etc to roll out custom facts/etc
   include pocketprotector::etc
   # puppet to ensure that this runs a second time
