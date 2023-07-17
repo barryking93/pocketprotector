@@ -16,9 +16,9 @@ class pocketprotector::etc {
 }
 
 class pocketprotector::etc::groups {
-  if defined(lookup('pocketprotector::groups')) {
-    $pocketgroups = lookup('pocketprotector::groups',undef,deep,undef)
-    
+  $pocketgroups = lookup('pocketprotector::groups',undef,deep,undef)
+
+  if defined($pocketgroups) {
     file {
       # write out groups
       '/etc/pocketprotector/groups':
