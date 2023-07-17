@@ -1,5 +1,6 @@
 # manifests/gpu.pp
 #
+# GPU detection and custom package installation
 
 class pocketprotector::gpu {
   case $::facts['gputype'] {

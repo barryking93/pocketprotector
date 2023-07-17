@@ -4,6 +4,10 @@ pocketprotector::packages:
   - tmux
 pocketprotector::packages::git: git
 
+pocketprotector::files:
+  /etc/pocketprotector:
+    directory: true   
+
 pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
 pocketprotector::monitoring::client::exports:
