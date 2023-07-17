@@ -4,7 +4,7 @@
 # which is created by pocketprotector::files
 #
 class pocketprotector::etc {
-  selinux_ignore_defaults => lookup('pocketprotector::groups', undef, 'deep', undef),
+  include pocketprotector::etc::groups
   file {
     # write out location
     '/etc/pocketprotector/location':
