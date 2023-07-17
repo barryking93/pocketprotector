@@ -6,7 +6,7 @@ pocketprotector::packages::git: git
 
 pocketprotector::files:
   /etc/pocketprotector:
-    directory: true
+    ensure: directory
 
 pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
