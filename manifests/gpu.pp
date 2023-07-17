@@ -3,7 +3,7 @@
 # GPU detection and custom package installation
 
 class pocketprotector::gpu {
-  case $::facts['gputype'] {
+  case $::facts['ppgputype'] {
     'amd': { include pocketprotector::gpu::amd }
     'nvidia': { include pocketprotector::gpu::nvidia }
     default: {}
