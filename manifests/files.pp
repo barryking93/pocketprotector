@@ -8,7 +8,7 @@
 #
 class pocketprotector::files {
   lookup('pocketprotector::files', undef, 'deep', undef).each |String $filename, Hash $filehash| {
-    #notify {"debug account for ${username}":}
+    #notify {"debug file for ${filename}":}
     file {
       $filename:
         path                    => lookup("pocketprotector::files.${filename}.path", undef, 'first', undef),
@@ -18,6 +18,7 @@ class pocketprotector::files {
         checksum_value          => lookup("pocketprotector::files.${filename}.checksum_value", undef, 'first', undef),
         content                 => lookup("pocketprotector::files.${filename}.content", undef, 'first', undef),
         ctime                   => lookup("pocketprotector::files.${filename}.ctime", undef, 'first', undef),
+        directory               => lookup("pocketprotector::files.${filename}.directory", undef, 'first', undef),
         force                   => lookup("pocketprotector::files.${filename}.force", undef, 'first', undef),
         group                   => lookup("pocketprotector::files.${filename}.group", undef, 'first', undef),
         ignore                  => lookup("pocketprotector::files.${filename}.ignore", undef, 'first', undef),
