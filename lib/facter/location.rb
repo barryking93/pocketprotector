@@ -1,7 +1,7 @@
 # lib/facter/location.rb
 # get location from relevant file
 
-Facter.add(:pplocation) do
+Facter.add(:pp_location) do
   locationfile = '/etc/pocketprotector/location'
   setcode do
     File.read(locationfile) if File.exist?(locationfile)
