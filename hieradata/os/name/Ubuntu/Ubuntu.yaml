@@ -1,0 +1,6 @@
+# hieradata/os/name/Ubuntu/Ubuntu.yaml
+
+pocketprotector::gpu::nvidia::package: cuda
+
+pocketprotector::packages:
+  - pciutils

@@ -23,6 +23,8 @@ pocketprotector::monitoring::nagios::service::server: nagios4
 pocketprotector::mta::postfix::packages:
   - postfix
 
+pocketprotector::packages::provider: apt
+
 pocketprotector::puppet::packages::client:
   - puppet-agent
   - puppetdb-termini

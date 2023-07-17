@@ -47,6 +47,8 @@ deploy
 # USAGE
 add some equivalent to the following to your Puppetfile
 ```
+# pocketprotector and dependencies
+
 mod 'pocketprotector',
  :git => 'https://github.com/barryking93/pocketprotector.git',
  :branch => 'development'
@@ -54,4 +56,17 @@ mod 'pocketprotector',
 mod 'puppetlabs-accounts', :latest
 mod 'puppetlabs-stdlib', :latest
 mod 'puppetlabs-nagios_core', :latest
+
+# PuppetDB + requirements
+mod 'puppetlabs-puppetdb', :latest
+mod 'puppetlabs-postgresql', :latest
+mod 'puppetlabs-firewall', :latest
+mod 'puppetlabs-inifile', :latest
+
+# Ubuntu package mgmt
+mod 'puppetlabs-apt', :latest
+mod 'puppetlabs-concat', :latest
+
+# postfix dependencies
+mod 'oxc-postfix', :latest
 ```

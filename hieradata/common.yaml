@@ -4,6 +4,10 @@ pocketprotector::packages:
   - tmux
 pocketprotector::packages::git: git
 
+pocketprotector::files:
+  /etc/pocketprotector:
+    ensure: directory
+
 pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
 pocketprotector::monitoring::client::exports:
@@ -19,13 +23,10 @@ pocketprotector::monitoring::nagios::user: nagios
 pocketprotector::monitoring::nagios::resources:
   command:
     check_alive_ping:
-      #target: %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: $USER1$/check_ping -H $HOSTADDRESS$ -w 200.0,50% -c 1000.0,90% -p 5 -t 10
     notify-host-by-email:
-      #target:  %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\nHost: $HOSTNAME$\nState: $HOSTSTATE$\nAddress: $HOSTADDRESS$\nInfo: $HOSTOUTPUT$\n\nDate/Time: $LONGDATETIME$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Host Alert: $HOSTNAME$ is $HOSTSTATE$ **" $CONTACTEMAIL$'
     notify-service-by-email:
-      #target:  %{pocketprotector::monitoring::nagios::server::configd}/commands.cfg
       command_line: '/usr/bin/printf "%b" "***** Nagios *****\n\nNotification Type: $NOTIFICATIONTYPE$\n\nService: $SERVICEDESC$\nHost: $HOSTALIAS$\nAddress: $HOSTADDRESS$\nState: $SERVICESTATE$\n\nDate/Time: $LONGDATETIME$\n\nAdditional Info:\n\n$SERVICEOUTPUT$\n" | /usr/bin/mail -s "** $NOTIFICATIONTYPE$ Service Alert: $HOSTALIAS$/$SERVICEDESC$ is $SERVICESTATE$ **" $CONTACTEMAIL$'
   host:
     localhost:

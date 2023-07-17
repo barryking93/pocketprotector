@@ -1,0 +1,36 @@
+# hieradata/os/name/Ubuntu/22.04.yaml
+
+pocketprotector::gpu::nvidia::repository:
+  location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
+  release:
+  repos: /
+  key:
+    id: EB693B3035CD5710E231E123A4B469963BF863CC
+    source: https://pgp.mit.edu
+
+pocketprotector::packages::repositories:
+  puppet:
+    location: http://apt.puppetlabs.com
+    release: jammy
+    repos: puppet7
+    key:
+      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
+      source: https://pgp.mit.edu
+  ubuntu-main:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: jammy
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-updates:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: jammy-updates
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-security:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: jammy-security
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
