@@ -57,13 +57,13 @@ class pocketprotector::puppet::server::puppetboard {
   $puppetboard_certname = $::certname
   class { 'puppetboard':
     manage_virtualenv   => true,
+    python_version      => '3.6',
     groups              => 'puppet',
     puppetdb_host       => '127.0.0.1',
     puppetdb_port       => 8081,
   }
 
   class { 'puppetboard::apache::vhost':
-    python_version => '3.6',
     vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
     port       => 80,
   }
