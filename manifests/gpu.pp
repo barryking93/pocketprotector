@@ -15,6 +15,7 @@ class pocketprotector::gpu::amd {
 }
 
 class pocketprotector::gpu::nvidia {
+# nvidia (read: CUDA) support
 
   case lookup('pocketprotector::packages::provider') {
     'apt': {

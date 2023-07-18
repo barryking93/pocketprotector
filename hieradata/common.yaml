@@ -132,7 +132,7 @@ pocketprotector::puppet::packages::client:
 pocketprotector::puppet::packages::server:
   - puppetserver
 pocketprotector::puppet::client::servicename: puppet
-pocketprotector::puppet::server::ramusage: 256m
+pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
 pocketprotector::puppet::server::report::directory::tidy: true
 pocketprotector::puppet::server::report::directory::tidy::period: 30d

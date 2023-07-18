@@ -4,7 +4,7 @@ class pocketprotector::monitoring::nagios::server {
   package {
     lookup('pocketprotector::monitoring::nagios::packages::server', undef, 'deep', undef):
       ensure => 'present'
-    }
+  }
 
   # keep service running
   service {

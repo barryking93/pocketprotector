@@ -10,6 +10,7 @@ class pocketprotector::puppet::server {
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
   include pocketprotector::utils::git
+  include pocketprotector::puppet::server::puppetboard
 
   # defaults for Debian-based systems
   if lookup('pocketprotector::puppet::defaults', undef, undef, false) {
@@ -48,4 +49,20 @@ class pocketprotector::puppet::server {
       ensure => 'running',
       enable => 'true'
   }
+}
+
+class pocketprotector::puppet::server::puppetboard {
+
+  $ssl_dir = $::settings::ssldir
+  $puppetboard_certname = $::certname
+  class { 'puppetboard':
+    manage_virtualenv   => true,
+    groups              => 'puppet',
+    puppetdb_host       => '127.0.0.1',
+    puppetdb_port       => 8081,
+    puppetdb_key        => "${ssl_dir}/private_keys/${puppetboard_certname}.pem",
+    puppetdb_ssl_verify => "${ssl_dir}/certs/ca.pem",
+    puppetdb_cert       => "${ssl_dir}/certs/${puppetboard_certname}.pem",
+  }
+
 }
