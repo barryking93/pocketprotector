@@ -10,7 +10,9 @@ class pocketprotector::gpu {
   }
 }
 
-class pocketprotector::gpu::amd {}
+class pocketprotector::gpu::amd {
+  notify{'pocketprotector::gpu::amd: AMD not (yet?) supported':}
+}
 
 class pocketprotector::gpu::nvidia {
 
@@ -32,7 +34,7 @@ class pocketprotector::gpu::nvidia {
       }
     }
     default: {
-      notify{'the package repository for your OS is not (yet?) supported':}
+      notify{'pocketprotector::gpu::nvidia: the package repository for your OS is not (yet?) supported':}
     }
   }
 }

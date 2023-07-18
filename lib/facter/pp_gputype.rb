@@ -1,4 +1,4 @@
-# lib/facter/gputype.rb
+# lib/facter/pp_gputype.rb
 # get GPU vendor
 
 Facter.add(:pp_gputype) do

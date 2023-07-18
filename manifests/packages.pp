@@ -34,7 +34,7 @@ class pocketprotector::packages::repositories {
       include pocketprotector::packages::repositories::apt
     }
     default: {
-      notify{'the package repository for your OS is not (yet?) supported':}
+      notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
     }
   }
 }

@@ -1,4 +1,4 @@
-# lib/facter/location.rb
+# lib/facter/pp_location.rb
 # get location from relevant file
 
 Facter.add(:pp_location) do

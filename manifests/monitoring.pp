@@ -7,7 +7,8 @@ class pocketprotector::monitoring {
       include pocketprotector::monitoring::nagios
     }
     'prometheus': {
-      include pocketprotector::monitoring::prometheus
+      #include pocketprotector::monitoring::prometheus
+      notify{'pocketprotector::monitoring: prometheus is not (yet?) supported':}
     }
     default: {}
   }
