@@ -8,7 +8,8 @@
 #
 class pocketprotector::files {
   lookup('pocketprotector::files', undef, 'deep', undef).each |String $filename, Hash $filehash| {
-    #notify {"debug file for ${filename}":}
+    #notify {"pocketprotector::files: debug file for ${filename}":}
+    
     file {
       $filename:
         path                    => lookup("pocketprotector::files.${filename}.path", undef, 'first', undef),
