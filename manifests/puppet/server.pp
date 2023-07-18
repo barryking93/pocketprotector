@@ -60,9 +60,6 @@ class pocketprotector::puppet::server::puppetboard {
     groups              => 'puppet',
     puppetdb_host       => '127.0.0.1',
     puppetdb_port       => 8081,
-    puppetdb_key        => "${ssl_dir}/private_keys/${puppetboard_certname}.pem",
-    puppetdb_ssl_verify => "${ssl_dir}/certs/ca.pem",
-    puppetdb_cert       => "${ssl_dir}/certs/${puppetboard_certname}.pem",
   }
 
 }
