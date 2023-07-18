@@ -30,3 +30,4 @@ pocketprotector::puppet::packages::client:
   - puppetdb-termini
 pocketprotector::puppet::packages::server:
   - puppetserver
+  - python3.8-venv
