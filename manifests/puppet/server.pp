@@ -62,4 +62,8 @@ class pocketprotector::puppet::server::puppetboard {
     puppetdb_port       => 8081,
   }
 
+  class { 'puppetboard::apache::vhost':
+    vhost_name => "${::fqdn}",
+    port       => 80,
+  }
 }
