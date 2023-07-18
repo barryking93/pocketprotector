@@ -52,15 +52,10 @@ class pocketprotector::puppet::server {
 }
 
 class pocketprotector::puppet::server::puppetboard {
+  include pocketprotector::apache
 
-  $ssl_dir = $::settings::ssldir
-  $puppetboard_certname = $::certname
   class { 'puppetboard':
     manage_virtualenv   => true,
-    python_version      => '3.6',
-    groups              => 'puppet',
-    puppetdb_host       => '127.0.0.1',
-    puppetdb_port       => 8081,
   }
 
   class { 'puppetboard::apache::vhost':
