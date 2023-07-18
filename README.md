@@ -61,6 +61,7 @@ mod 'puppetlabs-nagios_core', :latest
 mod 'puppetlabs-puppetdb', :latest
 mod 'puppetlabs-postgresql', :latest
 mod 'puppet-puppetboard', :latest
+mod 'puppetlabs-python', :latest
 mod 'puppetlabs-firewall', :latest
 mod 'puppetlabs-inifile', :latest
 
