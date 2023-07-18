@@ -11,7 +11,7 @@ class pocketprotector::monitoring::nagios::server::import {
     'fix nagios perms':
       command     => "/usr/bin/chmod -R 644 ${nagconfigd}/*cfg",
       refreshonly => 'true',
-      notify      => [Service[lookup('pocketprotector::monitoring::nagios::service::server')];
+      notify      => Service[lookup('pocketprotector::monitoring::nagios::service::server')];
   }
 
   Nagios_command <<||>> {
