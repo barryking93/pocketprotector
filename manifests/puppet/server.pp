@@ -63,7 +63,7 @@ class pocketprotector::puppet::server::puppetboard {
   }
 
   class { 'puppetboard::apache::vhost':
-    vhost_name => "${::fqdn}",
+    vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
     port       => 80,
   }
 }
