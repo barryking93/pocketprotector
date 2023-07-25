@@ -889,8 +889,8 @@ use_true_regexp_matching=0
 # using the $ADMINEMAIL$ and $ADMINPAGER$ macros in your notification
 # commands.
 
-admin_email=nagios@localhost
-admin_pager=pagenagios@localhost
+admin_email=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::adminemail']) %>
+admin_pager=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::adminpager']) %>
 
 
 

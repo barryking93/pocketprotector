@@ -15,6 +15,8 @@ pocketprotector::monitoring::client::exports:
     cpu_load:
       use: production-service
       check_command: derp something here
+pocketprotector::monitoring::nagios::adminemail: root@localhost
+pocketprotector::monitoring::nagios::adminpager: root@localhost
 pocketprotector::monitoring::nagios::group: nagios
 pocketprotector::monitoring::nagios::client::commands:
   check_users: /usr/lib/nagios/plugins/check_users -w 5 -c 10
