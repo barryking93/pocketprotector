@@ -1,7 +1,7 @@
 # manifests/mta/opendkim.pp
 
 class pocketprotector::mta::opendkim {
-  if lookup('pocketprotector::mta::opendkim::domains') {
+  if lookup('pocketprotector::mta::opendkim::domains',undef,undef,false) {
     # To do here:  add check to fail if count for domains > 1
     include pocketprotector::mta::opendkim::package
     include pocketprotector::mta::opendkim::service
