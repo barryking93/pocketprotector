@@ -7,4 +7,7 @@ class pocketprotector::mta {
     }
     default: {}
   }
+
+  # the below can integrate with any MTA and auto-configures based on yaml
+  include pocketprotector::mta::opendkim
 }

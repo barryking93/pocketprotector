@@ -1,0 +1,87 @@
+# templates/mta/opendkim/opendkim.conf.erb
+# managed by puppet/pocketprotector
+
+# This is a configuration for signing and verifying.See opendkim.conf(5) and
+# /usr/share/doc/opendkim/examples/opendkim.conf.sample for complete
+# documentation of available configuration parameters.
+
+Syslog                  yes
+SyslogSuccess           yes
+LogWhy                  yes
+
+# Common signing and verification parameters. In Debian, the "From" header is
+# oversigned, because it is often the identity key used by reputation systems
+# and thus somewhat security sensitive.
+Canonicalization        relaxed/simple
+Mode                    sv
+SubDomains              no
+OversignHeaders         From
+
+<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, opendkimdomainhash| -%>
+# Signing domain, selector, and key (required). In this case, perform signing
+# for domain "<%= @opendkimdomain %>" with selector "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>" (<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>._domainkey.<%= @opendkimdomain %>),
+# using the private key stored in /etc/dkimkeys/<%= @opendkimdomain %>.private. More granular
+# setup options can be found in /usr/share/doc/opendkim/README.opendkim.
+Domain                 <%= @opendkimdomain %>
+Selector               <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>
+KeyFile                /etc/dkimkeys/<%= @opendkimdomain %>.private
+<% end -%>
+
+##  KeyTable dataset
+##  Defines a table that will be queried to convert key names to
+##  sets of data of the form (signing domain, signing selector, private key).
+##  The private key can either contain a PEM-formatted private key,
+##  a base64-encoded DER format private key, or a path to a file containing
+##  one of those.
+KeyTable              refile:/etc/opendkim/key.table
+
+##  SigningTable dataset
+##  Defines a dataset that will be queried for the message sender's address
+##  to determine which private key(s) (if any) should be used to sign the
+##  message.  The sender is determined from the value of the sender
+##  header fields as described with SenderHeaders above.  The key for this
+##  lookup should be an address or address pattern that matches senders;
+##  see the opendkim.conf(5) man page for more information.  The value
+##  of the lookup should return the name of a key found in the KeyTable
+##  that should be used to sign the message.  If MultipleSignatures
+##  is set, all possible lookup keys will be attempted which may result
+##  in multiple signatures being applied.
+SigningTable        refile:/etc/opendkim/signing.table
+
+# In Debian, opendkim runs as user "opendkim". A umask of 007 is required when
+# using a local socket with MTAs that access the socket as a non-privileged
+# user (for example, Postfix). You may need to add user "postfix" to group
+# "opendkim" in that case.
+UserID                  opendkim
+UMask                   007
+
+# Socket for the MTA connection (required). If the MTA is inside a chroot jail,
+# it must be ensured that the socket is accessible. In Debian, Postfix runs in
+# a chroot in /var/spool/postfix, therefore a Unix socket would have to be
+# configured as shown on the last line below.
+<% if @fqdn == scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
+Socket                  local:/var/spool/postfix/opendkim/opendkim.sock
+<% else -%>
+Socket                  local:/run/opendkim/opendkim.sock
+<% end -%>
+#Socket                 inet:8891@localhost
+#Socket                 inet:8891
+
+
+PidFile                 /run/opendkim/opendkim.pid
+
+# Hosts for which to sign rather than verify, default is 127.0.0.1. See the
+# OPERATION section of opendkim(8) for more information.
+InternalHosts           /etc/opendkim/trusted.hosts
+
+##  ExternalIgnoreList filename
+##
+##  Names a file from which a list of externally-trusted hosts is read.
+##  These are hosts which are allowed to send mail through you for signing.
+##  Automatically contains 127.0.0.1.  See man page for file format.
+ExternalIgnoreList      /etc/opendkim/trusted.hosts
+
+# The trust anchor enables DNSSEC. In Debian, the trust anchor file is provided
+# by the package dns-root-data.
+TrustAnchorFile         /usr/share/dns/root.key
+#Nameservers            127.0.0.1

@@ -1,0 +1,4 @@
+<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, hash| -%>
+*@<%= opendkimdomain =>    default._domainkey.<%= opendkimdomain =>
+*@*.<%= opendkimdomain =>    default._domainkey.<%= opendkimdomain =>
+<% end %>

@@ -125,6 +125,9 @@ pocketprotector::monitoring::nagios::resources:
 pocketprotector::mta::default: postfix
 pocketprotector::mta::aliases:
   postmaster: root
+pocketprotector::mta::opendkim::packagename: opendkim
+pocketprotector::mta::opendkim::user: opendkim
+pocketprotector::mta::opendkim::service: opendkim
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
