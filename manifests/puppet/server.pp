@@ -57,7 +57,7 @@ class pocketprotector::puppet::server::puppetboard {
   class { 'puppetboard':
     manage_virtualenv   => true,
     extra_settings => {
-      SECRET_KEY => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
+      'SECRET_KEY' => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
     },
   }
 
