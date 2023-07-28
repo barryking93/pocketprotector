@@ -56,6 +56,9 @@ class pocketprotector::puppet::server::puppetboard {
 
   class { 'puppetboard':
     manage_virtualenv   => true,
+    extra_settings => {
+      secret_key => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
+    },
   }
 
   class { 'puppetboard::apache::vhost':
