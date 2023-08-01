@@ -1,3 +1,7 @@
 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, hash| -%>
-<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector']) %>._domainkey.<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>     <%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>:<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector']) %>:/etc/opendkim/keys/<%= opendkimdomain %>.private
+<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector']) %>._domainkey.
+<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>
+<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>:
+<%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector']) %>:/etc/opendkim/keys/
+<%= opendkimdomain %>.private
 <% end %>
