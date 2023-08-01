@@ -3,5 +3,5 @@
 <%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>
 <%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.fqdn']) %>:
 <%= scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector']) %>:/etc/opendkim/keys/
-<%= opendkimdomain %>.private
+<%= @opendkimdomain %>.private
 <% end %>
