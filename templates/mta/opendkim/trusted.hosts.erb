@@ -9,7 +9,7 @@
 ::1
 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, hash| -%>
 <% if scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep']) -%>
-<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost',Puppet::Pops::Types::TypeParser.singleton.parse('Array'),'deep']).each do |trustedhost| -%>
+<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost',Puppet::Pops::Types::TypeParser.singleton.parse('Hash'),'deep']).each do |trustedhost| if call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost',Puppet::Pops::Types::TypeParser.singleton.parse('Hash'),'deep']) != undef -%>
 <%= trustedhost %>
 <% end %>
 <% end %>
