@@ -7,6 +7,6 @@
 
 127.0.0.1
 ::1
-<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.trustedhost',undef,'deep']).each do |trustedhost| -%>
+<% @opendkimtrustedhosts.each do |trustedhost| -%>
 <%= trustedhost %>
 <% end %>
