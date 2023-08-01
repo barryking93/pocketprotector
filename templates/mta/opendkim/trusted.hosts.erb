@@ -8,9 +8,9 @@
 127.0.0.1
 ::1
 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, hash| -%>
-<% if scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + @opendkimdomain + '.trustedhost'],Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep') -%>
-<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + @opendkimdomain + '.trustedhost'],Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep').each do |trustedhost| -%>
-<%= @trustedhost %>
+<% if scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost'],Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep') -%>
+<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains' + opendkimdomain + '.trustedhost'],Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep').each do |trustedhost| -%>
+<%= trustedhost %>
 <% end %>
 <% end %>
 <% end %>
