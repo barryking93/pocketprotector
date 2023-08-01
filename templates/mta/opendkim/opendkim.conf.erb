@@ -18,11 +18,11 @@ SubDomains              no
 OversignHeaders         From
 
 # Signing domain, selector, and key (required). In this case, perform signing
-# for domain "<% @odkfqdn%>" with selector "<% @odkselector %>" (<% @odkselector %>._domainkey.<% @odkfqdn %>),
+# for domain "<%= @odkfqdn%>" with selector "<%= @odkselector %>" (<%= @odkselector %>._domainkey.<%= @odkfqdn %>),
 # using the private key stored in /etc/dkimkeys/opendkim.private. More granular
 # setup options can be found in /usr/share/doc/opendkim/README.opendkim.
-Domain                 <% @odkfqdn %>
-Selector               <% @odkselector %>
+Domain                 <%= @odkfqdn %>
+Selector               <%= @odkselector %>
 KeyFile                /etc/dkimkeys/opendkim.private
 
 ##  KeyTable dataset
