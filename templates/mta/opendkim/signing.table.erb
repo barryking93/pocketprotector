@@ -1,2 +1,2 @@
-*@<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>    default._domainkey.<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
-*@*.<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>    default._domainkey.<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
+*@<% @odkfqdn %>    <% @odkselector %>._domainkey.<% @odkfqdn %>
+*@*.<% @odkfqdn %>    <% @odkselector %>._domainkey.<% @odkfqdn %>

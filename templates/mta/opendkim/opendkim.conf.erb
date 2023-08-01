@@ -18,11 +18,11 @@ SubDomains              no
 OversignHeaders         From
 
 # Signing domain, selector, and key (required). In this case, perform signing
-# for domain "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>" with selector "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>" (<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>._domainkey.<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>),
+# for domain "<% @odkfqdn%>" with selector "<% @odkselector %>" (<% @odkselector %>._domainkey.<% @odkfqdn %>),
 # using the private key stored in /etc/dkimkeys/opendkim.private. More granular
 # setup options can be found in /usr/share/doc/opendkim/README.opendkim.
-Domain                 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
-Selector               <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
+Domain                 <% @odkfqdn %>
+Selector               <% @odkselector %>
 KeyFile                /etc/dkimkeys/opendkim.private
 
 ##  KeyTable dataset

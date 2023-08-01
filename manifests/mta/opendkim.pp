@@ -11,8 +11,10 @@ class pocketprotector::mta::opendkim {
 }
 
 class pocketprotector::mta::opendkim::files {
-  # extract trustedhosts here to avoid deep merge weirdness in erb
-  $opendkimtrustedhosts = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
+  # extract vars here to avoid deep merge weirdness inside of erb
+  $odkfqdn = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
+  $odktrustedhosts = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
+  $odkselector = lookup('pocketprotector::mta::opendkim::domain.selector',undef,'deep',false)
 
   file {
     '/etc/dkimkeys/opendkim.private':
@@ -26,7 +28,7 @@ class pocketprotector::mta::opendkim::files {
       mode    => '0400',
       content => template('pocketprotector/mta/opendkim/opendkim.conf.erb'),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
-      require => Package[lookup('pocketprotector::mta::opendkim::packagename')];      
+      require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
     '/etc/opendkim':
       ensure  => 'directory',
       owner   => lookup('pocketprotector::mta::opendkim::user'),
