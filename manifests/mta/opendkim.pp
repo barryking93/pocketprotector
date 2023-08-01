@@ -71,9 +71,8 @@ class pocketprotector::mta::opendkim::mta {
           require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
       }
       group {
-        lookup('pocketprotector::mta::opendkim::user'): {
+        lookup('pocketprotector::mta::opendkim::user'):
           members => [lookup('pocketprotector::mta::opendkim::user'),lookup('pocketprotector::mta::postfix::user')]
-        }
       }
     }
     default: {}
