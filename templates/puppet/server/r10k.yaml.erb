@@ -8,4 +8,3 @@
   :my-org:
     remote: '<%= scope().call_function('hiera',['pocketprotector::puppet::server::git::url']) %>'
     basedir: '/etc/puppetlabs/code/environments'
-    postrun: ['bash', '/etc/puppetlabs/code/environments/development/pocketprotector/bin/fixoxcpostfixmaster.sh']
