@@ -59,7 +59,7 @@ UMask                   007
 # it must be ensured that the socket is accessible. In Debian, Postfix runs in
 # a chroot in /var/spool/postfix, therefore a Unix socket would have to be
 # configured as shown on the last line below.
-<% if @fqdn == scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
+<% if scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
 Socket                  local:/var/spool/postfix/opendkim/opendkim.sock
 <% else -%>
 Socket                  local:/run/opendkim/opendkim.sock
