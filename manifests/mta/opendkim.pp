@@ -54,6 +54,21 @@ class pocketprotector::mta::opendkim::files {
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
   }
+
+  case lookup('pocketprotector::mta::default') {
+    'postfix': {
+      file {
+        '/var/spool/postfix/opendkim':
+          ensure  => 'directory',
+          owner   => lookup('pocketprotector::mta::opendkim::user'),
+          group   => 'postfix',
+          mode    => '0400',
+          notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
+          require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
+      }
+    }
+    default: {}
+  }
 }
 
 class pocketprotector::mta::opendkim::package {
