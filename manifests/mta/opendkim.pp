@@ -12,7 +12,7 @@ class pocketprotector::mta::opendkim {
 
 class pocketprotector::mta::opendkim::files {
   # extract vars here to avoid deep merge weirdness inside of erb
-  $odkfqdn = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
+  $odkfqdn = lookup('pocketprotector::mta::opendkim::domain.fqdn',undef,'deep',false)
   $odktrustedhosts = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
   $odkselector = lookup('pocketprotector::mta::opendkim::domain.selector',undef,'deep',false)
 
