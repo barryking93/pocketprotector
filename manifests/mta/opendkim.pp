@@ -20,7 +20,7 @@ class pocketprotector::mta::opendkim::files {
     '/etc/opendkim/opendkim.conf':
       owner   => lookup('pocketprotector::mta::opendkim::user'),
       mode    => '0400',
-      content => template('pocketprotector/mta/opendkim/opendkim.cfg.erb'),
+      content => template('pocketprotector/mta/opendkim/opendkim.conf.erb'),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
     '/etc/opendkim/signing.table':
