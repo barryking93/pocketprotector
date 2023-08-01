@@ -62,7 +62,7 @@ class pocketprotector::mta::opendkim::files {
           ensure  => 'directory',
           owner   => lookup('pocketprotector::mta::opendkim::user'),
           group   => 'postfix',
-          mode    => '0400',
+          mode    => '0640',
           notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
           require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
       }
