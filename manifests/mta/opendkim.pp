@@ -21,6 +21,12 @@ class pocketprotector::mta::opendkim::files {
       content => lookup("pocketprotector::mta::opendkim::domain.private_key" , undef, 'deep', ""),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
+    '/etc/opendkim.conf':
+      owner   => lookup('pocketprotector::mta::opendkim::user'),
+      mode    => '0400',
+      content => template('pocketprotector/mta/opendkim/opendkim.conf.erb'),
+      notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
+      require => Package[lookup('pocketprotector::mta::opendkim::packagename')];      
     '/etc/opendkim':
       ensure  => 'directory',
       owner   => lookup('pocketprotector::mta::opendkim::user'),
@@ -31,12 +37,6 @@ class pocketprotector::mta::opendkim::files {
       owner   => lookup('pocketprotector::mta::opendkim::user'),
       mode    => '0400',
       content => template('pocketprotector/mta/opendkim/key.table.erb'),
-      notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
-      require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
-    '/etc/opendkim/opendkim.conf':
-      owner   => lookup('pocketprotector::mta::opendkim::user'),
-      mode    => '0400',
-      content => template('pocketprotector/mta/opendkim/opendkim.conf.erb'),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
     '/etc/opendkim/signing.table':
