@@ -12,7 +12,7 @@ class pocketprotector::mta::opendkim {
 
 class pocketprotector::mta::opendkim::files {
   # extract trustedhosts here to avoid deep merge weirdness in erb
-  $trustedhosts = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
+  $opendkimtrustedhosts = lookup('pocketprotector::mta::opendkim::domain.trustedhosts',undef,'deep',false)
 
   file {
     '/etc/dkimkeys/opendkim.private':
