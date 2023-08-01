@@ -16,12 +16,14 @@ pocketprotector::monitoring::nagios::server::config::plugins: /etc/nagios-plugin
 pocketprotector::monitoring::nagios::server::logdir: /var/log/nagios4
 pocketprotector::monitoring::nagios::server::pid: /var/run/nagios4/nagios4.pid
 pocketprotector::monitoring::nagios::server::retentionfile: /var/lib/nagios4/retention.dat
+pocketprotector::monitoring::nagios::server::status_file: /var/lib/nagios4/status.dat
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
 
 pocketprotector::mta::postfix::packages:
   - postfix
+pocketprotector::mta::postfix::user: postfix
 
 pocketprotector::packages::provider: apt
 
@@ -30,3 +32,4 @@ pocketprotector::puppet::packages::client:
   - puppetdb-termini
 pocketprotector::puppet::packages::server:
   - puppetserver
+  - python3.8-venv

@@ -10,6 +10,7 @@ class pocketprotector::puppet::server {
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
   include pocketprotector::utils::git
+  include pocketprotector::puppet::server::puppetboard
 
   # defaults for Debian-based systems
   if lookup('pocketprotector::puppet::defaults', undef, undef, false) {
@@ -47,5 +48,21 @@ class pocketprotector::puppet::server {
     lookup('pocketprotector::puppet::server::servicename'):
       ensure => 'running',
       enable => 'true'
+  }
+}
+
+class pocketprotector::puppet::server::puppetboard {
+  include pocketprotector::apache
+
+  class { 'puppetboard':
+    manage_virtualenv   => true,
+    extra_settings => {
+      'SECRET_KEY' => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
+    },
+  }
+
+  class { 'puppetboard::apache::vhost':
+    vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
+    port       => 80,
   }
 }

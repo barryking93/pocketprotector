@@ -6,7 +6,7 @@
 JAVA_BIN="/usr/bin/java"
 
 # Modify this if you'd like to change the memory allocation, enable JMX, etc
-JAVA_ARGS="-Xms<%= scope().call_function('hiera',['pocketprotector::puppet::server::ramusage']) %> -Xmx<%= scope().call_function('hiera',['pocketprotector::puppet::server::ramusage']) %> -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger"
+JAVA_ARGS="<%= scope().call_function('hiera',['pocketprotector::puppet::server::javaargs']) %>"
 
 # Modify this as you would JAVA_ARGS but for non-service related subcommands
 JAVA_ARGS_CLI="${JAVA_ARGS_CLI:-}"

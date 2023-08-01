@@ -1,0 +1,14 @@
+# templates/mta/opendkim/trusted.hosts.erb
+# managed by puppet/pocketprotector
+#
+# hosts trusted by opendkim
+# i.e. localhost (ipv4/ipv6) by default
+# and others if defined
+
+127.0.0.1
+::1
+<% if @odktrustedhosts != false -%>
+<% @odktrustedhosts.each do |trustedhost| -%>
+<%= trustedhost %>
+<% end -%>
+<% end -%>

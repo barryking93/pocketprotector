@@ -16,7 +16,7 @@
   report = true
   reports = puppetdb
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
-  dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>
+  dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
 <% end -%>
 
 [agent]

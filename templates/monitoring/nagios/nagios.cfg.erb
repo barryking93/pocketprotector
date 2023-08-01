@@ -23,6 +23,8 @@ cfg_dir=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios
 nagios_user=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::user']) %>
 nagios_group=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::group']) %>
 
+status_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::status_file']) %>
+
 # EXTERNAL COMMAND OPTION
 # Values: 0 = disable commands, 1 = enable commands
 check_external_commands=1
@@ -889,8 +891,8 @@ use_true_regexp_matching=0
 # using the $ADMINEMAIL$ and $ADMINPAGER$ macros in your notification
 # commands.
 
-admin_email=nagios@localhost
-admin_pager=pagenagios@localhost
+admin_email=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::adminemail']) %>
+admin_pager=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::adminpager']) %>
 
 
 

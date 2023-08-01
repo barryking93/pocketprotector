@@ -3,16 +3,19 @@
 # GPU detection and custom package installation
 
 class pocketprotector::gpu {
-  case $::facts['ppgputype'] {
+  case $::facts['pp_gputype'] {
     'amd': { include pocketprotector::gpu::amd }
     'nvidia': { include pocketprotector::gpu::nvidia }
     default: {}
   }
 }
 
-class pocketprotector::gpu::amd {}
+class pocketprotector::gpu::amd {
+  notify{'pocketprotector::gpu::amd: AMD not (yet?) supported':}
+}
 
 class pocketprotector::gpu::nvidia {
+# nvidia (read: CUDA) support
 
   case lookup('pocketprotector::packages::provider') {
     'apt': {
@@ -32,7 +35,7 @@ class pocketprotector::gpu::nvidia {
       }
     }
     default: {
-      notify{'the package repository for your OS is not (yet?) supported':}
+      notify{'pocketprotector::gpu::nvidia: the package repository for your OS is not (yet?) supported':}
     }
   }
 }

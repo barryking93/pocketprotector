@@ -60,6 +60,9 @@ mod 'puppetlabs-nagios_core', :latest
 # PuppetDB + requirements
 mod 'puppetlabs-puppetdb', :latest
 mod 'puppetlabs-postgresql', :latest
+mod 'puppet-puppetboard', :latest
+mod 'puppet-python', :latest
+mod 'puppetlabs-apache' :latest
 mod 'puppetlabs-firewall', :latest
 mod 'puppetlabs-inifile', :latest
 
