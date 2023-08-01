@@ -15,7 +15,7 @@ class pocketprotector::mta::opendkim::files {
     '/etc/dkimkeys/opendkim.private':
       owner   => lookup('pocketprotector::mta::opendkim::user'),
       mode    => '0400',
-      content => lookup("pocketprotector::mta::opendkim::domains.${opendkimdomain}.private_key" , undef, 'deep', ""),
+      content => lookup("pocketprotector::mta::opendkim::domain.private_key" , undef, 'deep', ""),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
     '/etc/opendkim/key.table':
