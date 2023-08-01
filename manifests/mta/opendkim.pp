@@ -7,6 +7,7 @@ class pocketprotector::mta::opendkim {
     include pocketprotector::mta::opendkim::package
     include pocketprotector::mta::opendkim::service
     include pocketprotector::mta::opendkim::files
+    include pocketprotector::mta::opendkim::mta
   }
 }
 
@@ -54,7 +55,10 @@ class pocketprotector::mta::opendkim::files {
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
   }
+}
 
+class pocketprotector::mta::opendkim::mta {
+  # recursive, right?  specific mta support w/in opendkim
   case lookup('pocketprotector::mta::default') {
     'postfix': {
       file {
@@ -65,6 +69,11 @@ class pocketprotector::mta::opendkim::files {
           mode    => '0640',
           notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
           require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
+      }
+      group {
+        lookup('pocketprotector::mta::opendkim::user'): {
+          members => [lookup('pocketprotector::mta::opendkim::user'),lookup('pocketprotector::mta::postfix::user')]
+        }
       }
     }
     default: {}
