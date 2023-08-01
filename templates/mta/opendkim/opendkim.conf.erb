@@ -58,7 +58,7 @@ UMask                   007
 # a chroot in /var/spool/postfix, therefore a Unix socket would have to be
 # configured as shown on the last line below.
 <% if scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
-Socket                  local:/var/spool/postfix/opendkim/opendkim.sock
+Socket                  local:/var/spool/postfix/opendkim.sock
 <% else -%>
 Socket                  local:/run/opendkim/opendkim.sock
 <% end -%>
