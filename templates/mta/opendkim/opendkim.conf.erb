@@ -19,11 +19,11 @@ OversignHeaders         From
 
 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains']).each do |opendkimdomain, opendkimdomainhash| -%>
 # Signing domain, selector, and key (required). In this case, perform signing
-# for domain "<%= @opendkimdomain %>" with selector "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>" (<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>._domainkey.<%= @opendkimdomain %>),
+# for domain "<%= @opendkimdomain %>" with selector "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>" (<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>._domainkey.<%= @opendkimdomain %>),
 # using the private key stored in /etc/dkimkeys/<%= @opendkimdomain %>.private. More granular
 # setup options can be found in /usr/share/doc/opendkim/README.opendkim.
 Domain                 <%= @opendkimdomain %>
-Selector               <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector'])%>
+Selector               <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + @opendkimdomain + '.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
 KeyFile                /etc/dkimkeys/<%= @opendkimdomain %>.private
 <% end -%>
 
