@@ -1,7 +1,8 @@
 # manifests/mta/opendkim.pp
 
 class pocketprotector::mta::opendkim {
-  if lookup('pocketprotector::mta::opendkim::domains',undef,undef,false) {
+  # detect opendkim, install and configure if needed
+  if lookup('pocketprotector::mta::opendkim::domain',undef,undef,false) {
     # To do here:  add check to fail if count for domains > 1
     include pocketprotector::mta::opendkim::package
     include pocketprotector::mta::opendkim::service
@@ -11,6 +12,12 @@ class pocketprotector::mta::opendkim {
 
 class pocketprotector::mta::opendkim::files {
   file {
+    '/etc/dkimkeys/opendkim.private':
+      owner   => lookup('pocketprotector::mta::opendkim::user'),
+      mode    => '0400',
+      content => lookup("pocketprotector::mta::opendkim::domains.${opendkimdomain}.private_key" , undef, 'deep', ""),
+      notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
+      require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
     '/etc/opendkim/key.table':
       owner   => lookup('pocketprotector::mta::opendkim::user'),
       mode    => '0400',
@@ -35,17 +42,6 @@ class pocketprotector::mta::opendkim::files {
       content => template('pocketprotector/mta/opendkim/trusted.hosts.erb'),
       notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
       require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
-  }
-
-  lookup('pocketprotector::mta::opendkim::domains', undef, 'deep', undef).each | String $opendkimdomain, Hash $opendkimhash | {
-    file {
-      "/etc/dkimkeys/${opendkimdomain}.private":
-        owner   => lookup('pocketprotector::mta::opendkim::user'),
-        mode    => '0400',
-        content => lookup("pocketprotector::mta::opendkim::domains.${opendkimdomain}.private_key" , undef, 'deep', ""),
-        notify  => Service[lookup('pocketprotector::mta::opendkim::servicename')],
-        require => Package[lookup('pocketprotector::mta::opendkim::packagename')];
-    }
   }
 }
 
