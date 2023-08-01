@@ -21,9 +21,9 @@ OversignHeaders         From
 # for domain "<%= opendkimdomain %>" with selector "<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>" (<% scope().call_function('hiera',['pocketprotector::mta::opendkim::domains.' + opendkimdomain + '.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>._domainkey.<%= opendkimdomain %>),
 # using the private key stored in /etc/dkimkeys/<%= opendkimdomain %>.private. More granular
 # setup options can be found in /usr/share/doc/opendkim/README.opendkim.
-Domain                 <%= opendkimdomain %>
+Domain                 <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.fqdn',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
 Selector               <% scope().call_function('hiera',['pocketprotector::mta::opendkim::domain.selector',Puppet::Pops::Types::TypeParser.singleton.parse('String'),'deep'])%>
-KeyFile                /etc/dkimkeys/<%= opendkimdomain %>.private
+KeyFile                /etc/dkimkeys/opendkim.private
 
 ##  KeyTable dataset
 ##  Defines a table that will be queried to convert key names to
