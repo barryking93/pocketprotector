@@ -5,7 +5,8 @@ pocketprotector::packages:
 pocketprotector::packages::git: git
 
 pocketprotector::files:
-  /etc/pocketprotector:
+  etc_pocketprotector:
+    path: /etc/pocketprotector
     ensure: directory
 
 pocketprotector::monitoring: nagios
