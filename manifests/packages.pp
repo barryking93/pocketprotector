@@ -60,7 +60,7 @@ class pocketprotector::packages::repositories::apt::init {
 class pocketprotector::packages::repositories::apt::pin {
   if lookup('pocketprotector::packages::pin',undef,deep,false) {
     lookup('pocketprotector::packages::pin',undef,deep,undef).each | String $aptrepo, String $aptrepopriority | {
-      apt::ppin { $aptrepo: priority => $aptrepopriority }
+      apt::pin { $aptrepo: priority => $aptrepopriority }
     }
   }
 }
