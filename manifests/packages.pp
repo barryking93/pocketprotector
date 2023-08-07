@@ -57,8 +57,10 @@ class pocketprotector::packages::repositories::apt::init {
 
 # add any ppas
 class pocketprotector::packages::repositories::apt::ppa {
-  lookup('pocketprotector::packages::ppa',undef,deep,undef).each | String $aptppa | {
-    apt::ppa { $aptppa: }
+  if lookup('pocketprotector::packages::ppa',undef,deep,false) {
+    lookup('pocketprotector::packages::ppa',undef,deep,undef).each | String $aptppa | {
+      apt::ppa { $aptppa: }
+    }
   }
 }
 
