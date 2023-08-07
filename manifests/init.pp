@@ -20,4 +20,6 @@ class pocketprotector {
   # everything beyond here is alphabetical
   include pocketprotector::monitoring
   include pocketprotector::mta
+  # gpu detection and support
+  include pocketprotector::gpu
 }
