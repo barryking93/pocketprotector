@@ -9,7 +9,7 @@ pocketprotector::gpu::nvidia::repository:
     source: https://pgp.mit.edu
 
 pocketprotector::packages::pin:
-  puppet-focal: 100
+  puppet-focal: '100'
 
 pocketprotector::packages::repositories:
   puppet:
