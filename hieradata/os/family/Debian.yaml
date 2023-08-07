@@ -27,9 +27,6 @@ pocketprotector::mta::postfix::user: postfix
 
 pocketprotector::packages::provider: apt
 
-pocketprotector::puppet::packages::client:
-  - puppet-agent
-  - puppetdb-termini
 pocketprotector::puppet::packages::server:
   - puppetserver
   - python3.8-venv
