@@ -2,7 +2,7 @@
 
 pocketprotector::gpu::nvidia::repository:
   location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
-  release:
+  release: ''
   repos: /
   key:
     id: EB693B3035CD5710E231E123A4B469963BF863CC
