@@ -6,7 +6,7 @@ pocketprotector::gpu::nvidia::repository:
   repos: /
   key:
     id: EB693B3035CD5710E231E123A4B469963BF863CC
-    source: https://pgp.mit.edu
+    source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-archive-keyring.gpg
 
 pocketprotector::packages::repositories:
   puppet:
