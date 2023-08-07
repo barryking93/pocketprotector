@@ -4,3 +4,7 @@ pocketprotector::gpu::nvidia::package: cuda
 
 pocketprotector::packages:
   - pciutils
+
+pocketprotector::puppet::packages::client:
+  - puppet-agent
+  - puppetdb-termini

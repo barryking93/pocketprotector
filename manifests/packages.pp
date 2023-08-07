@@ -43,6 +43,7 @@ class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
   include pocketprotector::packages::repositories::apt::repositories
   include pocketprotector::packages::repositories::apt::ppa
+  include pocketprotector::packages::repositories::apt::pin
 }
 
 # initialize the apt module itself - has to be done first
@@ -52,6 +53,15 @@ class pocketprotector::packages::repositories::apt::init {
       'sources.list'   => true,
       'sources.list.d' => true
     },
+  }
+}
+
+# pin any needed repos
+class pocketprotector::packages::repositories::apt::pin {
+  if lookup('pocketprotector::packages::pin',undef,deep,false) {
+    lookup('pocketprotector::packages::pin',undef,deep,undef).each | String $aptrepo, String $aptrepopriority | {
+      apt::ppin { $aptrepo: priority => $aptrepopriority }
+    }
   }
 }
 
