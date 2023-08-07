@@ -8,6 +8,12 @@ pocketprotector::gpu::nvidia::repository:
     id: EB693B3035CD5710E231E123A4B469963BF863CC
     source: https://pgp.mit.edu
 
+# puppet doesn't support puppetdb-termini for 7.0 on 22.04
+pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 --confdir /etc/puppetlabs/puppet > /dev/null'
+pocketprotector::puppet::packages::client:
+  - puppet
+  - puppet-terminius-puppetdb
+
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com

@@ -40,13 +40,30 @@ class pocketprotector::packages::repositories {
 }
 
 class pocketprotector::packages::repositories::apt {
+  include pocketprotector::packages::repositories::apt::init
+  include pocketprotector::packages::repositories::apt::repositories
+  include pocketprotector::packages::repositories::apt::ppa
+}
+
+# initialize the apt module itself - has to be done first
+class pocketprotector::packages::repositories::apt::init {
   class {'apt':
     purge => {
       'sources.list'   => true,
       'sources.list.d' => true
     },
   }
+}
 
+# add any ppas
+class pocketprotector::packages::repositories::apt::ppa {
+  lookup('pocketprotector::packages::ppa',undef,deep,undef).each | String $aptppa | {
+    apt::ppa { $aptppa: }
+  }
+}
+
+# add any apt repos
+class pocketprotector::packages::repositories::apt::repositories {
   lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
     apt::source { $aptrepo:
       location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),

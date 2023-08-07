@@ -132,9 +132,8 @@ pocketprotector::mta::opendkim::servicename: opendkim
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
+pocketprotector::puppet::cron::client::command: '/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
 pocketprotector::puppet::git::branch: main
-pocketprotector::puppet::packages::client:
-  - puppet-agent
 pocketprotector::puppet::packages::server:
   - puppetserver
 pocketprotector::puppet::client::servicename: puppet
