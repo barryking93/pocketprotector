@@ -2,7 +2,7 @@
 class pocketprotector::puppet::cron::client {
   cron {
     'puppet':
-      command => lookup('pocketprotector::puppet::cron::client::command')'/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null',
+      command => lookup('pocketprotector::puppet::cron::client::command'),
       user    => 'root',
       minute  => [0,30],
       hour    => '*',
