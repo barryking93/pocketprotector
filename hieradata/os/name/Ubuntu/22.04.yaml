@@ -12,7 +12,7 @@ pocketprotector::gpu::nvidia::repository:
 pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 --confdir /etc/puppetlabs/puppet > /dev/null'
 pocketprotector::puppet::packages::client:
   - puppet
-  - puppet-terminius-puppetdb
+  - puppet-terminus-puppetdb
 
 pocketprotector::packages::repositories:
   puppet:
