@@ -30,12 +30,13 @@ class pocketprotector::monitoring::nagios::client {
 
     # export host checks
     @@nagios_host { $::fqdn:
-      use           => lookup('pocketprotector::monitoring::nagios::client::use',undef,deep,'production-host'),
-      host_name     => $::fqdn,
-      address       => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${::ipaddress}"),
-      alias         => $::fqdn,
-      check_command => 'check-host-alive!3000.0,80%!5000.0,100%!10',
-      target        => "${nagconfigd}/host_${::fqdn}.cfg";
+      use                   => lookup('pocketprotector::monitoring::nagios::client::use',undef,deep,'production-host'),
+      host_name             => $::fqdn,
+      address               => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${::ipaddress}"),
+      alias                 => $::fqdn,
+      check_command         => 'check-host-alive!3000.0,80%!5000.0,100%!10',
+      notifications_enabled => lookup('pocketprotector::monitoring::notifications',undef,deep,true),
+      target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }
 
     # parse and export further checks
