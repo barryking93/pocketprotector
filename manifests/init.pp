@@ -22,4 +22,6 @@ class pocketprotector {
   include pocketprotector::mta
   # gpu detection and support
   include pocketprotector::gpu
+  # openbox support
+  include pocketprotector::openbox
 }

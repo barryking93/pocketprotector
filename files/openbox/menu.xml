@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<openbox_menu xmlns="http://openbox.org/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://openbox.org/
+  file:///usr/share/openbox/menu.xsd">
+
+  <menu id="root-menu" label="Openbox 3">
+    <item label="terminal">
+      <action name="Execute"><execute>terminator</execute></action>
+    </item>
+    <menu id="work" label="work">
+      <item label="atom">
+        <action name="Execute"><execute>atom</execute></action>
+      </item>
+      <item label="dbeaver">
+        <action name="Execute"><execute>dbeaver</execute></action>
+      </item>
+      <item label="remmina">
+        <action name="Execute"><execute>remmina</execute></action>
+      </item>
+    </menu>
+    <menu id="web" label="web">
+      <item label="chrome">
+        <action name="Execute"><execute>google-chrome</execute></action>
+      </item>
+      <item label="firefox">
+        <action name="Execute"><execute>firefox</execute></action>
+      </item>
+      <item label="torbrowser">
+        <action name="Execute"><execute>torbrowser-launcher</execute></action>
+      </item>
+    </menu>
+    <menu id="chat" label="chat">
+      <item label="discord">
+        <action name="Execute"><execute>discord</execute></action>
+      </item>
+      <item label="slack">
+          <action name="Execute"><execute>slack</execute></action>
+      </item>
+      <item label="zoom">
+          <action name="Execute"><execute>zoom</execute></action>
+      </item>
+    </menu>
+    <menu id="file" label="file">
+      <item label="nautilus">
+        <action name="Execute"><execute>nautilus --no-desktop</execute></action>
+      </item>
+      <item label="pcmanfm">
+          <action name="Execute"><execute>pcmanfm</execute></action>
+      </item>
+    </menu>
+    <menu id="games" label="games">
+      <item label="minecraft">
+        <action name="Execute"><execute>minecraft-launcher</execute></action>
+      </item>
+      <item label="steam">
+        <action name="Execute"><execute>steam</execute></action>
+      </item>
+      <item label="wesnoth">
+        <action name="Execute"><execute>wesnoth</execute></action>
+      </item>
+    </menu>
+    <menu id="editing" label="editing">
+      <item label="blender">
+        <action name="Execute"><execute>blender</execute></action>
+      </item>
+      <item label="inkscape">
+        <action name="Execute"><execute>inkscape</execute></action>
+      </item>
+      <item label="mypaint">
+        <action name="Execute"><execute>mypaint</execute></action>
+      </item>
+    </menu>
+    <menu id="media" label="media">
+      <item label="obs">
+        <action name="Execute"><execute>obs</execute></action>
+      </item>
+      <item label="spotify">
+        <action name="Execute"><execute>spotify</execute></action>
+      </item>
+    </menu>
+    <menu id="net" label="net">
+      <item label="haguichi">
+        <action name="Execute"><execute>haguichi</execute></action>
+      </item>
+    </menu>
+    <menu id="sys" label="sys">
+      <item label="nitrogen">
+        <action name="Execute"><execute>nitrogen</execute></action>
+      </item>
+      <item label="obconf">
+        <action name="Execute"><execute>obconf</execute></action>
+      </item>
+      <item label="pavucontrol">
+          <action name="Execute"><execute>pavucontrol</execute></action>
+      </item>
+    </menu>
+    <separator />
+    <item label="reconfigure">
+      <action name="Reconfigure" />
+    </item>
+    <item label="restart">
+      <action name="Restart" />
+    </item>
+    <separator />
+    <item label="exit">
+      <action name="Exit" />
+    </item>
+    <item label="suspend">
+      <action name="Execute"><execute>bash -c 'sudo pm-suspend;xscreensaver-command -lock'</execute></action>
+    </item>
+    <item label="lock screen">
+      <action name="Execute"><execute>gnome-screensaver-command -l</execute></action>
+    </item>
+  </menu>
+</openbox_menu>
