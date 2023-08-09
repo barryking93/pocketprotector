@@ -5,13 +5,13 @@ pocketprotector::gpu::nvidia::package: cuda
 pocketprotector::openbox::files:
   openbox_autostart:
     path: /etc/xdg/openbox/autostart
-    source: puppet:///modules/inerd/openbox/autostart
+    source: puppet:///modules/pocketprotector/openbox/autostart
   openbox_menu:
     path: /etc/xdg/openbox/menu.xml
-    source: puppet:///modules/inerd/openbox/menu.xml
+    source: puppet:///modules/pocketprotector/openbox/menu.xml
   conky:
     path: /etc/conky/conky.conf
-    content: template('inerd/openbox/conkyrc.erb')
+    content: template('pocketprotector/openbox/conkyrc.erb')
 
 pocketprotector::openbox::packages:
   - openbox

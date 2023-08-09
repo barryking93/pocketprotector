@@ -10,7 +10,10 @@ class pocketprotector::openbox {
       notify {"pocketprotector::openbox::files: debug file for ${filename}":}
 
       file {
-        $filename: $filehash
+        $filename:
+          path                    => lookup("pocketprotector::openbox::files.${filename}.path", undef, 'deep', undef),
+          content                 => lookup("pocketprotector::openbox::files.${filename}.content", undef, 'deep', undef),
+          source                  => lookup("pocketprotector::openbox::files.${filename}.source", undef, 'deep', undef),
       }
     }
   }
