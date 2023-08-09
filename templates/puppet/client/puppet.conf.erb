@@ -1,5 +1,6 @@
 # templates/puppet/client/puppet.conf.erb
-<%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
 
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
 [master]
