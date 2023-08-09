@@ -153,8 +153,8 @@ postfix::main_config:
   alias_database: hash:/etc/aliases
   append_dot_mydomain: no
   biff: no
-  compatibility_level: 2  
-  inet_interfaces: lo
+  compatibility_level: 2
+  inet_interfaces: any
   inet_protocols: all
   mailbox_size_limit: 0
   mydestination: $myhostname, localhost.$mydomain, localhost
