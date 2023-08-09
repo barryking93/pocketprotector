@@ -9,9 +9,10 @@ pocketprotector::openbox::files:
   openbox_menu:
     path: /etc/xdg/openbox/menu.xml
     source: puppet:///modules/pocketprotector/openbox/menu.xml
+pocketprotector::openbox::files::templates:
   conky:
     path: /etc/conky/conky.conf
-    content: template('pocketprotector/openbox/conkyrc.erb')
+    content: pocketprotector/openbox/conkyrc.erb
 
 pocketprotector::openbox::packages:
   - openbox
