@@ -6,8 +6,12 @@ class pocketprotector::openbox {
       lookup('pocketprotector::openbox::packages',undef,deep,undef):
         ensure => installed;
     }
-    file {
-      lookup('pocketprotector::openbox::packages',undef,deep,undef)
+    lookup('pocketprotector::openbox::files', undef, 'deep', undef).each |String $filename, Hash $filehash| {
+      notify {"pocketprotector::openbox::files: debug file for ${filename}":}
+
+      file {
+        $filename: { $filehash }
+      }
     }
   }
 }
