@@ -7,7 +7,7 @@
 # crawl pocketprotector.files in hieradata for file list
 #
 class pocketprotector::files {
-  #include pocketprotector::files::templates
+  include pocketprotector::files::templates
   lookup('pocketprotector::files', undef, 'deep', undef).each |String $filename, Hash $filehash| {
     notify {"pocketprotector::files: debug file for ${filename}":}
 
@@ -51,6 +51,7 @@ class pocketprotector::files {
   }
 }
 
+# note: due to permissions w/in puppet, I can't get templates to work from outside of pocketprotector-owned templates
 class pocketprotector::files::templates {
   if lookup('pocketprotector::files::templates', undef, 'deep', false) {
     lookup('pocketprotector::files::templates', undef, 'deep', undef).each |String $filename, Hash $filehash| {
