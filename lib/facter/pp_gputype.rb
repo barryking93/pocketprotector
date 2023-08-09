@@ -1,3 +1,4 @@
+# !/usr/bin/env ruby
 # lib/facter/pp_gputype.rb
 # get GPU vendor
 

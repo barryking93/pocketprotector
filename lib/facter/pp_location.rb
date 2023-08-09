@@ -1,3 +1,4 @@
+# !/usr/bin/env ruby
 # lib/facter/pp_location.rb
 # get location from relevant file
 
