@@ -10,7 +10,7 @@ class pocketprotector::openbox {
       notify {"pocketprotector::openbox::files: debug file for ${filename}":}
 
       file {
-        $filename: { $filehash }
+        $filename: $filehash
       }
     }
   }
