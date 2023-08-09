@@ -9,6 +9,8 @@ pocketprotector::files:
     path: /etc/pocketprotector
     ensure: directory
 
+pocketprotector::managed: managed by puppet / pocketprotector
+
 pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
 pocketprotector::monitoring::client::exports:
