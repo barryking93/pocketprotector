@@ -2,7 +2,7 @@
 
 class pocketprotector::openbox {
   if lookup('pocketprotector::openbox::enabled',undef,deep,false) {
-    packages {
+    package {
       lookup('pocketprotector::openbox::packages',undef,deep,undef):
         ensure => installed;
     }
