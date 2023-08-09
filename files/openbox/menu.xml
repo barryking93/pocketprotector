@@ -80,11 +80,6 @@
         <action name="Execute"><execute>spotify</execute></action>
       </item>
     </menu>
-    <menu id="net" label="net">
-      <item label="haguichi">
-        <action name="Execute"><execute>haguichi</execute></action>
-      </item>
-    </menu>
     <menu id="sys" label="sys">
       <item label="nitrogen">
         <action name="Execute"><execute>nitrogen</execute></action>
@@ -108,7 +103,7 @@
       <action name="Exit" />
     </item>
     <item label="suspend">
-      <action name="Execute"><execute>bash -c 'sudo pm-suspend;xscreensaver-command -lock'</execute></action>
+      <action name="Execute"><execute>bash -c 'sudo pm-suspend;gnome-screensaver-command -l'</execute></action>
     </item>
     <item label="lock screen">
       <action name="Execute"><execute>gnome-screensaver-command -l</execute></action>
