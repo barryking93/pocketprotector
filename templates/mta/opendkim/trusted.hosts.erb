@@ -1,5 +1,5 @@
-# templates/mta/opendkim/trusted.hosts.erb
-# managed by puppet/pocketprotector
+# templates/mta/postfix/trusted.hosts.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
 #
 # hosts trusted by opendkim
 # i.e. localhost (ipv4/ipv6) by default

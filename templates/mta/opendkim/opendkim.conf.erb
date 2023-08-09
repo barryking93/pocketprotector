@@ -1,5 +1,6 @@
 # templates/mta/opendkim/opendkim.conf.erb
-# managed by puppet/pocketprotector
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
 
 # This is a configuration for signing and verifying.See opendkim.conf(5) and
 # /usr/share/doc/opendkim/examples/opendkim.conf.sample for complete

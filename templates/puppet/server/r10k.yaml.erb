@@ -1,3 +1,7 @@
+# templates/puppet/server/r10k.yaml.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
+
 # The location to use for storing cached Git repos
 :cachedir: '/var/cache/r10k'
 

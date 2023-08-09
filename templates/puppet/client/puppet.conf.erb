@@ -1,3 +1,6 @@
+# templates/puppet/client/puppet.conf.erb
+<%= scope().call_function('hiera',['pocketprotector::managed']) %>
+
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
 [master]
   vardir = /opt/puppetlabs/server/data/puppetserver
@@ -8,6 +11,7 @@
 
 <% end -%>
 [main]
+  # environment, aka git branch
   environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
 
   # PuppetDB
@@ -15,9 +19,11 @@
   storeconfigs_backend = puppetdb
   report = true
   reports = puppetdb
-<% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
-  dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
-<% end -%>
 
+<% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
+  # alternate DNS names
+  dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
+
+<% end -%>
 [agent]
   server =  <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>

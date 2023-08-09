@@ -1,6 +1,7 @@
 -- vim: ts=4 sw=4 noet ai cindent syntax=lua
 --[[
-pocketprotector Conky config
+templates/openbox/conkyrc.erb
+<%= scope().call_function('hiera',['pocketprotector::managed']) %>
 ]]
 
 conky.config = {
