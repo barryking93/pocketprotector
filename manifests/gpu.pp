@@ -31,7 +31,7 @@ class pocketprotector::gpu::nvidia {
 
       package {
         lookup('pocketprotector::gpu::nvidia::package'):
-          ensure => installed,
+          ensure => latest,
       }
     }
     default: {
