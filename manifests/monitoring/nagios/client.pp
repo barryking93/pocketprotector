@@ -1,7 +1,7 @@
 #
 
 class pocketprotector::monitoring::nagios::client {
-  if lookup('pocketprotector::monitoring::enable',undef,undef,false) {
+  if lookup('pocketprotector::monitoring::enable',undef,undef,true) {
     # install client packages
     package {
       lookup('pocketprotector::monitoring::nagios::packages::client', undef, 'deep', undef):
