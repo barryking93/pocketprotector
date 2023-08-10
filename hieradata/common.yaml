@@ -56,7 +56,7 @@ pocketprotector::monitoring::nagios::resources:
       notification_period: twentyfourseven
       notification_options: d,u,r
       register: 0
-    qa-host:
+    noalert-host:
       use: generic-host
       max_check_attempts: 3
       notifications_enabled: 0
