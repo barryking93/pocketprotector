@@ -30,6 +30,6 @@ class pocketprotector::mta::postfix::aliases {
     '/etc/postfix/virtual':
       mode    => '0444',
       content => template('pocketprotector/mta/postfix/virtual.erb'),
-      notify  => Exec['postmap virtual';
+      notify  => Exec['postmap virtual'];
   }
 }
