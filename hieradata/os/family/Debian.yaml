@@ -30,3 +30,4 @@ pocketprotector::packages::provider: apt
 pocketprotector::puppet::packages::server:
   - puppetserver
   - python3.8-venv
+pocketprotector::puppet::server::defaults: /etc/default/puppetserver

@@ -12,16 +12,6 @@ class pocketprotector::puppet::server {
   include pocketprotector::utils::git
   include pocketprotector::puppet::server::puppetboard
 
-  # defaults for Debian-based systems
-  if lookup('pocketprotector::puppet::defaults', undef, undef, false) {
-    file {
-      '/etc/default/puppetserver':
-        mode    => '0644',
-        content => template('pocketprotector/puppet/server/defaults.erb'),
-        notify  => Service[lookup('pocketprotector::puppet::server::servicename')]
-    }
-  }
-
   exec {
     'install r10k':
       command => '/opt/puppetlabs/puppet/bin/gem install r10k',
@@ -32,6 +22,10 @@ class pocketprotector::puppet::server {
   }
 
   file {
+    lookup('pocketprotector::puppet::server::defaults'):
+      mode    => '0644',
+      content => template('pocketprotector/puppet/server/defaults.erb'),
+      notify  => Service[lookup('pocketprotector::puppet::server::servicename')]
     '/etc/puppetlabs/r10k':
       ensure => 'directory',
       mode   => '0755';
@@ -57,7 +51,7 @@ class pocketprotector::puppet::server::puppetboard {
   class { 'puppetboard':
     manage_virtualenv   => true,
     extra_settings => {
-      'SECRET_KEY' => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
+      'SECRET_KEY' => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
     },
   }
 

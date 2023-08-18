@@ -12,3 +12,4 @@ pocketprotector::packages::provider: zypper
 
 pocketprotector::puppet::packages::server:
   - puppetserver
+pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
