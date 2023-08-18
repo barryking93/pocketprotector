@@ -12,7 +12,7 @@ class pocketprotector::mta::postfix::aliases {
       timeout     => 300,
       command     => '/usr/sbin/postmap /etc/postfix/virtual',
       logoutput   => true,
-      environment => ['PAGER=/bin/cat','DISPLAY=:9'];
+      environment => ['PAGER=/bin/cat','DISPLAY=:9'],
     'run newaliases':
       refreshonly => true,
       timeout     => 300,
