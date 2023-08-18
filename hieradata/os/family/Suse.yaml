@@ -11,7 +11,5 @@ pocketprotector::monitoring::nagios::service::client: nrpe
 pocketprotector::packages::provider: zypper
 
 pocketprotector::puppet::packages::server:
-  - puppetserver
-  - puppetdb
   - postgresql15
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
