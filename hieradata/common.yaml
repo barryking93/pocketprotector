@@ -143,8 +143,12 @@ pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
 pocketprotector::puppet::cron::client::command: '/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
 pocketprotector::puppet::git::branch: main
+pocketprotector::puppet::packages::client:
+  - puppet-agent
+  - puppetdb-termini
 pocketprotector::puppet::packages::server:
   - puppetserver
+  - puppetdb
 pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/

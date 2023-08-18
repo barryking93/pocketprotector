@@ -1,0 +1,6 @@
+# hieradata/os/name/openSUSE/openSUSE.yaml
+#
+# not that we're expecting a lot of variance from ../family/Suse.yaml
+#
+
+pocketprotector::dummy:fact: true

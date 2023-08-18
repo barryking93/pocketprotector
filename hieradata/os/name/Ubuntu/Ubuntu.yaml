@@ -22,7 +22,3 @@ pocketprotector::openbox::packages:
 
 pocketprotector::packages:
   - pciutils
-
-pocketprotector::puppet::packages::client:
-  - puppet-agent
-  - puppetdb-termini
