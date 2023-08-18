@@ -5,6 +5,7 @@ pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
 pocketprotector::monitoring::nagios::packages::client:
   - monitoring-plugins-nrpe
   - nrpe
+pocketprotector::monitoring::nagios::service::client: nrpe
 
 pocketprotector::packages::provider: zypper
 
