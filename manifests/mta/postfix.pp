@@ -6,6 +6,8 @@ class pocketprotector::mta::postfix {
 }
 
 class pocketprotector::mta::postfix::aliases {
+  $postfix_virtuals = lookup('pocketprotector::mta::postfix::virtual',undef,deep,undef)
+
   exec {
     'postmap virtual':
       refreshonly => true,
