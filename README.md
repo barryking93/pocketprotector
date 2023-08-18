@@ -11,6 +11,14 @@ considered an alpha product and under active development.  expect breaking chang
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
+# BOOTSTRAP (SLES)
+```
+# PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release)
+# wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm
+# zypper install -y puppet-release-sles-${PVER}.noarch.rpm
+# zypper install -y puppet-agent
+# /opt/puppetlabs/puppet/bin/gem install r10k
+```
 # BOOTSTRAP (UBUNTU)
 ```
 # PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
@@ -18,6 +26,7 @@ Now tracked in github here:  <https://github.com/barryking93/pocketprotector/iss
 # dpkg -i puppet7-release-${PVER}.deb
 # apt update;apt -y install puppet-agent r10k
 ```
+# BOOTSTRAP (UNIVERSAL)
 copy .pub versions of above keys to appropriate git repositories
 
 create /etc/puppetlabs/r10k/r10k.yaml:
@@ -30,19 +39,17 @@ create /etc/puppetlabs/r10k/r10k.yaml:
   # This will clone the git repository and instantiate an environment per
   # branch in /etc/puppetlabs/code/environments
   :my-org:
-    remote: 'git@github.com:barryking93/pocket-inerd.git'
+    remote: 'yourpockethere'
     basedir: '/etc/puppetlabs/code/environments'
 :git:
   provider: shellgit
   repositories:
-    - remote: 'git@github.com:barryking93/pocket-inerd.git'
-      private_key: "/root/.ssh/id_ecdsa"
-    - remote: "git@github.com:barryking93/pocketprotector.git"
-      private_key: "/root/.ssh/pocketprotector-deploy"
+    - remote: 'yourpockethere'
+      private_key: "/root/.ssh/id_rsa"
 ```
 deploy
 ```
- # r10k deploy environment -p
+ # /opt/puppetlabs/puppet/bin/r10k deploy environment -p
 ```
 # USAGE
 add some equivalent to the following to your Puppetfile
