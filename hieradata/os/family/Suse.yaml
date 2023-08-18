@@ -1,5 +1,11 @@
 # hieradata/os/family/Suse.yaml
 
+pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
+pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
+pocketprotector::monitoring::nagios::packages::client:
+  - monitoring-plugins-nrpe
+  - nrpe
+
 pocketprotector::packages::provider: zypper
 
 pocketprotector::puppet::packages::server:
