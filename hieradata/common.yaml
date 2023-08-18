@@ -182,7 +182,6 @@ postfix::main_config:
   smtpd_use_tls: yes
   smtpd_tls_cert_file: &postfix_cert /etc/ssl/certs/ssl-cert-snakeoil.pem
   smtpd_tls_key_file: &postfix_key /etc/ssl/private/ssl-cert-snakeoil.key
-  smtp_tls_CApath: /etc/ssl/certs
   smtpd_sasl_auth_enable: no # only enable for mandatory tls ports
   smtpd_sasl_type: dovecot
   smtpd_sasl_path: private/auth
