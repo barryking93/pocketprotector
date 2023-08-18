@@ -25,7 +25,7 @@ class pocketprotector::puppet::server {
     lookup('pocketprotector::puppet::server::defaults'):
       mode    => '0644',
       content => template('pocketprotector/puppet/server/defaults.erb'),
-      notify  => Service[lookup('pocketprotector::puppet::server::servicename')]
+      notify  => Service[lookup('pocketprotector::puppet::server::servicename')];
     '/etc/puppetlabs/r10k':
       ensure => 'directory',
       mode   => '0755';
