@@ -49,9 +49,9 @@ class pocketprotector::puppet::server::puppetboard {
   include pocketprotector::apache
 
   class { 'puppetboard':
-    manage_virtualenv   => true,
-    extra_settings => {
-      'python_version' => '3.8',
+    python_version    => '3.8',
+    manage_virtualenv => true,
+    extra_settings    => {
       'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
     },
   }
