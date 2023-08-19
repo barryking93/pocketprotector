@@ -1,4 +1,7 @@
 # manifests/packages/apt.pp
+#
+# apt package (and repository) support
+#
 
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init

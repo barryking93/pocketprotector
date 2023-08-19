@@ -8,9 +8,6 @@ pocketprotector::gpu::nvidia::repository:
     id: EB693B3035CD5710E231E123A4B469963BF863CC
     source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
-pocketprotector::packages::pin:
-  puppet-focal: '100'
-
 pocketprotector::packages::repositories:
   openSUSE-Leap-15.4-1:
     name: openSUSE-Leap-15.4-1
