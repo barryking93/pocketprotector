@@ -7,7 +7,7 @@ class pocketprotector::packages::repositories::zypper {
 }
 
 # add any zypper repos
-class pocketprotector::packages::repositories::zypper:repositories {
+class pocketprotector::packages::repositories::zypper::repositories {
   lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $zypprepo, Hash $zypprepohash | {
     zypprepo { $zypprepo:
       ensure        => lookup("pocketprotector::packages::repositories.${zypprepo}.ensure",undef,deep,undef),
