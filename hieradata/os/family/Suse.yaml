@@ -11,6 +11,5 @@ pocketprotector::monitoring::nagios::service::client: nrpe
 pocketprotector::packages::provider: zypper
 
 pocketprotector::puppet::packages::server:
-  - postgresql15
   - python3-virtualenv
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
