@@ -26,3 +26,5 @@ pocketprotector::packages::repositories:
 
 pocketprotector::puppet::puppetdb::database::version: '14'
 pocketprotector::puppet::server::puppetboard::python_version: '3.6'
+
+python::pip::bootstrap::version: pip3
