@@ -24,7 +24,7 @@ pocketprotector::packages::repositories:
     enabled: 1
     gpgcheck: 1
 
-pocketprotector::openbox::packages:
+pocketprotector::packages:
   # needed to bootstrap puppetboard on suse
   - python3
 
