@@ -48,15 +48,15 @@ class pocketprotector::puppet::server::puppetboard {
   include pocketprotector::apache
 
   # set pip3 as pip provider
-  class {
-    'python::pip::bootstrap':
-      version       => 'pip3',
-      manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true),
-  }
+  #class {
+  #  'python::pip::bootstrap':
+  #    version       => 'pip3',
+  #    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true),
+  #}
   class {
     'puppetboard':
       python_version    => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
-      manage_virtualenv => true,
+      manage_virtualenv => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
       extra_settings    => {
         'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
       };
