@@ -48,7 +48,10 @@ class pocketprotector::puppet::server::puppetboard {
   include pocketprotector::apache
 
   # set pip3 as pip provider
-  class { 'python::pip::bootstrap': version => 'pip3', }
+  class { 'python::pip::bootstrap':
+    version       => 'pip3',
+    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true).
+  }
 
   class { 'puppetboard':
     python_version    => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
