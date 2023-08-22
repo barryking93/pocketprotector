@@ -50,7 +50,7 @@ class pocketprotector::puppet::server::puppetboard {
   # set pip3 as pip provider
   class { 'python::pip::bootstrap':
     version       => 'pip3',
-    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true).
+    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true),
   }
 
   class { 'puppetboard':
