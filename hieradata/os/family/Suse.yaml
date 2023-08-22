@@ -14,4 +14,4 @@ pocketprotector::puppet::packages::server:
   - python3-virtualenv
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
 
-pocketprotector::python::pip3::manage_python: false
+#pocketprotector::python::pip3::manage_python: false
