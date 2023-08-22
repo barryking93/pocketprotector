@@ -15,3 +15,4 @@ pocketprotector::puppet::packages::server:
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
 
 #pocketprotector::python::pip3::manage_python: false
+pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
