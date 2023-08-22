@@ -59,7 +59,7 @@ class pocketprotector::puppet::server::puppetboard {
       manage_virtualenv => true,
       extra_settings    => {
         'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
-      },
+      };
     'puppetboard::apache::vhost':
       vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
       port       => 80,
