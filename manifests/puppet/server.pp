@@ -5,6 +5,8 @@
 
 class pocketprotector::puppet::server {
   class {
+    'puppetdb::globals':
+      ssl_deploy_certs => true
     'puppetdb::server':
       database_host => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
       java_args     => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') };
