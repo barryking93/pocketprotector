@@ -29,3 +29,4 @@ pocketprotector::puppet::server::puppetboard::python_version: '3.6'
 
 python::pip::bootstrap::version: pip3
 python::pip::bootstrap::manage_python: false
+python::manage_pip_package: false
