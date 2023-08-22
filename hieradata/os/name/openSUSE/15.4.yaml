@@ -24,5 +24,8 @@ pocketprotector::packages::repositories:
     enabled: 1
     gpgcheck: 1
 
+pocketprotector::openbox::packages:
+  - python3
+
 pocketprotector::puppet::puppetdb::database::version: '14'
 pocketprotector::puppet::server::puppetboard::python_version: '3.6'
