@@ -25,6 +25,7 @@ pocketprotector::packages::repositories:
     gpgcheck: 1
 
 pocketprotector::openbox::packages:
+  # needed to bootstrap puppetboard on suse
   - python3
 
 pocketprotector::puppet::puppetdb::database::version: '14'
