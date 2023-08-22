@@ -7,6 +7,7 @@ class pocketprotector::mta::postfix {
 
 class pocketprotector::mta::postfix::aliases {
   $postfix_virtual = lookup('pocketprotector::mta::postfix::virtual',undef,deep,undef)
+  $postfix_transport = lookup('pocketprotector::mta::postfix::transport',undef,deep,undef)
 
   exec {
     'postmap virtual':
@@ -27,6 +28,10 @@ class pocketprotector::mta::postfix::aliases {
       mode    => '0444',
       content => template('pocketprotector/mta/postfix/aliases.erb'),
       notify  => Exec['run newaliases'];
+    '/etc/postfix/transport':
+      mode    => '0444',
+      content => template('pocketprotector/mta/postfix/transport.erb'),
+      notify  => Exec['postmap transport'];
     '/etc/postfix/virtual':
       mode    => '0444',
       content => template('pocketprotector/mta/postfix/virtual.erb'),

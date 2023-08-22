@@ -1,0 +1,8 @@
+# templates/postfix/transport.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
+# See man 5 transport for format
+
+<% @postfix_transport.each do |transport_local| -%>
+<%= transport_local %>
+<% end -%>
