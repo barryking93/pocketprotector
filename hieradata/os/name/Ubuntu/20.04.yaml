@@ -37,3 +37,4 @@ pocketprotector::packages::repositories:
 
 pocketprotector::puppet::packages::server:
   - python3.8-venv
+pocketprotector::puppet::server::puppetboard::python_version: '3.8'
