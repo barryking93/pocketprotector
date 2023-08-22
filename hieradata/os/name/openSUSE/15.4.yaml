@@ -23,3 +23,5 @@ pocketprotector::packages::repositories:
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
     enabled: 1
     gpgcheck: 1
+
+pocketprotector::puppet::puppetdb::database::version: 14

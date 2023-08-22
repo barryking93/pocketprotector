@@ -10,8 +10,9 @@ class pocketprotector::puppet::server {
       java_args     => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g'), };
     'puppetdb::database::postgresql':
       listen_addresses => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
+      version          => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef),
   }
-  
+
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
