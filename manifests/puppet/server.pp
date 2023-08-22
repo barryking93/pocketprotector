@@ -4,8 +4,14 @@
 #
 
 class pocketprotector::puppet::server {
-  class {'puppetdb': }
-
+  class {
+    'puppetdb::server':
+      database_host => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
+      java_args     => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g'), };
+    'puppetdb::database::postgresql':
+      listen_addresses => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
+  }
+  
   include pocketprotector::puppet::cron::server
   include pocketprotector::puppet::packages::client
   include pocketprotector::puppet::packages::server
