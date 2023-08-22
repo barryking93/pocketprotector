@@ -13,5 +13,3 @@ pocketprotector::packages::provider: zypper
 pocketprotector::puppet::packages::server:
   - python3-virtualenv
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
-
-puppetdb::ssl_deploy_certs: true

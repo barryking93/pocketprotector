@@ -66,10 +66,7 @@ class pocketprotector::puppet::server::puppetdb {
     'puppetdb::server':
       database_host    => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
       java_args        => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') },
-      ssl_deploy_certs => true,
-      ssl_key          => '/etc/puppetlabs/puppetdb/ssl/private.pem',
-      ssl_cert         => '/etc/puppetlabs/puppetdb/ssl/public.pem',
-      ssl_ca_cert      => '/etc/puppetlabs/puppetdb/ssl/ca.pem';
+      ssl_cert_paths   => true;
     'puppetdb::database::postgresql':
       listen_addresses => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
       postgres_version => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef),
