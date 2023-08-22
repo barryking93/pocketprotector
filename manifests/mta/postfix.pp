@@ -10,6 +10,12 @@ class pocketprotector::mta::postfix::aliases {
   $postfix_transport = lookup('pocketprotector::mta::postfix::transport',undef,deep,undef)
 
   exec {
+    'postmap transport':
+      refreshonly => true,
+      timeout     => 300,
+      command     => '/usr/sbin/postmap /etc/postfix/transport',
+      logoutput   => true,
+      environment => ['PAGER=/bin/cat','DISPLAY=:9'];
     'postmap virtual':
       refreshonly => true,
       timeout     => 300,
