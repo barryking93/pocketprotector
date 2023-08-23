@@ -15,5 +15,5 @@ pocketprotector::puppet::packages::server:
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
 
 # native puppetboard isn't working on suse
-pocketprotector::puppet::server::puppetboard::docker: true
+#pocketprotector::puppet::server::puppetboard::docker: true
 pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
