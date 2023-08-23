@@ -21,7 +21,7 @@ pocketprotector::files:
 pocketprotector::files::templates:
   etc_hosts:
     path: /etc/hosts
-    content: etc/hosts.erb
+    content: pocketprotector/etc/hosts.erb
 
 pocketprotector::managed: managed by puppet / pocketprotector
 
