@@ -7,8 +7,6 @@
 class pocketprotector::etc {
   include pocketprotector::etc::pocketprotector::groups
 
-  $hostshosts = lookup('pocketprotector::etc::hosts',undef,deep,undef)
-
   file {
     # write out location
     '/etc/pocketprotector/location':
