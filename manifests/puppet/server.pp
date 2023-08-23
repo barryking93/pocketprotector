@@ -43,37 +43,3 @@ class pocketprotector::puppet::server {
       enable => 'true'
   }
 }
-
-class pocketprotector::puppet::server::puppetboard {
-  include pocketprotector::apache
-
-  # set pip3 as pip provider
-  #class {
-  #  'python::pip::bootstrap':
-  #    version       => 'pip3',
-  #    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true),
-  #}
-  class {
-    'puppetboard':
-      python_version    => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
-      manage_virtualenv => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
-      extra_settings    => {
-        'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
-      };
-    'puppetboard::apache::vhost':
-      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
-      port       => 80,
-  }
-}
-
-class pocketprotector::puppet::server::puppetdb {
-  class {
-    'puppetdb::server':
-      database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
-      java_args          => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') },
-      ssl_set_cert_paths => true;
-    'puppetdb::database::postgresql':
-      listen_addresses => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
-      postgres_version => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef),
-  }
-}
