@@ -11,12 +11,18 @@ considered an alpha product and under active development.  expect breaking chang
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
-# BOOTSTRAP (SLES)
+# BOOTSTRAP client (SLES)
 ```
-# PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release) ; wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm ; rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm ; zypper install puppet-agent git
+# PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release) ; wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm ; rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm ; zypper install puppet-agent
 
-
-
+```
+answer 'always' when it prompts you, like so:
+```Do you want to reject the key, or trust always? [r/a/?] (r): a
+```
+# BOOTSTRAP server (SLES)
+note:  follows above client install
+```# zypper install r10k
+ # /opt/puppetlabs/puppet/bin/gem install r10k eyaml
 ```
 # BOOTSTRAP (UBUNTU)
 ```
@@ -48,7 +54,7 @@ create /etc/puppetlabs/r10k/r10k.yaml:
 ```
 deploy
 ```
- # /opt/puppetlabs/puppet/bin/gem install r10k eyaml
+
  # /opt/puppetlabs/puppet/bin/r10k deploy environment -p
 ```
 
