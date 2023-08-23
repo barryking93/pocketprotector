@@ -5,6 +5,9 @@
 
 pocketprotector::dummy:fact: true
 
+pocketprotector::packages:
+  - tmux
+
 pocketprotector::packages::repositories:
   repo-backports-debug-update:
     name: Update repository with updates for openSUSE Leap debuginfo packages from openSUSE Backports
