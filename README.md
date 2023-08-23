@@ -13,11 +13,10 @@ Now tracked in github here:  <https://github.com/barryking93/pocketprotector/iss
 
 # BOOTSTRAP (SLES)
 ```
-# PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release)
-# wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm
-# rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm
-# zypper install puppet-agent git
-# /opt/puppetlabs/puppet/bin/gem install r10k eyaml
+# PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release) ; wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm ; rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm ; zypper install puppet-agent git
+
+
+
 ```
 # BOOTSTRAP (UBUNTU)
 ```
@@ -49,6 +48,7 @@ create /etc/puppetlabs/r10k/r10k.yaml:
 ```
 deploy
 ```
+ # /opt/puppetlabs/puppet/bin/gem install r10k eyaml
  # /opt/puppetlabs/puppet/bin/r10k deploy environment -p
 ```
 
