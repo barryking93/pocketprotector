@@ -1,10 +1,12 @@
 # manifests/etc.pp
 #
-# write out config variables to /etc/pocketprotector
+# write out base configs to /etc
 # which is created by pocketprotector::files
 #
+
 class pocketprotector::etc {
-  include pocketprotector::etc::groups
+  include pocketprotector::etc::pocketprotector::groups
+
   file {
     # write out location
     '/etc/pocketprotector/location':
@@ -15,7 +17,7 @@ class pocketprotector::etc {
   }
 }
 
-class pocketprotector::etc::groups {
+class pocketprotector::etc::pocketprotector::groups {
   $pocketgroups = lookup('pocketprotector::groups',undef,deep,undef)
 
   if $pocketgroups!= undef {
@@ -25,7 +27,7 @@ class pocketprotector::etc::groups {
         owner   => 'root',
         group   => 'root',
         mode    => '0644',
-        content => template('pocketprotector/etc/groups.erb');
+        content => template('pocketprotector/etc/pocketprotector/groups.erb');
     }
   }
 }
