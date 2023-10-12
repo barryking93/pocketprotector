@@ -7,7 +7,7 @@
 class pocketprotector::puppet::server::puppetdb {
   class {
     'puppetdb::server':
-      database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
+      #database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
       java_args          => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') },
       ssl_set_cert_paths => true;
     'puppetdb::database::postgresql':
