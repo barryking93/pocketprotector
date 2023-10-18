@@ -5,6 +5,8 @@
 #
 # custom content type to deal with accounts
 #
+# walks through $usershash and defines accounts
+#
 
 define pocketprotector::accounts (
   Hash $usershash
