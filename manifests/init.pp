@@ -11,12 +11,11 @@ class pocketprotector {
   include pocketprotector::accounts
   # files for baseline file rollouts
   include pocketprotector::files
-  # etc to roll out custom facts/etc
-  include pocketprotector::etc
   # puppet to ensure that this runs a second time
   include pocketprotector::puppet
   # firewall, when supported
   #include pocketprotector::firewall
+  include pocketprotector::roles
   # everything beyond here is alphabetical
   include pocketprotector::monitoring
   include pocketprotector::mta

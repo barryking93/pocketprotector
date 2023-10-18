@@ -10,6 +10,6 @@ class pocketprotector::openbox {
     # configure files
     pocketprotector::files(lookup('pocketprotector::openbox::files', undef, 'deep', undef)
     # configure templates
-    pocketprotector::files(lookup('pocketprotector::openbox::files::templates', undef, 'deep', undef)
+    pocketprotector::files::templates(lookup('pocketprotector::openbox::files::templates', undef, 'deep', undef)
   }
 }
