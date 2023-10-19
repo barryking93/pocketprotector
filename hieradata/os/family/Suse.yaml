@@ -9,16 +9,16 @@ pocketprotector::etc::hosts:
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
-pocketprotector::monitoring::nagios::packages::client:
-  - monitoring-plugins-nrpe
-  - nrpe
+pocketprotector::monitoring::nagios::client::packages:
+  monitoring-plugins-nrpe:
+  nrpe:
 pocketprotector::monitoring::nagios::server::configd: /etc/nagios/conf.d
 pocketprotector::monitoring::nagios::service::client: nrpe
 
 pocketprotector::packages::provider: zypper
 
-pocketprotector::puppet::packages::server:
-  - python3-virtualenv
+pocketprotector::puppet::server::packages:
+  python3-virtualenv:
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
 
 # native puppetboard isn't working on suse

@@ -15,10 +15,10 @@ pocketprotector::openbox::files::templates:
     content: pocketprotector/openbox/conkyrc.erb
 
 pocketprotector::openbox::packages:
-  - lxpolkit
-  - openbox
-  - nitrogen
-  - tint2
+  lxpolkit:
+  openbox:
+  nitrogen:
+  tint2:
 
 pocketprotector::packages:
-  - pciutils
+  pciutils:

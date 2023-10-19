@@ -2,28 +2,9 @@
 #
 class pocketprotector::packages {
   include pocketprotector::packages::repositories
-  include pocketprotector::packages::install
-}
 
-# package installer
-class pocketprotector::packages::install {
-  case lookup('pocketprotector::packages', undef, 'deep', false) {
-    false: {}
-    default: {
-      package {
-        lookup('pocketprotector::packages', undef, 'deep', undef):
-          ensure => installed;
-      }
-    }
-  }
-  case lookup('pocketprotector::packages::latest', undef, 'deep', false) {
-    false: {}
-    default: {
-      package {
-        lookup('pocketprotector::packages::latest', undef, 'deep', undef):
-          ensure => latest;
-      }
-    }
+  if lookup('pocketprotector::packages', undef, 'deep', false) {
+    packages{lookup('pocketprotector::packages', undef, 'deep', false):}
   }
 }
 

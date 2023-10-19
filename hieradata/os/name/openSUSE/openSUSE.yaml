@@ -6,7 +6,7 @@
 pocketprotector::dummy:fact: true
 
 pocketprotector::packages:
-  - tmux
+  tmux:
 
 pocketprotector::packages::repositories:
   repo-backports-debug-update:

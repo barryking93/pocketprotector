@@ -9,11 +9,11 @@ pocketprotector::etc::hosts:
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
-pocketprotector::monitoring::nagios::packages::client:
-  - monitoring-plugins-basic
-  - nagios-nrpe-server
-pocketprotector::monitoring::nagios::packages::server:
-  - nagios4-core
+pocketprotector::monitoring::nagios::client::packages:
+  monitoring-plugins-basic:
+  nagios-nrpe-server:
+pocketprotector::monitoring::nagios::server::packages:
+  nagios4-core:
 pocketprotector::monitoring::nagios::plugin::location: /usr/lib/nagios/plugins
 pocketprotector::monitoring::nagios::server::checkresults: /var/lib/nagios4/spool/checkresults
 pocketprotector::monitoring::nagios::server::cmd: /var/lib/nagios4/rw/nagios.cmd
@@ -29,7 +29,7 @@ pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
 
 pocketprotector::mta::postfix::packages:
-  - postfix
+  postfix:
 pocketprotector::mta::postfix::user: postfix
 
 pocketprotector::packages::provider: apt

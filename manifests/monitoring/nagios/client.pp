@@ -3,17 +3,14 @@
 class pocketprotector::monitoring::nagios::client {
   if lookup('pocketprotector::monitoring::enable',undef,undef,true) {
     # install client packages
-    package {
-      lookup('pocketprotector::monitoring::nagios::packages::client', undef, 'deep', undef):
-        ensure => 'present'
-    }
+    packages {lookup('pocketprotector::monitoring::nagios::client::packages', undef, 'deep', undef):}
 
     # keep client service running
     service {
       lookup('pocketprotector::monitoring::nagios::service::client'):
         ensure  => 'running',
         enable  => true,
-        require => Package[lookup('pocketprotector::monitoring::nagios::packages::client')];
+        require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
     # configure nrpe
@@ -22,7 +19,7 @@ class pocketprotector::monitoring::nagios::client {
         mode    => '0444',
         content => template('pocketprotector/monitoring/nagios/nrpe.cfg.erb'),
         notify  => Service[lookup('pocketprotector::monitoring::nagios::service::client')],
-        require => Package[lookup('pocketprotector::monitoring::nagios::packages::client')];
+        require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
     # look configd and use as var, so we can munge it

@@ -2,14 +2,10 @@
 
 class pocketprotector::openbox {
   if lookup('pocketprotector::openbox::enabled',undef,'deep',false) {
-    # deploy packages
-    package {
+    packages {
       lookup('pocketprotector::openbox::packages',undef,'deep',undef):
-        ensure => installed;
     }
-    # configure files
     pocketprotector::files(lookup('pocketprotector::openbox::files', undef, 'deep', undef)
-    # configure templates
     pocketprotector::files::templates(lookup('pocketprotector::openbox::files::templates', undef, 'deep', undef)
   }
 }

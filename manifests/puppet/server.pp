@@ -5,11 +5,12 @@
 
 class pocketprotector::puppet::server {
   include pocketprotector::puppet::cron::server
-  include pocketprotector::puppet::packages::client
-  include pocketprotector::puppet::packages::server
   include pocketprotector::utils::git
   include pocketprotector::puppet::server::puppetdb
   include pocketprotector::puppet::server::puppetboard
+
+  packages{lookup('pocketprotector::puppet::client::packages'):}
+  packages{lookup('pocketprotector::puppet::server::packages'):}
 
   exec {
     'install r10k':

@@ -35,6 +35,6 @@ pocketprotector::packages::repositories:
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
 
-pocketprotector::puppet::packages::server:
-  - python3.8-venv
+pocketprotector::puppet::server::packages:
+  python3.8-venv:
 pocketprotector::puppet::server::puppetboard::python_version: '3.8'
