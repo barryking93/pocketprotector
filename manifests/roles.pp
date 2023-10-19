@@ -30,7 +30,7 @@ class pocketprotector::roles {
                   pocketprotector::packages::repositories::zypper::repositories{lookup("pocketprotector::roles.${rolename}.repositories"):
                 }
                 default: {
-                  notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
+                  notify{'pocketprotector::roles: the package repository for your OS is not (yet?) supported':}
                 }
               }
             }
