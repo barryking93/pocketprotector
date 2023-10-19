@@ -15,6 +15,7 @@ class pocketprotector {
   include pocketprotector::puppet
   # firewall, when supported
   #include pocketprotector::firewall
+  # roles, when detected
   include pocketprotector::roles
   # everything beyond here is alphabetical
   include pocketprotector::monitoring

@@ -3,6 +3,22 @@
 # apt package (and repository) support
 #
 
+define pocketprotector::packages::repositories::apt::repositories (
+  Hash $repositorieshash,
+){
+  $repositorieshash.each | String $aptrepo, Hash $aptrepohash | {
+    apt::source { $aptrepo:
+      location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
+      release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
+      repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.repos",undef,deep,undef),
+      key      => {
+        'id'     => lookup("pocketprotector::packages::repositories.${aptrepo}.key.id",undef,deep,undef),
+        'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
+      }
+    }
+  }
+}
+
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
   include pocketprotector::packages::repositories::apt::repositories
@@ -40,15 +56,5 @@ class pocketprotector::packages::repositories::apt::ppa {
 
 # add any apt repos
 class pocketprotector::packages::repositories::apt::repositories {
-  lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
-    apt::source { $aptrepo:
-      location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
-      release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
-      repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.repos",undef,deep,undef),
-      key      => {
-        'id'     => lookup("pocketprotector::packages::repositories.${aptrepo}.key.id",undef,deep,undef),
-        'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
-      }
-    }
-  }
+  pocketprotector::packages::repositories::apt::repositories(lookup('pocketprotector::packages::repositories',undef,deep,undef):}
 }

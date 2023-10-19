@@ -2,32 +2,44 @@
 #
 
 class pocketprotector::roles {
+  #
+  # see if roles exist, see if any are assigned, then parse the assignments
+  #
   if lookup('pocketprotector::roles') {
-    #
-    # go through roles
-    #
-    lookup('pocketprotector::roles', undef, 'deep', undef).each | String $rolename, Hash $rolehash | {
-      #
-      # interate through types
-      #
-      lookup("pocketprotector::roles.${rolename}", undef, 'deep', undef).each | String $roletype, Hash $roletypehash | {
-        case $roletype {
-          'accounts': {
-            pocketprotector::accounts{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
-          }
-          'files': {
-            pocketprotector::files{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
-          }
-          'includes': {
-            lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
-              include $includename  
+    if lookup('pocketprotector::roles::assigned') {
+      lookup('pocketprotector::roles::assigned', undef, 'deep', undef).each | String $rolename | {
+        lookup("pocketprotector::roles.${rolename}", undef, 'deep', undef).each | String $roletype, Hash $roletypehash | {
+          case $roletype {
+            'accounts': {
+              pocketprotector::accounts{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
             }
-          }
-          'templates': {
+            'files': {
+              pocketprotector::files{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
+            }
+            'includes': {
+              lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
+                include $includename
+              }
+            }
+            'repositories': {
+              case lookup('pocketprotector::packages::provider') {
+                'apt': {
+                  pocketprotector::packages::repositories::apt::repositories{lookup("pocketprotector::roles.${rolename}.repositories"):}
+                }
+                'zypper': {
+                  pocketprotector::packages::repositories::zypper::repositories{lookup("pocketprotector::roles.${rolename}.repositories"):
+                }
+                default: {
+                  notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
+                }
+              }
+            }
+            'templates': {
               pocketprotector::files::templates{lookup("pocketprotector::roles.${rolename}.templates", undef, 'deep', undef):}
+            }
+            default: {}
           }
-        }
-
+      }
     }
   }
 }

@@ -2,13 +2,11 @@
 #
 # zypper package (and repository) support
 #
-class pocketprotector::packages::repositories::zypper {
-  include pocketprotector::packages::repositories::zypper::repositories
-}
 
-# add any zypper repos
-class pocketprotector::packages::repositories::zypper::repositories {
-  lookup('pocketprotector::packages::repositories',undef,deep,undef).each | String $zypprepo, Hash $zypprepohash | {
+define pocketprotector::packages::repositories::zypper::repositories (
+  Hash $repositorieshash,
+){
+  $repositorieshash.each | String $zypprepo, Hash $zypprepohash | {
     zypprepo { $zypprepo:
       ensure        => lookup("pocketprotector::packages::repositories.${zypprepo}.ensure",undef,deep,undef),
       baseurl       => lookup("pocketprotector::packages::repositories.${zypprepo}.baseurl",undef,deep,undef),
@@ -23,4 +21,13 @@ class pocketprotector::packages::repositories::zypper::repositories {
       type          => lookup("pocketprotector::packages::repositories.${zypprepo}.type",undef,deep,undef),
     }
   }
+}
+
+class pocketprotector::packages::repositories::zypper {
+  include pocketprotector::packages::repositories::zypper::repositories
+}
+
+# add any zypper repos
+class pocketprotector::packages::repositories::zypper::repositories {
+  pocketprotector::packages::repositories::zypper::repositories{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
 }
