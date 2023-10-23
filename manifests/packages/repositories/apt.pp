@@ -4,7 +4,7 @@
 #
 
 define pocketprotector::packages::repositories::apt::source::parse (
-  String $sourceyaml,
+  String $sourceyaml = $name,
 ){
   if lookup($sourceyaml,undef,'deep',false) {
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
