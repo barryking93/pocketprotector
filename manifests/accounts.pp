@@ -9,7 +9,7 @@
 #
 
 define pocketprotector::accounts::parse (
-  String $usersyaml
+  String $usersyaml = $name,
   ){
   lookup($usersyaml, undef, 'deep', false).each |String $username, Hash $userhash| {
     #notify {"pocketprotector::accounts: account creation for for ${username}":}

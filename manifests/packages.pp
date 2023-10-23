@@ -2,7 +2,7 @@
 #
 
 define pocketprotector::packages::parse (
-  String $packagesyaml,
+  String $packagesyaml = $name,
 ){
   if lookup($packagesyaml, undef, 'deep', false) {
     lookup($packagesyaml, undef, 'deep', undef).each |String $packagename, Hash $packagehash| {

@@ -4,7 +4,7 @@
 #
 
 define pocketprotector::files::parse (
-  String $filesyaml,
+  String $filesyaml = $name,
 ){
 
   if lookup($filesyaml, undef, 'deep', false) {
@@ -56,7 +56,7 @@ define pocketprotector::files::parse (
 
 # another file definition with a different content lookup
 define pocketprotector::files::templates::parse (
-  String $filesyaml,
+  String $filesyaml = $name,
 ){
   if lookup($filesyaml, undef, 'deep', false) {
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
