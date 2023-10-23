@@ -13,33 +13,33 @@ pocketprotector::packages::pin:
   puppet-focal: '100'
 
 pocketprotector::packages::repositories:
-  'puppet':
+  puppet:
     location: http://apt.puppetlabs.com
     release: jammy
     repos: puppet7
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
       source: https://pgp.mit.edu
-  'puppet-focal':
+  puppet-focal:
     location: http://apt.puppetlabs.com
     release: focal
     repos: puppet7
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
       source: https://pgp.mit.edu
-  'ubuntu-main':
+  ubuntu-main:
     location: http://mirrors.kernel.org/ubuntu/
     release: jammy
     repos: main universe multiverse restricted
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  'ubuntu-updates':
+  ubuntu-updates:
     location: http://mirrors.kernel.org/ubuntu/
     release: jammy-updates
     repos: main universe multiverse restricted
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  'ubuntu-security':
+  ubuntu-security:
     location: http://mirrors.kernel.org/ubuntu/
     release: jammy-security
     repos: main universe multiverse restricted

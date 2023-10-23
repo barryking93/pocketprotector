@@ -10,26 +10,26 @@ pocketprotector::gpu::nvidia::repository:
       source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
 pocketprotector::packages::repositories:
-  'puppet':
+  puppet:
     location: http://apt.puppetlabs.com
     release: focal
     repos: puppet7
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
       source: https://pgp.mit.edu
-  'ubuntu-main':
+  ubuntu-main:
     location: http://mirrors.kernel.org/ubuntu/
     release: focal
     repos: main universe multiverse restricted
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  'ubuntu-updates':
+  ubuntu-updates:
     location: http://mirrors.kernel.org/ubuntu/
     release: focal-updates
     repos: main universe multiverse restricted
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  'ubuntu-security':
+  ubuntu-security:
     location: http://mirrors.kernel.org/ubuntu/
     release: focal-security
     repos: main universe multiverse restricted

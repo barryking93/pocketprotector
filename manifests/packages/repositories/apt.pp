@@ -22,7 +22,9 @@ define pocketprotector::packages::repositories::apt::sourceparse (
 
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
+
   pocketprotector::packages::repositories::apt::sourceparse{'pocketprotector::packages::repositories':}
+
   include pocketprotector::packages::repositories::apt::ppa
   include pocketprotector::packages::repositories::apt::pin
 }
