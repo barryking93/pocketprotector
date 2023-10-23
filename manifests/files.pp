@@ -49,8 +49,7 @@ define pocketprotector::files::parse (
           validate_replacement    => lookup("pocketprotector::files.${filename}.validate_replacement", undef, 'deep', undef);
       }
     }
-  }
-  else {
+  } else {
     notify{"pocketprotector::files::parse lookup filed for ${filename}"}
   }
 }

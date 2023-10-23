@@ -36,8 +36,7 @@ define pocketprotector::packages::parse (
           vendor               => lookup("${packagesyaml}.${packagename}.vendor", undef, 'deep', undef), # A read-only parameter set by the...
       }
     }
-  }
-  else {
+  } else {
     notify{"pocketprotector::files: lookup filed for file for ${packagesyaml}":}
   }
 }
