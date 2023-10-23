@@ -10,6 +10,7 @@ class pocketprotector::monitoring::nagios::client {
       lookup('pocketprotector::monitoring::nagios::service::client'):
         ensure  => 'running',
         enable  => true,
+        # require below doesn't work w/ Hash lookups
         #require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
