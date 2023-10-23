@@ -3,10 +3,10 @@
 # file handlers
 #
 
-define pocketprotector::files (
-  Hash $fileshash,
-  ){
-  $fileshash.each |String $filename, Hash $filehash| {
+define pocketprotector::files::parse (
+  String $filesyaml,
+){
+  lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
     #notify {"pocketprotector::files: debug file for ${filename}":}
 
     file {
@@ -49,10 +49,11 @@ define pocketprotector::files (
   }
 }
 
-define pocketprotector::files::templates (
-  Hash $fileshash,
+# another file definition with a different content lookup
+define pocketprotector::files::templates::parse (
+  String $filesyaml,
 ){
-  $fileshash.each |String $filename, Hash $filehash| {
+  lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
     #notify {"pocketprotector::files::templates debug file for ${filename}":}
 
     file {
@@ -98,6 +99,6 @@ define pocketprotector::files::templates (
 # feed pocketprotector::files and pocketprotector::files::tempaltes to appropriate generators
 #
 class pocketprotector::files {
-  pocketprotector::files{lookup('pocketprotector::files', undef, 'deep', undef):}
-  pocketprotector::files::templates{lookup('pocketprotector::files::templates', undef, 'deep', undef):}
+  pocketprotector::files::parse{'pocketprotector::files':}
+  pocketprotector::files::templates::parse{'pocketprotector::files::templates':}
 }
