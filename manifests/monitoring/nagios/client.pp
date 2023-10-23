@@ -10,7 +10,7 @@ class pocketprotector::monitoring::nagios::client {
       lookup('pocketprotector::monitoring::nagios::service::client'):
         ensure  => 'running',
         enable  => true,
-        require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
+        #require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
     # configure nrpe
