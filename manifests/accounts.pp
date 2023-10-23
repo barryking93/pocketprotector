@@ -8,10 +8,10 @@
 # walks through $usershash and defines accounts
 #
 
-define pocketprotector::accounts (
-  Hash $usershash
+define pocketprotector::accounts::parse (
+  String $usersyaml
   ){
-  $usershash.each |String $username, Hash $userhash| {
+  lookup($usersyaml, undef, 'deep', false).each |String $username, Hash $userhash| {
     #notify {"pocketprotector::accounts: account creation for for ${username}":}
 
     accounts::user {
@@ -30,5 +30,5 @@ define pocketprotector::accounts (
 # crawl pocketprotector.accounts in hieradata for user list
 #
 class pocketprotector::accounts {
-  pocketprotector::accounts {lookup('pocketprotector::accounts', undef, 'deep', false):}
+  pocketprotector::accounts {'pocketprotector::accounts':}
 }
