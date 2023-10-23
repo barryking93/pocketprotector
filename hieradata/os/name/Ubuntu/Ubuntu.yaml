@@ -3,6 +3,9 @@
 pocketprotector::gpu::nvidia::package: cuda
 
 pocketprotector::openbox::files:
+  etc_conky:
+    path: /etc/conky
+    ensure: directory
   openbox_autostart:
     path: /etc/xdg/openbox/autostart
     source: puppet:///modules/pocketprotector/openbox/autostart
