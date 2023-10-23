@@ -5,7 +5,7 @@ class pocketprotector::roles {
   #
   # see if roles exist, see if any are assigned, then parse the assignments
   #
-  if lookup('pocketprotector::roles') {
+  if lookup('pocketprotector::roles',undef,'deep',false) {
     if lookup('pocketprotector::roles::assigned') {
       lookup('pocketprotector::roles::assigned', undef, 'deep', undef).each | String $rolename | {
         lookup("pocketprotector::roles.${rolename}", undef, 'deep', undef).each | String $roletype, Hash $roletypehash | {

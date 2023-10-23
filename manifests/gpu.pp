@@ -19,7 +19,7 @@ class pocketprotector::gpu::nvidia {
 
   case lookup('pocketprotector::packages::provider') {
     'apt': {
-      pocketprotector::package::parse{'pocketprotector::gpu::nvidia::repository':}
+      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::repository':}
 
       package {
         lookup('pocketprotector::gpu::nvidia::package'):
