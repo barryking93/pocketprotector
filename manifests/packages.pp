@@ -4,8 +4,8 @@
 define pocketprotector::packages::parse (
   String $packagesyaml,
 ){
-  if lookup($packagessyaml, undef, 'deep', false) {
-    lookup($packagessyaml, undef, 'deep', undef).each |String $packagename, Hash $packagehash| {
+  if lookup($packagesyaml, undef, 'deep', false) {
+    lookup($packagesyaml, undef, 'deep', undef).each |String $packagename, Hash $packagehash| {
       #notify {"pocketprotector::files: debug file for ${packagename}":}
       package {
         $packagename:
