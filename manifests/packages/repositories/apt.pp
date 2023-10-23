@@ -18,8 +18,7 @@ define pocketprotector::packages::repositories::apt::sourceparse (
             'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
           };
       }
-    }
-    else {
+    } else {
       notify{"pocketprotector::packages::repositories::apt::sourceparse: lookup failed for ${sourceyaml}"}
     }
   }
