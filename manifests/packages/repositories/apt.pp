@@ -21,8 +21,8 @@ define pocketprotector::packages::repositories::apt::repositories (
 
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
-  #pocketprotector::packages::repositories::apt::repositories{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
-  apt::source {lookup('pocketprotector::packages::repositories',undef,deep,undef):}
+  pocketprotector::packages::repositories::apt::repositories{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
+  #apt::source {lookup('pocketprotector::packages::repositories',undef,deep,undef):}
   include pocketprotector::packages::repositories::apt::ppa
   include pocketprotector::packages::repositories::apt::pin
 }
