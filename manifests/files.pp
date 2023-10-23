@@ -8,7 +8,6 @@ define pocketprotector::files::parse (
 ){
 
   if lookup($filesyaml, undef, 'deep', false) {
-
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
       #notify {"pocketprotector::files: debug file for ${filename}":}
 
