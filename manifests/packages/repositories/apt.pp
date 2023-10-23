@@ -3,10 +3,10 @@
 # apt package (and repository) support
 #
 
-define pocketprotector::packages::repositories::apt::repositories (
-  Hash $repositorieshash,
+define pocketprotector::packages::repositories::apt::repoparse (
+  String $repositoriesyaml,
 ){
-  $repositorieshash.each | String $aptrepo, Hash $aptrepohash | {
+  lookup("${repositoriesyaml}",undef,deep,undef.each | String $aptrepo, Hash $aptrepohash | {
     apt::source { $aptrepo:
       location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
       release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
@@ -21,8 +21,7 @@ define pocketprotector::packages::repositories::apt::repositories (
 
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
-  pocketprotector::packages::repositories::apt::repositories{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
-  #apt::source {lookup('pocketprotector::packages::repositories',undef,deep,undef):}
+  pocketprotector::packages::repositories::apt::repoparse{"pocketprotector::packages::repositories":}
   include pocketprotector::packages::repositories::apt::ppa
   include pocketprotector::packages::repositories::apt::pin
 }
