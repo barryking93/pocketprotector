@@ -25,3 +25,4 @@ pocketprotector::openbox::packages:
 
 pocketprotector::packages:
   pciutils:
+    ensure: present

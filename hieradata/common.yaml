@@ -2,6 +2,7 @@
 
 pocketprotector::packages:
   tmux:
+    ensure: installed
 pocketprotector::packages::git: git
 
 pocketprotector::etc::hosts:
@@ -144,6 +145,7 @@ pocketprotector::mta::aliases:
   postmaster: root
 pocketprotector::mta::opendkim::packages:
   opendkim:
+    ensure: present
 pocketprotector::mta::opendkim::user: opendkim
 pocketprotector::mta::opendkim::servicename: opendkim
 
