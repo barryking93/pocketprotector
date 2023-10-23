@@ -11,7 +11,7 @@ class pocketprotector::roles {
         lookup("pocketprotector::roles.${rolename}", undef, 'deep', undef).each | String $roletype, Hash $roletypehash | {
           case $roletype {
             'accounts': {
-              pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.files":}
+              pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
             'files': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
