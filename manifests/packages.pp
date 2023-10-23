@@ -34,12 +34,11 @@ define pocketprotector::packages::parse (
           status               => lookup("${packagesyaml}.${packagename}.status", undef, 'deep', undef), # A read-only parameter set by the...
           uninstall_options    => lookup("${packagesyaml}.${packagename}.uninstall_options", undef, 'deep', undef), # An array of additional options to pass when...
           vendor               => lookup("${packagesyaml}.${packagename}.vendor", undef, 'deep', undef), # A read-only parameter set by the...
-        }
       }
     }
-    else {
-      notify{"pocketprotector::files: lookup filed for file for ${packagesyaml}":}
-    }
+  }
+  else {
+    notify{"pocketprotector::files: lookup filed for file for ${packagesyaml}":}
   }
 }
 
