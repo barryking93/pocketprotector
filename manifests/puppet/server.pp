@@ -9,8 +9,8 @@ class pocketprotector::puppet::server {
   include pocketprotector::puppet::server::puppetdb
   include pocketprotector::puppet::server::puppetboard
 
-  packages{lookup('pocketprotector::puppet::client::packages'):}
-  packages{lookup('pocketprotector::puppet::server::packages'):}
+  pocketprotector::packages::parse{'pocketprotector::puppet::client::packages':}
+  pocketprotector::packages::parse{'pocketprotector::puppet::server::packages':}
 
   exec {
     'install r10k':
