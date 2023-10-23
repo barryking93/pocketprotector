@@ -6,7 +6,7 @@
 define pocketprotector::packages::repositories::apt::repoparse (
   String $repositoriesyaml,
 ){
-  lookup("${repositoriesyaml}",undef,deep,undef.each | String $aptrepo, Hash $aptrepohash | {
+  lookup("${repositoriesyaml}",undef,deep,undef).each | String $aptrepo, Hash $aptrepohash | {
     apt::source { $aptrepo:
       location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
       release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
