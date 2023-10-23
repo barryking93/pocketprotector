@@ -30,5 +30,5 @@ define pocketprotector::accounts::parse (
 # crawl pocketprotector.accounts in hieradata for user list
 #
 class pocketprotector::accounts {
-  pocketprotector::accounts {'pocketprotector::accounts':}
+  pocketprotector::accounts::parse{'pocketprotector::accounts':}
 }
