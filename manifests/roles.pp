@@ -11,10 +11,10 @@ class pocketprotector::roles {
         lookup("pocketprotector::roles.${rolename}", undef, 'deep', undef).each | String $roletype, Hash $roletypehash | {
           case $roletype {
             'accounts': {
-              pocketprotector::accounts{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
+              pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.files":}
             }
             'files': {
-              pocketprotector::files{lookup("pocketprotector::roles.${rolename}.files", undef, 'deep', undef):}
+              pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
             }
             'includes': {
               lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
@@ -27,7 +27,7 @@ class pocketprotector::roles {
                   pocketprotector::packages::repositories::apt::repoparse{"pocketprotector::roles.${rolename}.repositories":}
                 }
                 'zypper': {
-                  pocketprotector::packages::repositories::zypper::repositories{lookup("pocketprotector::roles.${rolename}.repositories"):
+                  pocketprotector::packages::repositories::zypper::repoparse{"pocketprotector::roles.${rolename}.repositories":}
                 }
                 default: {
                   notify{'pocketprotector::roles: the package repository for your OS is not (yet?) supported':}
