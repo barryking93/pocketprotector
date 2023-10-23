@@ -1,8 +1,7 @@
 # manifests/monitoring/nagios/server.pp
 
 class pocketprotector::monitoring::nagios::server {
-  packages {lookup('pocketprotector::monitoring::nagios::server::packages', undef, 'deep', undef):}
-
+  pocketprotector::packages::parse {'pocketprotector::monitoring::nagios::server::packages':}
   # keep service running
   service {
     lookup('pocketprotector::monitoring::nagios::service::server'):
