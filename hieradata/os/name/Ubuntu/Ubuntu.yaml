@@ -13,7 +13,7 @@ pocketprotector::openbox::files:
     path: /etc/xdg/openbox/menu.xml
     source: puppet:///modules/pocketprotector/openbox/menu.xml
 pocketprotector::openbox::files::templates:
-  conky:
+  conky_conf:
     path: /etc/conky/conky.conf
     content: pocketprotector/openbox/conkyrc.erb
 
