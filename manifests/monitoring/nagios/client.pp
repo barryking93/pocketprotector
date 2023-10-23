@@ -3,7 +3,7 @@
 class pocketprotector::monitoring::nagios::client {
   if lookup('pocketprotector::monitoring::enable',undef,undef,true) {
     # install client packages
-    pocketprotector::packages::parse {'pocketprotector::monitoring::nagios::client::packages':}
+    pocketprotector::packages::parse{'pocketprotector::monitoring::nagios::client::packages':}
 
     # keep client service running
     service {
