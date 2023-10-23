@@ -6,7 +6,7 @@
 define pocketprotector::packages::repositories::apt::sourceparse (
   String $sourceyaml,
 ){
-  if lookup($sourceyaml,undef,'deep',false){
+  if lookup($sourceyaml,undef,'deep',false) {
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
       apt::source {
         $aptrepo:
@@ -18,9 +18,9 @@ define pocketprotector::packages::repositories::apt::sourceparse (
             'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
           };
       }
-    } else {
-      notify{"pocketprotector::packages::repositories::apt::sourceparse: lookup failed for ${sourceyaml}"}
     }
+  } else {
+    notify{"pocketprotector::packages::repositories::apt::sourceparse: lookup failed for ${sourceyaml}":}
   }
 }
 
