@@ -24,7 +24,7 @@ class pocketprotector::roles {
             'repositories': {
               case lookup('pocketprotector::packages::provider') {
                 'apt': {
-                  pocketprotector::packages::repositories::apt::repoparse{"pocketprotector::roles.${rolename}.repositories":}
+                  pocketprotector::packages::repositories::apt::sourceparse{"pocketprotector::roles.${rolename}.repositories":}
                 }
                 'zypper': {
                   pocketprotector::packages::repositories::zypper::repoparse{"pocketprotector::roles.${rolename}.repositories":}
