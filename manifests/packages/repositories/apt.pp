@@ -3,7 +3,7 @@
 # apt package (and repository) support
 #
 
-define pocketprotector::packages::repositories::apt::sourceparse (
+define pocketprotector::packages::repositories::apt::source::parse (
   String $sourceyaml,
 ){
   if lookup($sourceyaml,undef,'deep',false) {
@@ -27,7 +27,7 @@ define pocketprotector::packages::repositories::apt::sourceparse (
 class pocketprotector::packages::repositories::apt {
   include pocketprotector::packages::repositories::apt::init
 
-  pocketprotector::packages::repositories::apt::sourceparse{'pocketprotector::packages::repositories':}
+  pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::packages::repositories':}
 
   include pocketprotector::packages::repositories::apt::ppa
   include pocketprotector::packages::repositories::apt::pin
