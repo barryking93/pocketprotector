@@ -9,7 +9,7 @@ define pocketprotector::files::parse (
 
   if lookup($filesyaml, undef, 'deep', false) {
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
-      #notify {"pocketprotector::files: debug file for ${filename}":}
+      #notify {"pocketprotector::files::parse: debug file for ${filename}":}
 
       file {
         $filename:
@@ -55,12 +55,12 @@ define pocketprotector::files::parse (
 }
 
 # another file definition with a different content lookup
-define pocketprotector::files::parse (
+define pocketprotector::files::templates::parse (
   String $filesyaml = $name,
 ){
   if lookup($filesyaml, undef, 'deep', false) {
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
-      #notify {"pocketprotector::files debug file for ${filename}":}
+      #notify {"pocketprotector::files::templates::parse debug file for ${filename}":}
 
       file {
         $filename:
@@ -110,7 +110,7 @@ define pocketprotector::files::parse (
 #
 class pocketprotector::files {
   pocketprotector::files::parse{'pocketprotector::files':}
-  pocketprotector::files::parse{'pocketprotector::files':}
+  pocketprotector::files::templates::parse{'pocketprotector::files::templates':}
 
   include pocketprotector::files::base
 }
