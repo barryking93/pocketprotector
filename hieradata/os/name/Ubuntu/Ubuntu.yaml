@@ -14,6 +14,7 @@ pocketprotector::openbox::files:
   openbox_menu:
     path: /etc/xdg/openbox/menu.xml
     source: puppet:///modules/pocketprotector/openbox/menu.xml
+
 pocketprotector::openbox::files::templates:
   conky_conf:
     path: /etc/conky/conky.conf
@@ -21,9 +22,13 @@ pocketprotector::openbox::files::templates:
 
 pocketprotector::openbox::packages:
   lxpolkit:
+    ensure: present
   openbox:
+    ensure: present
   nitrogen:
+    ensure: present
   tint2:
+    ensure: present
 
 pocketprotector::packages:
   pciutils:
