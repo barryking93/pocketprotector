@@ -1,6 +1,8 @@
 # hieradata/os/name/Ubuntu/Ubuntu.yaml
 
-pocketprotector::gpu::nvidia::package: cuda
+pocketprotector::gpu::nvidia::packages:
+  cuda:
+    ensure: latest
 
 pocketprotector::openbox::files:
   etc_conky:

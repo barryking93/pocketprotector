@@ -19,12 +19,8 @@ class pocketprotector::gpu::nvidia {
 
   case lookup('pocketprotector::packages::provider') {
     'apt': {
-      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::repository':}
-
-      package {
-        lookup('pocketprotector::gpu::nvidia::package'):
-          ensure => latest,
-      }
+      pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::gpu::nvidia::repository':}
+      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
     }
     default: {
       notify{'pocketprotector::gpu::nvidia: the package repository for your OS is not (yet?) supported':}
