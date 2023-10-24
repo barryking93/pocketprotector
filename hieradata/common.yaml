@@ -161,9 +161,9 @@ pocketprotector::puppet::client::packages:
     ensure: latest
   puppetdb-termini:
     ensure: latest
-pocketprotector::puppet::server::packages:
-  puppetserver:
-    ensure: latest
+#pocketprotector::puppet::server::packages:
+#  puppetserver:
+#    ensure: latest
 # puppetdb package controlled by own module
 #  puppetdb:
 #    ensure: latest
