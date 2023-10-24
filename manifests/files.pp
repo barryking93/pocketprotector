@@ -120,7 +120,7 @@ class pocketprotector::files::base {
   $hostshosts = lookup('pocketprotector::etc::hosts',undef,'deep',undef)
 
   file {
-    '/etc/hosts'
+    '/etc/hosts':
       content => template('pocketprotector/etc/hosts.erb')
   }
 }
