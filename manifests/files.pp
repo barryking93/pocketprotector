@@ -10,7 +10,7 @@ define pocketprotector::files::parse (
   if lookup($filesyaml, undef, 'deep', false) {
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
       #notify {"pocketprotector::files::parse: debug file for ${filename}":}
-      $tmppath = lookup("(${filesyaml}.${filename}.path", undef, 'deep', undef)
+      $tmppath = lookup("${filesyaml}.${filename}.path", undef, 'deep', undef)
       notify {"${filename} reads as path of ${tmppath}"}
 
       file {
