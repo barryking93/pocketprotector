@@ -11,7 +11,7 @@ define pocketprotector::files::parse (
     lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
       #notify {"pocketprotector::files::parse: debug file for ${filename}":}
       $tmppath = lookup("${filesyaml}.${filename}.path", undef, 'deep', undef)
-      notify {"${filename} reads as path of ${tmppath}"}
+      notify {"${filename} reads as path of ${tmppath}":}
 
       file {
         $filename:
