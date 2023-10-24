@@ -9,13 +9,12 @@ pocketprotector::etc::hosts:
   - '127.0.0.1  localhost'
   - "127.0.1.1  %{facts.fqdn} %{facts.hostname}"
 
-pocketprotector::files:
-  etc_pocketprotector:
-    path: /etc/pocketprotector
-    ensure: directory
+#pocketprotector::files:
+#  etc_pocketprotector:
+#    path: /etc/pocketprotector
+#    ensure: directory
 
-pocketprotector::files::templates:
-
+#pocketprotector::files::templates:
 #  etc_hosts:
 #    path: /etc/hosts
 #    content: pocketprotector/etc/hosts.erb
