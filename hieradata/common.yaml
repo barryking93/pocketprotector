@@ -15,9 +15,10 @@ pocketprotector::files:
     ensure: directory
 
 pocketprotector::files::templates:
-  etc_hosts:
-    path: /etc/hosts
-    content: pocketprotector/etc/hosts.erb
+
+#  etc_hosts:
+#    path: /etc/hosts
+#    content: pocketprotector/etc/hosts.erb
 
 pocketprotector::managed: managed by puppet / pocketprotector
 

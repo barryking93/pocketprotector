@@ -111,4 +111,16 @@ define pocketprotector::files::templates::parse (
 class pocketprotector::files {
   pocketprotector::files::parse{'pocketprotector::files':}
   pocketprotector::files::templates::parse{'pocketprotector::files::templates':}
+
+  include pocketprotector::files::base
+}
+
+class pocketprotector::files::base {
+  # deep searches have to happen outside of templates
+  $hostshosts = lookup('pocketprotector::etc::hosts',undef,'deep',undef)
+
+  file {
+    '/etc/hosts'
+      content => template('pocketprotector/etc/hosts.erb')
+  }
 }
