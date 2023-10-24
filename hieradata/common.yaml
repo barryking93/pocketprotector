@@ -164,8 +164,9 @@ pocketprotector::puppet::client::packages:
 pocketprotector::puppet::server::packages:
   puppetserver:
     ensure: latest
-  puppetdb:
-    ensure: latest
+# puppetdb package controlled by own module
+#  puppetdb:
+#    ensure: latest
 pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
