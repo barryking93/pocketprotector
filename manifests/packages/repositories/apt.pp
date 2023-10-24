@@ -10,12 +10,12 @@ define pocketprotector::packages::repositories::apt::source::parse (
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
       apt::source {
         $aptrepo:
-          location => lookup("pocketprotector::packages::repositories.${aptrepo}.location",undef,deep,undef),
-          release  => lookup("pocketprotector::packages::repositories.${aptrepo}.release",undef,deep,undef),
-          repos    => lookup("pocketprotector::packages::repositories.${aptrepo}.repos",undef,deep,undef),
+          location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
+          release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
+          repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
           key      => {
-            'id'     => lookup("pocketprotector::packages::repositories.${aptrepo}.key.id",undef,deep,undef),
-            'source' => lookup("pocketprotector::packages::repositories.${aptrepo}.key.source",undef,deep,undef),
+            'id'     => lookup("${sourceyaml}.${aptrepo}.key.id",undef,deep,undef),
+            'source' => lookup("${sourceyaml}.${aptrepo}.key.source",undef,deep,undef),
           };
       }
     }
