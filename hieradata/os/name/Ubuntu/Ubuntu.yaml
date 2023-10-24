@@ -5,19 +5,15 @@ pocketprotector::gpu::nvidia::packages:
     ensure: latest
 
 pocketprotector::openbox::files:
-  etc_conky:
-    path: /etc/conky
+  '/etc/conky':
     ensure: directory
-  openbox_autostart:
-    path: /etc/xdg/openbox/autostart
+  '/etc/xdg/openbox/autostart':
     source: puppet:///modules/pocketprotector/openbox/autostart
-  openbox_menu:
-    path: /etc/xdg/openbox/menu.xml
+  '/etc/xdg/openbox/menu.xml':
     source: puppet:///modules/pocketprotector/openbox/menu.xml
 
 pocketprotector::openbox::files::templates:
-  conky_conf:
-    path: /etc/conky/conky.conf
+  '/etc/conky/conky.conf':
     content: pocketprotector/openbox/conkyrc.erb
 
 pocketprotector::openbox::packages:

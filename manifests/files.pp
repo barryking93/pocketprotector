@@ -56,7 +56,7 @@ define pocketprotector::files::parse (
   }
 }
 
-# another file definition with a different content lookup
+# another file parser for templates with a different content & source lookups
 define pocketprotector::files::templates::parse (
   String $filesyaml = $name,
 ){
