@@ -42,7 +42,7 @@ class pocketprotector::roles {
         }
       }
     } else {
-      notify{"pocketprotector::roles no roles assigned":}
+      #notify{"pocketprotector::roles no roles assigned":}
     }
   }
 }

@@ -50,7 +50,7 @@ define pocketprotector::files::parse (
       }
     }
   } else {
-    notify{"pocketprotector::files::parse lookup filed for ${filesyaml}":}
+    #notify{"pocketprotector::files::parse lookup filed for ${filesyaml}":}
   }
 }
 
@@ -101,7 +101,7 @@ define pocketprotector::files::templates::parse (
         }
     }
   } else {
-    notify{"pocketprotector::files::parse lookup failed for ${filesyaml}":}
+    #notify{"pocketprotector::files::parse lookup failed for ${filesyaml}":}
   }
 
 }
