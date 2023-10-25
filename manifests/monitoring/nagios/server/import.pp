@@ -16,30 +16,30 @@ class pocketprotector::monitoring::nagios::server::import {
 
   Nagios_command <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_contact <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_contactgroup <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_host <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_hostgroup <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_service <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
   Nagios_timeperiod <<||>> {
     notify  => [Service[lookup('pocketprotector::monitoring::nagios::service::server')],Exec['fix nagios perms']],
-    require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')],
+    require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')],
   }
 }
