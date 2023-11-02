@@ -41,6 +41,12 @@ create /etc/puppetlabs/r10k/r10k.yaml:
     - remote: "git@github.com:barryking93/pocketprotector.git"
       private_key: "/root/.ssh/pocketprotector-deploy"
 ```
+host key verification step
+```
+# ssh git@github.com
+```
+Say "Yes" when prompted to verify host key for github.
+
 deploy
 ```
  # r10k deploy environment -p
