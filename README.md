@@ -17,6 +17,7 @@ Now tracked in github here:  <https://github.com/barryking93/pocketprotector/iss
 # wget https://apt.puppet.com/puppet7-release-${PVER}.deb
 # dpkg -i puppet7-release-${PVER}.deb
 # apt update;apt -y install puppet-agent r10k
+# puppetserver gem install hiera-eyaml
 ```
 copy .pub versions of above keys to appropriate git repositories
 
