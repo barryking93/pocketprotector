@@ -1,12 +1,11 @@
 # pocketprotector
-
-a puppet framework for managing infrastructure services
+A puppet framework for managing infrastructure services
 
 # WARNING:
-considered an alpha product and under active development.  expect breaking changes.
+Considered an alpha product and under active development.  expect breaking changes.
 
 # VISION:
-- full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
+- Full stack support for rhel/centos/opensuse/sles/ubuntu(LTS)
 
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
@@ -19,9 +18,9 @@ Now tracked in github here:  <https://github.com/barryking93/pocketprotector/iss
 # apt update;apt -y install puppet-agent r10k
 # puppetserver gem install hiera-eyaml
 ```
-copy .pub versions of above keys to appropriate git repositories
+## Copy .pub versions of above keys to appropriate git repositories
 
-create /etc/puppetlabs/r10k/r10k.yaml:
+## Create /etc/puppetlabs/r10k/r10k.yaml:
 ```
 # The location to use for storing cached Git repos
 :cachedir: '/var/cache/r10k'
@@ -41,16 +40,22 @@ create /etc/puppetlabs/r10k/r10k.yaml:
     - remote: "git@github.com:barryking93/pocketprotector.git"
       private_key: "/root/.ssh/pocketprotector-deploy"
 ```
-host key verification step
+## Host key verification step
 ```
 # ssh git@github.com
 ```
 Say "Yes" when prompted to verify host key for github.
-
-deploy
+## Create eyaml keys
+```angular2html
+# cd /etc/puppetlabs/puppet
+# /opt/puppetlabs/puppet/bin/eyaml createkeys
+# mv keys eyaml
+```
+## Deploy
 ```
  # r10k deploy environment -p
 ```
+
 # USAGE
 add some equivalent to the following to your Puppetfile
 ```
