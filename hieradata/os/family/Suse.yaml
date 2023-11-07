@@ -11,9 +11,15 @@ pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
 pocketprotector::monitoring::nagios::client::packages:
   monitoring-plugins-nrpe:
+    ensure: present
   nrpe:
+    ensure: present
 pocketprotector::monitoring::nagios::server::configd: /etc/nagios/conf.d
 pocketprotector::monitoring::nagios::service::client: nrpe
+
+pocketprotector::packages:
+  tmux:
+    ensure: present
 
 pocketprotector::packages::provider: zypper
 
