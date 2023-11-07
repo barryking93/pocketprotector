@@ -25,5 +25,5 @@ define pocketprotector::packages::repositories::zypper::repositories::parse (
 }
 
 class pocketprotector::packages::repositories::zypper {
-  pocketprotector::packages::repositories::zypper::repositories::parse{'pocketprotector::packages::repositories'):}
+  pocketprotector::packages::repositories::zypper::repositories::parse{'pocketprotector::packages::repositories':}
 }
