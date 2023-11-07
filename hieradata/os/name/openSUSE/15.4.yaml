@@ -9,7 +9,7 @@ pocketprotector::gpu::nvidia::repository:
     source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
 pocketprotector::packages::repositories:
-  openSUSE-Leap:
+  Leap:
     name: openSUSE-Leap
     enabled: 1
     autorefresh: 1
