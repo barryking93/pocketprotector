@@ -5,7 +5,8 @@
 
 class pocketprotector::puppet::client {
   include pocketprotector::puppet::cron::client
-  include pocketprotector::puppet::packages::client
+
+  pocketprotector::packages::parse{'pocketprotector::puppet::client::packages':}
 
   service {
     lookup('pocketprotector::puppet::client::servicename'):

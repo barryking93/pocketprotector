@@ -1,6 +1,8 @@
-###########################################
-# Init settings for puppetserver
-###########################################
+# templates/puppet/server/defaults.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
+# Debian-style defaults
+#
 
 # Location of your Java binary (version 8)
 JAVA_BIN="/usr/bin/java"

@@ -1,0 +1,32 @@
+#!/bin/bash
+. $GLOBALSTART &
+
+# screensaver
+which gnome-screensaver > /dev/null && gnome-screensaver &
+#xscreensaver -nosplash &
+
+# Start PolKit automatically
+sleep 1 && which lxpolkit > /dev/null && lxpolkit &
+
+# a system monitor
+conky
+
+# a menu bar
+which tint2 > /dev/null && tint2 &
+
+# NetworkManager applet
+#(sleep 2 && /usr/bin/nm-applet) &
+
+# trackpad hacks
+syndaemon -i 4 -d -t -K
+
+# dropbox
+which dropbox > /dev/null && dropbox start
+
+# restore last nvidia settings
+which nvidia-settings > /dev/null && nvidia-settings -l
+
+# restore background image w/ nitrogen
+which nitrogen > /dev/null && nitrogen --restore
+
+export GNOME_DESKTOP_SESSION_ID="openbox"

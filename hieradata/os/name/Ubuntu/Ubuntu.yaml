@@ -1,6 +1,31 @@
 # hieradata/os/name/Ubuntu/Ubuntu.yaml
 
-pocketprotector::gpu::nvidia::package: cuda
+pocketprotector::gpu::nvidia::packages:
+  cuda:
+    ensure: latest
+
+pocketprotector::openbox::files:
+  '/etc/conky':
+    ensure: directory
+  '/etc/xdg/openbox/autostart':
+    source: puppet:///modules/pocketprotector/openbox/autostart
+  '/etc/xdg/openbox/menu.xml':
+    source: puppet:///modules/pocketprotector/openbox/menu.xml
+
+pocketprotector::openbox::files::templates:
+  '/etc/conky/conky.conf':
+    content: pocketprotector/openbox/conkyrc.erb
+
+pocketprotector::openbox::packages:
+  lxpolkit:
+    ensure: present
+  openbox:
+    ensure: present
+  nitrogen:
+    ensure: present
+  tint2:
+    ensure: present
 
 pocketprotector::packages:
-  - pciutils
+  pciutils:
+    ensure: present

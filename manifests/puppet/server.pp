@@ -4,23 +4,14 @@
 #
 
 class pocketprotector::puppet::server {
-  class {'puppetdb': }
-
   include pocketprotector::puppet::cron::server
-  include pocketprotector::puppet::packages::client
-  include pocketprotector::puppet::packages::server
   include pocketprotector::utils::git
+  include pocketprotector::puppet::server::puppetdb
   include pocketprotector::puppet::server::puppetboard
 
-  # defaults for Debian-based systems
-  if lookup('pocketprotector::puppet::defaults', undef, undef, false) {
-    file {
-      '/etc/default/puppetserver':
-        mode    => '0644',
-        content => template('pocketprotector/puppet/server/defaults.erb'),
-        notify  => Service[lookup('pocketprotector::puppet::server::servicename')]
-    }
-  }
+  pocketprotector::packages::parse{'pocketprotector::puppet::client::packages':}
+  # packages managed by modules
+  #pocketprotector::packages::parse{'pocketprotector::puppet::server::packages':}
 
   exec {
     'install r10k':
@@ -32,6 +23,10 @@ class pocketprotector::puppet::server {
   }
 
   file {
+    lookup('pocketprotector::puppet::server::defaults'):
+      mode    => '0644',
+      content => template('pocketprotector/puppet/server/defaults.erb'),
+      notify  => Service[lookup('pocketprotector::puppet::server::servicename')];
     '/etc/puppetlabs/r10k':
       ensure => 'directory',
       mode   => '0755';
@@ -48,21 +43,5 @@ class pocketprotector::puppet::server {
     lookup('pocketprotector::puppet::server::servicename'):
       ensure => 'running',
       enable => 'true'
-  }
-}
-
-class pocketprotector::puppet::server::puppetboard {
-  include pocketprotector::apache
-
-  class { 'puppetboard':
-    manage_virtualenv   => true,
-    extra_settings => {
-      'SECRET_KEY' => lookup('pocketprotector::puppet::server::puppetboard::secret_key')    
-    },
-  }
-
-  class { 'puppetboard::apache::vhost':
-    vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
-    port       => 80,
   }
 }

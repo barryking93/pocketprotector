@@ -1,12 +1,22 @@
 # hieradata/os/family/Debian.yaml
 
+pocketprotector::etc::hosts:
+    - '::1  ip6-localhost ip6-loopback'
+    - 'fe00::0  ip6-localnet'
+    - 'ff00::0  ip6-mcastprefix'
+    - 'ff02::1  ip6-allnodes'
+    - 'ff02::2  ip6-allrouters'
+
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
-pocketprotector::monitoring::nagios::packages::client:
-  - monitoring-plugins-basic
-  - nagios-nrpe-server
-pocketprotector::monitoring::nagios::packages::server:
-  - nagios4-core
+pocketprotector::monitoring::nagios::client::packages:
+  monitoring-plugins-basic:
+    ensure: present
+  nagios-nrpe-server:
+    ensure: present
+pocketprotector::monitoring::nagios::server::packages:
+  nagios4-core:
+    ensure: present
 pocketprotector::monitoring::nagios::plugin::location: /usr/lib/nagios/plugins
 pocketprotector::monitoring::nagios::server::checkresults: /var/lib/nagios4/spool/checkresults
 pocketprotector::monitoring::nagios::server::cmd: /var/lib/nagios4/rw/nagios.cmd
@@ -22,14 +32,10 @@ pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
 
 pocketprotector::mta::postfix::packages:
-  - postfix
+  postfix:
+    ensure: present
 pocketprotector::mta::postfix::user: postfix
 
 pocketprotector::packages::provider: apt
 
-pocketprotector::puppet::packages::client:
-  - puppet-agent
-  - puppetdb-termini
-pocketprotector::puppet::packages::server:
-  - puppetserver
-  - python3.8-venv
+pocketprotector::puppet::server::defaults: /etc/default/puppetserver

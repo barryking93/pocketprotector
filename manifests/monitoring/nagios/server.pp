@@ -1,10 +1,8 @@
 # manifests/monitoring/nagios/server.pp
 
 class pocketprotector::monitoring::nagios::server {
-  package {
-    lookup('pocketprotector::monitoring::nagios::packages::server', undef, 'deep', undef):
-      ensure => 'present'
-  }
+  # install server packages
+  pocketprotector::packages::parse{'pocketprotector::monitoring::nagios::server::packages':}
 
   # keep service running
   service {
@@ -19,7 +17,7 @@ class pocketprotector::monitoring::nagios::server {
       mode    => '0444',
       content => template('pocketprotector/monitoring/nagios/nagios.cfg.erb'),
       notify  => Service[lookup('pocketprotector::monitoring::nagios::service::server')],
-      require => Package[lookup('pocketprotector::monitoring::nagios::packages::server')];
+      #require => Package[lookup('pocketprotector::monitoring::nagios::server::packages')];
   }
 
   include pocketprotector::monitoring::nagios::server::yamlparse

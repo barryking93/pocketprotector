@@ -1,8 +1,8 @@
 # templates/monitoring/nagios/nrpe.cfg.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
 #
 # the NRPE config file
 # part of the nagios monitoring suite
-# managed by puppet / pocketprotector
 #
 
 # LOG FACILITY

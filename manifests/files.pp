@@ -1,51 +1,126 @@
 # manifests/file.pp
 #
-# file handler
+# file handlers
 #
 
+define pocketprotector::files::parse (
+  String $filesyaml = $name,
+){
+
+  if lookup($filesyaml, undef, 'deep', false) {
+    lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
+      #notify {"pocketprotector::files::parse: debug file for ${filename}":}
+
+      file {
+        "${filename}":
+          path                    => lookup("(${filesyaml}.\"${filename}\".path", undef, 'deep', undef),
+          ensure                  => lookup("${filesyaml}.\"${filename}\".ensure", undef, 'deep', undef),
+          backup                  => lookup("${filesyaml}.\"${filename}\".backup", undef, 'deep', undef),
+          checksum                => lookup("${filesyaml}.\"${filename}\".checksum", undef, 'deep', undef),
+          checksum_value          => lookup("${filesyaml}.\"${filename}\".checksum_value", undef, 'deep', undef),
+          content                 => lookup("${filesyaml}.\"${filename}\".content", undef, 'deep', undef),
+          ctime                   => lookup("${filesyaml}.\"${filename}\".ctime", undef, 'deep', undef),
+          force                   => lookup("${filesyaml}.\"${filename}\".force", undef, 'deep', undef),
+          group                   => lookup("${filesyaml}.\"${filename}\".group", undef, 'deep', undef),
+          ignore                  => lookup("${filesyaml}.\"${filename}\".ignore", undef, 'deep', undef),
+          links                   => lookup("${filesyaml}.\"${filename}\".links", undef, 'deep', undef),
+          mode                    => lookup("${filesyaml}.\"${filename}\".mode", undef, 'deep', undef),
+          mtime                   => lookup("${filesyaml}.\"${filename}\".require", undef, 'deep', undef),
+          notify                  => lookup("${filesyaml}.\"${filename}\".notify", undef, 'deep', undef),
+          owner                   => lookup("${filesyaml}.\"${filename}\".owner", undef, 'deep', undef),
+          provider                => lookup("${filesyaml}.\"${filename}\".provider", undef, 'deep', undef),
+          purge                   => lookup("${filesyaml}.\"${filename}\".purge", undef, 'deep', undef),
+          recurse                 => lookup("${filesyaml}.\"${filename}\".recurse", undef, 'deep', undef),
+          recurselimit            => lookup("${filesyaml}.\"${filename}\".recurselimit", undef, 'deep', undef),
+          replace                 => lookup("${filesyaml}.\"${filename}\".replace", undef, 'deep', undef),
+          require                 => lookup("${filesyaml}.\"${filename}\".require", undef, 'deep', undef),
+          selinux_ignore_defaults => lookup("${filesyaml}.\"${filename}\".selinux_ignore_defaults", undef, 'deep', undef),
+          selrange                => lookup("${filesyaml}.\"${filename}\".selrange", undef, 'deep', undef),
+          selrole                 => lookup("${filesyaml}.\"${filename}\".selrole", undef, 'deep', undef),
+          seltype                 => lookup("${filesyaml}.\"${filename}\".seltype", undef, 'deep', undef),
+          seluser                 => lookup("${filesyaml}.\"${filename}\".seluser", undef, 'deep', undef),
+          show_diff               => lookup("${filesyaml}.\"${filename}\".show_diff", undef, 'deep', undef),
+          source                  => lookup("${filesyaml}.\"${filename}\".source", undef, 'deep', undef),
+          source_permissions      => lookup("${filesyaml}.\"${filename}\".source_permissions", undef, 'deep', undef),
+          sourceselect            => lookup("${filesyaml}.\"${filename}\".sourceselect", undef, 'deep', undef),
+          target                  => lookup("${filesyaml}.\"${filename}\".target", undef, 'deep', undef),
+          type                    => lookup("${filesyaml}.\"${filename}\".type", undef, 'deep', undef),
+          validate_cmd            => lookup("${filesyaml}.\"${filename}\".validate_cmd", undef, 'deep', undef),
+          validate_replacement    => lookup("${filesyaml}.\"${filename}\".validate_replacement", undef, 'deep', undef);
+      }
+    }
+  } else {
+    #notify{"pocketprotector::files::parse lookup filed for ${filesyaml}":}
+  }
+}
+
+# another file parser for templates with a different content & source lookups
+define pocketprotector::files::templates::parse (
+  String $filesyaml = $name,
+){
+  if lookup($filesyaml, undef, 'deep', false) {
+    lookup($filesyaml, undef, 'deep', undef).each |String $filename, Hash $filehash| {
+      #notify {"pocketprotector::files::templates::parse debug file for ${filename}":}
+
+      file {
+        "${filename}":
+          path                    => lookup("${filesyaml}.\"${filename}\".path", undef, 'deep', undef),
+          ensure                  => lookup("${filesyaml}.\"${filename}\".ensure", undef, 'deep', undef),
+          backup                  => lookup("${filesyaml}.\"${filename}\".backup", undef, 'deep', undef),
+          checksum                => lookup("${filesyaml}.\"${filename}\".checksum", undef, 'deep', undef),
+          checksum_value          => lookup("${filesyaml}.\"${filename}\".checksum_value", undef, 'deep', undef),
+          content                 => template(lookup("${filesyaml}.\"${filename}\".content", undef, 'deep', undef)),
+          ctime                   => lookup("${filesyaml}.\"${filename}\".ctime", undef, 'deep', undef),
+          force                   => lookup("${filesyaml}.\"${filename}\".force", undef, 'deep', undef),
+          group                   => lookup("${filesyaml}.\"${filename}\".group", undef, 'deep', undef),
+          ignore                  => lookup("${filesyaml}.\"${filename}\".ignore", undef, 'deep', undef),
+          links                   => lookup("${filesyaml}.\"${filename}\".links", undef, 'deep', undef),
+          mode                    => lookup("${filesyaml}.\"${filename}\".mode", undef, 'deep', undef),
+          mtime                   => lookup("${filesyaml}.\"${filename}\".require", undef, 'deep', undef),
+          notify                  => lookup("${filesyaml}.\"${filename}\".notify", undef, 'deep', undef),
+          owner                   => lookup("${filesyaml}.\"${filename}\".owner", undef, 'deep', undef),
+          provider                => lookup("${filesyaml}.\"${filename}\".provider", undef, 'deep', undef),
+          purge                   => lookup("${filesyaml}.\"${filename}\".purge", undef, 'deep', undef),
+          recurse                 => lookup("${filesyaml}.\"${filename}\".recurse", undef, 'deep', undef),
+          recurselimit            => lookup("${filesyaml}.\"${filename}\".recurselimit", undef, 'deep', undef),
+          replace                 => lookup("${filesyaml}.\"${filename}\".replace", undef, 'deep', undef),
+          require                 => lookup("${filesyaml}.\"${filename}\".require", undef, 'deep', undef),
+          selinux_ignore_defaults => lookup("${filesyaml}.\"${filename}\".selinux_ignore_defaults", undef, 'deep', undef),
+          selrange                => lookup("${filesyaml}.\"${filename}\".selrange", undef, 'deep', undef),
+          selrole                 => lookup("${filesyaml}.\"${filename}\".selrole", undef, 'deep', undef),
+          seltype                 => lookup("${filesyaml}.\"${filename}\".seltype", undef, 'deep', undef),
+          seluser                 => lookup("${filesyaml}.\"${filename}\".seluser", undef, 'deep', undef),
+          show_diff               => lookup("${filesyaml}.\"${filename}\".show_diff", undef, 'deep', undef),
+          #source                  => lookup("${filesyaml}.\"${filename}\".source", undef, 'deep', undef),
+          source_permissions      => lookup("${filesyaml}.\"${filename}\".source_permissions", undef, 'deep', undef),
+          sourceselect            => lookup("${filesyaml}.\"${filename}\".sourceselect", undef, 'deep', undef),
+          target                  => lookup("${filesyaml}.\"${filename}\".target", undef, 'deep', undef),
+          type                    => lookup("${filesyaml}.\"${filename}\".type", undef, 'deep', undef),
+          validate_cmd            => lookup("${filesyaml}.\"${filename}\".validate_cmd", undef, 'deep', undef),
+          validate_replacement    => lookup("${filesyaml}.\"${filename}\".validate_replacement", undef, 'deep', undef);
+        }
+    }
+  } else {
+    #notify{"pocketprotector::files::parse lookup failed for ${filesyaml}":}
+  }
+
+}
 #
-# crawl pocketprotector.files in hieradata for file list
+# feed pocketprotector::files and pocketprotector::files::tempaltes to appropriate generators
 #
 class pocketprotector::files {
-  lookup('pocketprotector::files', undef, 'deep', undef).each |String $filename, Hash $filehash| {
-    #notify {"pocketprotector::files: debug file for ${filename}":}
-    
-    file {
-      $filename:
-        path                    => lookup("pocketprotector::files.${filename}.path", undef, 'first', undef),
-        ensure                  => lookup("pocketprotector::files.${filename}.ensure", undef, 'first', undef),
-        backup                  => lookup("pocketprotector::files.${filename}.backup", undef, 'first', undef),
-        checksum                => lookup("pocketprotector::files.${filename}.checksum", undef, 'first', undef),
-        checksum_value          => lookup("pocketprotector::files.${filename}.checksum_value", undef, 'first', undef),
-        content                 => lookup("pocketprotector::files.${filename}.content", undef, 'first', undef),
-        ctime                   => lookup("pocketprotector::files.${filename}.ctime", undef, 'first', undef),
-        force                   => lookup("pocketprotector::files.${filename}.force", undef, 'first', undef),
-        group                   => lookup("pocketprotector::files.${filename}.group", undef, 'first', undef),
-        ignore                  => lookup("pocketprotector::files.${filename}.ignore", undef, 'first', undef),
-        links                   => lookup("pocketprotector::files.${filename}.links", undef, 'first', undef),
-        mode                    => lookup("pocketprotector::files.${filename}.mode", undef, 'first', undef),
-        mtime                   => lookup("pocketprotector::files.${filename}.require", undef, 'first', undef),
-        notify                  => lookup("pocketprotector::files.${filename}.notify", undef, 'first', undef),
-        owner                   => lookup("pocketprotector::files.${filename}.owner", undef, 'first', undef),
-        provider                => lookup("pocketprotector::files.${filename}.provider", undef, 'first', undef),
-        purge                   => lookup("pocketprotector::files.${filename}.purge", undef, 'first', undef),
-        recurse                 => lookup("pocketprotector::files.${filename}.recurse", undef, 'first', undef),
-        recurselimit            => lookup("pocketprotector::files.${filename}.recurselimit", undef, 'first', undef),
-        replace                 => lookup("pocketprotector::files.${filename}.replace", undef, 'first', undef),
-        require                 => lookup("pocketprotector::files.${filename}.require", undef, 'first', undef),
-        selinux_ignore_defaults => lookup("pocketprotector::files.${filename}.selinux_ignore_defaults", undef, 'first', undef),
-        selrange                => lookup("pocketprotector::files.${filename}.selrange", undef, 'first', undef),
-        selrole                 => lookup("pocketprotector::files.${filename}.selrole", undef, 'first', undef),
-        seltype                 => lookup("pocketprotector::files.${filename}.seltype", undef, 'first', undef),
-        seluser                 => lookup("pocketprotector::files.${filename}.seluser", undef, 'first', undef),
-        show_diff               => lookup("pocketprotector::files.${filename}.show_diff", undef, 'first', undef),
-        source                  => lookup("pocketprotector::files.${filename}.source", undef, 'first', undef),
-        source_permissions      => lookup("pocketprotector::files.${filename}.source_permissions", undef, 'first', undef),
-        sourceselect            => lookup("pocketprotector::files.${filename}.sourceselect", undef, 'first', undef),
-        target                  => lookup("pocketprotector::files.${filename}.target", undef, 'first', undef),
-        type                    => lookup("pocketprotector::files.${filename}.type", undef, 'first', undef),
-        validate_cmd            => lookup("pocketprotector::files.${filename}.validate_cmd", undef, 'first', undef),
-        validate_replacement    => lookup("pocketprotector::files.${filename}.validate_replacement", undef, 'first', undef);
-    }
+  pocketprotector::files::parse{'pocketprotector::files':}
+  pocketprotector::files::templates::parse{'pocketprotector::files::templates':}
+
+  include pocketprotector::files::base
+}
+
+class pocketprotector::files::base {
+  # deep searches have to happen outside of templates
+  $hostshosts = lookup('pocketprotector::etc::hosts',undef,'deep',undef)
+
+  file {
+    '/etc/hosts':
+      content => template('pocketprotector/etc/hosts.erb')
   }
 }

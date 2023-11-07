@@ -1,12 +1,13 @@
 # hieradata/os/name/Ubuntu/20.04.yaml
 
 pocketprotector::gpu::nvidia::repository:
-  location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
-  release:
-  repos: /
-  key:
-    id: EB693B3035CD5710E231E123A4B469963BF863CC
-    source: https://pgp.mit.edu
+  cuda:
+    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
+    release: ''
+    repos: /
+    key:
+      id: EB693B3035CD5710E231E123A4B469963BF863CC
+      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
 pocketprotector::packages::repositories:
   puppet:
@@ -34,3 +35,7 @@ pocketprotector::packages::repositories:
     repos: main universe multiverse restricted
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+
+pocketprotector::puppet::server::packages:
+  python3.8-venv:
+pocketprotector::puppet::server::puppetboard::python_version: '3.8'

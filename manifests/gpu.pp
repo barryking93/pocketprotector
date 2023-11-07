@@ -19,20 +19,8 @@ class pocketprotector::gpu::nvidia {
 
   case lookup('pocketprotector::packages::provider') {
     'apt': {
-      apt::source { nvidia:
-        location => lookup('pocketprotector::gpu::nvidia::repository.location',undef,deep,undef),
-        release  => lookup('pocketprotector::gpu::nvidia::repository.release',undef,deep,undef),
-        repos    => lookup('pocketprotector::gpu::nvidia::repository.repos',undef,deep,undef),
-        key      => {
-          'id'     => lookup('pocketprotector::gpu::nvidia::repository.key.id',undef,deep,undef),
-          'source' => lookup('pocketprotector::gpu::nvidia::repository.key.source',undef,deep,undef),
-        }
-      }
-
-      package {
-        lookup('pocketprotector::gpu::nvidia::package'):
-          ensure => installed,
-      }
+      pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::gpu::nvidia::repository':}
+      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
     }
     default: {
       notify{'pocketprotector::gpu::nvidia: the package repository for your OS is not (yet?) supported':}

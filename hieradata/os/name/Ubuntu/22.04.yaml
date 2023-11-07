@@ -1,17 +1,28 @@
 # hieradata/os/name/Ubuntu/22.04.yaml
 
 pocketprotector::gpu::nvidia::repository:
-  location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
-  release:
-  repos: /
-  key:
-    id: EB693B3035CD5710E231E123A4B469963BF863CC
-    source: https://pgp.mit.edu
+  cuda:
+    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
+    release: ''
+    repos: /
+    key:
+      id: EB693B3035CD5710E231E123A4B469963BF863CC
+      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+
+pocketprotector::packages::pin:
+  puppet-focal: '100'
 
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
     release: jammy
+    repos: puppet7
+    key:
+      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
+      source: https://pgp.mit.edu
+  puppet-focal:
+    location: http://apt.puppetlabs.com
+    release: focal
     repos: puppet7
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26

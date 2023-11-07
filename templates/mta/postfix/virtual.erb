@@ -1,0 +1,10 @@
+# templates/postfix/virtual.erb
+# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+#
+# See man 5 virtual for format
+
+<% if has_variable?('postfix_virtual') then -%>
+<% @postfix_virtual.each do |virtual_local| -%>
+<%= virtual_local %>
+<% end -%>
+<% end -%>

@@ -2,7 +2,7 @@
 class pocketprotector::puppet::cron::client {
   cron {
     'puppet':
-      command => '/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180',
+      command => lookup('pocketprotector::puppet::cron::client::command'),
       user    => 'root',
       minute  => [0,30],
       hour    => '*',
@@ -19,10 +19,12 @@ class pocketprotector::puppet::cron::client {
 
 # puppet server cron jobs
 class pocketprotector::puppet::cron::server {
+  $puppet_branch = lookup('pocketprotector::puppet::git::branch')
+
   cron {
     # run-puppet syntax is different for servers for bootstrap purposes
     'puppet':
-      command => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p;/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/main/manifests/',
+      command => "bash -c \"/opt/puppetlabs/puppet/bin/r10k deploy environment -p > /dev/null 2>&1;/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/${puppet_branch}/manifests/ --environment ${puppet_branch}\" > /dev/null 2>&1",
       user    => 'root',
       minute  => '*/10',
       hour    => '*',

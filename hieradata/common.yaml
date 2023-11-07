@@ -1,12 +1,25 @@
 # hieradata/common.yaml
 
 pocketprotector::packages:
-  - tmux
+  tmux:
+    ensure: installed
 pocketprotector::packages::git: git
 
-pocketprotector::files:
-  /etc/pocketprotector:
-    ensure: directory
+pocketprotector::etc::hosts:
+  - '127.0.0.1  localhost'
+  - "127.0.1.1  %{facts.fqdn} %{facts.hostname}"
+
+#pocketprotector::files:
+#  etc_pocketprotector:
+#    path: /etc/pocketprotector
+#    ensure: directory
+
+#pocketprotector::files::templates:
+#  etc_hosts:
+#    path: /etc/hosts
+#    content: pocketprotector/etc/hosts.erb
+
+pocketprotector::managed: managed by puppet / pocketprotector
 
 pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
@@ -53,11 +66,16 @@ pocketprotector::monitoring::nagios::resources:
       notification_period: twentyfourseven
       notification_options: d,u,r
       register: 0
+    noalert-host:
+      use: generic-host
+      max_check_attempts: 3
+      notifications_enabled: 0
+      register: 0
     workhours-host:
       use: generic-host
       max_check_attempts: 3
       notification_interval: 0
-      notification_period: twentyfourseven
+      notification_period: workhours
       notification_options: d,u,r
       register: 0
   hostgroup:
@@ -125,20 +143,67 @@ pocketprotector::monitoring::nagios::resources:
 pocketprotector::mta::default: postfix
 pocketprotector::mta::aliases:
   postmaster: root
-pocketprotector::mta::opendkim::packagename: opendkim
+pocketprotector::mta::opendkim::packages:
+  opendkim:
+    ensure: present
 pocketprotector::mta::opendkim::user: opendkim
 pocketprotector::mta::opendkim::servicename: opendkim
 
+pocketprotector::openbox::enabled: false
+
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
+pocketprotector::puppet::cron::client::command: '/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
 pocketprotector::puppet::git::branch: main
-pocketprotector::puppet::packages::client:
-  - puppet-agent
-pocketprotector::puppet::packages::server:
-  - puppetserver
+pocketprotector::puppet::client::packages:
+  puppet-agent:
+    ensure: latest
+  puppetdb-termini:
+    ensure: latest
+#pocketprotector::puppet::server::packages:
+#  puppetserver:
+#    ensure: latest
+# puppetdb package controlled by own module
+#  puppetdb:
+#    ensure: latest
 pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
 pocketprotector::puppet::server::report::directory::tidy: true
 pocketprotector::puppet::server::report::directory::tidy::period: 30d
 pocketprotector::puppet::server::servicename: puppetserver
+
+postfix::main_config:
+  alias_maps: hash:/etc/aliases
+  alias_database: hash:/etc/aliases
+  append_dot_mydomain: no
+  biff: no
+  compatibility_level: 2
+  inet_interfaces: all
+  inet_protocols: all
+  mailbox_size_limit: 0
+  mydestination: $myhostname, localhost.$mydomain, localhost
+  myhostname: "%{facts.fqdn}"
+  mynetworks: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
+  myorigin: "%{facts.fqdn}"
+  readme_directory: no
+  recipient_delimiter: +
+  smtp_tls_CApath: /etc/ssl/certs
+  smtp_tls_security_level: may
+  smtp_tls_session_cache_database: 'btree:${data_directory}/smtp_scache'
+  smtpd_banner: '$myhostname ESMTP $mail_name'
+  smtpd_relay_restrictions:
+    - permit_mynetworks
+    - permit_sasl_authenticated
+    - defer_unauth_destination
+  smtpd_use_tls: yes
+  smtpd_tls_cert_file: &postfix_cert /etc/ssl/certs/ssl-cert-snakeoil.pem
+  smtpd_tls_key_file: &postfix_key /etc/ssl/private/ssl-cert-snakeoil.key
+  smtpd_sasl_auth_enable: no # only enable for mandatory tls ports
+  smtpd_sasl_type: dovecot
+  smtpd_sasl_path: private/auth
+  # sasl only encrypted
+  smtpd_tls_auth_only: yes
+  smtpd_tls_security_level: may
+  transport_maps: hash:/etc/postfix/transport
+  virtual_alias_maps: hash:/etc/postfix/virtual
