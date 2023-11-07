@@ -29,7 +29,8 @@ note:  follows above client install
 # PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
 # wget https://apt.puppet.com/puppet7-release-${PVER}.deb
 # dpkg -i puppet7-release-${PVER}.deb
-# apt update;apt -y install puppet-agent puppetserver r10k
+# apt update;apt -y install puppet-agent r10k
+# puppetserver gem install hiera-eyaml
 ```
 # BOOTSTRAP (UNIVERSAL)
 copy .pub versions of above keys to appropriate git repositories
