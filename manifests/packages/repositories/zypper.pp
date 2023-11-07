@@ -3,7 +3,7 @@
 # zypper package (and repository) support
 #
 
-define pocketprotector::packages::repositories::zypper::repositories (
+define pocketprotector::packages::repositories::zypper::repositories::parse (
   Hash $repositorieshash,
 ){
   $repositorieshash.each | String $zypprepo, Hash $zypprepohash | {
@@ -24,10 +24,5 @@ define pocketprotector::packages::repositories::zypper::repositories (
 }
 
 class pocketprotector::packages::repositories::zypper {
-  include pocketprotector::packages::repositories::zypper::repositories
-}
-
-# add any zypper repos
-class pocketprotector::packages::repositories::zypper::repositories {
-  pocketprotector::packages::repositories::zypper::repositories{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
+  pocketprotector::packages::repositories::zypper::repositories::parse{lookup('pocketprotector::packages::repositories',undef,deep,undef):}
 }
