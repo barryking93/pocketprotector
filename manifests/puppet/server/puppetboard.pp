@@ -1,6 +1,6 @@
 # manifests/puppet/server/puppetboard.pp
 #
-# managing puppetboard, the open source
+# managing puppetboard, the open source status panel for puppet
 #
 
 class pocketprotector::puppet::server::puppetboard {
@@ -23,6 +23,7 @@ class pocketprotector::puppet::server::puppetboard::docker {
       'PUPPETDB_HOST=127.0.0.1',
       'PUPPETDB_PORT=8080',
       'PUPPETBOARD_PORT=8088',
+      'SECRET_KEY'=lookup('pocketprotector::puppet::server::puppetboard::secret_key'),
     ],
     net   => 'host',
   }
