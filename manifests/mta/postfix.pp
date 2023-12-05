@@ -6,8 +6,10 @@ define pocketprotector::mta::postfix::parse (
   if lookup($postfixyaml, undef, 'deep', false) {
     lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, Hash $packagehash| {
       notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
-      $postconfval = facts[$postfixyaml][$postconfvar]
-      unless $postconfval == $pocketprotector_postconf.$postconfvar {
+
+      $postconfval = lookup("${postfixyaml}.${postconfvar}", undef, 'deep', undef)
+
+      unless $postconfval == facts[$pocketprotector_postconf][$postconfvar] {
         exec {
         "postconf ${postconfvar}":
             refreshonly => true,
