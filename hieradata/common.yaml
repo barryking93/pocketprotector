@@ -149,6 +149,10 @@ pocketprotector::mta::opendkim::packages:
 pocketprotector::mta::opendkim::user: opendkim
 pocketprotector::mta::opendkim::servicename: opendkim
 
+pocketprotector::mta::postfix::packages:
+  postfix:
+    ensure: present
+
 pocketprotector::openbox::enabled: false
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
