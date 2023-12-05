@@ -39,3 +39,4 @@ pocketprotector::mta::postfix::user: postfix
 pocketprotector::packages::provider: apt
 
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver
+pocketprotector::puppet::server::puppetboard::docker: true
