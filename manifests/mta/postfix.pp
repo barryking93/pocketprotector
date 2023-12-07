@@ -1,27 +1,28 @@
 # manifests/mta/postfix.pp
 
 define pocketprotector::mta::postfix::parse (
-  String $postfixyaml = $name,
+    String $postfixyaml = $name,
 ){
-  if lookup($postfixyaml, undef, 'deep', false) {
-    lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, Hash $packagehash| {
-      notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
+    if lookup($postfixyaml, undef, 'deep', false) {
+        lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, Hash $packagehash| {
+            notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
 
-      $postconfval = lookup("${postfixyaml}.${postconfvar}", undef, 'deep', undef)
+            $postconfval = lookup("${postfixyaml}.${postconfvar}", undef, 'deep', undef)
 
-      unless $postconfval == facts[$pocketprotector_postconf][$postconfvar] {
-        exec {
-        "postconf ${postconfvar}":
-            refreshonly => true,
-            timeout     => 300,
-            command     => "/usr/sbin/postconf ${postconfvar}=${postconfval}",
-            logoutput   => true,
-            environment => ['PAGER=/bin/cat','DISPLAY=:9'];
-      }
+            unless $postconfval == facts[$pocketprotector_postconf][$postconfvar] {
+                exec {
+                    "postconf ${postconfvar}":
+                        refreshonly => true,
+                        timeout     => 300,
+                        command     => "/usr/sbin/postconf ${postconfvar}=${postconfval}",
+                        logoutput   => true,
+                        environment => ['PAGER=/bin/cat','DISPLAY=:9'];
+                }
+            }
+        }
+    } else {
+        notify{"pocketprotector::mta::postfix::parse: lookup filed for file for ${postfixyaml}":}
     }
-  } else {
-    notify{"pocketprotector::mta::postfix::parse: lookup filed for file for ${postfixyaml}":}
-  }
 }
 
 class pocketprotector::mta::postfix {
