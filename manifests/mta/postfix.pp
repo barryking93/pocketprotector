@@ -7,7 +7,7 @@ define pocketprotector::mta::postfix::parse (
         lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, String $postfixconfval| {
             notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
 
-            unless $postconfval == facts[$pocketprotector_postconf][$postconfvar] {
+            unless $postconfval == facts[$pocketprotector_postconf]["$postconfvar"] {
                 exec {
                     "postconf ${postconfvar}":
                         refreshonly => true,
