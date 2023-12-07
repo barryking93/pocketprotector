@@ -4,10 +4,8 @@ define pocketprotector::mta::postfix::parse (
     String $postfixyaml = $name,
 ){
     if lookup($postfixyaml, undef, 'deep', false) {
-        lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, Hash $packagehash| {
+        lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, String $postfixconfval| {
             notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
-
-            $postconfval = lookup("${postfixyaml}.${postconfvar}", undef, 'deep', undef)
 
             unless $postconfval == facts[$pocketprotector_postconf][$postconfvar] {
                 exec {
