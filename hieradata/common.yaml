@@ -9,6 +9,10 @@ pocketprotector::etc::hosts:
   - '127.0.0.1  localhost'
   - "127.0.1.1  %{facts.fqdn} %{facts.hostname}"
 
+pocketprotector::fs::nfs::defaults:
+  fstype: nfs4
+  options: rw,hard
+
 #pocketprotector::files:
 #  etc_pocketprotector:
 #    path: /etc/pocketprotector
@@ -148,6 +152,10 @@ pocketprotector::mta::opendkim::packages:
     ensure: present
 pocketprotector::mta::opendkim::user: opendkim
 pocketprotector::mta::opendkim::servicename: opendkim
+
+pocketprotector::mta::postfix::packages:
+  postfix:
+    ensure: present
 
 pocketprotector::openbox::enabled: false
 

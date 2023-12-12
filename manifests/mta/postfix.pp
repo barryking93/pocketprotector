@@ -1,8 +1,31 @@
 # manifests/mta/postfix.pp
 
+define pocketprotector::mta::postfix::parse (
+    String $postfixyaml = $name,
+){
+    if lookup($postfixyaml, undef, 'deep', false) {
+        lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, String $postconfval| {
+            #notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
+
+            #unless $postconfval == ${facts['pocketprotector_postconf'][$postconfvar]} {
+                exec {
+                    "postconf ${postconfvar} ${postconfval}":
+                        timeout     => 300,
+                        command     => "/usr/sbin/postconf ${postconfvar}=${postconfval}",
+                        logoutput   => true,
+                        environment => ['PAGER=/bin/cat','DISPLAY=:9'];
+                }
+            #}
+        }
+    } else {
+        notify{"pocketprotector::mta::postfix::parse: lookup filed for file for ${postfixyaml}":}
+    }
+}
+
 class pocketprotector::mta::postfix {
-  class { 'postfix': }
   include pocketprotector::mta::postfix::aliases
+  pocketprotector::packages::parse{'pocketprotector::mta::postfix::packages':}
+  pocketprotector::mta::postfix::parse{'pocketprotector::mta::postfix::config':}
 }
 
 class pocketprotector::mta::postfix::aliases {
