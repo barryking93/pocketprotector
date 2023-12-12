@@ -7,6 +7,10 @@ pocketprotector::etc::hosts:
     - 'ff02::1  ip6-allnodes'
     - 'ff02::2  ip6-allrouters'
 
+pocketprotector::fs::nfs::base:
+  nfs-common:
+    ensure: present
+
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
 pocketprotector::monitoring::nagios::client::packages:
