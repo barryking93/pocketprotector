@@ -23,6 +23,8 @@ pocketprotector::monitoring::nagios::server::configd: /etc/nagios/conf.d
 pocketprotector::monitoring::nagios::service::client: nrpe
 
 pocketprotector::packages:
+  python3-pyaml:
+    ensure: present
   tmux:
     ensure: present
 
