@@ -8,7 +8,7 @@ import yaml
 postconf_cmd = '/usr/sbin/postconf'
 
 # feed postconf output into a list
-postconf_output = subprocess.Popen(postconf_cmd,shell=True,stdout=subprocess.PIPE,encoding='utf8',text=True)
+postconf_output = subprocess.Popen(postconf_cmd,shell=True,stdout=subprocess.PIPE,encoding='utf8')
 
 # init dictionary, including the name so that the yaml outputs like we want
 pocketprotector_postconf = {'pocketprotector_postconf': {}}
