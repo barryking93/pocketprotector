@@ -7,14 +7,13 @@ define pocketprotector::mta::postfix::parse (
         lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, String $postconfval| {
             #notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
 
-            unless $pocketprotector_postconf_${postconfvar} == $postconfval {
-                exec {
-                    "postconf ${postconfvar} ${postconfval}":
-                        timeout     => 300,
-                        command     => "/usr/sbin/postconf ${postconfvar}=${postconfval}",
-                        logoutput   => true,
-                        environment => ['PAGER=/bin/cat','DISPLAY=:9'];
-                }
+            exec {
+                "postconf ${postconfvar} ${postconfval}":
+                    timeout     => 300,
+                    command     => "/usr/sbin/postconf ${postconfvar}=${postconfval}",
+                    logoutput   => true,
+                    unless      => "/usr/sbin/postconf ${postconfvar}|grep -q ${postconfval}",
+                    environment => ['PAGER=/bin/cat','DISPLAY=:9'];
             }
         }
     } else {
