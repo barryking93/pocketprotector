@@ -7,7 +7,7 @@ define pocketprotector::mta::postfix::parse (
         lookup($postfixyaml, undef, 'deep', undef).each |String $postconfvar, String $postconfval| {
             #notify {"pocketprotector::mta::postfix::parse: debug postfix config for ${postconfvar}":}
 
-            unless $facts['pocketprotector_postconf']["${postconfvar}"] == $postconfval {
+            unless $pocketprotector_postconf.${postconfvar} == $postconfval {
                 exec {
                     "postconf ${postconfvar} ${postconfval}":
                         timeout     => 300,
