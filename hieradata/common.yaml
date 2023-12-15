@@ -11,7 +11,7 @@ pocketprotector::etc::hosts:
 
 pocketprotector::fs::nfs::defaults:
   fstype: nfs4
-  options: rw,hard
+  options: noatime,nodev,nosuid 
 
 #pocketprotector::files:
 #  etc_pocketprotector:
