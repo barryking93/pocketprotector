@@ -9,7 +9,7 @@ define pocketprotector::mta::postfix::parse (
 
             if $postconfval != '' {
                 exec {
-                    "postconf ${postconfvar} ${postconfval}":
+                    "postconfi -e ${postconfvar} ${postconfval}":
                         timeout     => 300,
                         command     => "/usr/sbin/postconfi -e ${postconfvar}='${postconfval}'",
                         logoutput   => true,
@@ -18,7 +18,7 @@ define pocketprotector::mta::postfix::parse (
                 }
             } else {
                 exec {
-                    "postconf ${postconfvar} ${postconfval}":
+                    "postconf -X ${postconfvar}":
                         timeout     => 300,
                         command     => "/usr/sbin/postconf -X ${postconfvar}",
                         logoutput   => true,
