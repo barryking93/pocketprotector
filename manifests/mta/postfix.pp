@@ -22,6 +22,7 @@ define pocketprotector::mta::postfix::parse (
                         timeout     => 300,
                         command     => "/usr/sbin/postconf -X ${postconfvar}",
                         logoutput   => true,
+                        unless      => "/usr/sbin/postconf ${postconfvar}|grep -qx '${postconfvar} ='",
                         environment => ['PAGER=/bin/cat','DISPLAY=:9'];
                 }
             }
