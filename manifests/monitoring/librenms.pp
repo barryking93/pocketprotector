@@ -19,7 +19,7 @@ class pocketprotector::monitoring::librenms {
           #command => 'git clone https://github.com/librenms/librenms.git ./.git --mirror --config core.bare=false',
           #creates => '/opt/librenms/.git',
           #cwd     => '/opt/librenms'
-          command => 'git clone https://github.com/librenms/librenms.git -C /opt/librenms',
+          command => '/usr/bin/git clone https://github.com/librenms/librenms.git -C /opt/librenms',
           creates => '/opt/librenms'
       }
       
