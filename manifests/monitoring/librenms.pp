@@ -16,7 +16,8 @@ class pocketprotector::monitoring::librenms {
 
       exec {
         'librenms git init':
-          creates => '/opt/librenms/.git'
+          command => 'git clone https://github.com/librenms/librenms.git ./.git --mirror --config core.bare=false',
+          creates => '/opt/librenms/.git',
           cwd     => '/opt/librenms'
       }
       
