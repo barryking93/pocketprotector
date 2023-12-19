@@ -1,11 +1,5 @@
 # hieradata/common.yaml
 
-lookup_options:
-  sudo::configs:
-    merge:
-      strategy: deep
-      merge_hash_arrays: true
-
 pocketprotector::packages:
   tmux:
     ensure: installed
