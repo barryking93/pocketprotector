@@ -1,5 +1,11 @@
 # hieradata/common.yaml
 
+lookup_options:
+  sudo::configs:
+    merge:
+      strategy: deep
+      merge_hash_arrays: true
+
 pocketprotector::packages:
   tmux:
     ensure: installed
@@ -25,9 +31,21 @@ pocketprotector::fs::nfs::defaults:
 
 pocketprotector::managed: managed by puppet / pocketprotector
 
-pocketprotector::monitoring: nagios
 pocketprotector::monitoring::enable: true
-pocketprotector::monitoring::client::exports:
+pocketprotector::monitoring::librenms::files:
+  '/opt/librenms':
+    ensure: directory
+    mode: '771'
+    group: librenms
+    user: librenms
+pocketprotector::monitoring::librenms::accounts:
+  librenms:
+    home: /opt/librenms
+    managehome: false
+    uid: '901'
+    system: true
+
+pocketprotector::monitoring::nagios::client::exports:
   services:
     cpu_load:
       use: production-service
@@ -143,6 +161,16 @@ pocketprotector::monitoring::nagios::resources:
       thursday: 00:00-24:00
       friday: 00:00-24:00
       saturday: 00:00-24:00
+
+pocketprotector::monitoring::librenms::acldirs:
+  - /opt/librenms/rrd
+  - /opt/librenms/logs
+  - /opt/librenms/bootstrap/cache
+  - /opt/librenms/storage
+pocketprotector::monitoring::snmp::address:
+  - udp:161
+  - udp6:161
+pocketprotector::monitoring::snmp::ro_community: pleasechangethis
 
 pocketprotector::mta::default: postfix
 pocketprotector::mta::aliases:

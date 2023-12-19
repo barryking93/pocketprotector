@@ -88,6 +88,6 @@ mod 'puppetlabs-inifile', :latest
 mod 'puppetlabs-apt', :latest
 mod 'puppetlabs-concat', :latest
 
-# postfix dependencies
-mod 'oxc-postfix', :latest
+# other app support
+mod 'puppet-nginx', :latest
 ```

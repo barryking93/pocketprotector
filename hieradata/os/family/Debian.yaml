@@ -1,4 +1,9 @@
 # hieradata/os/family/Debian.yaml
+#
+
+pocketprotector::db::mariadb::packages:
+  mariadb-server:
+    ensure: present
 
 pocketprotector::etc::hosts:
     - '::1  ip6-localhost ip6-loopback'
@@ -34,6 +39,11 @@ pocketprotector::monitoring::nagios::server::status_file: /var/lib/nagios4/statu
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
+pocketprotector::monitoring::snmp::packages:
+  snmp:
+    ensure: present
+  snmpd:
+    ensure: present
 
 pocketprotector::mta::postfix::packages:
   postfix:
