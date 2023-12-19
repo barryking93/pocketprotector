@@ -4,7 +4,7 @@
 class pocketprotector::monitoring::snmp {
   include snmp
 
-  class snmp {
+  class { 'snmp':
     agentaddress => lookup('pocketprotector::monitoring::snmp::agentaddress',undef,'first',undef),
     contact      => lookup('pocketprotector::monitoring::snmp::contact',undef,'first',undef),
     location     => lookup('pocketprotector::monitoring::snmp::location',undef,'first',undef),
