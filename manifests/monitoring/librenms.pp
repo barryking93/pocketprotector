@@ -11,14 +11,16 @@ class pocketprotector::monitoring::librenms {
       include nginx
       include pocketprotector::utils::git
       pocketprotector::accounts::parse{'pocketprotector::monitoring::librenms::accounts':}
-      pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
+      #pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
       pocketprotector::packages::parse{'pocketprotector::monitoring::librenms::packages':}
 
       exec {
         'librenms git init':
-          command => 'git clone https://github.com/librenms/librenms.git ./.git --mirror --config core.bare=false',
-          creates => '/opt/librenms/.git',
-          cwd     => '/opt/librenms'
+          #command => 'git clone https://github.com/librenms/librenms.git ./.git --mirror --config core.bare=false',
+          #creates => '/opt/librenms/.git',
+          #cwd     => '/opt/librenms'
+          command => 'git clone https://github.com/librenms/librenms.git -C /opt/librenms',
+          creates => '/opt/librenms'
       }
       
       posix_acl { lookup('pocketprotector::monitoring::librenms::acldirs',undef,'first',undef):
