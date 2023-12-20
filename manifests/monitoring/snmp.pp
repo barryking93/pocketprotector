@@ -2,6 +2,9 @@
 #
 
 class pocketprotector::monitoring::snmp {
+  if lookup('pocketprotector::monitoring::snmp::accounts',undef,'first',false) {
+    pocketprotector::accounts::parse{'pocketprotector::monitoring::snmp::accounts':}
+  }
   class { 'snmp':
     agentaddress => lookup('pocketprotector::monitoring::snmp::agentaddress',undef,'first',undef),
     contact      => lookup('pocketprotector::monitoring::snmp::contact',undef,'first',undef),

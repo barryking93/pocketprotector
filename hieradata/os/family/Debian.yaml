@@ -39,6 +39,14 @@ pocketprotector::monitoring::nagios::server::status_file: /var/lib/nagios4/statu
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
+pocketprotector::monitoring::snmp::accounts:
+  snmp:
+    home: /var/lib/snmp
+    managehome: false
+    shell: /bin/false
+    system: true
+  Debian-snmp:
+    ensure: absent
 pocketprotector::monitoring::snmp::packages:
   snmp:
     ensure: present
