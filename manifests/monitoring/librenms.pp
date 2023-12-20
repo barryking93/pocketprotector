@@ -18,7 +18,8 @@ class pocketprotector::monitoring::librenms {
         'librenms git init':
           command => '/usr/bin/git init;/usr/bin/git remote add origin https://github.com/librenms/librenms.git;/usr/bin/git fetch origin;/usr/bin/git checkout -b master --track origin/master',
           creates => '/opt/librenms/.git',
-          cwd     => '/opt/librenms'
+          cwd     => '/opt/librenms',
+          user    => 'librenms'
       }
       
       posix_acl { lookup('pocketprotector::monitoring::librenms::acldirs',undef,'first',undef):
