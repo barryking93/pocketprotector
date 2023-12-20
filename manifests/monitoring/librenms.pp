@@ -15,7 +15,7 @@ class pocketprotector::monitoring::librenms {
       if lookup('pocketprotector::monitoring::librenms::repositories',undef,'deep',false) {
         case lookup('pocketprotector::packages::provider') {
           'apt': {
-            apt::ppa {'pocketprotector::monitoring::librenms::repositories'}
+            apt::ppa {'pocketprotector::monitoring::librenms::repositories':}
           }
           default: {
             notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
