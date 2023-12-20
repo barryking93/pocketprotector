@@ -16,12 +16,9 @@ class pocketprotector::monitoring::librenms {
 
       exec {
         'librenms git init':
-          #command => 'git clone https://github.com/librenms/librenms.git ./.git --mirror --config core.bare=false',
-          #creates => '/opt/librenms/.git',
-          #cwd     => '/opt/librenms'
-          command => '/usr/bin/git clone https://github.com/librenms/librenms.git',
-          creates => '/opt/librenms',
-          cwd     => '/opt'
+          command => '/usr/bin/git init;/usr/bin/git remote add origin https://github.com/librenms/librenms.git;/usr/bin/git fetch origin;/usr/bin/git checkout -b master --track origin/master',
+          creates => '/opt/librenms/.git',
+          cwd     => '/opt/librenms'
       }
       
       posix_acl { lookup('pocketprotector::monitoring::librenms::acldirs',undef,'first',undef):
