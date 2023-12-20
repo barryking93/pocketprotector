@@ -37,7 +37,7 @@ define pocketprotector::packages::parse (
       }
     }
   } else {
-    notify{"pocketprotector::files: lookup filed for file for ${packagesyaml}":}
+    notify{"pocketprotector::packages: lookup filed for file for ${packagesyaml}":}
   }
 }
 
