@@ -37,7 +37,9 @@ pocketprotector::monitoring::librenms::packages:
   php-gmp:
     ensure: present
   php-json:
-    ensure: presentql
+    ensure: present
+  php-mbstring:
+    ensure: present
   php-snmp:
     ensure: present
   php-xml:
