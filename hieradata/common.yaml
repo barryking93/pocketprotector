@@ -161,6 +161,7 @@ pocketprotector::monitoring::librenms::acldirs:
   - /opt/librenms/logs
   - /opt/librenms/bootstrap/cache
   - /opt/librenms/storage
+pocketprotector::monitoring::snmp::location: Unknown
 pocketprotector::monitoring::snmp::address:
   - udp:161
   - udp6:161
