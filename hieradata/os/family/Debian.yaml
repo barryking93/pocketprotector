@@ -50,7 +50,6 @@ pocketprotector::monitoring::snmp::accounts:
 pocketprotector::monitoring::snmp::templates:
   '/etc/snmp/snmpd.conf':
     content: pocketprotector/monitoring/snmp/snmpd.conf.erb
-    notify: Service['snmpd']
     
 pocketprotector::monitoring::snmp::packages:
   snmp:

@@ -7,5 +7,9 @@ class pocketprotector::monitoring::snmp {
   }
   pocketprotector::packages::parse{"pocketprotector::monitoring::snmp::packages":}
   pocketprotector::files::templates::parse{"pocketprotector::monitoring::snmp::templates":}
-  service {'snmpd': ensure =>  'running'}
+  service {
+    'snmpd': 
+      ensure    => 'running',
+      subscribe =>  File['/etc/snmp/snmpd.conf'}
+  }
 }
