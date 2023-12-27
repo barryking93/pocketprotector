@@ -47,6 +47,11 @@ pocketprotector::monitoring::snmp::accounts:
     system: true
   snmp:
     ensure: absent
+pocketprotector::monitoring::snmp::templates:
+  '/etc/snmp/snmpd.conf':
+    content: pocketprotector/monitoring/snmp/snmpd.erb
+    notify: Service['snmpd']
+    
 pocketprotector::monitoring::snmp::packages:
   snmp:
     ensure: present
