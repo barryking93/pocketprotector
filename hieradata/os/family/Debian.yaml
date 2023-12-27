@@ -42,7 +42,7 @@ pocketprotector::monitoring::nagios::service::server: nagios4
 pocketprotector::monitoring::snmp::accounts:
   Debian-snmp:
     home: /var/lib/snmp
-  managehome: false
+    managehome: false
     shell: /bin/false
     system: true
   snmp:
