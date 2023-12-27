@@ -18,6 +18,7 @@ define pocketprotector::accounts::parse (
     accounts::user {
       $username:
         comment                  => lookup("${usersyaml}.${username}.comment", undef, 'first', undef),
+        ensure                   => lookup("${usersyaml}.${username}.ensure", undef, 'first', undef),
         home                     => lookup("${usersyaml}.${username}.home", undef, 'first', "/home/${username}"),
         gid                      => lookup("${usersyaml}.${username}.gid", undef, 'first', undef),
         group                    => lookup("${usersyaml}.${username}.group", undef, 'deep', undef),
