@@ -3,7 +3,7 @@
 # apt automatic update support
 #
 
-class pocketprotector::packages::updatess::apt {
+class pocketprotector::packages::updates::apt {
   if lookup('pocketprotector::packages::updates::apt::packages',undef,'deep',false) {
     pocketprotector::packages::parse{'pocketprotector::packages::updates::apt::packages':}
   }
