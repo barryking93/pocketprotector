@@ -204,37 +204,3 @@ pocketprotector::puppet::server::report::directory::tidy: true
 pocketprotector::puppet::server::report::directory::tidy::period: 30d
 pocketprotector::puppet::server::servicename: puppetserver
 
-postfix::main_config:
-  alias_maps: hash:/etc/aliases
-  alias_database: hash:/etc/aliases
-  append_dot_mydomain: no
-  biff: no
-  compatibility_level: 2
-  inet_interfaces: all
-  inet_protocols: all
-  mailbox_size_limit: 0
-  mydestination: $myhostname, localhost.$mydomain, localhost
-  myhostname: "%{facts.fqdn}"
-  mynetworks: 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-  myorigin: "%{facts.fqdn}"
-  readme_directory: no
-  recipient_delimiter: +
-  smtp_tls_CApath: /etc/ssl/certs
-  smtp_tls_security_level: may
-  smtp_tls_session_cache_database: 'btree:${data_directory}/smtp_scache'
-  smtpd_banner: '$myhostname ESMTP $mail_name'
-  smtpd_relay_restrictions:
-    - permit_mynetworks
-    - permit_sasl_authenticated
-    - defer_unauth_destination
-  smtpd_use_tls: yes
-  smtpd_tls_cert_file: &postfix_cert /etc/ssl/certs/ssl-cert-snakeoil.pem
-  smtpd_tls_key_file: &postfix_key /etc/ssl/private/ssl-cert-snakeoil.key
-  smtpd_sasl_auth_enable: no # only enable for mandatory tls ports
-  smtpd_sasl_type: dovecot
-  smtpd_sasl_path: private/auth
-  # sasl only encrypted
-  smtpd_tls_auth_only: yes
-  smtpd_tls_security_level: may
-  transport_maps: hash:/etc/postfix/transport
-  virtual_alias_maps: hash:/etc/postfix/virtual

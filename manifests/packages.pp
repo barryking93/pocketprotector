@@ -54,6 +54,7 @@ class pocketprotector::packages::repositories {
   case lookup('pocketprotector::packages::provider') {
     'apt': {
       include pocketprotector::packages::repositories::apt
+      include pocketprotector::packages::updates::apt
     }
     'zypper': {
       include pocketprotector::packages::repositories::zypper
