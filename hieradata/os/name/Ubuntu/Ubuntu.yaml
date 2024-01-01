@@ -30,11 +30,11 @@ pocketprotector::packages:
   pciutils:
     ensure: present
 
-pocketprotector::packages::update::apt::files::templates:
+pocketprotector::packages::updates::apt::files::templates:
   '/etc/apt/apt.conf.d/50unattended-upgrades':
     content: pocketprotector/packages/updates/50unattended-upgrades.erb
 
-pocketprotector::packages::update::apt::packages:
+pocketprotector::packages::updates::apt::packages:
   unattended-upgrades:
     ensure: present
 
