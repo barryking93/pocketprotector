@@ -11,7 +11,7 @@
 define pocketprotector::groups::parse (
   String $groupyaml = $name,
   ){
-  if lookup($groupyaml, undef, 'deep', false)) {
+  if lookup($groupyaml, undef, 'deep', false) {
     lookup($groupyaml, undef, 'deep', false).each |String $groupname, Hash $grouphash| {
       #notify {"pocketprotector::groups: group creation for for ${groupname}":}
 
