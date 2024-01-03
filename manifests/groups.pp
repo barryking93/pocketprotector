@@ -12,7 +12,7 @@ define pocketprotector::groups::parse (
   String $groupyaml = $name,
   ){
   if lookup($groupyaml, undef, 'deep', false) {
-    lookup($groupyaml, undef, 'deep', false).each |String $groupname, Hash $grouphash| {
+    lookup($groupyaml, undef, 'deep', undef).each |String $groupname, Hash $grouphash| {
       #notify {"pocketprotector::groups: group creation for for ${groupname}":}
 
       # https://www.puppet.com/docs/puppet/8/types/group.html
