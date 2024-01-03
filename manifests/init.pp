@@ -8,9 +8,10 @@ class pocketprotector {
   # packages first to set up proper repos
   include pocketprotector::packages
   # accounts to establish fundamental owners for needed later ownership
-  include pocketprotector::accounts
   include pocketprotector::groups
+  include pocketprotector::accounts
   # files for baseline file rollouts
+  include pocketprotector::groups
   include pocketprotector::files
   # puppet to ensure that this runs a second time
   include pocketprotector::puppet
