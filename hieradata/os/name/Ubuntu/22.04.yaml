@@ -9,6 +9,62 @@ pocketprotector::gpu::nvidia::repository:
       id: EB693B3035CD5710E231E123A4B469963BF863CC
       source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
+pocketprotector::monitoring::librenms::packages:
+  acl:
+    ensure: present 
+  curl: 
+    ensure: present 
+  fping: 
+    ensure: present 
+  graphviz: 
+    ensure: present
+  imagemagick: 
+    ensure: present
+  mariadb-client: 
+    ensure: present 
+  mtr-tiny: 
+    ensure: present 
+  nmap: 
+    ensure: present
+  php-cli: 
+    ensure: present 
+  php-curl: 
+    ensure: present 
+  php-fpm: 
+    ensure: present 
+  php-gd: 
+    ensure: present 
+  php-gmp: 
+    ensure: present 
+  php-json: 
+    ensure: presentql 
+  php-snmp: 
+    ensure: present
+  php-xml: 
+    ensure: present
+  php-zip: 
+    ensure: present
+  rrdtool: 
+    ensure: present
+  unzip: 
+    ensure: present
+  python3-pymysql: 
+    ensure: present
+  python3-dotenv: 
+    ensure: present
+  python3-redis: 
+    ensure: present
+  python3-setuptools: 
+    ensure: present
+  python3-systemd: 
+    ensure: present
+  python3-pip: 
+    ensure: present
+  whois: 
+    ensure: present
+  traceroute: 
+    ensure: present
+
 pocketprotector::packages::pin:
   puppet-focal: '100'
 

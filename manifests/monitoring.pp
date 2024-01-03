@@ -2,14 +2,12 @@
 #
 
 class pocketprotector::monitoring {
-  case lookup('pocketprotector::monitoring') {
-    'nagios': {
-      include pocketprotector::monitoring::nagios
-    }
-    'prometheus': {
-      #include pocketprotector::monitoring::prometheus
-      notify{'pocketprotector::monitoring: prometheus is not (yet?) supported':}
-    }
-    default: {}
+  # detect if a server's defined for the varios monitoring server types, install if so
+  if lookup('pocketprotector::monitoring::nagios::server',undef,'deep',false) {
+    include pocketprotector::monitoring::nagios
+  }
+  if lookup('pocketprotector::monitoring::librenms::server',undef,'deep',false) {
+    include pocketprotector::monitoring::librenms
+    include pocketprotector::monitoring::snmp
   }
 }

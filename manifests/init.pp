@@ -18,6 +18,7 @@ class pocketprotector {
   # roles, when detected
   include pocketprotector::roles
   # everything beyond here is alphabetical
+  include pocketprotector::db
   include pocketprotector::monitoring
   include pocketprotector::mta
   # gpu detection and support

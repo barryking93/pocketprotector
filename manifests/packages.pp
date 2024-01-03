@@ -37,7 +37,7 @@ define pocketprotector::packages::parse (
       }
     }
   } else {
-    notify{"pocketprotector::files: lookup filed for file for ${packagesyaml}":}
+    notify{"pocketprotector::packages: lookup filed for file for ${packagesyaml}":}
   }
 }
 
@@ -54,6 +54,7 @@ class pocketprotector::packages::repositories {
   case lookup('pocketprotector::packages::provider') {
     'apt': {
       include pocketprotector::packages::repositories::apt
+      include pocketprotector::packages::updates::apt
     }
     'zypper': {
       include pocketprotector::packages::repositories::zypper
