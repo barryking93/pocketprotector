@@ -26,7 +26,7 @@ define pocketprotector::groups::parse (
           forcelocal           => lookup("${usersyaml}.${username}.forcelocal", undef, 'first', undef),
           gid                  => lookup("${usersyaml}.${username}.gid", undef, 'first', undef),
           ia_load_module       => lookup("${usersyaml}.${username}.ia_load_module", undef, 'first', undef),
-          members              => lookup("${usersyaml}.${username}.members", undef, 'first', undef),
+          members              => lookup("${usersyaml}.${username}.members", undef, 'deep', undef),
           name                 => lookup("${usersyaml}.${username}.name", undef, 'first', undef),
           provider             => lookup("${usersyaml}.${username}.provider", undef, 'first', undef),
           system               => lookup("${usersyaml}.${username}.system", undef, 'first', undef),
