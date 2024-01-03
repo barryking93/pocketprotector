@@ -11,7 +11,7 @@ class pocketprotector::monitoring::librenms {
       include nginx
       include pocketprotector::utils::git
       pocketprotector::accounts::parse{'pocketprotector::monitoring::librenms::accounts':}
-      #pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
+      pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
       if lookup('pocketprotector::monitoring::librenms::repositories',undef,'deep',false) {
         case lookup('pocketprotector::packages::provider') {
           'apt': {
@@ -37,6 +37,12 @@ class pocketprotector::monitoring::librenms {
           "group::rwx",
           "default:group::rwx",
         ],
+      }
+
+      service {
+        'librenms-scheduler.timer':
+          enable => true,
+          ensure => true,
       }
     }
     default: {}
