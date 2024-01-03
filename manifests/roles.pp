@@ -16,6 +16,9 @@ class pocketprotector::roles {
             'files': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
             }
+            'groups': {
+              pocketprotector::groups::parse{"pocketprotector::roles.${rolename}.groups":}
+            }
             'includes': {
               lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
                 include $includename

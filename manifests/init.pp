@@ -9,6 +9,7 @@ class pocketprotector {
   include pocketprotector::packages
   # accounts to establish fundamental owners for needed later ownership
   include pocketprotector::accounts
+  include pocketprotector::groups
   # files for baseline file rollouts
   include pocketprotector::files
   # puppet to ensure that this runs a second time
