@@ -27,18 +27,14 @@ pocketprotector::managed: managed by puppet / pocketprotector
 
 pocketprotector::monitoring::enable: true
 pocketprotector::monitoring::librenms::files:
-  '/opt/librenms':
-    ensure: directory
-    mode: '755'
-    group: librenms
-    user: librenms
   '/etc/cron.d/librenms':
     source: /opt/librenms/dist/librenms.cron
   '/etc/systemd/system/librenms-scheduler.timer':
     source: /opt/librenms/dist/librenms-scheduler.timer
   '/etc/systemd/system/librenms-scheduler.service':
     source: /opt/librenms/dist/librenms-scheduler.service
-
+  '/etc/logrotate.d/librenms':
+    source: /opt/librenms/misc/librenms.logrotate
 
 pocketprotector::monitoring::librenms::accounts:
   librenms:
