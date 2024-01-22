@@ -3,6 +3,60 @@
 # not that we're expecting a lot of variance from ../family/Suse.yaml
 #
 
+pocketprotector::monitoring::librenms::packages:
+  acl:
+    ensure: present
+  curl:
+    ensure: present
+  fping:
+    ensure: present
+  graphviz:
+    ensure: present
+  imagemagick:
+    ensure: present
+  mariadb-client:
+    ensure: present
+  mtr:
+    ensure: present
+  nmap:
+    ensure: present
+  php8-cli:
+    ensure: present
+  php8-curl:
+    ensure: present
+  php8-fpm:
+    ensure: present
+  php8-gd:
+    ensure: present
+  php8-gmp:
+    ensure: present
+  php8-snmp:
+    ensure: present
+  php8-xmlreader:
+    ensure: present
+  php8-xmlwriter:
+    ensure: present
+  php8-zip:
+    ensure: present
+  rrdtool:
+    ensure: present
+  unzip:
+    ensure: present
+  python3-mysqlclient:
+    ensure: present
+  python3-python-dotenv:
+    ensure: present
+  python3-redis:
+    ensure: present
+  python3-setuptools:
+    ensure: present
+  python3-systemd:
+    ensure: present
+  whois:
+    ensure: present
+  traceroute:
+    ensure: present
+
 pocketprotector::packages::repositories:
   repo-backports-debug-update:
     name: Update repository with updates for openSUSE Leap debuginfo packages from openSUSE Backports
