@@ -11,8 +11,6 @@ class pocketprotector::monitoring::librenms {
       include nginx
       include pocketprotector::utils::git
 
-      $librenms_server = lookup('pocketprotector::monitoring::librenms::server',undef,'first',false)
-
       pocketprotector::accounts::parse{'pocketprotector::monitoring::librenms::accounts':}
       pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
       pocketprotector::files::templates::parse{'pocketprotector::monitoring::librenms::templates':}
