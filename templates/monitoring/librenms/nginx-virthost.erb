@@ -1,6 +1,6 @@
 server {
  listen      80;
- server_name <%= scope().call_function('lookup',['pocketprotector::monitoring::librenms::server']) %>;
+ server_name <%= @librenms_server %>;
  root        /opt/librenms/html;
  index       index.php;
 
