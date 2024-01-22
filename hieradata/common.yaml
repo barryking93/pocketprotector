@@ -43,7 +43,7 @@ pocketprotector::monitoring::librenms::files:
     source: /opt/librenms/dist/librenms.cron
   '/etc/nginx/sites-enabled/librenms':
     ensure: link
-    source: /etc/nginx/sites/available/librenms    
+    source: /etc/nginx/sites-available/librenms    
   '/etc/systemd/system/librenms-scheduler.timer':
     source: /opt/librenms/dist/librenms-scheduler.timer
   '/etc/systemd/system/librenms-scheduler.service':
