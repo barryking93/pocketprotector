@@ -26,15 +26,6 @@ pocketprotector::fs::nfs::defaults:
 pocketprotector::managed: managed by puppet / pocketprotector
 
 pocketprotector::monitoring::enable: true
-pocketprotector::monitoring::librenms::files:
-  '/etc/cron.d/librenms':
-    source: /opt/librenms/dist/librenms.cron
-  '/etc/systemd/system/librenms-scheduler.timer':
-    source: /opt/librenms/dist/librenms-scheduler.timer
-  '/etc/systemd/system/librenms-scheduler.service':
-    source: /opt/librenms/dist/librenms-scheduler.service
-  '/etc/logrotate.d/librenms':
-    source: /opt/librenms/misc/librenms.logrotate
 
 pocketprotector::monitoring::librenms::accounts:
   librenms:
@@ -42,6 +33,26 @@ pocketprotector::monitoring::librenms::accounts:
     managehome: false
     uid: '901'
     system: true
+pocketprotector::monitoring::librenms::acldirs:
+  - /opt/librenms/rrd
+  - /opt/librenms/logs
+  - /opt/librenms/bootstrap/cache
+  - /opt/librenms/storage
+pocketprotector::monitoring::librenms::files:
+  '/etc/cron.d/librenms':
+    source: /opt/librenms/dist/librenms.cron
+  '/etc/nginx/sites-enabled/librenms':
+    ensure: link
+    source: /etc/nginx/sites/available/librenms    
+  '/etc/systemd/system/librenms-scheduler.timer':
+    source: /opt/librenms/dist/librenms-scheduler.timer
+  '/etc/systemd/system/librenms-scheduler.service':
+    source: /opt/librenms/dist/librenms-scheduler.service
+  '/etc/logrotate.d/librenms':
+    source: /opt/librenms/misc/librenms.logrotate
+pocketprotector::monitoring::librenms::templates:
+  '/etc/nginx/sites-available/librenms':
+    content: pocketprotector/monitoring/librenms/nginx-virthost.erb
 
 pocketprotector::monitoring::nagios::client::exports:
   services:
@@ -160,15 +171,6 @@ pocketprotector::monitoring::nagios::resources:
       friday: 00:00-24:00
       saturday: 00:00-24:00
 
-pocketprotector::monitoring::librenms::acldirs:
-  - /opt/librenms/rrd
-  - /opt/librenms/logs
-  - /opt/librenms/bootstrap/cache
-  - /opt/librenms/storage
-pocketprotector::monitoring::snmp::files:
-  '/etc/nginx/sites-enabled/librenms':
-    ensure: link
-    source: /etc/nginx/sites/available/librenms
 pocketprotector::monitoring::snmp::location: Unknown
 pocketprotector::monitoring::snmp::address:
   - udp:161
@@ -177,8 +179,6 @@ pocketprotector::monitoring::snmp::ro_community: pleasechangethis
 pocketprotector::monitoring::snmp::templates:
   '/etc/snmp/snmpd.conf':
     content: pocketprotector/monitoring/snmp/snmpd.conf.erb
-  '/etc/nginx/sites-available/librenms':
-    content: pocketprotector/monitoring/snmp/nginx-virthost.erb
 
 pocketprotector::mta::default: postfix
 pocketprotector::mta::aliases:
