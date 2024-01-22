@@ -165,6 +165,10 @@ pocketprotector::monitoring::librenms::acldirs:
   - /opt/librenms/logs
   - /opt/librenms/bootstrap/cache
   - /opt/librenms/storage
+pocketprotector::monitoring::snmp::files:
+  '/etc/nginx/sites-enabled/librenms':
+    ensure: link
+    source: /etc/nginx/sites/available/librenms
 pocketprotector::monitoring::snmp::location: Unknown
 pocketprotector::monitoring::snmp::address:
   - udp:161
@@ -173,6 +177,8 @@ pocketprotector::monitoring::snmp::ro_community: pleasechangethis
 pocketprotector::monitoring::snmp::templates:
   '/etc/snmp/snmpd.conf':
     content: pocketprotector/monitoring/snmp/snmpd.conf.erb
+  '/etc/nginx/sites-available/librenms':
+    content: pocketprotector/monitoring/snmp/nginx-virthost.erb
 
 pocketprotector::mta::default: postfix
 pocketprotector::mta::aliases:
