@@ -1,7 +1,7 @@
 # hieradata/os/family/Suse.yaml
 
 pocketprotector::db::mariadb::packages:
-  mariadb-:
+  mariadb:
     ensure: present
 
 pocketprotector::etc::hosts:
