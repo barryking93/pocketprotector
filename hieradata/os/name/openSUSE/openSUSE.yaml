@@ -12,7 +12,7 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
   graphviz:
     ensure: present
-  imagemagick:
+  ImageMagick:
     ensure: present
   mariadb-client:
     ensure: present
