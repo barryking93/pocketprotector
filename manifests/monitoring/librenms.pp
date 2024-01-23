@@ -11,9 +11,9 @@ class pocketprotector::monitoring::librenms {
       include nginx
       include pocketprotector::utils::git
 
+      pocketprotector::packages::parse{'pocketprotector::monitoring::librenms::packages':}
       pocketprotector::accounts::parse{'pocketprotector::monitoring::librenms::accounts':}
-      pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
-      pocketprotector::files::templates::parse{'pocketprotector::monitoring::librenms::templates':}
+
       if lookup('pocketprotector::monitoring::librenms::repositories',undef,'deep',false) {
         case lookup('pocketprotector::packages::provider') {
           'apt': {
@@ -24,14 +24,19 @@ class pocketprotector::monitoring::librenms {
           }
         }
       }
-      pocketprotector::packages::parse{'pocketprotector::monitoring::librenms::packages':}
 
       exec {
         'librenms git init':
           command => '/usr/bin/git init;/usr/bin/git remote add origin https://github.com/librenms/librenms.git;/usr/bin/git fetch origin;/usr/bin/git checkout -b master --track origin/master',
           creates => '/opt/librenms/.git',
           cwd     => '/opt/librenms',
-          user    => 'librenms'
+          user    => 'librenms';
+        'librenms php init':
+          command => '/opt/librenms/scripts/composer_wrapper.php install --no-dev',
+          cwd     => '/opt/librenms',
+          creates => '/opt/librenms/dist',
+          cwd     => '/opt/librenms',
+          user    => 'librenms';
       }
       
       posix_acl { lookup('pocketprotector::monitoring::librenms::acldirs',undef,'first',undef):
@@ -40,6 +45,9 @@ class pocketprotector::monitoring::librenms {
           "default:group::rwx",
         ],
       }
+
+      pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
+      pocketprotector::files::templates::parse{'pocketprotector::monitoring::librenms::templates':}
 
       service {
         'librenms-scheduler.timer':
