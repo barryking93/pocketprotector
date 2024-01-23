@@ -35,7 +35,6 @@ class pocketprotector::monitoring::librenms {
           command => '/opt/librenms/scripts/composer_wrapper.php install --no-dev',
           cwd     => '/opt/librenms',
           creates => '/opt/librenms/dist',
-          cwd     => '/opt/librenms',
           user    => 'librenms';
       }
       
