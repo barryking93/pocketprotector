@@ -1,5 +1,9 @@
 # hieradata/os/family/Suse.yaml
 
+pocketprotector::db::mariadb::packages:
+  mariadb-:
+    ensure: present
+
 pocketprotector::etc::hosts:
     - '::1  ip6-localhost ipv6-loopback'
     - 'fe00::0  ipv6-localnet'
@@ -10,7 +14,6 @@ pocketprotector::etc::hosts:
 pocketprotector::fs::nfs::base:
   nfs-client:
     ensure: present
-
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
