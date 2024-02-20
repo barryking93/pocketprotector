@@ -25,6 +25,11 @@ pocketprotector::monitoring::nagios::client::packages:
 pocketprotector::monitoring::nagios::server::configd: /etc/nagios/conf.d
 pocketprotector::monitoring::nagios::service::client: nrpe
 
+pocketprotector::monitoring::snmp::packages:
+  net-snmp:
+    ensure: present
+
+
 pocketprotector::packages:
   python3-pyaml:
     ensure: present
