@@ -4,8 +4,8 @@ class pocketprotector::db::mariadb {
   pocketprotector::packages::parse{'pocketprotector::db::mariadb::packages':}
   service {
     'mariadb':
-      ensure: 'running',
-      enable: 'true';
+      ensure => 'running',
+      enable => 'true';
   }
 }
 
