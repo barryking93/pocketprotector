@@ -44,7 +44,7 @@ class pocketprotector::puppet::server::puppetboard::native {
     'puppetboard':
       python_version    => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
       manage_virtualenv => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
-      secret_key        => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
+      secret_key        => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
       #      extra_settings    => {
       #  'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
       #};
