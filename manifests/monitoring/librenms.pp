@@ -20,7 +20,7 @@ class pocketprotector::monitoring::librenms {
             apt::ppa {lookup('pocketprotector::monitoring::librenms::repositories'):}
           }
           default: {
-            notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
+            #notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
           }
         }
       }
