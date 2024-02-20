@@ -24,11 +24,21 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
   php8-curl:
     ensure: present
+  php8-fileinfo:
+    ensure: present
   php8-fpm:
     ensure: present
   php8-gd:
     ensure: present
   php8-gmp:
+    ensure: present
+  php8-mysql:
+    ensure: present
+  php8-phar:
+    ensure: present
+  php8-posix:
+    ensure: present
+  php8-sockets:
     ensure: present
   php8-snmp:
     ensure: present
@@ -56,6 +66,15 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
   traceroute:
     ensure: present
+pocketprotector::monitoring::librenms::repositories:
+  devel-languages-php:
+    name: PHP development repository 
+    enabled: 0
+    autorefresh: 1
+    baseurl: https://download.opensuse.org/repositories/devel:languages:php/openSUSE_Leap_$releasever/devel:languages:php.repo
+    type: NONE
+    keeppackages: 0
+
 
 pocketprotector::packages::repositories:
   repo-backports-debug-update:
