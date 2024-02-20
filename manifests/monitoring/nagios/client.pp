@@ -23,7 +23,7 @@ class pocketprotector::monitoring::nagios::client {
         #require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
-    # look configd and use as var, so we can munge it
+    # look up configd and use as var, so we can munge it
     $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
 
     # export host checks
