@@ -9,9 +9,9 @@ define pocketprotector::mta::postfix::parse (
 
             if $postconfval != '' {
                 exec {
-                    "postconfi -e ${postconfvar} ${postconfval}":
+                    "postconf -e ${postconfvar} ${postconfval}":
                         timeout     => 300,
-                        command     => "/usr/sbin/postconfi -e ${postconfvar}='${postconfval}'",
+                        command     => "/usr/sbin/postconf -e ${postconfvar}='${postconfval}'",
                         logoutput   => true,
                         unless      => "/usr/sbin/postconf ${postconfvar}|grep -q '${postconfval}'",
                         environment => ['PAGER=/bin/cat','DISPLAY=:9'];
