@@ -8,22 +8,6 @@ pocketprotector::gpu::nvidia::repository:
     id: EB693B3035CD5710E231E123A4B469963BF863CC
     source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
 
-pocketprotector::packages::repositories:
-  Leap:
-    name: openSUSE-Leap
-    enabled: 1
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/distribution/leap/15.4/repo/oss/
-    path: /
-    type: rpm-md
-    keeppackages: 0
-  puppet:
-    name: Puppet Repository sles 15 - $basearch
-    baseurl: http://yum.puppet.com/puppet/sles/15/$basearch
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
-    enabled: 1
-    gpgcheck: 1
-
 pocketprotector::puppet::puppetdb::database::version: '14'
 pocketprotector::puppet::server::puppetboard::python_version: '3.6'
 
