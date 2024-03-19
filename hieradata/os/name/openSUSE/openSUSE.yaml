@@ -3,6 +3,21 @@
 # not that we're expecting a lot of variance from ../family/Suse.yaml
 #
 
+pocketprotector::db::mariadb::packages:
+  mariadb:
+    ensure: present
+
+pocketprotector::etc::hosts:
+    - '::1  ip6-localhost ipv6-loopback'
+    - 'fe00::0  ipv6-localnet'
+    - 'ff00::0  ipv6-mcastprefix'
+    - 'ff02::1  ipv6-allnodes'
+    - 'ff02::2  ipv6-allrouters'
+
+pocketprotector::fs::nfs::base:
+  nfs-client:
+    ensure: present
+
 pocketprotector::monitoring::librenms::packages:
   acl:
     ensure: present
@@ -74,6 +89,28 @@ pocketprotector::monitoring::librenms::repositories:
     baseurl: https://download.opensuse.org/repositories/devel:languages:php/openSUSE_Leap_$releasever/devel:languages:php.repo
     type: NONE
     keeppackages: 0
+
+pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
+pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
+pocketprotector::monitoring::nagios::client::packages:
+  monitoring-plugins-nrpe:
+    ensure: present
+  nrpe:
+    ensure: present
+pocketprotector::monitoring::nagios::server::configd: /etc/nagios/conf.d
+pocketprotector::monitoring::nagios::service::client: nrpe
+
+pocketprotector::monitoring::snmp::packages:
+  net-snmp:
+    ensure: present
+
+pocketprotector::packages:
+  python3-pyaml:
+    ensure: present
+  tmux:
+    ensure: present
+
+pocketprotector::packages::provider: zypper
 
 pocketprotector::packages::repositories:
   puppet:
@@ -175,3 +212,11 @@ pocketprotector::packages::repositories:
     path: /
     type: rpm-md
     keeppackages: 0
+
+pocketprotector::puppet::server::packages:
+  python3-virtualenv:
+pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
+
+# native puppetboard isn't working on suse
+#pocketprotector::puppet::server::puppetboard::docker: true
+pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
