@@ -1,4 +1,4 @@
-# hieradata/os/name/openSUSE/15.4.yaml
+# hieradata/os/name/openSUSE/15.5.yaml
 
 pocketprotector::gpu::nvidia::repository:
   location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
@@ -13,7 +13,7 @@ pocketprotector::packages::repositories:
     name: openSUSE-Leap
     enabled: 1
     autorefresh: 1
-    baseurl: http://download.opensuse.org/distribution/leap/15.4/repo/oss/
+    baseurl: http://download.opensuse.org/distribution/leap/15.5/repo/oss/
     path: /
     type: rpm-md
     keeppackages: 0
