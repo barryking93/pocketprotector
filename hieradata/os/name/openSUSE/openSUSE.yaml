@@ -75,8 +75,13 @@ pocketprotector::monitoring::librenms::repositories:
     type: NONE
     keeppackages: 0
 
-
 pocketprotector::packages::repositories:
+  puppet:
+    name: Puppet Repository sles 15 - $basearch
+    baseurl: http://yum.puppet.com/puppet/sles/15/$basearch
+    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
+    enabled: 1
+    gpgcheck: 1
   repo-backports-debug-update:
     name: Update repository with updates for openSUSE Leap debuginfo packages from openSUSE Backports
     enabled: 0
