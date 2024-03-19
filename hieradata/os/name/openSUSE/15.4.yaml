@@ -1,4 +1,4 @@
-# hieradata/os/name/Ubuntu/22.04.yaml
+# hieradata/os/name/openSUSE/15.4.yaml
 
 pocketprotector::gpu::nvidia::repository:
   location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
