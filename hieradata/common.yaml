@@ -229,5 +229,5 @@ pocketprotector::security::password::policy:
 
 pocketprotector::security::password::pwquality::templates:
   '/etc/security/pwquality.conf':
-    content: pocketprotector/etc/security/pwquality.conf.erb
+    content: pocketprotector/security/password/pwquality.conf.erb
 
