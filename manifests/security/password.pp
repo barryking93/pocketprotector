@@ -38,5 +38,10 @@ class pocketprotector::security::password::cracklib {
 }
 
 class pocketprotector::security::password::pwquality {
+  # populate vars w/ deep merge
+  lookup('pocketprotector::security::password::policy', undef, 'deep', undef).each |String $policyname, Integer $policyvalue| {
+    $passpol_${policyname} = $policyvalue
+  }
+
   pocketprotector::files::templates::parse{'pocketprotector::security::password::pwquality::templates':}
 }
