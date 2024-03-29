@@ -4,86 +4,47 @@
 # Number of characters in the new password that must not be present in the
 # old password.
 # difok = 1
-<% if lookup('pocketprotector::security::password::policy.difok','String','deep') then -%>
-difok = <%= lookup('pocketprotector::security::password::policy.difok','String','deep') %>
-<% fi -%>
 # Minimum acceptable size for the new password (plus one if
 # credits are not disabled which is the default). (See pam_cracklib manual.)
 # Cannot be set to lower value than 6.
 # minlen = 8
-<% if lookup('pocketprotector::security::password::policy.minlength','String','deep') then -%>
-minlength = <%= lookup('pocketprotector::security::password::policy.minlength','String','deep') %>
-<% fi -%>
 # The maximum credit for having digits in the new password. If less than 0
 # it is the minimum number of digits in the new password.
 # dcredit = 0
-<% if has_variable?('passpol_dcredit') then -%>
-dcredit = <%= @passpol_dcredit %>
-<% fi -%>
 # The maximum credit for having uppercase characters in the new password.
 # If less than 0 it is the minimum number of uppercase characters in the new
 # password.
 # ucredit = 0
-<% if has_variable?('passpol_ucredit') then -%>
-ucredit = <%= @passpol_ucredit %>
-<% fi -%>
 # The maximum credit for having lowercase characters in the new password.
 # If less than 0 it is the minimum number of lowercase characters in the new
 # password.
 # lcredit = 0
-<% if has_variable?('passpol_lcredit') then -%>
-lcredit = <%= @passpol_lcredit %>
-<% fi -%>
 # The maximum credit for having other characters in the new password.
 # If less than 0 it is the minimum number of other characters in the new
 # password.
 # ocredit = 0
-<% if has_variable?('passpol_ocredit') then -%>
-ocredit = <%= @passpol_ocredit %>
-<% fi -%>
 # The minimum number of required classes of characters for the new
 # password (digits, uppercase, lowercase, others).
 # minclass = 0
-<% if has_variable?('passpol_minclass') then -%>
-minclass = <%= @passpol_minclass %>
-<% fi -%>
 # The maximum number of allowed consecutive same characters in the new password.
 # The check is disabled if the value is 0.
 # maxrepeat = 0
-<% if has_variable?('passpol_maxrepeat') then -%>
-maxrepeat = <%= @passpol_maxrepeat %>
-<% fi -%>
 # The maximum number of allowed consecutive characters of the same class in the
 # new password.
 # The check is disabled if the value is 0.
 # maxclassrepeat = 0
-<% if has_variable?('passpol_maxclassrepeat') then -%>
-maxclassrepeat = <%= @passpol_maxclassrepeat %>
-<% fi -%>
 # Whether to check for the words from the passwd entry GECOS string of the user.
 # The check is enabled if the value is not 0.
 # gecoscheck = 0
-<% if has_variable?('passpol_gecoscheck') then -%>
-gecoscheck = <%= @passpol_gecoscheck %>
-<% fi -%>
 # Whether to check for the words from the cracklib dictionary.
 # The check is enabled if the value is not 0.
 # dictcheck = 1
-<% if has_variable?('passpol_dictcheck') then -%>
-dictcheck = <%= @passpol_dictcheck %>
-<% fi -%>
 # Whether to check if it contains the user name in some form.
 # The check is enabled if the value is not 0.
 # usercheck = 1
-<% if has_variable?('passpol_usercheck') then -%>
-usercheck = <%= @passpol_usercheck %>
-<% fi -%>
 # Length of substrings from the username to check for in the password
 # The check is enabled if the value is greater than 0 and usercheck is enabled.
 # usersubstr = 0
-<% if has_variable?('passpol_usersubstr') then -%>
-usersubstr = <%= @passpol_usersubstr %>
-<% fi -%>
 # Whether the check is enforced by the PAM module and possibly other
 # applications.
 # The new password is rejected if it fails the check and the value is not 0.
@@ -103,3 +64,6 @@ usersubstr = <%= @passpol_usersubstr %>
 # /etc/passwd file.
 # Enabled if the option is present.
 # local_users_only
+<% scope().call_function('hiera',['pocketprotector::security::password::policy','String','deep']).each do |passpol_name, passpol_val| -%>
+<%= passpol_name %> = <%= passpol_val %>
+<% end %>
