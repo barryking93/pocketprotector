@@ -217,3 +217,17 @@ pocketprotector::puppet::server::report::directory::tidy: true
 pocketprotector::puppet::server::report::directory::tidy::period: 30d
 pocketprotector::puppet::server::servicename: puppetserver
 
+# password requirements from FISMA standards
+pocketprotector::security::password::policy:
+  dcredit: -1
+  difok: 4
+  lcredit: -1
+  maxrepeat: 3
+  minlen: 14
+  ocredit: -1
+  ucredit: -1
+
+pocketprotector::security::password::pwquality::templates:
+  '/etc/security/pwquality.conf':
+    content: pocketprotector/etc/security/pwquality.conf.erb
+
