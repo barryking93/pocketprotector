@@ -67,3 +67,6 @@ pocketprotector::puppet::server::defaults: /etc/default/puppetserver
 pocketprotector::puppet::server::puppetboard::docker: true
 
 pocketprotector::security::password::enforcer: pwquality
+pocketprotector::security::password::packages::pwquality:
+  libpam-pwquality:
+    ensure: present

@@ -43,5 +43,6 @@ class pocketprotector::security::password::pwquality {
   #  $passpol_$policyname = $policyvalue
   #}
 
+  pocketprotector::packages::parse{'pocketprotector::security::password::packages::pwquality':}
   pocketprotector::files::templates::parse{'pocketprotector::security::password::pwquality::templates':}
 }
