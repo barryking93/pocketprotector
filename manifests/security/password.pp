@@ -19,14 +19,21 @@ class pocketprotector::security::password {
 
 class pocketprotector::security::password::cracklib {
   # initialize policy arguments & grep statement
-  $passpol_args = ''
-  $passpol_grep = ''
+  #$passpol_args = ''
+  #$passpol_grep = ''
 
   # build passpol_args and $passpol_grep
-  lookup('pocketprotector::security::password::policy', undef, 'deep', undef).each |String $policyname, Integer $policyvalue| {
-    $passpol_args = "$passpol_args --cracklib-$policyname=$policyvalue"
-    $passpol_grep = "$policyname=$policyvalue|$passpol_grep"
-  }
+  #lookup('pocketprotector::security::password::policy', undef, 'deep', undef).each |String $policyname, Integer $policyvalue| {
+  #  $passpol_args = "$passpol_args --cracklib-$policyname=$policyvalue"
+  #  $passpol_grep = "$policyname=$policyvalue|$passpol_grep"
+  #}
+
+  $passpol_args = lookup('pocketprotector::security::password::policy', undef, 'deep', undef).map |String $policyname, Integer $policyvalue| {
+    "--cracklib-$policyname=$policyvalue"
+  }.join(" ")
+  $passpol_grep = lookup('pocketprotector::security::password::policy', undef, 'deep', undef).map |String $policyname, Integer $policyvalue| {
+    "$policyname=$policyvalue"
+  }.join("|")
 
   notify{"passpol_args is $passpol_args and passpol_grep is $passpol_grep":}
 
