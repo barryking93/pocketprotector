@@ -31,7 +31,7 @@ class pocketprotector::security::password::cracklib {
   # run pam-config if something needs updates
   exec {
     "/usr/sbin/pam-config -a $passpol_args":
-      onlyif =>  "grep cracklib /etc/pam.d/common-password| grep -vqE \"$passpol_grep\""
+      onlyif =>  "/usr/bin/grep cracklib /etc/pam.d/common-password | /usr/bin/grep -vqE \"$passpol_grep\""
   }
 }
 
