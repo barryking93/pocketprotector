@@ -10,3 +10,6 @@ pocketprotector::puppet::server::packages:
     ensure: latest
 
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver
+
+pocketprotector::security::password::enforcer: pwquality
+

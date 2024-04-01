@@ -19,10 +19,11 @@ class pocketprotector {
   #include pocketprotector::firewall
   # roles, when detected
   include pocketprotector::roles
-  # everything beyond here is alphabetical
+  # alphabetical general support
   include pocketprotector::db
   include pocketprotector::monitoring
   include pocketprotector::mta
+  include pocketprotector::security
   # gpu detection and support
   include pocketprotector::gpu
   # openbox support
