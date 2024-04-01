@@ -18,7 +18,7 @@ class pocketprotector::gpu::nvidia {
 # nvidia (read: CUDA) support
 
   case lookup('pocketprotector::packages::provider') {
-    'apt': {
+    'apt','zypper': {
       pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::gpu::nvidia::repository':}
       pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
     }
