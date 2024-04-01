@@ -3,7 +3,7 @@
 # not that we're expecting a lot of variance from ../family/Suse.yaml
 #
 
-pocketpreotector::gpu::nvidia::packages:
+pocketprotector::gpu::nvidia::packages:
   cuda-toolkit:
     ensure: present
 pocketprotector::gpu::nvidia::repository:
