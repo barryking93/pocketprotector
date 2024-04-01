@@ -3,6 +3,17 @@
 # not that we're expecting a lot of variance from ../family/Suse.yaml
 #
 
+pocketpreotector::gpu::nvidia::packages:
+  cuda-toolkit:
+    ensure: present
+pocketprotector::gpu::nvidia::repository:
+  nvidia:
+    name: nVIDIA upstream repo
+    baseurl: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch/cuda-opensuse$releasever_major.repo
+    gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/fedora32/x86_64/D42D0685.pub
+    enabled: 1
+    gpgcheck: 1
+
 pocketprotector::db::mariadb::packages:
   mariadb:
     ensure: present
