@@ -23,7 +23,7 @@ class pocketprotector::gpu::nvidia {
       pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
     }
     'zypper': {
-      pocketprotector::packages::repositories::zypper::source::parse{'pocketprotector::gpu::nvidia::repository':}
+      pocketprotector::packages::repositories::zypper::repoparse{'pocketprotector::gpu::nvidia::repository':}
       pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
     }
     default: {
