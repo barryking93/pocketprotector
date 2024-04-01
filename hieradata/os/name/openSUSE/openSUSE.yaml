@@ -8,9 +8,9 @@ pocketprotector::gpu::nvidia::packages:
     ensure: present
 pocketprotector::gpu::nvidia::repository:
   nvidia:
-    name: nVIDIA upstream repo
-    baseurl: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch/cuda-opensuse$releasever_major.repo
-    gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/fedora32/x86_64/D42D0685.pub
+    name: cuda-opensuse$releasever_major-$basearch
+    baseurl: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch
+    gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch/D42D0685.pub
     enabled: 1
     gpgcheck: 1
 
