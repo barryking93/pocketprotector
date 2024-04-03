@@ -125,98 +125,84 @@ pocketprotector::packages::provider: zypper
 
 pocketprotector::packages::repositories:
   puppet:
-    name: Puppet Repository sles 15 - $basearch
-    baseurl: http://yum.puppet.com/puppet/sles/15/$basearch
+    baseurl: http://yum.puppet.com/puppet/sles/$releasever_major/$basearch
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
     enabled: 1
     gpgcheck: 1
-  repo-backports-debug-update:
-    name: Update repository with updates for openSUSE Leap debuginfo packages from openSUSE Backports
+  sle-backports-debug-update:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/update/leap/$releasever/backports_debug/
     type: NONE
     keeppackages: 0
-  repo-backports-update:
-    name: Update repository of openSUSE Backports
+  sle-backports-update:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/update/leap/$releasever/backports/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-debug-non-oss:
-    name: Debug Repository (Non-OSS)
+  sle-debug-non-oss:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/distribution/leap/$releasever/repo/non-oss/
     keeppackages: 0
-  repo-debug:
-    name: Debug Repository
+  sle-debug-oss:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/distribution/leap/$releasever/repo/oss/
     keeppackages: 0
-  repo-debug-update-non-oss:
-    name: Update Repository (Debug, Non-OSS)
+  sle-debug-update-non-oss:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/update/leap/$releasever/non-oss/
     keeppackages: 0
-  repo-debug-update:
-    name: Update Repository (Debug)
+  sle-debug-update:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/update/leap/$releasever/oss/
     keeppackages: 0
-  repo-non-oss:
-    name: Non-OSS Repository
+  sle-non-oss:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/distribution/leap/$releasever/repo/non-oss/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-oss:
-    name: Main Repository
+  sle-oss:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/distribution/leap/$releasever/repo/oss/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-sle-debug-update:
-    name: Update repository with debuginfo for updates from SUSE Linux Enterprise 15
+  sle-debug-update:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/update/leap/$releasever/sle/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-sle-update:
-    name: Update repository with updates from SUSE Linux Enterprise 15
+  sle-update:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/update/leap/$releasever/sle/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-source:
-    name: Source Repository
+  sle-source-oss:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/source/distribution/leap/$releasever/repo/oss/
     keeppackages: 0
-  repo-update-non-oss:
-    name: Update Repository (Non-Oss)
+  sle-update-non-oss:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/update/leap/$releasever/non-oss/
     path: /
     type: rpm-md
     keeppackages: 0
-  repo-update:
-    name: Main Update Repository
+  sle-update-oss:
     enabled: 1
     autorefresh: 1
     baseurl: http://download.opensuse.org/update/leap/$releasever/oss
