@@ -37,7 +37,6 @@ class pocketprotector::monitoring::nagios::client {
     }
 
     # check filesystems
-
     $::mountpoints.each | $name, $filesystem| {
       $fs = $::mountpoints[$name]['filesystem']
       case $fs {
@@ -55,7 +54,7 @@ class pocketprotector::monitoring::nagios::client {
             use                 => 'generic-service',
             host_name           => $::fqdn,
             service_description => "${::fqdn} partition - ${name}",
-            check_command       => "check_disk!20%!10%${name}",
+            check_command       => "check_disk!${fswarnpct}!${fscritpct}!${name}",
             target                => "${nagconfigd}/host_${::fqdn}.cfg";
           }
         }
@@ -63,7 +62,6 @@ class pocketprotector::monitoring::nagios::client {
         }
       }
     }
-
 
     # parse and export further checks
     #lookup('pocketprotector::monitoring::nagios',undef,deep,undef)
