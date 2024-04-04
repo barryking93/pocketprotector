@@ -40,6 +40,7 @@ class pocketprotector::monitoring::nagios::client {
     $::mountpoints.each | $name, $filesystem | {
       $fs = $::mountpoints[$name]['filesystem']
       $fscheckedtypes = lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes')
+      notify{"pocketprotector::monitoring::nagios::client: fscheckedtypes are ${fscheckedtypes}":}
       case $fs {
         $fscheckedtypes: {
           case $name {
