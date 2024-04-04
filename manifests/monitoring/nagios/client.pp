@@ -59,7 +59,7 @@ class pocketprotector::monitoring::nagios::client {
           }
         }
         default: {
-          notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} isn't a supported filesystem":}
+          notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type of ${fs}":}
         }
       }
     }
