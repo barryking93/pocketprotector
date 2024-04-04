@@ -81,6 +81,8 @@ pocketprotector::monitoring::nagios::client::templates:
 pocketprotector::monitoring::nagios::user: nagios
 pocketprotector::monitoring::nagios::resources:
   command:
+    check_disk_nrpe:
+      command_line: $USER1$/check_nrpe -H $HOSTADDRESS$ -t 60 -c check_disk -a $ARG1$
     check_alive_ping:
       command_line: $USER1$/check_ping -H $HOSTADDRESS$ -w 200.0,50% -c 1000.0,90% -p 5 -t 10
     notify-host-by-email:
