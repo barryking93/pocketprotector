@@ -21,7 +21,6 @@ class pocketprotector::monitoring::nagios::client {
         mode    => '0444',
         content => template('pocketprotector/monitoring/nagios/nrpe.cfg.erb'),
         notify  => Service[lookup('pocketprotector::monitoring::nagios::service::client')],
-        #require => Package[lookup('pocketprotector::monitoring::nagios::client::packages')];
     }
 
     # look up configd and use as var, so we can munge it
