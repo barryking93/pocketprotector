@@ -51,7 +51,7 @@ class pocketprotector::monitoring::nagios::client {
         $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
         $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
 
-        @@nagios_service { "${::fqdn}_check_disk-nrpe-${fsname}":
+        @@nagios_service { "${::fqdn}_check_disk-${fsname}":
           ensure              => present,
           use                 => 'generic-service',
           host_name           => $::fqdn,
