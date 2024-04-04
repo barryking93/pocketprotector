@@ -56,7 +56,7 @@ class pocketprotector::monitoring::nagios::client {
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn} filesystem - ${name}",
-          check_command       => "check_disk!${fswarnpct}!${fscritpct}!${name}",
+          check_command       => "check_disk_nrpe!${fswarnpct}!${fscritpct}!${name}",
           target                => "${nagconfigd}/host_${::fqdn}.cfg";
         }
       }

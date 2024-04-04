@@ -24,6 +24,8 @@ pocketprotector::monitoring::nagios::client::packages:
   nagios-nrpe-server:
     ensure: present
 pocketprotector::monitoring::nagios::server::packages:
+  nagios-nrpe-plugin:
+    ensure: present
   nagios4-core:
     ensure: present
   nagios4-cgi:
