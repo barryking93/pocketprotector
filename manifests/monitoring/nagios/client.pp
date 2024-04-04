@@ -45,6 +45,8 @@ class pocketprotector::monitoring::nagios::client {
           default: { $fsname = regsubst($name,'/', '', 'G') }
         }
 
+        notify{"pocketprotector::monitoring::nagios::client: filesytem is $fs and fsname is $fsname":}
+
         $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
         $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
 
