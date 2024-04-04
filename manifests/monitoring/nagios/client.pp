@@ -58,7 +58,7 @@ class pocketprotector::monitoring::nagios::client {
         }
       }
       else {
-          notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type [${fs}]":}
+        #notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type [${fs}]":}
       }
     }
 
