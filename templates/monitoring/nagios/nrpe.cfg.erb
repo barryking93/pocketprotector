@@ -41,6 +41,13 @@ nrpe_group=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagi
 # ALLOWED HOST ADDRESSES
 allowed_hosts=127.0.0.1,::1,<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::ip']) %>
 
+# *** ENABLING THIS OPTION IS A SECURITY RISK! ***
+# Read the SECURITY file for information on some of the security implications
+# of enabling this variable.
+#
+# Values: 0=do not allow arguments, 1=allow command arguments
+dont_blame_nrpe=1
+
 # COMMAND DEFINITIONS
 # Command definitions that this daemon will run.  Definitions
 # are in the following format:
