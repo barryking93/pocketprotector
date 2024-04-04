@@ -57,7 +57,7 @@ class pocketprotector::monitoring::nagios::client {
           target                => "${nagconfigd}/host_${::fqdn}.cfg";
         }
       }
-      else: {
+      else {
           notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type [${fs}]":}
       }
     }
