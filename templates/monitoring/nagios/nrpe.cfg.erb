@@ -39,7 +39,7 @@ nrpe_user=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagio
 nrpe_group=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::group']) %>
 
 # ALLOWED HOST ADDRESSES
-allowed_hosts=127.0.0.1,::1,<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::server::ip']) %>
+allowed_hosts=127.0.0.1,::1,<% scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::ip']) %>
 
 # COMMAND DEFINITIONS
 # Command definitions that this daemon will run.  Definitions
