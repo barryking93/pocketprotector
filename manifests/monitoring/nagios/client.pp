@@ -36,6 +36,35 @@ class pocketprotector::monitoring::nagios::client {
       target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }
 
+    # check filesystems
+
+    $::mountpoints.each | $name, $filesystem| {
+      $fs = $::mountpoints[$name]['filesystem']
+      case $fs {
+        lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes'): {
+          case $name {
+            '/': { $fsname = 'root' }
+            default: { $fsname = regsubst($name,'/', '', 'G') }
+          }
+
+          $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
+          $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
+
+          @@nagios_service { "${::fqdn}_check_disk-${fsname}":
+            ensure              => present,
+            use                 => 'generic-service',
+            host_name           => $::fqdn,
+            service_description => "${::fqdn} partition - ${name}",
+            check_command       => "check_disk!20%!10%${name}",
+            target                => "${nagconfigd}/host_${::fqdn}.cfg";
+          }
+        }
+        default: {
+        }
+      }
+    }
+
+
     # parse and export further checks
     #lookup('pocketprotector::monitoring::nagios',undef,deep,undef)
   }
