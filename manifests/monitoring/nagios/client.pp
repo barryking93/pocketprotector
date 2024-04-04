@@ -39,8 +39,9 @@ class pocketprotector::monitoring::nagios::client {
     # check filesystems if in checkedtypes
     $::mountpoints.each | $name, $filesystem | {
       $fs = $::mountpoints[$name]['filesystem']
+      $fscheckedtypes = lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes')
       case $fs {
-        lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes'): {
+        $fscheckedtypes: {
           case $name {
             '/': { $fsname = 'root' }
             default: { $fsname = regsubst($name,'/', '', 'G') }
@@ -59,7 +60,7 @@ class pocketprotector::monitoring::nagios::client {
           }
         }
         default: {
-          notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type of ${fs}":}
+          notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type [${fs}]":}
         }
       }
     }
