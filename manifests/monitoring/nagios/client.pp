@@ -41,9 +41,11 @@ class pocketprotector::monitoring::nagios::client {
       $fs = $::mountpoints[$name]['filesystem']
       if $fs in lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes') {
         case $name {
-          '/': { $fsname = 'root' }
+          '/': { $fsname = 'systemroot' }
           default: { $fsname = regsubst($name,'/', '', 'G') }
         }
+
+        #notify{"pocketprotector::monitoring::nagios::client: mountpoint is $name, filesytem is $fs and fsname is $fsname":}
 
         $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
         $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
