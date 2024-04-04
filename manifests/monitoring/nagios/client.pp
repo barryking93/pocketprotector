@@ -36,8 +36,8 @@ class pocketprotector::monitoring::nagios::client {
       target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }
 
-    # check filesystems
-    $::mountpoints.each | $name, $filesystem| {
+    # check filesystems if in checkedtypes
+    $::mountpoints.each | $name, $filesystem | {
       $fs = $::mountpoints[$name]['filesystem']
       case $fs {
         lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes'): {
@@ -53,12 +53,13 @@ class pocketprotector::monitoring::nagios::client {
             ensure              => present,
             use                 => 'generic-service',
             host_name           => $::fqdn,
-            service_description => "${::fqdn} partition - ${name}",
+            service_description => "${::fqdn} filesystem - ${name}",
             check_command       => "check_disk!${fswarnpct}!${fscritpct}!${name}",
             target                => "${nagconfigd}/host_${::fqdn}.cfg";
           }
         }
         default: {
+          notify("pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} isn't a supported filesystem":)
         }
       }
     }
