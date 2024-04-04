@@ -39,7 +39,7 @@ class pocketprotector::monitoring::nagios::client {
     # check filesystems if in checkedtypes & export check
     $::mountpoints.each | $name, $filesystem | {
       $fs = $::mountpoints[$name]['filesystem']
-      if lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes').include($fs) {
+      if $fs in lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes') {
         case $name {
           '/': { $fsname = 'root' }
           default: { $fsname = regsubst($name,'/', '', 'G') }
