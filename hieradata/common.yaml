@@ -63,7 +63,7 @@ pocketprotector::monitoring::nagios::server::adminemail: root@localhost
 pocketprotector::monitoring::nagios::server::adminpager: root@localhost
 pocketprotector::monitoring::nagios::group: nagios
 pocketprotector::monitoring::nagios::client::commands:
-  check_disk: /usr/bin/sudo /usr/lib/nagios/plugins/check_disk -w $ARG1$ -c $ARG2$ -p $ARG3$
+  check_disk: /usr/bin/sudo /usr/lib/nagios/plugins/check_disk -w 20% -c 10% -p $ARG1$
   check_users: /usr/lib/nagios/plugins/check_users -w 5 -c 10
   check_load: /usr/lib/nagios/plugins/check_load -r -w .15,.10,.05 -c .30,.25,.20
 pocketprotector::monitoring::nagios::client::fs::checkedtypes:
@@ -73,8 +73,6 @@ pocketprotector::monitoring::nagios::client::fs::checkedtypes:
   - ext4
   - xfs
   - zfs
-pocketprotector::monitoring::nagios::client::fs::critpct: 10%
-pocketprotector::monitoring::nagios::client::fs::warnpct: 20%
 pocketprotector::monitoring::nagios::client::templates:
   '/etc/sudoers.d/nagios':
     content: pocketprotector/monitoring/nagios/sudoers.erb

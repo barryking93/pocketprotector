@@ -47,15 +47,12 @@ class pocketprotector::monitoring::nagios::client {
 
         #notify{"pocketprotector::monitoring::nagios::client: mountpoint is $name, filesytem is $fs and fsname is $fsname":}
 
-        $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
-        $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
-
         @@nagios_service { "${::fqdn}_check_disk-${fsname}":
           ensure              => present,
           use                 => 'generic-service',
           host_name           => $::fqdn,
           service_description => "${::fqdn} filesystem - ${name}",
-          check_command       => "check_disk_nrpe!${fswarnpct}!${fscritpct}!${name}",
+          check_command       => "check_disk_nrpe!${name}",
           target                => "${nagconfigd}/host_${::fqdn}.cfg";
         }
       }
