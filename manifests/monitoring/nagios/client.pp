@@ -36,6 +36,32 @@ class pocketprotector::monitoring::nagios::client {
       target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }
 
+    # check filesystems if in checkedtypes & export check
+    $::mountpoints.each | $name, $filesystem | {
+      $fs = $::mountpoints[$name]['filesystem']
+      if $fs in lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes') {
+        case $name {
+          '/': { $fsname = 'root' }
+          default: { $fsname = regsubst($name,'/', '', 'G') }
+        }
+
+        $fswarnpct = lookup('pocketprotector::monitoring::nagios::client::fs::warnpct')
+        $fscritpct = lookup('pocketprotector::monitoring::nagios::client::fs::critpct')
+
+        @@nagios_service { "${::fqdn}_check_disk-${fsname}":
+          ensure              => present,
+          use                 => 'generic-service',
+          host_name           => $::fqdn,
+          service_description => "${::fqdn} filesystem - ${name}",
+          check_command       => "check_disk!${fswarnpct}!${fscritpct}!${name}",
+          target                => "${nagconfigd}/host_${::fqdn}.cfg";
+        }
+      }
+      else {
+        #notify{"pocketprotector::monitoring::nagios::client: ${name} on ${::fqdn} is not a checked filesystem type [${fs}]":}
+      }
+    }
+
     # parse and export further checks
     #lookup('pocketprotector::monitoring::nagios',undef,deep,undef)
   }
