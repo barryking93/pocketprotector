@@ -31,14 +31,6 @@ define pocketprotector::fs::samba::mounts::parse (
   }
 }
 
-# 
-# TO DO:  samba exports
-#
-# define pocketprotector::fs::samba::exports::parse (
-#   String $mountyaml = $name,
-# ){
-# }
-
 class pocketprotector::fs::samba {
   pocketprotector::fs::samba::mounts::parse{'pocketprotector::fs::samba::mounts':}
   include pocketprotector::fs::samba::server
@@ -48,12 +40,7 @@ class pocketprotector::fs::samba::server {
   if lookup('pocketprotector::fs::samba::server::config', undef, 'deep', false) {
     pocketprotector::packages::parse{'pocketprotector::fs::samba::server::packages':}
     pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
-
-    service {
-      lookup('pocketprotector::fs::samba::server::servicename'):
-        ensure => 'running',
-        enable => true,
-    }
+    pocketprotector::files::services::parse{'pocketprotector::fs::samba::server::services':}
   }
 }
 

@@ -20,6 +20,10 @@ pocketprotector::fs::samba::server::packages:
   samba:
     ensure: present
 pocketprotector::fs::samba::server::servicename: smbd
+pocketprotector::fs::samba::server::services: 
+  smbd:
+    ensure: running
+    enable: true 
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
