@@ -40,7 +40,7 @@ class pocketprotector::fs::samba::server {
   if lookup('pocketprotector::fs::samba::server::config', undef, 'deep', false) {
     pocketprotector::packages::parse{'pocketprotector::fs::samba::server::packages':}
     pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
-    pocketprotector::files::services::parse{'pocketprotector::fs::samba::server::services':}
+    pocketprotector::services::parse{'pocketprotector::fs::samba::server::services':}
   }
 }
 
