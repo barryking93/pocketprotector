@@ -1,17 +1,17 @@
 # templates/fs/samba/server/smb.conf.erb 
-# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 
 # global config
 [global]
-<% scope().call_function('hiera',['pocketprotector::fs::samba::server::config','String','deep']).each do |String smbconf_name, String smbconf_val| -%>
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::config']).each do |String smbconf_name, String smbconf_val| -%>
   <%= smbconf_name %> = <%= smbconf_val %>
 <% end %>
 
 # shares
-<% scope().call_function('hiera',['pocketprotector::fs::samba::server::shares','String','deep']).each do |String smbshare_name, Hash smbshare_hash| -%>
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::shares']).each do |String smbshare_name, Hash smbshare_hash| -%>
   
 [<%= smbshare_name %>] 
-<% scope().call_function('hiera',["pocketprotector::fs::samba::server::shares." + @smbshare_name,'String','deep']).each do |String smbshareconf_name, String smbshareconf_val| -%>
+<% scope().call_function('lookup',["pocketprotector::fs::samba::server::shares." + @smbshare_name]).each do |String smbshareconf_name, String smbshareconf_val| -%>
   <%= smbshareconf_name %> = <%= smbshareconf_val %>
 <% end %><% end %>
