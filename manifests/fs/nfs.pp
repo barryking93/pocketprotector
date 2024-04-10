@@ -5,8 +5,8 @@ define pocketprotector::fs::nfs::mounts::parse (
   String $mountyaml = $name,
 ){
   if lookup($mountyaml, undef, 'deep', false) {
-    $fstypedefault = lookup('pocketprotector::fs::nfs::defaults.fstype, 'undef, 'first', undef)
-    $optionsdefault = lookup('pocketprotector::fs::nfs::defaults.options, 'undef, 'first', undef)
+    $fstypedefault = lookup('pocketprotector::fs::nfs::defaults.fstype', undef, 'first', undef)
+    $optionsdefault = lookup('pocketprotector::fs::nfs::defaults.options', undef, 'first', undef)
 
     pocketprotector::packages::parse{'pocketprotector::fs::nfs::base':}
 
