@@ -9,9 +9,9 @@
 <% end %>
 
 # shares
-<% scope().call_function('lookup',['pocketprotector::fs::samba::server::shares']).each do |String smbshare_name, Hash smbshare_hash| -%>
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::shares']).each do |smbshare_name, smbshare_hash| -%>
   
 [<%= smbshare_name %>] 
-<% scope().call_function('lookup',["pocketprotector::fs::samba::server::shares." + @smbshare_name]).each do |String smbshareconf_name, String smbshareconf_val| -%>
+<% scope().call_function('lookup',["pocketprotector::fs::samba::server::shares." + @smbshare_name]).each do |smbshareconf_name, smbshareconf_val| -%>
   <%= smbshareconf_name %> = <%= smbshareconf_val %>
 <% end %><% end %>
