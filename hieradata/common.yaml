@@ -26,7 +26,6 @@ pocketprotector::fs::nfs::defaults:
 pocketprotector::fs::samba::server::templates:
   "%{hiera('pocketprotector::fs::samba::server::conffile')":
     content: pocketprotector/fs/samba/server/smb.conf.erb
-    requires: Package("%{hiera('pocketprotector::fs::samba::server::packages')"
     notify: Service("%{hiera('pocketprotector::fs::samba::server::servicename')")
 
 pocketprotector::managed: managed by puppet / pocketprotector
