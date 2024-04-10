@@ -24,7 +24,7 @@ pocketprotector::fs::samba::server::services:
   smbd:
     ensure: running
     enable: true 
-    subscribe: File['/etc/samba/smb.conf']
+    #subscribe: File['/etc/samba/smb.conf']
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
