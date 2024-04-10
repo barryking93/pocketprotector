@@ -4,7 +4,7 @@
 
 # global config
 [global]
-<% scope().call_function('lookup',['pocketprotector::fs::samba::server::config']).each do |String smbconf_name, String smbconf_val| -%>
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::config']).each do |smbconf_name, smbconf_val| -%>
   <%= smbconf_name %> = <%= smbconf_val %>
 <% end %>
 
