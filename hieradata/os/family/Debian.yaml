@@ -15,6 +15,7 @@ pocketprotector::etc::hosts:
 pocketprotector::fs::nfs::base:
   nfs-common:
     ensure: present
+
 pocketprotector::fs::samba::server::packages:
   samba:
     ensure: present
@@ -22,7 +23,7 @@ pocketprotector::fs::samba::server::servicename: smbd
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
-    notify: Service('smbd')
+    notify: Service['smbd']
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
@@ -51,6 +52,7 @@ pocketprotector::monitoring::nagios::server::status_file: /var/lib/nagios4/statu
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
+
 pocketprotector::monitoring::snmp::accounts:
   Debian-snmp:
     home: /var/lib/snmp
@@ -59,7 +61,6 @@ pocketprotector::monitoring::snmp::accounts:
     system: true
   snmp:
     ensure: absent
-    
 pocketprotector::monitoring::snmp::packages:
   snmp:
     ensure: present
