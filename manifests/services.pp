@@ -29,6 +29,7 @@ define pocketprotector::services::parse (
           start      => lookup("${servicesyaml}.\"${servicename}\".start", undef, 'deep', undef),
           status     => lookup("${servicesyaml}.\"${servicename}\".status", undef, 'deep', undef),
           stop       => lookup("${servicesyaml}.\"${servicename}\".stop", undef, 'deep', undef),
+          subscribe  => lookup("${servicesyaml}.\"${servicename}\".subscribe", undef, 'deep', undef),
       }
     }
   } else {

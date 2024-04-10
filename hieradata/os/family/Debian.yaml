@@ -24,10 +24,10 @@ pocketprotector::fs::samba::server::services:
   smbd:
     ensure: running
     enable: true 
+    subscribe: File['/etc/samba/smb.conf']
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
-    notify: Service['smbd']
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
