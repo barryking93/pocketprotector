@@ -50,7 +50,7 @@ class pocketprotector::fs::samba::server {
     pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
 
     service {
-      lookup('pocketprotector::fs::samba:;server::servicename'):
+      lookup('pocketprotector::fs::samba::server::servicename'):
         ensure => 'running',
         enable => true,
     }
