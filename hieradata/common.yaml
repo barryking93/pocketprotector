@@ -23,11 +23,6 @@ pocketprotector::fs::nfs::defaults:
 #    path: /etc/hosts
 #    content: pocketprotector/etc/hosts.erb
 
-pocketprotector::fs::samba::server::templates:
-  "%{hiera('pocketprotector::fs::samba::server::conffile')":
-    content: pocketprotector/fs/samba/server/smb.conf.erb
-    notify: Service("%{hiera('pocketprotector::fs::samba::server::servicename')")
-
 pocketprotector::managed: managed by puppet / pocketprotector
 
 pocketprotector::monitoring::enable: true

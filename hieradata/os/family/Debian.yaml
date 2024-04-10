@@ -15,11 +15,14 @@ pocketprotector::etc::hosts:
 pocketprotector::fs::nfs::base:
   nfs-common:
     ensure: present
-pocketprotector::fs::samba::server::conffile: /etc/samba/smb.conf
 pocketprotector::fs::samba::server::packages:
   samba:
     ensure: present
 pocketprotector::fs::samba::server::servicename: smbd
+pocketprotector::fs::samba::server::templates:
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
+    notify: Service('smbd')
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
