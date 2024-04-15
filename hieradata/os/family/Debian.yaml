@@ -76,6 +76,28 @@ pocketprotector::mta::postfix::packages:
     ensure: present
 pocketprotector::mta::postfix::user: postfix
 
+pocketprotector::netsvc::freeradius::ntlm_auth_binary: /usr/bin/ntlm_auth
+pocketprotector::netsvc::freeradius::files::packages:
+  freeradius:
+    ensure: present
+  freeradius-common:
+    ensure: present
+  freeradius-krb5:
+    ensure: present
+  freeradius-ldap:
+    ensure: present
+  freeradius-utils:
+    ensure: present
+pocketprotector::netsvc::freeradius::files::templates:
+  '/etc/freeradius/3.0/mods-available/ntlm_auth':
+    content: pocketprotector/netsvc/freeradius/ntlm_auth.erb
+  '/etc/freeradius/3.0/mods-available/mschap':
+    content: pocketprotector/netsvc/freeradius/mschap.erb
+pocketprotector::netsvc::freeradius::files::services:
+  freeradius:
+    ensure: running
+    enable: true
+
 pocketprotector::packages::provider: apt
 
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver

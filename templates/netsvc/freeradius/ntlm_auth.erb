@@ -1,0 +1,5 @@
+exec ntlm_auth {
+        wait = yes
+        program = "<%= scope().call_function('lookup',['pocketprotector::netsvc::freeradius::ntlm_auth_binary']) %> --request-nt-key --domain=<%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.workgroup']) %> --username=%{mschap:User-Name} --password=%{User-Password}"
+}
+
