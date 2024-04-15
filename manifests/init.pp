@@ -24,6 +24,7 @@ class pocketprotector {
   include pocketprotector::fs
   include pocketprotector::monitoring
   include pocketprotector::mta
+  include pocketprotector::netsvc
   include pocketprotector::security
   # gpu detection and support
   include pocketprotector::gpu
