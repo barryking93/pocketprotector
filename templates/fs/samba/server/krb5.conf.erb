@@ -13,5 +13,5 @@
 }
 
 [domain_realm]
-        <%= @networking.hostname %> = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %>
+        <%= @hostname %> = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %>
 
