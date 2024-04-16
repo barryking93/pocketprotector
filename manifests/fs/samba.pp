@@ -38,9 +38,16 @@ class pocketprotector::fs::samba {
 
 class pocketprotector::fs::samba::server {
   if lookup('pocketprotector::fs::samba::server::config', undef, 'deep', false) {
-    pocketprotector::packages::parse{'pocketprotector::fs::samba::server::packages':}
-    pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
-    pocketprotector::services::parse{'pocketprotector::fs::samba::server::services':}
+    if lookup('pocketprotector::fs::samba::server::config.server role', undef, 'deep', false) == 'active directory domain controller' {
+      pocketprotector::packages::parse{'pocketprotector::fs::samba::server::dc::packages':}
+      pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
+      pocketprotector::services::parse{'pocketprotector::fs::samba::server::dc::services::':}
+    }
+    else {
+      pocketprotector::packages::parse{'pocketprotector::fs::samba::server::packages':}
+      pocketprotector::files::templates::parse{'pocketprotector::fs::samba::server::templates':}
+      pocketprotector::services::parse{'pocketprotector::fs::samba::server::services':}
+    }
   }
 }
 

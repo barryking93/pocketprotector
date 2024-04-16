@@ -16,11 +16,10 @@ pocketprotector::fs::nfs::base:
   nfs-common:
     ensure: present
 
-pocketprotector::fs::samba::server::packages:
+pocketprotector::fs::samba::server::dc::packages:
   samba:
     ensure: present
-pocketprotector::fs::samba::server::servicename: smbd
-pocketprotector::fs::samba::server::services: 
+pocketprotector::fs::samba::server::dc::services:
   nmbd:
     ensure: stopped
     enable: false
@@ -32,10 +31,31 @@ pocketprotector::fs::samba::server::services:
     enable: true
   winbind:
     ensure: stopped
-    enable: false 
+    enable: false
+pocketprotector::fs::samba::server::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::servicename: smbd
+pocketprotector::fs::samba::server::services: 
+  nmbd:
+    ensure: started
+    enable: true
+  smbd:
+    ensure: started
+    enable: true
+  samba-ad-dc:
+    ensure: stopped
+    enable: false
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
+pocketprotector::fs::samba::server::winbind::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::winbind::services:
+  winbind:
+    ensure: starteed
+    enable: true
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
