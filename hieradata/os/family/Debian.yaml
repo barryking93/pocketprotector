@@ -21,10 +21,18 @@ pocketprotector::fs::samba::server::packages:
     ensure: present
 pocketprotector::fs::samba::server::servicename: smbd
 pocketprotector::fs::samba::server::services: 
+  nmbd:
+    ensure: stopped
+    enable: false
   smbd:
+    ensure: stopped
+    enable: false
+  samba-ad-dc:
     ensure: running
-    enable: true 
-    #subscribe: File['/etc/samba/smb.conf']
+    enable: true
+  winbind:
+    ensure: stopped
+    enable: false 
 pocketprotector::fs::samba::server::templates:
   '/etc/samba/smb.conf':
     content: pocketprotector/fs/samba/server/smb.conf.erb
