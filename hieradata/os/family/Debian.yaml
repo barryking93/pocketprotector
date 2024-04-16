@@ -32,6 +32,11 @@ pocketprotector::fs::samba::server::dc::services:
   winbind:
     ensure: stopped
     enable: false
+pocketprotector::fs::samba::server::dc::templates:
+  '/etc/krb5.conf':
+    content: pocketprotector/fs/samba/server/krb5.conf.erb
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
 pocketprotector::fs::samba::server::packages:
   samba:
     ensure: present
