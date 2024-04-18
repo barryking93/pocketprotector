@@ -1,0 +1,17 @@
+# templates/fs/samba/server/krb5.conf.erb
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
+#
+
+[libdefaults]
+        default_realm = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %>
+        dns_lookup_realm = false
+        dns_lookup_kdc = true
+
+[realms]
+<%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %> = {
+        default_domain = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']).downcase %>
+}
+
+[domain_realm]
+        <%= @hostname %> = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %>
+

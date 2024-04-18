@@ -15,6 +15,52 @@ pocketprotector::fs::nfs::base:
   nfs-client:
     ensure: present
 
+pocketprotector::fs::samba::server::dc::packages:
+  samba-ad-dc:
+    ensure: present
+pocketprotector::fs::samba::server::dc::services:
+  nmbd:
+    ensure: stopped
+    enable: false
+  smbd:
+    ensure: stopped
+    enable: false
+  samba-ad-dc:
+    ensure: running
+    enable: true
+  winbind:
+    ensure: stopped
+    enable: false
+pocketprotector::fs::samba::server::dc::templates:
+  '/etc/krb5.conf':
+    content: pocketprotector/fs/samba/server/krb5.conf.erb
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
+pocketprotector::fs::samba::server::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::servicename: smbd
+pocketprotector::fs::samba::server::services:
+  nmbd:
+    ensure: started
+    enable: true
+  smbd:
+    ensure: started
+    enable: true
+  samba-ad-dc:
+    ensure: stopped
+    enable: false
+pocketprotector::fs::samba::server::templates:
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
+pocketprotector::fs::samba::server::winbind::packages:
+  sambai-winbind:
+    ensure: present
+pocketprotector::fs::samba::server::winbind::services:
+  winbind:
+    ensure: starteed
+    enable: true
+
 pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nrpe/nrpe.pid
 pocketprotector::monitoring::nagios::client::packages:

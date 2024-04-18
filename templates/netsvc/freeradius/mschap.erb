@@ -1,0 +1,17 @@
+mschap {
+        ntlm_auth = "<%= scope().call_function('lookup',['pocketprotector::netsvc::freeradius::ntlm_auth_binary']) %> --request-nt-key --allow-mschapv2 --username=%{mschap:User-Name:-None} --domain=%{%{mschap:NT-Domain}:-<%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.workgroup']) %>} --challenge=%{mschap:Challenge:-00} --nt-response=%{mschap:NT-Response:-00}"
+        pool {
+                start = ${thread[pool].start_servers}
+                min = ${thread[pool].min_spare_servers}
+                max = ${thread[pool].max_servers}
+                spare = ${thread[pool].max_spare_servers}
+                uses = 0
+                retry_delay = 30
+                lifetime = 86400
+                cleanup_interval = 300
+                idle_timeout = 600
+        }
+        passchange {
+        }
+}
+

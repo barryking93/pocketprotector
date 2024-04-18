@@ -16,6 +16,52 @@ pocketprotector::fs::nfs::base:
   nfs-common:
     ensure: present
 
+pocketprotector::fs::samba::server::dc::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::dc::services:
+  nmbd:
+    ensure: stopped
+    enable: false
+  smbd:
+    ensure: stopped
+    enable: false
+  samba-ad-dc:
+    ensure: running
+    enable: true
+  winbind:
+    ensure: stopped
+    enable: false
+pocketprotector::fs::samba::server::dc::templates:
+  '/etc/krb5.conf':
+    content: pocketprotector/fs/samba/server/krb5.conf.erb
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
+pocketprotector::fs::samba::server::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::servicename: smbd
+pocketprotector::fs::samba::server::services: 
+  nmbd:
+    ensure: started
+    enable: true
+  smbd:
+    ensure: started
+    enable: true
+  samba-ad-dc:
+    ensure: stopped
+    enable: false
+pocketprotector::fs::samba::server::templates:
+  '/etc/samba/smb.conf':
+    content: pocketprotector/fs/samba/server/smb.conf.erb
+pocketprotector::fs::samba::server::winbind::packages:
+  samba:
+    ensure: present
+pocketprotector::fs::samba::server::winbind::services:
+  winbind:
+    ensure: starteed
+    enable: true
+
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
 pocketprotector::monitoring::nagios::client::pid: /run/nagios/nrpe.pid
 pocketprotector::monitoring::nagios::client::packages:
@@ -43,6 +89,7 @@ pocketprotector::monitoring::nagios::server::status_file: /var/lib/nagios4/statu
 pocketprotector::monitoring::nagios::server::tempfile: /var/lib/nagios4/nagios.tmp
 pocketprotector::monitoring::nagios::service::client: nagios-nrpe-server
 pocketprotector::monitoring::nagios::service::server: nagios4
+
 pocketprotector::monitoring::snmp::accounts:
   Debian-snmp:
     home: /var/lib/snmp
@@ -51,7 +98,6 @@ pocketprotector::monitoring::snmp::accounts:
     system: true
   snmp:
     ensure: absent
-    
 pocketprotector::monitoring::snmp::packages:
   snmp:
     ensure: present
@@ -62,6 +108,28 @@ pocketprotector::mta::postfix::packages:
   postfix:
     ensure: present
 pocketprotector::mta::postfix::user: postfix
+
+pocketprotector::netsvc::freeradius::ntlm_auth_binary: /usr/bin/ntlm_auth
+pocketprotector::netsvc::freeradius::server::packages:
+  freeradius:
+    ensure: present
+  freeradius-common:
+    ensure: present
+  freeradius-krb5:
+    ensure: present
+  freeradius-ldap:
+    ensure: present
+  freeradius-utils:
+    ensure: present
+pocketprotector::netsvc::freeradius::server::templates:
+  '/etc/freeradius/3.0/mods-available/ntlm_auth':
+    content: pocketprotector/netsvc/freeradius/ntlm_auth.erb
+  '/etc/freeradius/3.0/mods-available/mschap':
+    content: pocketprotector/netsvc/freeradius/mschap.erb
+pocketprotector::netsvc::freeradius::server::services:
+  freeradius:
+    ensure: running
+    enable: true
 
 pocketprotector::packages::provider: apt
 

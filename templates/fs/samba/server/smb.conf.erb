@@ -1,0 +1,17 @@
+# templates/fs/samba/server/smb.conf.erb 
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
+#
+
+# global config
+[global]
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::config']).each do |smbconf_name, smbconf_val| -%>
+  <%= smbconf_name %> = <%= smbconf_val %>
+<% end %>
+
+# shares
+<% scope().call_function('lookup',['pocketprotector::fs::samba::server::shares']).each do |smbshare_name, smbshare_hash| -%>
+  
+[<%= smbshare_name %>] 
+<% scope().call_function('lookup',["pocketprotector::fs::samba::server::shares." + smbshare_name]).each do |smbshareconf_name, smbshareconf_val| -%>
+  <%= smbshareconf_name %> = <%= smbshareconf_val %>
+<% end %><% end %>

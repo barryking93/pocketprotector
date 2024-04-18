@@ -21,8 +21,10 @@ class pocketprotector {
   include pocketprotector::roles
   # alphabetical general support
   include pocketprotector::db
+  include pocketprotector::fs
   include pocketprotector::monitoring
   include pocketprotector::mta
+  include pocketprotector::netsvc
   include pocketprotector::security
   # gpu detection and support
   include pocketprotector::gpu
