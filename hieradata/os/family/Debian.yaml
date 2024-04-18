@@ -43,10 +43,10 @@ pocketprotector::fs::samba::server::packages:
 pocketprotector::fs::samba::server::servicename: smbd
 pocketprotector::fs::samba::server::services: 
   nmbd:
-    ensure: started
+    ensure: running
     enable: true
   smbd:
-    ensure: started
+    ensure: running
     enable: true
   samba-ad-dc:
     ensure: stopped
@@ -59,7 +59,7 @@ pocketprotector::fs::samba::server::winbind::packages:
     ensure: present
 pocketprotector::fs::samba::server::winbind::services:
   winbind:
-    ensure: starteed
+    ensure: running 
     enable: true
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nagios/nrpe.cfg
