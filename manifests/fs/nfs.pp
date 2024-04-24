@@ -15,8 +15,8 @@ define pocketprotector::fs::nfs::mounts::parse (
 
       mount { $mountname:
         name        => lookup("(${mountyaml}.\"${mountname}\".name", undef, 'deep', undef),
-        ensure      => lookup("(${mountyaml}.\"${mountname}\".ensure", undef, 'deep', undef),
-        atboot      => lookup("(${mountyaml}.\"${mountname}\".atboot", undef, 'deep', undef),
+        ensure      => lookup("(${mountyaml}.\"${mountname}\".ensure", undef, 'deep', 'mounted'),
+        atboot      => lookup("(${mountyaml}.\"${mountname}\".atboot", undef, 'deep', true),
         blockdevice => lookup("(${mountyaml}.\"${mountname}\".blockdevice", undef, 'deep', undef),
         device      => lookup("(${mountyaml}.\"${mountname}\".device", undef, 'deep', undef), 
         dump        => lookup("(${mountyaml}.\"${mountname}\".dump", undef, 'deep', undef),
