@@ -5,8 +5,6 @@ class pocketprotector::monitoring::splunk {
   class { 
     'splunk::params':
       server => lookup('pocketprotector::monitoring::splunk::server');
-    'splunk::forwarder':
-      package_ensure => 'latest',
   }
 
   case $::fqdn {
@@ -14,6 +12,10 @@ class pocketprotector::monitoring::splunk {
       include splunk::enterprise
     }
     default: {
+      class {
+        'splunk::forwarder':
+          package_ensure => 'latest',
+      }
       include splunk::forwarder
     }
   }
