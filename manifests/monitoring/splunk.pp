@@ -14,7 +14,7 @@ class pocketprotector::monitoring::splunk {
 
       # parse inputs if they exist
       if lookup('pocketprotector::monitoring::splunk::inputs',undef,'deep',false) {
-        lookup('pocketprotector::monitoring::splunk::inputs',undef,deep,undef).each | String $splunkinput, Hash $inputhash | {
+        lookup('pocketprotector::monitoring::splunk::inputs',undef,'deep',undef).each | String $splunkinput, Hash $inputhash | {
           splunk_input {
             $splunkinput:
               section => lookup("pocketprotector::monitoring::splunk::inputs.${splunkinput}.section",undef,deep,undef),
@@ -34,7 +34,7 @@ class pocketprotector::monitoring::splunk {
 
       # parse inputs if they exist
       if lookup('pocketprotector::monitoring::splunk::inputs',undef,'deep',false) {
-        lookup('pocketprotector::monitoring::splunk::inputs',undef,deep,undef).each | String $splunkinput, Hash $inputhash | {
+        lookup('pocketprotector::monitoring::splunk::inputs',undef,'deep',undef).each | String $splunkinput, Hash $inputhash | {
           splunkforwarder_input {
             $splunkinput:
               section => lookup("pocketprotector::monitoring::splunk::inputs.${splunkinput}.section",undef,deep,undef),
