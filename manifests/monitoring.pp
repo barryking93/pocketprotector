@@ -10,7 +10,7 @@ class pocketprotector::monitoring {
   if lookup('pocketprotector::monitoring::nagios::server',undef,'deep',false) {
     include pocketprotector::monitoring::nagios
   }
-  if lookup('pocketprotector::monitoring::splunk::server',undef,'first',false) {
+  if lookup('pocketprotector::monitoring::splunk::server',undef,'deep',false) {
     include pocketprotector::monitoring::splunk
   }
 }
