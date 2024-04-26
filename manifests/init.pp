@@ -15,6 +15,7 @@ class pocketprotector {
   include pocketprotector::files
   # puppet to ensure that this runs a second time
   include pocketprotector::puppet
+  include pocketprotector::cron
   # firewall, when supported
   #include pocketprotector::firewall
   # roles, when detected
