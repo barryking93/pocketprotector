@@ -6,6 +6,9 @@
         default_realm = <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %>
         dns_lookup_realm = false
         dns_lookup_kdc = true
+        default_tgs_enctypes = aes256-cts-hmac-sha1-96 rc4-hmac des-cbc-crc des-cbc-md5 
+        default_tkt_enctypes = aes256-cts-hmac-sha1-96 rc4-hmac des-cbc-crc des-cbc-md5 
+        permitted_enctypes = aes256-cts-hmac-sha1-96 rc4-hmac des-cbc-crc des-cbc-md5
 
 [realms]
 <%= scope().call_function('lookup',['pocketprotector::fs::samba::server::config.realm']) %> = {
