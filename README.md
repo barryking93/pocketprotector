@@ -15,6 +15,7 @@ Now tracked in github here:  <https://github.com/barryking93/pocketprotector/iss
 ```
 # PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release) ; wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm ; rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm ; zypper install puppet-agent
 
+
 ```
 answer 'always' when it prompts you, like so:
 ```Do you want to reject the key, or trust always? [r/a/?] (r): a
