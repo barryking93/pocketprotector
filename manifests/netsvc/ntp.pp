@@ -9,7 +9,7 @@ class pocketprotector::netsvc::ntp {
     #pocketprotector::files::templates::parse{'pocketprotector::netsvc::ntp::templates':}
     file {
       '/etc/ntp.conf':
-        content =>  pocketprotector/netsvc/ntp/ntp.conf.erb
+        content => template('pocketprotector/netsvc/ntp/ntp.conf.erb')
     }
     pocketprotector::services::parse{'pocketprotector::netsvc::ntp::services':}
   }
