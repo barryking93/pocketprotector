@@ -135,7 +135,7 @@ pocketprotector::netsvc::ntp::services:
   ntp:
     ensure: running
     enable: true
-    subscribe: File['/etc/ntp.conf']
+    #subscribe: File['/etc/ntp.conf']
 
 pocketprotector::packages::provider: apt
 
