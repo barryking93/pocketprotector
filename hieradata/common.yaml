@@ -206,6 +206,12 @@ pocketprotector::mta::postfix::packages:
   postfix:
     ensure: present
 
+pocketprotector::netsvc::ntp::packages:
+  'ntp':
+    ensure: present
+pocketprotector::netsvc::ntp::templates:
+  '/etc/ntp.conf':
+    content: pocketprotector/netsvc/ntp/ntp.conf.erb
 pocketprotector::openbox::enabled: false
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf

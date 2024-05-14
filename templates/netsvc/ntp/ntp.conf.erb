@@ -1,0 +1,48 @@
+################################################################################
+## /etc/ntp.conf
+##
+## <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+##
+## Simple NTP configuration file.
+################################################################################
+
+# define upstream servers
+<% scope().call_function('lookup',['pocketprotector::netsvc::ntp::servers']).each do |ntp_server| -%>
+pool <%= ntp_server %>
+<% end -%>
+
+# By default, exchange time with everybody, but don't allow configuration.
+restrict -4 default notrap nomodify nopeer noquery
+restrict -6 default notrap nomodify nopeer noquery
+
+# Local users may interrogate the ntp server more closely.
+restrict 127.0.0.1
+restrict ::1
+
+# Clients from this (example!) subnet have unlimited access, but only if
+# cryptographically authenticated.
+#restrict 192.168.123.0 mask 255.255.255.0 notrust
+
+##
+## Miscellaneous stuff
+##
+
+driftfile /var/lib/ntp/drift/ntp.drift # path for drift file
+
+logfile   /var/log/ntp          # alternate log file
+# logconfig =syncstatus + sysevents
+# logconfig =all
+
+# statsdir /var/log/ntpstats/           # directory for statistics files
+# filegen peerstats  file peerstats  type day enable
+# filegen loopstats  file loopstats  type day enable
+# filegen clockstats file clockstats type day enable
+
+#
+# Authentication stuff
+#
+keys /etc/ntp.keys              # path for keys file
+trustedkey 1 # define trusted keys
+requestkey 1                    # key (7) for accessing server variables
+controlkey 1                    # key (6) for accessing server variables
+
