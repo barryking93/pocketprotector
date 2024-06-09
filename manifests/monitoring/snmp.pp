@@ -10,6 +10,7 @@ class pocketprotector::monitoring::snmp {
   service {
     'snmpd': 
       ensure    => 'running',
-      subscribe =>  File['/etc/snmp/snmpd.conf'];
+      enable    => true,
+      subscribe => File['/etc/snmp/snmpd.conf'];
   }
 }

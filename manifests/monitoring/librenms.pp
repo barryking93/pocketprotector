@@ -19,6 +19,9 @@ class pocketprotector::monitoring::librenms {
           'apt': {
             apt::ppa {lookup('pocketprotector::monitoring::librenms::repositories'):}
           }
+          'zypper': {
+            pocketprotector::packages::repositories::zypper::repoparse{'pocketprotector::monitoring::librenms::repositories':}
+          }
           default: {
             #notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
           }
