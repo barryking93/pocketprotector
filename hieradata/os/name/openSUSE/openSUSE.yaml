@@ -94,7 +94,7 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
 pocketprotector::monitoring::librenms::repositories:
   devel-languages-php:
-    enabled: 0
+    enabled: 1
     autorefresh: 1
     baseurl: https://download.opensuse.org/repositories/devel:languages:php/openSUSE_Leap_$releasever/
     type: NONE
