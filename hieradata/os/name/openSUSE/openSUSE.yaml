@@ -100,7 +100,7 @@ pocketprotector::monitoring::librenms::repositories:
     type: NONE
     keeppackages: 0
     gpgcheck: 1
-    gpgkey: https://download.opensuse.org/repositories/devel:/languages:/php/openSUSE_Factory/repodata/repomd.xml.key
+    gpgkey: https://download.opensuse.org/repositories/devel:/languages:/php/openSUSE_Leap_$releasever/repodata/repomd.xml.key
 
 
 pocketprotector::monitoring::nagios::client::configfile: /etc/nrpe.cfg
