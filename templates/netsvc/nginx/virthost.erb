@@ -3,14 +3,14 @@
 #
 
 server {
-<% scope().call_function('lookup',[virthostyaml + '.config']).each do |vconf_name,vconf_val| -%>
-  <%= vconf_name %> <%= vconf_val %>;
+<% scope().call_function('lookup',[virthostyaml + '.config']).each do |vhost_conf| -%>
+  <%= vhost_conf %>;
 <% end %>
 
 <% scope().call_function('lookup',[virthostyaml + '.locations']).each do |vhost_location,location_val| -%>
   location <%= scope().call_function('lookup',virthostyaml + '.locations.' + vhost_location + '.location') %> {
-    <% scope().call_function('lookup',[virthostyaml + '.locations.' + vhost_location + '.config']).each do |vloc_conf, vloc_val| -%>
-    <%= vloc_conf %> <%= vloc_val %>;
+    <% scope().call_function('lookup',[virthostyaml + '.locations.' + vhost_location + '.config']).each do |vloc_conf| -%>
+    <%= vloc_conf %>;
     <% end %>
   }
 <% end %>
