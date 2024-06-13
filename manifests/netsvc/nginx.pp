@@ -8,7 +8,7 @@ define pocketprotector::netsvc::nginx::virthost (
 ){
   $vhost_location = lookup('pocketprotector::netsvc::nginx::virthost_location', undef, 'deep', undef)
   $vhost_symdir = lookup('pocketprotector::netsvc::nginx::virthost_symdir', undef, 'deep', undef)
-  $vhost_name = lookup("${vostyaml}.name")
+  $vhost_name = lookup("${vhostyaml}.name")
   file {
     "${vhost_location}/${vhost_name}":
       content => template('pocketprotector/netsvc/nginx/virthost.erb'),
