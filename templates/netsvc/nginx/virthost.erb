@@ -7,7 +7,7 @@ server {
   <%= vhost_conf %>;
 <% end %>
 
-<% scope().call_function('lookup',["${vhostyaml}.locations']).each do |vhost_location,location_val| -%>
+<% scope().call_function('lookup',["${vhostyaml}.locations"]).each do |vhost_location,location_val| -%>
   location <%= scope().call_function('lookup',["${vhostyaml}.locations.${vhost_location}.location"]) %> {
   <% scope().call_function('lookup',["${vhostyaml}.locations.${vhost_location}.config"]).each do |vloc_conf| -%>
     <%= vloc_conf %>;
