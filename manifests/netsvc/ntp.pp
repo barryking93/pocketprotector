@@ -1,6 +1,6 @@
 # manifests/netsvc/ntp.pp
 #
-# freeradius for tie-in with samba/ntlm
+# ntp support 
 #
 
 class pocketprotector::netsvc::ntp {
