@@ -3,7 +3,7 @@
 #
 
 server {
-<% scope().call_function('lookup',["${vhostyaml}.config"]).each do |vhost_conf| -%>
+<% scope().call_function('lookup',[@vhostyaml + ".config"]).each do |vhost_conf| -%>
   <%= vhost_conf %>;
 <% end %>
 
