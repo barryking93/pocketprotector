@@ -28,7 +28,7 @@ class pocketprotector::netsvc::nginx {
 
     # step through virthosts
     lookup('pocketprotector::netsvc::nginx::virthosts', undef, 'deep', undef).each |String $virthost, Hash $virthash| {
-      pocketprotector::netsvc::nginx::virthost("pocketprotector::netsvc::nginx::virthosts.${virthost}":)
+      pocketprotector::netsvc::nginx::virthost{"pocketprotector::netsvc::nginx::virthosts.${virthost}":}
     }
   }
 }
