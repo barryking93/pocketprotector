@@ -11,7 +11,7 @@ define pocketprotector::netsvc::nginx::virthost (
   $vhost_name = lookup("${virthostyaml}.name")
   file {
     "${vhost_location}/${vhost_name}":
-      content => template('netsvc/nginx/virthost.erb'),
+      content => template('pocketprotector/netsvc/nginx/virthost.erb'),
       owner   => lookup('pocketprotector::netsvc::nginx::config::user');
     "${vhost_symdir}/${vhost_name}":
       type   => link,
