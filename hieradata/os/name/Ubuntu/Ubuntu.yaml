@@ -1,9 +1,5 @@
 # hieradata/os/name/Ubuntu/Ubuntu.yaml
 
-pocketprotector::gpu::nvidia::packages:
-  cuda:
-    ensure: latest
-
 pocketprotector::openbox::files:
   '/etc/conky':
     ensure: directory

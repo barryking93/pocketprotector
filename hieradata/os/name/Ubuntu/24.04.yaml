@@ -1,5 +1,9 @@
 # hieradata/os/name/Ubuntu/22.04.yaml
 
+pocketprotector::gpu::nvidia::packages:
+  cuda-toolkit-12-4:
+    ensure: latest
+
 pocketprotector::gpu::nvidia::repository:
   cuda:
     location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/

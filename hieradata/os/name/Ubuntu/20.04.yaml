@@ -1,5 +1,9 @@
 # hieradata/os/name/Ubuntu/20.04.yaml
 
+pocketprotector::gpu::nvidia::packages:
+  cuda:
+    ensure: latest
+
 pocketprotector::gpu::nvidia::repository:
   cuda:
     location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/
