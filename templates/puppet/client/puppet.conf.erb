@@ -28,3 +28,4 @@
 <% end -%>
 [agent]
   server =  <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>
+  number_of_facts_soft_limit = 4096
