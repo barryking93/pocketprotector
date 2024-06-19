@@ -3,7 +3,7 @@
 #
 
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
-[master]
+[server]
   vardir = /opt/puppetlabs/server/data/puppetserver
   logdir = /var/log/puppetlabs/puppetserver
   rundir = /var/run/puppetlabs/puppetserver
