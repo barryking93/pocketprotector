@@ -131,6 +131,20 @@ pocketprotector::netsvc::freeradius::server::services:
     ensure: running
     enable: true
 
+pocketprotector::netsvc::nginx::config:
+  pid: /var/run/nginx.pid
+  user: www-data
+  virthost_location: /etc/nginx/sites-available
+  virthost_symdir: /etc/nginx/sites-enabled
+
+pocketprotector::netsvc::nginx::packages:
+  nginx:
+    ensure: present
+pocketprotector::netsvc::nginx::services:
+  nginx:
+    ensure: running
+    enable: true
+
 pocketprotector::netsvc::ntp::services:
   ntp:
     ensure: running
