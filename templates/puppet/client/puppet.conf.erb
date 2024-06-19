@@ -10,22 +10,22 @@
   pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
   codedir = /etc/puppetlabs/code
 
-<% end -%>
-[main]
-  # environment, aka git branch
-  environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
-
   # PuppetDB
   storeconfigs = true
   storeconfigs_backend = puppetdb
   report = true
   reports = puppetdb
 
+<% end -%>
+[main]
+  # environment, aka git branch
+  environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
+
 <% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
   # alternate DNS names
   dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
-
 <% end -%>
+
 [agent]
   server =  <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>
   number_of_facts_soft_limit = 4096

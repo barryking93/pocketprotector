@@ -74,9 +74,9 @@ pocketprotector::packages::pin:
 
 pocketprotector::packages::repositories:
   puppet:
-    location: http://nightlies.puppet.com/apt
-    release: noble
-    repos: puppet7-nightly
+    location: http://apt.puppetlabs.com
+    release: jammy
+    repos: puppet7
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
       source: https://pgp.mit.edu
