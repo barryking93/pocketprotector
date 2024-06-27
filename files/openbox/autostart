@@ -12,7 +12,8 @@ sleep 1 && which lxpolkit > /dev/null && lxpolkit &
 conky
 
 # a menu bar
-which tint2 > /dev/null && tint2 &
+#which tint2 > /dev/null && tint2 &
+which xfce4-panel > /dev/null && xfce4-panel &
 
 # NetworkManager applet
 #(sleep 2 && /usr/bin/nm-applet) &

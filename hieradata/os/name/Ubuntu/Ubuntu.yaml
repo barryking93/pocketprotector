@@ -19,7 +19,7 @@ pocketprotector::openbox::packages:
     ensure: present
   nitrogen:
     ensure: present
-  tint2:
+  xfce4-panel:
     ensure: present
 
 pocketprotector::packages:
