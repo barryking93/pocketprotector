@@ -6,6 +6,8 @@
 pocketprotector::gpu::nvidia::packages:
   cuda-toolkit:
     ensure: present
+  nvidia-gl-G06:
+    ensure: present
 pocketprotector::gpu::nvidia::repository:
   nvidia:
     name: cuda-opensuse
