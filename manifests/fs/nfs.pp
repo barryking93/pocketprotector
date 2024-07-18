@@ -13,7 +13,7 @@ define pocketprotector::fs::nfs::mounts::parse (
     lookup($mountyaml, undef, 'deep', undef).each |String $mountname, Hash $mounthash| {
       #notify {"pocketprotector::fs::nfs::mounts::parse: debug file for ${mountname}":}
 
-      mount { $mountname:
+      mount { lookup("${mountyaml}.${mountname}.target", undef, 'deep', undef):
         name        => lookup("${mountyaml}.${mountname}.name", undef, 'deep', undef),
         ensure      => lookup("${mountyaml}.${mountname}.ensure", undef, 'deep', 'mounted'),
         atboot      => lookup("${mountyaml}.${mountname}.atboot", undef, 'deep', true),
@@ -25,7 +25,7 @@ define pocketprotector::fs::nfs::mounts::parse (
         pass        => lookup("${mountyaml}.${mountname}.pass", undef, 'deep', undef),
         provider    => lookup("${mountyaml}.${mountname}.provider", undef, 'deep', undef),
         remounts    => lookup("${mountyaml}.${mountname}.remounts", undef, 'deep', undef),
-        target      => lookup("${mountyaml}.${mountname}.target", undef, 'deep', undef),
+        #target      => lookup("${mountyaml}.${mountname}.target", undef, 'deep', undef),
       }
     }
   }
