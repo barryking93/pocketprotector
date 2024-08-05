@@ -1,7 +1,7 @@
 # hieradata/os/name/Ubuntu/22.04.yaml
 
 pocketprotector::gpu::nvidia::packages:
-  cuda-toolkit-12-4:
+  cuda:
     ensure: latest
 
 pocketprotector::gpu::nvidia::repository:
