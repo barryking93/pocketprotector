@@ -36,7 +36,7 @@
 
 class pocketprotector::netsvc::nginx {
   if lookup('pocketprotector::netsvc::nginx', undef, 'deep', false) {
-    inclide nginx
+    include nginx
   }
 }
 
