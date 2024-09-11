@@ -51,7 +51,11 @@ SigningTable        refile:/etc/opendkim/signing.table
 # using a local socket with MTAs that access the socket as a non-privileged
 # user (for example, Postfix). You may need to add user "postfix" to group
 # "opendkim" in that case.
+<% if scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
+UserID                  opendkim:postfix
+<% else -%>
 UserID                  opendkim
+<% end -%>
 UMask                   007
 
 # Socket for the MTA connection (required). If the MTA is inside a chroot jail,
