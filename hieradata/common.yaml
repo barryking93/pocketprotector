@@ -41,18 +41,12 @@ pocketprotector::monitoring::librenms::acldirs:
 pocketprotector::monitoring::librenms::files:
   '/etc/cron.d/librenms':
     source: /opt/librenms/dist/librenms.cron
-  '/etc/nginx/sites-enabled/librenms':
-    ensure: link
-    source: /etc/nginx/sites-available/librenms    
   '/etc/systemd/system/librenms-scheduler.timer':
     source: /opt/librenms/dist/librenms-scheduler.timer
   '/etc/systemd/system/librenms-scheduler.service':
     source: /opt/librenms/dist/librenms-scheduler.service
   '/etc/logrotate.d/librenms':
     source: /opt/librenms/misc/librenms.logrotate
-pocketprotector::monitoring::librenms::templates:
-  '/etc/nginx/sites-available/librenms':
-    content: pocketprotector/monitoring/librenms/nginx-virthost.erb
 
 pocketprotector::monitoring::nagios::client::exports:
   services:

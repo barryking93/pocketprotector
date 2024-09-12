@@ -49,7 +49,6 @@ class pocketprotector::monitoring::librenms {
       }
 
       pocketprotector::files::parse{'pocketprotector::monitoring::librenms::files':}
-      pocketprotector::files::templates::parse{'pocketprotector::monitoring::librenms::templates':}
 
       service {
         'librenms-scheduler.timer':
