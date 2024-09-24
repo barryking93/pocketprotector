@@ -10,6 +10,7 @@ class pocketprotector {
   # accounts to establish fundamental owners for needed later ownership
   include pocketprotector::groups
   include pocketprotector::accounts
+  include pocketprotector::exec
   # files for baseline file rollouts
   include pocketprotector::groups
   include pocketprotector::files
