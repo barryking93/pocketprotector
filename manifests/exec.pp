@@ -18,8 +18,8 @@ define pocketprotector::exec::parse (
       exec { 
         $execname:
           name        => lookup("${execyaml}.${execname}.name", undef, 'first', undef),
-          ensure      => lookup("${execyaml}.${execname}.ensure", undef, 'first', undef),
           command     => lookup("${execyaml}.${execname}.command", undef, 'first', undef),
+          creates     => lookup("${execyaml}.${execname}.creates", undef, 'first', undef),
           cwd         => lookup("${execyaml}.${execname}.cwd", undef, 'first', undef),
           environment => lookup("${execyaml}.${execname}.environment", undef, 'first', undef),
           onlyif      => lookup("${execyaml}.${execname}.onlyif", undef, 'first', undef),
