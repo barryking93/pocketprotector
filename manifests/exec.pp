@@ -34,7 +34,6 @@ define pocketprotector::exec::parse (
           umask       => lookup("${execyaml}.${execname}.umask", undef, 'first', undef),
           unless      => lookup("${execyaml}.${execname}.unless", undef, 'first', undef),
           user        => lookup("${execyaml}.${execname}.user", undef, 'first', undef),
-          weekday     => lookup("${execyaml}.${execname}.weekday", undef, 'first', undef),
           notify      => lookup("${execyaml}.${execname}.notify", undef, 'first', undef),
           subscribe   => lookup("${execyaml}.${execname}.subscribe", undef, 'first', undef),
       }
