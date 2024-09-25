@@ -6,6 +6,11 @@ class pocketprotector::monitoring::nagios::client {
     pocketprotector::packages::parse{'pocketprotector::monitoring::nagios::client::packages':}
     pocketprotector::files::templates::parse{'pocketprotector::monitoring::nagios::client::templates':}
 
+    # sudo updates
+    sudo::conf { 'nagios':
+      content  => 'nagios ALL = NOPASSWD: /usr/lib/nagios/plugins/check_disk',
+    }
+
     # keep client service running
     service {
       lookup('pocketprotector::monitoring::nagios::service::client'):
