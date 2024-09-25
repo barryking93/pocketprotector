@@ -67,9 +67,9 @@ pocketprotector::monitoring::nagios::client::fs::checkedtypes:
   - ext4
   - xfs
   - zfs
-pocketprotector::monitoring::nagios::client::templates:
-  '/etc/sudoers.d/nagios':
-    content: pocketprotector/monitoring/nagios/sudoers.erb
+#pocketprotector::monitoring::nagios::client::templates:
+#  '/etc/sudoers.d/nagios':
+#    content: pocketprotector/monitoring/nagios/sudoers.erb
 pocketprotector::monitoring::nagios::user: nagios
 pocketprotector::monitoring::nagios::resources:
   command:
