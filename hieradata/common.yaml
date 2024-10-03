@@ -23,6 +23,14 @@ pocketprotector::fs::nfs::defaults:
 #    path: /etc/hosts
 #    content: pocketprotector/etc/hosts.erb
 
+pocketprotector::hpc::slurm::server::nagios::files:
+  '/usr/lib/nagios/plugins/check_slurm_jobs':
+    source: puppet:///modules/pocketprotector/hpc/slurm/nagios/check_slurm_jobs
+    mode: 0755
+  '/usr/lib/nagios/plugins/check_slurm_nodes':
+    source: puppet:///modules/pocketprotector/hpc/slurm/nagios/check_slurm_nodes
+    mode: 0755
+
 pocketprotector::managed: managed by puppet / pocketprotector
 
 pocketprotector::monitoring::enable: true
@@ -207,7 +215,6 @@ pocketprotector::netsvc::nginx::config::events:
   accept_mutex: on
   accept_mutex_delay: 500ms
   worker_connections: 1024
-
  
 pocketprotector::netsvc::nginx::templates:
   '/etc/nginx/nginx.conf':
