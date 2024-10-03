@@ -28,7 +28,7 @@ class pocketprotector::hpc::slurm::server {
       ensure              => present,
       use                 => 'generic-service',
       host_name           => $::fqdn,
-      service_description => "${::fqdn} slurm",
+      service_description => "${::fqdn} slurm jobs",
       check_command       => "check_slurm_jobs",
       target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }
@@ -36,7 +36,7 @@ class pocketprotector::hpc::slurm::server {
       ensure              => present,          
       use                 => 'generic-service',
       host_name           => $::fqdn,          
-      service_description => "${::fqdn} slurm",
+      service_description => "${::fqdn} slurm nodes",
       check_command       => "check_slurm_nodes",
       target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }   
