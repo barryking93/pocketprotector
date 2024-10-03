@@ -59,6 +59,6 @@ dont_blame_nrpe=1
 #
 # Unlike Nagios, the command line cannot contain macros - it must be
 # typed exactly as it should be executed.
-<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::commands',undef,'deep']).each do |commandname,commandline| -%>
+<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::commands','Hash','deep']).each do |commandname,commandline| -%>
 command[<%= commandname %>]=<%= commandline %>
 <% end %>
