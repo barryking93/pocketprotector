@@ -23,22 +23,35 @@ class pocketprotector::hpc::slurm::server {
 
     $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
 
-    # tell nagios to use these checks
-    @@nagios_service { "${::fqdn}_check_slurm_jobs}":
-      ensure              => present,
-      use                 => 'generic-service',
-      host_name           => $::fqdn,
-      service_description => "${::fqdn} slurm jobs",
-      check_command       => "check_slurm_jobs",
-      target                => "${nagconfigd}/host_${::fqdn}.cfg";
+   @@nagios_command {
+      'check_slurm_jobs':
+        ensure       => present,
+        #export       => true,
+        target       => "${nagconfigd}/command.cfg",
+        command_line => '/usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -t 60 -c check_slurm_jobs';
+      'check_slurm_nodes':
+        ensure       => present,
+        #export       => true,
+        target       => "${nagconfigd}/command.cfg",
+        command_line => '/usr/lib/nagios/plugins/check_nrpe -H $HOSTADDRESS$ -t 60 -c check_slurm_nodes';
     }
-    @@nagios_service { "${::fqdn}_check_slurm_nodes}":
-      ensure              => present,          
-      use                 => 'generic-service',
-      host_name           => $::fqdn,          
-      service_description => "${::fqdn} slurm nodes",
-      check_command       => "check_slurm_nodes",
-      target                => "${nagconfigd}/host_${::fqdn}.cfg";
+
+    # tell nagios to use these checks
+    @@nagios_service { 
+      "${::fqdn}_check_slurm_jobs}":
+        ensure              => present,
+        use                 => 'generic-service',
+        host_name           => $::fqdn,
+        service_description => "${::fqdn} slurm jobs",
+        check_command       => "check_slurm_jobs",
+        target                => "${nagconfigd}/host_${::fqdn}.cfg";
+      "${::fqdn}_check_slurm_nodes}":
+        ensure              => present,          
+        use                 => 'generic-service',
+        host_name           => $::fqdn,          
+        service_description => "${::fqdn} slurm nodes",
+        check_command       => "check_slurm_nodes",
+        target                => "${nagconfigd}/host_${::fqdn}.cfg";
     }   
   }
 }
