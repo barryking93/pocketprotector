@@ -1,4 +1,7 @@
 #!/usr/bin/python
+# originally from https://github.com/dspatil7768/Nagios-Slurm-Plugin/blob/master/check_slurm.py
+#
+
 import os,sys
 #PD_data ="squeue|tr -s " "|cut -f6 -d" "|grep PD|wc -l"
 #R_data ="squeue|tr -s " "|cut -f6 -d" "|grep R|wc -l"
