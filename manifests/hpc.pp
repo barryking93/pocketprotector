@@ -3,4 +3,6 @@
 # for HPC-related technologies
 #
 
-include pocketprotector::hpc::slurm
+class pocketprotector::hpc {
+  include pocketprotector::hpc::slurm
+}
