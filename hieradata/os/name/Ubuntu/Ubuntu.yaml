@@ -1,5 +1,9 @@
 # hieradata/os/name/Ubuntu/Ubuntu.yaml
 
+pocketprotector::hpc::slurm::client::templates:
+'/etc/default/slurmd':
+    content: pocketprotector/hpc/client/defaults.erb
+
 pocketprotector::openbox::files:
   '/etc/conky':
     ensure: directory

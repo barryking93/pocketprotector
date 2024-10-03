@@ -27,6 +27,10 @@ pocketprotector::etc::hosts:
     - 'ff02::1  ipv6-allnodes'
     - 'ff02::2  ipv6-allrouters'
 
+pocketprotector::hpc::slurm::client::templates:
+  '/etc/sysconfig/slurmd':
+    content: pocketprotector/hpc/client/defaults.erb
+
 pocketprotector::fs::nfs::base:
   nfs-client:
     ensure: present
