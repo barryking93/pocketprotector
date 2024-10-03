@@ -21,6 +21,8 @@ class pocketprotector::hpc::slurm::server {
     # push nagios check scripts for slurm
     pocketprotector::files::parse{'pocketprotector::hpc::slurm::server::nagios::files':}
 
+    $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
+
     # tell nagios to use these checks
     @@nagios_service { "${::fqdn}_check_slurm_jobs}":
       ensure              => present,
