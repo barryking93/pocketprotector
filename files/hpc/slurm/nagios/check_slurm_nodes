@@ -6,7 +6,7 @@ if Offline_nodes==0:
 	sys.exit(0)
 elif Offline_nodes>=1:
     print "CRITICAL - Offline Nodes:",Offline_nodes
-	sys.exit(1)
+    sys.exit(1)
 else:
 	print "UNKNOWN - Offline Nodes:",Offline_nodes
 	sys.exit(3)
