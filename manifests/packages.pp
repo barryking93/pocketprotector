@@ -58,7 +58,6 @@ class pocketprotector::packages {
 
   if lookup('pocketprotector::packages', undef, 'deep', false) {
     pocketprotector::packages::parse{'pocketprotector::packages':}
-    pocketprotector::packages::repositories::parse{'pocketprotector::packages::repositories':}
   }
 }
 
