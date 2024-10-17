@@ -70,9 +70,8 @@ class pocketprotector::packages::repositories {
       pocketprotector::packages::repositories::apt::ppa::parse{'pocketprotector::packages::ppa':}
       include pocketprotector::packages::updates::apt
     }
-    'zypper': {
-      # if we ever need any special init for zypper, it'll go here
-    }
+    # if we ever need any special init for zypper, it'll go below 
+    'zypper': {}
     default: {
       notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
     }
