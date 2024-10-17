@@ -3,7 +3,7 @@
 # apt repository, ppa, and pin support
 #
 
-define pocketprotector::packages::repositories::apt::source::parse (
+define pocketprotector::packages::repositories::apt::parse (
   String $sourceyaml = $name,
 ){
   if lookup($sourceyaml,undef,'deep',false) {
@@ -20,7 +20,7 @@ define pocketprotector::packages::repositories::apt::source::parse (
       }
     }
   } else {
-    notify{"pocketprotector::packages::repositories::apt::source::parse: lookup failed for ${sourceyaml}":}
+    notify{"pocketprotector::packages::repositories::apt::parse: lookup failed for ${sourceyaml}":}
   }
 }
 
