@@ -25,17 +25,7 @@ class pocketprotector::roles {
               }
             }
             'repositories': {
-              case lookup('pocketprotector::packages::provider') {
-                'apt': {
-                  pocketprotector::packages::repositories::apt::source::parse{"pocketprotector::roles.${rolename}.repositories":}
-                }
-                'zypper': {
-                  pocketprotector::packages::repositories::zypper::repoparse{"pocketprotector::roles.${rolename}.repositories":}
-                }
-                default: {
-                  notify{'pocketprotector::roles: the package repository for your OS is not (yet?) supported':}
-                }
-              }
+              pocketprotector::packages::repositories::parse{"pocketprotector::roles.${rolename}.repositories":}
             }
             'templates': {
               pocketprotector::files::templates::parse{"pocketprotector::roles.${rolename}.templates":}

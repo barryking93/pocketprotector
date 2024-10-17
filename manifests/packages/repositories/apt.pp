@@ -1,6 +1,6 @@
 # manifests/packages/apt.pp
 #
-# apt package (and repository) support
+# apt repository, ppa, and pin support
 #
 
 define pocketprotector::packages::repositories::apt::source::parse (
@@ -20,17 +20,32 @@ define pocketprotector::packages::repositories::apt::source::parse (
       }
     }
   } else {
-    notify{"pocketprotector::packages::repositories::apt::sourceparse: lookup failed for ${sourceyaml}":}
+    notify{"pocketprotector::packages::repositories::apt::source::parse: lookup failed for ${sourceyaml}":}
   }
 }
 
-class pocketprotector::packages::repositories::apt {
-  include pocketprotector::packages::repositories::apt::init
+define pocketprotector::packages::repositories::apt::pin::parse (
+  String $pinyaml = $name,
+){
+  if lookup($pinyaml,undef,'deep',false) {
+    lookup($pinyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepopriority | {
+      apt::pin { $aptrepo: priority => $aptrepopriority }
+    }
+  } else {
+    notify{"pocketprotector::packages::repositories::apt::pin::parse: lookup failed for ${pinyaml}":}
+  }
+}
 
-  pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::packages::repositories':}
-
-  include pocketprotector::packages::repositories::apt::ppa
-  include pocketprotector::packages::repositories::apt::pin
+define pocketprotector::packages::repositories::apt::ppa::parse (
+  String $ppayaml = $name,
+){
+  if lookup($ppayaml,undef,'deep',false) {
+    lookup($ppayaml,undef,'deep',undef).each | String $aptppa | {
+      apt::ppa { $aptppa: }
+    }
+  } else {
+    notify{"pocketprotector::packages::repositories::apt::ppa::parse: lookup failed for ${ppayaml}":}
+  }
 }
 
 # initialize the apt module itself - has to be done first
@@ -43,20 +58,3 @@ class pocketprotector::packages::repositories::apt::init {
   }
 }
 
-# pin any needed repos
-class pocketprotector::packages::repositories::apt::pin {
-  if lookup('pocketprotector::packages::pin',undef,deep,false) {
-    lookup('pocketprotector::packages::pin',undef,deep,undef).each | String $aptrepo, String $aptrepopriority | {
-      apt::pin { $aptrepo: priority => $aptrepopriority }
-    }
-  }
-}
-
-# add any ppas
-class pocketprotector::packages::repositories::apt::ppa {
-  if lookup('pocketprotector::packages::ppa',undef,deep,false) {
-    lookup('pocketprotector::packages::ppa',undef,deep,undef).each | String $aptppa | {
-      apt::ppa { $aptppa: }
-    }
-  }
-}

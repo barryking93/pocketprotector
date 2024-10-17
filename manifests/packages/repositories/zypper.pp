@@ -1,9 +1,9 @@
-# manifests/packages/zypper.pp
+# manifests/packages/repositories/zypper.pp
 #
-# zypper package (and repository) support
+# zypper repository support
 #
 
-define pocketprotector::packages::repositories::zypper::repoparse (
+define pocketprotector::packages::repositories::zypper::parse (
   String $sourceyaml = $name,
 ){
   if lookup($sourceyaml,undef,'deep',false) {    
@@ -23,10 +23,7 @@ define pocketprotector::packages::repositories::zypper::repoparse (
       }
     }
   } else {
-    notify{"pocketprotector::packages::repositories::zypper::repoparse: lookup failed for ${sourceyaml}":}
+    notify{"pocketprotector::packages::repositories::zypper::parse: lookup failed for ${sourceyaml}":}
   }
 }
 
-class pocketprotector::packages::repositories::zypper {
-  pocketprotector::packages::repositories::zypper::repoparse{'pocketprotector::packages::repositories':}
-}

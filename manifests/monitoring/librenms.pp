@@ -15,17 +15,7 @@ class pocketprotector::monitoring::librenms {
       pocketprotector::accounts::parse{'pocketprotector::monitoring::librenms::accounts':}
 
       if lookup('pocketprotector::monitoring::librenms::repositories',undef,'deep',false) {
-        case lookup('pocketprotector::packages::provider') {
-          'apt': {
-            apt::ppa {lookup('pocketprotector::monitoring::librenms::repositories'):}
-          }
-          'zypper': {
-            pocketprotector::packages::repositories::zypper::repoparse{'pocketprotector::monitoring::librenms::repositories':}
-          }
-          default: {
-            #notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
-          }
-        }
+        pocketprotector::packages::repositories::parse{'pocketprotector::monitoring::librenms::repositories':}
       }
 
       exec {

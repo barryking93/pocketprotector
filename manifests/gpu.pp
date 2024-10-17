@@ -14,20 +14,8 @@ class pocketprotector::gpu::amd {
   notify{'pocketprotector::gpu::amd: AMD not (yet?) supported':}
 }
 
+# nvidia / CUDA support
 class pocketprotector::gpu::nvidia {
-# nvidia (read: CUDA) support
-
-  case lookup('pocketprotector::packages::provider') {
-    'apt': {
-      pocketprotector::packages::repositories::apt::source::parse{'pocketprotector::gpu::nvidia::repository':}
-      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
-    }
-    'zypper': {
-      pocketprotector::packages::repositories::zypper::repoparse{'pocketprotector::gpu::nvidia::repository':}
-      pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
-    }
-    default: {
-      notify{'pocketprotector::gpu::nvidia: the package repository for your OS is not (yet?) supported':}
-    }
-  }
+  pocketprotector::packages::repositories::parse{'pocketprotector::gpu::nvidia::repository':}
+  pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
 }
