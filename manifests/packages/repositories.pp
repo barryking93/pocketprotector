@@ -18,20 +18,26 @@ define pocketprotector::packages::repositories::parse (
 
 # build repository list & pass to appropriate modules
 class pocketprotector::packages::repositories {
+  # init repos, handle non-standard repos and repo rulesets
   case lookup('pocketprotector::packages::provider') {
     'apt': {
       include pocketprotector::packages::repositories::apt::init
-      pocketprotector::packages::repositories::parse{'pocketprotector::packages::repositories':}
-      pocketprotector::packages::repositories::apt::pin::parse{'pocketprotector::packages::pin':}
-      pocketprotector::packages::repositories::apt::ppa::parse{'pocketprotector::packages::ppa':}
+      if lookup('pocketprotector::packages::pin', undef, 'deep', false) {
+        pocketprotector::packages::repositories::apt::pin::parse{'pocketprotector::packages::pin':}
+      }
+      if lookup('pocketprotector::packages::ppa', undef, 'deep', false) {
+        pocketprotector::packages::repositories::apt::ppa::parse{'pocketprotector::packages::ppa':}
+      }
       include pocketprotector::packages::updates::apt
     }
     'zypper': {
-      pocketprotector::packages::repositories::parse{'pocketprotector::packages::repositories':}
     }
     default: {
       notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
     }
   }
+
+  # deploy base repos
+  pocketprotector::packages::repositories::parse{'pocketprotector::packages::repositories':}
 }
 
