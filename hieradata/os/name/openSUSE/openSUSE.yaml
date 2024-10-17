@@ -3,6 +3,18 @@
 # not that we're expecting a lot of variance from ../family/Suse.yaml
 #
 
+pocketprotector::fs::zfs::packages:
+  zfs:
+    ensure: installed
+pocketprotector::fs::zfs::repositories:
+  filesystems:
+    name: Filesystem tools and FUSE-related packages
+    enabled: 1
+    autorefresh: 0
+    baseurl: https://download.opensuse.org/repositories/filesystems/$releasever/
+    gpgcheck: 1
+    gpgkey: https://download.opensuse.org/repositories/filesystems/$releasever/repodata/repomd.xml.key
+
 pocketprotector::gpu::nvidia::packages:
   cuda-toolkit:
     ensure: present
