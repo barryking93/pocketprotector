@@ -28,7 +28,7 @@ define pocketprotector::packages::repositories::apt::pin::parse (
   String $pinyaml = $name,
 ){
   if lookup($pinyaml,undef,'deep',false) {
-    lookup($pinyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepopriority | {
+    lookup($pinyaml,undef,'deep',undef).each | String $aptrepo, String $aptrepopriority | {
       apt::pin { $aptrepo: priority => $aptrepopriority }
     }
   } else {
