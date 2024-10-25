@@ -27,6 +27,9 @@ class pocketprotector::roles {
             'repositories': {
               pocketprotector::packages::repositories::parse{"pocketprotector::roles.${rolename}.repositories":}
             }
+            'packages': {
+              pocketprotector::packages::parse{"pocketprotector::roles.${rolename}.packages":}
+            }
             'templates': {
               pocketprotector::files::templates::parse{"pocketprotector::roles.${rolename}.templates":}
             }
