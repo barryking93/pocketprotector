@@ -13,6 +13,9 @@ class pocketprotector::roles {
             'accounts': {
               pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
+            'exec': {
+              pocketprotector::commands::parse{"pocketprotector::roles.${rolename}.exec":}
+            }
             'files': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
             }
