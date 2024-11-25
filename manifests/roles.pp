@@ -27,6 +27,9 @@ class pocketprotector::roles {
                 include $includename
               }
             }
+            'mount': {
+              pocketprotector::files::parse{"pocketprotector::roles.${rolename}.mount":}
+            }
             'repositories': {
               pocketprotector::packages::repositories::parse{"pocketprotector::roles.${rolename}.repositories":}
             }
