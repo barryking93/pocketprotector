@@ -80,7 +80,7 @@ ${color1}GPU: ${alignr}${color2}${exec nvidia-smi --query-gpu=name --format=csv,
 ${endif}
 <% end -%>
 ${color1}Networking${alignr}TCP Connections: ${color2}${tcp_portmon 1 65535 count}
-${execpi 60 cat /proc/net/dev | egrep 'eth|eno|tun|wlc' | grep -v veth | sed 's/^ *//g' | cut --fields=-1 --delimiter=':' | sed 's/^/\$\{template0 /;s/$/\}/'}
+${execpi 60 cat /proc/net/dev | egrep 'eth|eno|tun|wlc|wlp' | grep -v veth | sed 's/^ *//g' | cut --fields=-1 --delimiter=':' | sed 's/^/\$\{template0 /;s/$/\}/'}
 ${execpi 60 cat /proc/net/dev | grep 'wlan' | sed 's/^ *//g' | cut --fields=-1 --delimiter=':' | sed 's/^/\$\{template1 /;s/$/\}/'}
 
 ${color1}Local File Systems:
