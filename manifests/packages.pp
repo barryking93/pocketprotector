@@ -49,18 +49,3 @@ class pocketprotector::packages {
   }
 }
 
-# build repository list & pass to appropriate module
-class pocketprotector::packages::repositories {
-  case lookup('pocketprotector::packages::provider') {
-    'apt': {
-      include pocketprotector::packages::repositories::apt
-      include pocketprotector::packages::updates::apt
-    }
-    'zypper': {
-      include pocketprotector::packages::repositories::zypper
-    }
-    default: {
-      notify{'pocketprotector::packages::repositories: the package repository for your OS is not (yet?) supported':}
-    }
-  }
-}

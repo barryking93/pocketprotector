@@ -13,6 +13,14 @@ class pocketprotector::puppet::server {
   # packages managed by modules
   #pocketprotector::packages::parse{'pocketprotector::puppet::server::packages':}
 
+  cron {
+    'clean up puppetserver reports cache':
+      command => 'find /opt/puppetlabs/puppet/cache/reports/ -type f -ctime +90 -delete',
+      hour    => '0',
+      minute  => '0',
+      weekday => '0';
+  }
+
   exec {
     'install r10k':
       command => '/opt/puppetlabs/puppet/bin/gem install r10k',

@@ -13,6 +13,9 @@ class pocketprotector::roles {
             'accounts': {
               pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
+            'exec': {
+              pocketprotector::exec::parse{"pocketprotector::roles.${rolename}.exec":}
+            }
             'files': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
             }
@@ -24,18 +27,14 @@ class pocketprotector::roles {
                 include $includename
               }
             }
+            'mount': {
+              pocketprotector::files::parse{"pocketprotector::roles.${rolename}.mount":}
+            }
             'repositories': {
-              case lookup('pocketprotector::packages::provider') {
-                'apt': {
-                  pocketprotector::packages::repositories::apt::source::parse{"pocketprotector::roles.${rolename}.repositories":}
-                }
-                'zypper': {
-                  pocketprotector::packages::repositories::zypper::repoparse{"pocketprotector::roles.${rolename}.repositories":}
-                }
-                default: {
-                  notify{'pocketprotector::roles: the package repository for your OS is not (yet?) supported':}
-                }
-              }
+              pocketprotector::packages::repositories::parse{"pocketprotector::roles.${rolename}.repositories":}
+            }
+            'packages': {
+              pocketprotector::packages::parse{"pocketprotector::roles.${rolename}.packages":}
             }
             'templates': {
               pocketprotector::files::templates::parse{"pocketprotector::roles.${rolename}.templates":}
