@@ -4,6 +4,10 @@ pocketprotector::hpc::slurm::client::templates:
   '/etc/default/slurmd':
     content: pocketprotector/hpc/client/defaults.erb
 
+pocketprotector::netsvc::ntp::packages:
+  'ntpdate':
+    ensure: present
+
 pocketprotector::openbox::files:
   '/etc/conky':
     ensure: directory
