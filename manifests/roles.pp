@@ -13,6 +13,9 @@ class pocketprotector::roles {
             'accounts': {
               pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
+            'exec': {
+              pocketprotector::exec::parse{"pocketprotector::roles.${rolename}.exec":}
+            }
             'files': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.files":}
             }
@@ -23,6 +26,9 @@ class pocketprotector::roles {
               lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
                 include $includename
               }
+            }
+            'mount': {
+              pocketprotector::files::parse{"pocketprotector::roles.${rolename}.mount":}
             }
             'repositories': {
               pocketprotector::packages::repositories::parse{"pocketprotector::roles.${rolename}.repositories":}

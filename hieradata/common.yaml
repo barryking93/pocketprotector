@@ -220,6 +220,13 @@ pocketprotector::netsvc::nginx::templates:
   '/etc/nginx/nginx.conf':
     content: pocketprotector/netsvc/nginx/nginx.conf.erb
 
+pocketprotector::netsvc::ntp::cron:
+  'manual cron sync':
+    user: root
+    command: "service ntp stop;ntpdate %{lookup('pocketprotector::netsvc::ntp::servers.0')};service ntp start"
+    hour: '0'
+    minute: '0'
+
 pocketprotector::netsvc::ntp::packages:
   'ntp':
     ensure: present
