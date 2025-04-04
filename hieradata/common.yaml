@@ -223,7 +223,7 @@ pocketprotector::netsvc::nginx::templates:
 pocketprotector::netsvc::ntp::cron:
   'manual cron sync':
     user: root
-    command: "service ntp stop;ntpdate %{lookup('pocketprotector::netsvc::ntp::servers.0')};service ntp start"
+    command: "service ntp stop;ntpdate -s %{lookup('pocketprotector::netsvc::ntp::servers.0')};service ntp start"
     hour: '0'
     minute: '0'
 
