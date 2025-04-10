@@ -224,6 +224,7 @@ pocketprotector::netsvc::ntp::cron:
   'manual cron sync':
     user: root
     command: "service ntp stop;ntpdate -s %{lookup('pocketprotector::netsvc::ntp::servers.0')};service ntp start"
+    environment: PATH=/bin:/sbin:/usr/bin:/usr/sbin
     hour: '0'
     minute: '0'
 
