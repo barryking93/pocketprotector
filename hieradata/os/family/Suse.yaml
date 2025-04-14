@@ -75,6 +75,7 @@ pocketprotector::monitoring::snmp::packages:
   net-snmp:
     ensure: present
 
+pocketprotector::netsvc::ntp::servicename: ntpd
 pocketprotector::netsvc::ntp::services:
   ntpd:
     ensure: running
