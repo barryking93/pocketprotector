@@ -15,6 +15,7 @@ define pocketprotector::packages::repositories::zypper::parse (
         autorefresh   => lookup("${sourceyaml}.${zypprepo}.autorefresh",undef,deep,undef),
         name          => lookup("${sourceyaml}.${zypprepo}.name",undef,deep,undef),
         gpgcheck      => lookup("${sourceyaml}.${zypprepo}.gpgcheck",undef,deep,undef),
+        gpgkey        => lookup("${sourceyaml}.${zypprepo}.gpgkey",undef,deep,undef),
         repo_gpgcheck => lookup("${sourceyaml}.${zypprepo}.repo_gpgcheck",undef,deep,undef),
         pkg_gpgcheck  => lookup("${sourceyaml}.${zypprepo}.pgk_gpgcheck",undef,deep,undef),
         priority      => lookup("${sourceyaml}.${zypprepo}.priority",undef,deep,undef),
