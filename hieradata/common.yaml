@@ -223,7 +223,8 @@ pocketprotector::netsvc::nginx::templates:
 pocketprotector::netsvc::ntp::cron:
   'manual cron sync':
     user: root
-    command: "service ntp stop;ntpdate %{lookup('pocketprotector::netsvc::ntp::servers.0')};service ntp start"
+    command: "service %{lookup('pocketprotector::netsvc::ntp::servicename')} stop;ntpdate -s %{lookup('pocketprotector::netsvc::ntp::servers.0')};service %{lookup('pocketprotector::netsvc::ntp::servicename')} start"
+    environment: PATH=/bin:/sbin:/usr/bin:/usr/sbin
     hour: '0'
     minute: '0'
 
@@ -233,7 +234,6 @@ pocketprotector::netsvc::ntp::packages:
 pocketprotector::netsvc::ntp::templates:
   '/etc/ntp.conf':
     content: pocketprotector/netsvc/ntp/ntp.conf.erb
-pocketprotector::openbox::enabled: false
 
 pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
