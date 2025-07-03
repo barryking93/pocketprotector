@@ -8,28 +8,6 @@ pocketprotector::netsvc::ntp::packages:
   'ntpdate':
     ensure: present
 
-pocketprotector::openbox::files:
-  '/etc/conky':
-    ensure: directory
-  '/etc/xdg/openbox/autostart':
-    source: puppet:///modules/pocketprotector/openbox/autostart
-  '/etc/xdg/openbox/menu.xml':
-    source: puppet:///modules/pocketprotector/openbox/menu.xml
-
-pocketprotector::openbox::files::templates:
-  '/etc/conky/conky.conf':
-    content: pocketprotector/openbox/conkyrc.erb
-
-pocketprotector::openbox::packages:
-  lxpolkit:
-    ensure: present
-  openbox:
-    ensure: present
-  nitrogen:
-    ensure: present
-  xfce4-panel:
-    ensure: present
-
 pocketprotector::packages:
   pciutils:
     ensure: present

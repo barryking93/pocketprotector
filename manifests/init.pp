@@ -32,6 +32,4 @@ class pocketprotector {
   include pocketprotector::gpu
   # hpc support
   include pocketprotector::hpc
-  # openbox support
-  include pocketprotector::openbox
 }
