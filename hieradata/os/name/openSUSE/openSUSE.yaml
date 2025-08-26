@@ -18,7 +18,7 @@ pocketprotector::fs::zfs::repositories:
 pocketprotector::gpu::nvidia::packages:
   cuda-toolkit:
     ensure: present
-  nvidia-video-G06:
+  nvidia-driver-G06-kmp-default:
     ensure: present
 pocketprotector::gpu::nvidia::repository:
   cuda:
