@@ -18,13 +18,19 @@ pocketprotector::fs::zfs::repositories:
 pocketprotector::gpu::nvidia::packages:
   cuda-toolkit:
     ensure: present
-  nvidia-gl-G06:
+  nvidia-video-G06:
     ensure: present
 pocketprotector::gpu::nvidia::repository:
-  nvidia:
+  cuda:
     name: cuda-opensuse
     baseurl: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch
     gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch/D42D0685.pub
+    enabled: 1
+    gpgcheck: 1
+  nvidia:
+    name: nvidia-opensuse-nonfree
+    baseurl: https://download.nvidia.com/opensuse/leap/$releasever
+    gpgkey: https://download.nvidia.com/opensuse/leap/$releasever/repodata/repomd.xml.key
     enabled: 1
     gpgcheck: 1
 
