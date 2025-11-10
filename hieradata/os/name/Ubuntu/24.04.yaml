@@ -76,17 +76,17 @@ pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
     release: jammy
-    repos: puppet7
+    repos: puppet8
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
       source: https://pgp.mit.edu
-  puppet-focal:
-    location: http://apt.puppetlabs.com
-    release: focal
-    repos: puppet7
-    key:
-      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
-      source: https://pgp.mit.edu
+#  puppet-focal:
+#    location: http://apt.puppetlabs.com
+#    release: focal
+#    repos: puppet8
+#    key:
+#      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
+#      source: https://pgp.mit.edu
   ubuntu-main:
     location: http://mirrors.kernel.org/ubuntu/
     release: noble
