@@ -5,7 +5,7 @@
 
 class pocketprotector::hpc::slurm {
   if lookup('pocketprotector::hpc::slurm::server',undef,'deep',false) {
-    case $::fqdn {
+    case $facts['networking']['fqdn'] {
       lookup('pocketprotector::hpc::slurm::server'): {
         include pocketprotector::hpc::slurm::server
       }
