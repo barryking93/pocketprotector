@@ -35,7 +35,7 @@ class pocketprotector::monitoring::nagios::client {
     @@nagios_host { $facts['networking']['fqdn']:
       use                   => lookup('pocketprotector::monitoring::nagios::client::use',undef,deep,'production-host'),
       host_name             => $facts['networking']['fqdn'],
-      address               => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${::ipaddress}"),
+      address               => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${facts['networking']['ip']}"),
       alias                 => $facts['networking']['fqdn'],
       check_command         => 'check-host-alive!3000.0,80%!5000.0,100%!10',
       target                => "${nagconfigd}/host_${facts['networking']['fqdn']}.cfg";

@@ -38,20 +38,20 @@ class pocketprotector::hpc::slurm::server {
 
     # tell nagios to use these checks
     @@nagios_service { 
-      "${::fqdn}_check_slurm_jobs}":
+      "${facts['networking']['fqdn']}_check_slurm_jobs}":
         ensure              => present,
         use                 => 'generic-service',
-        host_name           => $::fqdn,
-        service_description => "${::fqdn} slurm jobs",
+        host_name           => $facts['networking']['fqdn'],
+        service_description => "${facts['networking']['fqdn']} slurm jobs",
         check_command       => "check_slurm_jobs",
-        target                => "${nagconfigd}/host_${::fqdn}.cfg";
-      "${::fqdn}_check_slurm_nodes}":
+        target              => "${nagconfigd}/host_${facts['networking']['fqdn']}.cfg";
+      "${facts['networking']['fqdn']}_check_slurm_nodes}":
         ensure              => present,          
         use                 => 'generic-service',
-        host_name           => $::fqdn,          
-        service_description => "${::fqdn} slurm nodes",
+        host_name           => $facts['networking']['fqdn'],
+        service_description => "${facts['networking']['fqdn']} slurm nodes",
         check_command       => "check_slurm_nodes",
-        target                => "${nagconfigd}/host_${::fqdn}.cfg";
+        target                => "${nagconfigd}/host_${facts['networking']['fqdn']}.cfg";
     }   
   }
 }
