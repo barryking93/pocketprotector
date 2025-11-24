@@ -8,7 +8,7 @@ class pocketprotector::monitoring::splunk {
   }
 
   # enterprise on server, forwarder elsewhere
-  case $::fqdn {
+  case $facts['networking']['fqdn'] {
     lookup('pocketprotector::monitoring::splunk::server'): {
       include splunk::enterprise
 

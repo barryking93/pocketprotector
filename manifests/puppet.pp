@@ -3,7 +3,7 @@
 
 # everyone gets the client, but only the server gets the server
 class pocketprotector::puppet {
-  case $::fqdn {
+  case $facts['networking']['fqdn'] {
     lookup('pocketprotector::puppet::server'): {
       include pocketprotector::puppet::server
     }
