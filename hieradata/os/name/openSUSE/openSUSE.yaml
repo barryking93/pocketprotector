@@ -152,7 +152,7 @@ pocketprotector::packages::provider: zypper
 pocketprotector::packages::repositories:
   puppet:
     name: puppet-release
-    baseurl: http://yum.puppet.com/puppet/sles/$releasever_major/$basearch
+    baseurl: http://yum.puppet.com/puppet8/sles/$releasever_major/$basearch
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
     enabled: 1
     gpgcheck: 1
