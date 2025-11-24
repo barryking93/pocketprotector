@@ -100,3 +100,7 @@ pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
 
 pocketprotector::security::password::enforcer: cracklib
 
+# puppetboard fixes
+puppetboard::apache_confd: '/etc/apache2/sites-available/'
+puppetboard::apache_service: 'apache2'
+
