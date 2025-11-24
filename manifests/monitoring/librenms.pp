@@ -2,7 +2,7 @@
 
 class pocketprotector::monitoring::librenms {
   # is this a librenms host?
-  case $::fqdn {
+  case $facts['networking']['fqdn'] {
     lookup('pocketprotector::monitoring::librenms::server'): {
       # if no separate mariadb host specified, its local
       if lookup('pocketprotector::monitoring::librenms::mariadb',undef,'deep',false) {} else {

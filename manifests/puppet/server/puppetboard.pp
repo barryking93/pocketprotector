@@ -49,7 +49,7 @@ class pocketprotector::puppet::server::puppetboard::native {
       #  'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
       #};
     'puppetboard::apache::vhost':
-      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${::fqdn}"),
+      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['netowrking']['fqdn']}"),
       port       => 80,
   }
 }

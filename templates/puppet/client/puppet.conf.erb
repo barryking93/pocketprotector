@@ -2,7 +2,7 @@
 # <%= scope().call_function('hiera',['pocketprotector::managed']) %>
 #
 
-<% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
+<% if @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
 [server]
   vardir = /opt/puppetlabs/server/data/puppetserver
   logdir = /var/log/puppetlabs/puppetserver
@@ -21,7 +21,7 @@
   # environment, aka git branch
   environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
 
-<% if @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server']) or @fqdn == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
+<% if @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
   # alternate DNS names
   dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
 <% end -%>

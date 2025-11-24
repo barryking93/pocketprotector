@@ -32,18 +32,18 @@ class pocketprotector::monitoring::nagios::client {
     $nagconfigd = lookup('pocketprotector::monitoring::nagios::server::configd')
 
     # export host checks
-    @@nagios_host { $::fqdn:
+    @@nagios_host { $facts['networking']['fqdn']:
       use                   => lookup('pocketprotector::monitoring::nagios::client::use',undef,deep,'production-host'),
-      host_name             => $::fqdn,
-      address               => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${::ipaddress}"),
-      alias                 => $::fqdn,
+      host_name             => $facts['networking']['fqdn'],
+      address               => lookup('pocketprotector::monitoring::nagios::client::ip',undef,deep,"${facts['networking']['ip']}"),
+      alias                 => $facts['networking']['fqdn'],
       check_command         => 'check-host-alive!3000.0,80%!5000.0,100%!10',
-      target                => "${nagconfigd}/host_${::fqdn}.cfg";
+      target                => "${nagconfigd}/host_${facts['networking']['fqdn']}.cfg";
     }
 
     # check filesystems if in checkedtypes & export check
-    $::mountpoints.each | $name, $filesystem | {
-      $fs = $::mountpoints[$name]['filesystem']
+    $facts['mountpoints'].each | $name, $filesystem | {
+      $fs = $facts['mountpoints'][$name]['filesystem']
       if $fs in lookup('pocketprotector::monitoring::nagios::client::fs::checkedtypes') {
         case $name {
           '/': { $fsname = 'systemroot' }
@@ -52,13 +52,13 @@ class pocketprotector::monitoring::nagios::client {
 
         #notify{"pocketprotector::monitoring::nagios::client: mountpoint is $name, filesytem is $fs and fsname is $fsname":}
 
-        @@nagios_service { "${::fqdn}_check_disk-${fsname}":
+        @@nagios_service { "${facts['networking']['fqdn']}_check_disk-${fsname}":
           ensure              => present,
           use                 => 'generic-service',
-          host_name           => $::fqdn,
-          service_description => "${::fqdn} filesystem - ${name}",
+          host_name           => $facts['networking']['fqdn'],
+          service_description => "${facts['networking']['fqdn']} filesystem - ${name}",
           check_command       => "check_disk_nrpe!${name}",
-          target                => "${nagconfigd}/host_${::fqdn}.cfg";
+          target                => "${nagconfigd}/host_${facts['networking']['fqdn']}.cfg";
         }
       }
       else {

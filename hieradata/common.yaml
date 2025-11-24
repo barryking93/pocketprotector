@@ -7,7 +7,7 @@ pocketprotector::packages::git: git
 
 pocketprotector::etc::hosts:
   - '127.0.0.1  localhost'
-  - "127.0.1.1  %{facts.fqdn} %{facts.hostname}"
+  - "127.0.1.1  %{facts.networking.fqdn} %{facts.networking.hostname}"
 
 pocketprotector::fs::nfs::defaults:
   fstype: nfs4
