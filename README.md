@@ -13,6 +13,12 @@ considered an alpha product and under active development.  expect breaking chang
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
+# Upgrading Ubuntu to puppet 8
+```
+PVER=$(facter -p os.distro.codename) ; apt -y remove puppet7-release ; curl https://apt.puppet.com/DEB-GPG-KEY-future | gpg -o /etc/apt/trusted.gpg.d/puppet.gpg --dearmor ;  wget -c https://apt.puppetlabs.com/puppet8-release-${PVER}.deb ; dpkg -i puppet8-release-${PVER}.deb ; apt update ; apt-get install --only-upgrade puppet-agent puppetserver puppetdb-termini 
+```
+
+
 # BOOTSTRAP client (SLES)
 ```
 # PVER=$(grep -o -P '(?<=VERSION_ID=").*(?=\.)' /etc/os-release) ; wget http://yum.puppet.com/puppet-release-sles-${PVER}.noarch.rpm ; rpm -Uvh puppet-release-sles-${PVER}.noarch.rpm ; zypper install puppet-agent
