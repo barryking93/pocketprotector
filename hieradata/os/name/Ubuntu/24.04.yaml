@@ -75,7 +75,7 @@ pocketprotector::packages::pin:
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
-    release: jammy
+    release: noble 
     repos: puppet8
     key:
       id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
