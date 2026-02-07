@@ -10,6 +10,9 @@ considered an alpha product and under active development.  expect breaking chang
 - as much of possible config coming from yaml
 - sane, but customizeable defaults for services/configs
 
+# EXAMPLE:
+an example control repo for QA is deployed here:  <https://github.com/barryking93/pocket-qa>
+
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
