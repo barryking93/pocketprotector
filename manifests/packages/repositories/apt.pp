@@ -14,6 +14,7 @@ define pocketprotector::packages::repositories::apt::parse (
           release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
           repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
           key      => {
+            'name'   => lookup("${sourceyaml}.${aptrepo}.key.name",undef,deep,undef),
             'id'     => lookup("${sourceyaml}.${aptrepo}.key.id",undef,deep,undef),
             'source' => lookup("${sourceyaml}.${aptrepo}.key.source",undef,deep,undef),
           };
