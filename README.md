@@ -10,6 +10,9 @@ considered an alpha product and under active development.  expect breaking chang
 - as much of possible config coming from yaml
 - sane, but customizeable defaults for services/configs
 
+# EXAMPLE:
+an example control repo for QA is deployed here:  <https://github.com/barryking93/pocket-qa>
+
 # PROGRESS:
 Now tracked in github here:  <https://github.com/barryking93/pocketprotector/issues>
 
@@ -39,8 +42,8 @@ note:  follows above client install
 # BOOTSTRAP (UBUNTU)
 ```
 # PVER=$(grep VERSION_CODENAME /etc/os-release | sed 's/.*=//g')
-# wget https://apt.puppet.com/puppet7-release-${PVER}.deb
-# dpkg -i puppet7-release-${PVER}.deb
+# wget https://apt.puppet.com/puppet8-release-${PVER}.deb
+# dpkg -i puppet8-release-${PVER}.deb
 # apt update;apt -y install puppet-agent r10k
 # puppetserver gem install hiera-eyaml
 ```
@@ -59,16 +62,11 @@ create /etc/puppetlabs/r10k/r10k.yaml:
   :my-org:
     remote: 'yourpockethere'
     basedir: '/etc/puppetlabs/code/environments'
-:git:
-  provider: shellgit
-  repositories:
-    - remote: 'yourpockethere'
-      private_key: "/root/.ssh/id_rsa"
 ```
 deploy
 ```
 
- # /opt/puppetlabs/puppet/bin/r10k deploy environment -p
+ # r10k deploy environment -p
 ```
 
 generate keys
