@@ -78,13 +78,8 @@ pocketprotector::packages::repositories:
     release: noble 
     repos: puppet8
     key:
-      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
-      source: https://pgp.mit.edu
-#  puppet-focal:
-#    location: http://apt.puppetlabs.com
-#    release: focal
-#    repos: puppet8
-#    key:
+      name: puppetlabs-keyring.gpg
+      source: 'https://apt.puppetlabs.com/keyring.gpg'
 #      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
 #      source: https://pgp.mit.edu
   ubuntu-main:
