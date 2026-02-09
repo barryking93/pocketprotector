@@ -1,0 +1,19 @@
+# hieradata/os/name/Debian/Debian.yaml
+#
+`
+pocketprotector::packages::repositories:
+  debian:
+    location: http://deb.debian.org/debian
+    release: %{facts.os.distro.codename} 
+    repos: main contrib non-free-firmware
+    key:
+      name: debian-archive-keyring.gpg
+      source: 'https://apt.puppetlabs.com/keyring.gpg'
+  debian-security:
+    location: http://security.debian.org/debian-security/
+    release: %{facts.os.distro.codename}
+    repos: main contrib non-free-firmware
+    key:
+      name: debian-archive-keyring.gpg
+      source: 'https://apt.puppetlabs.com/keyring.gpg'
+
