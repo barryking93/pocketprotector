@@ -145,12 +145,6 @@ pocketprotector::netsvc::nginx::services:
     ensure: running
     enable: true
 
-pocketprotector::netsvc::ntp::services:
-  ntp:
-    ensure: running
-    enable: true
-    #subscribe: File['/etc/ntp.conf']
-
 pocketprotector::packages::provider: apt
 
 pocketprotector::packages::apt::unattendedupgrade::reboot: "true"
