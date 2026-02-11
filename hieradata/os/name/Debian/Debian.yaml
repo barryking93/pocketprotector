@@ -17,3 +17,6 @@ pocketprotector::packages::repositories:
       name: debian-security-keyring.gpg
       source: 'https://apt.puppetlabs.com/keyring.gpg'
 
+pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
+pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf
+
