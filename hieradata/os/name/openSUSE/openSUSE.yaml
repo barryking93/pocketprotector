@@ -49,6 +49,10 @@ pocketprotector::hpc::slurm::client::templates:
   '/etc/sysconfig/slurmd':
     content: pocketprotector/hpc/client/defaults.erb
 
+pocketprotector::netsvc::ntp::packages:
+  'ntp':
+    ensure: present
+
 pocketprotector::fs::nfs::base:
   nfs-client:
     ensure: present

@@ -1,6 +1,10 @@
 # hieradata/os/name/Debian/Debian.yaml
 #
 
+pocketprotector::netsvc::ntp::packages:
+  'chrony':
+    ensure: present
+
 pocketprotector::packages::repositories:
   debian:
     location: http://deb.debian.org/debian

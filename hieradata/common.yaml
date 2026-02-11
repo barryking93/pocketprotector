@@ -228,9 +228,6 @@ pocketprotector::netsvc::ntp::cron:
     hour: '0'
     minute: '0'
 
-pocketprotector::netsvc::ntp::packages:
-  'ntp':
-    ensure: present
 pocketprotector::netsvc::ntp::templates:
   '/etc/ntp.conf':
     content: pocketprotector/netsvc/ntp/ntp.conf.erb
