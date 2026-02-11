@@ -17,7 +17,8 @@ define pocketprotector::packages::repositories::apt::parse (
             'name'   => lookup("${sourceyaml}.${aptrepo}.key.name",undef,deep,undef),
             'id'     => lookup("${sourceyaml}.${aptrepo}.key.id",undef,deep,undef),
             'source' => lookup("${sourceyaml}.${aptrepo}.key.source",undef,deep,undef),
-          };
+          },
+	  keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
       }
     }
   } else {
