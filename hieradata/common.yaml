@@ -242,8 +242,6 @@ pocketprotector::puppet::git::branch: main
 pocketprotector::puppet::client::packages:
   puppet-agent:
     ensure: latest
-  puppetdb-termini:
-    ensure: latest
 #pocketprotector::puppet::server::packages:
 #  puppetserver:
 #    ensure: latest
