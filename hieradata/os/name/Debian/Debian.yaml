@@ -1,6 +1,6 @@
 # hieradata/os/name/Debian/Debian.yaml
 #
-`
+
 pocketprotector::packages::repositories:
   debian:
     location: http://deb.debian.org/debian
