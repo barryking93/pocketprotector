@@ -20,3 +20,9 @@ pocketprotector::packages::updates::apt::packages:
   unattended-upgrades:
     ensure: present
 
+pocketprotector::puppet::server::packages:
+  puppetdb-termini:
+    ensure: present
+  puppetserver:
+    ensure: present
+
