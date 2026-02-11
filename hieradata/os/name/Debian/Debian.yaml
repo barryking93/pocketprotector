@@ -7,13 +7,13 @@ pocketprotector::packages::repositories:
     release: "%{facts.os.distro.codename}"
     repos: main contrib non-free-firmware
     key:
-      name: debian-archive-keyring.gpg
+      name: debian-keyring.gpg
       source: 'https://apt.puppetlabs.com/keyring.gpg'
   debian-security:
     location: http://security.debian.org/debian-security/
     release: "%{facts.os.distro.codename}"
     repos: main contrib non-free-firmware
     key:
-      name: debian-archive-keyring.gpg
+      name: debian-security-keyring.gpg
       source: 'https://apt.puppetlabs.com/keyring.gpg'
 
