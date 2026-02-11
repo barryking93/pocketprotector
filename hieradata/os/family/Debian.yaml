@@ -145,7 +145,6 @@ pocketprotector::netsvc::nginx::services:
     ensure: running
     enable: true
 
-pocketprotector::netsvc::ntp::servicename: ntp
 pocketprotector::netsvc::ntp::services:
   ntp:
     ensure: running
