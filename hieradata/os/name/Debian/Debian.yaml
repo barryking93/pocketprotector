@@ -13,14 +13,14 @@ pocketprotector::packages::repositories:
     repos: main contrib non-free-firmware
     key:
       name: debian-keyring.gpg
-      source: 'https://apt.puppetlabs.com/keyring.gpg'
+      source: '/usr/share/keyrings/debian-archive-keyring.gpg'
   debian-security:
     location: http://security.debian.org/debian-security/
     release: "%{facts.os.distro.codename}-security"
     repos: main contrib non-free-firmware
     key:
       name: debian-security-keyring.gpg
-      source: 'https://apt.puppetlabs.com/keyring.gpg'
+      source: '/usr/share/keyrings/debian-archive-keyring.gpg'
 
 pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf
