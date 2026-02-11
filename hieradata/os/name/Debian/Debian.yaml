@@ -5,6 +5,11 @@ pocketprotector::netsvc::ntp::packages:
   'chrony':
     ensure: present
 pocketprotector::netsvc::ntp::servicename: chrony
+pocketprotector::netsvc::ntp::services:
+  chrony:
+    ensure: running
+    enable: true
+    #subscribe: File['/etc/ntp.conf']
 
 pocketprotector::packages::repositories:
   debian:

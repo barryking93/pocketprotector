@@ -10,6 +10,11 @@ pocketprotector::netsvc::ntp::packages:
   'ntpdate':
     ensure: present
 pocketprotector::netsvc::ntp::servicename: ntp
+pocketprotector::netsvc::ntp::services:
+  ntp:
+    ensure: running
+    enable: true
+    #subscribe: File['/etc/ntp.conf']
 
 pocketprotector::packages:
   pciutils:
