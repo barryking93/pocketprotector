@@ -4,6 +4,7 @@
 pocketprotector::netsvc::ntp::packages:
   'chrony':
     ensure: present
+pocketprotector::netsvc::ntp::servicename: chrony
 
 pocketprotector::packages::repositories:
   debian:

@@ -9,6 +9,7 @@ pocketprotector::netsvc::ntp::packages:
     ensure: present
   'ntpdate':
     ensure: present
+pocketprotector::netsvc::ntp::servicename: ntp
 
 pocketprotector::packages:
   pciutils:
