@@ -153,6 +153,9 @@ pocketprotector::netsvc::ntp::services:
 
 pocketprotector::packages::provider: apt
 
+pocketprotector::packages::apt::unattendedupgrade::reboot: "true"
+pocketprotector::packages::apt::unattendedupgrade::time: "02:00"  
+
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver
 pocketprotector::puppet::server::puppetboard::docker: true
 
