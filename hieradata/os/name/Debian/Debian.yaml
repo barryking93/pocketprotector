@@ -11,7 +11,7 @@ pocketprotector::packages::repositories:
       source: 'https://apt.puppetlabs.com/keyring.gpg'
   debian-security:
     location: http://security.debian.org/debian-security/
-    release: "%{facts.os.distro.codename}"
+    release: "%{facts.os.distro.codename}-security"
     repos: main contrib non-free-firmware
     key:
       name: debian-security-keyring.gpg
