@@ -7,7 +7,7 @@ pocketprotector::packages::git: git
 
 pocketprotector::etc::hosts:
   - '127.0.0.1  localhost'
-  - "%{lookup('pocketprotector::etc::hosts::defaultip')  %{facts.networking.fqdn} %{facts.networking.hostname}"
+  - "%{lookup('pocketprotector::etc::hosts::defaultip')}  %{facts.networking.fqdn} %{facts.networking.hostname}"
 pocketprotector::etc::hosts::defaultip: 127.0.1.1
 
 pocketprotector::fs::nfs::defaults:
