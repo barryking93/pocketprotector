@@ -4,6 +4,8 @@
 pocketprotector::netsvc::ntp::packages:
   'chrony':
     ensure: present
+  'ntpsec-ntpdate':
+    ensure: present
 pocketprotector::netsvc::ntp::servicename: chrony
 pocketprotector::netsvc::ntp::services:
   chrony:
