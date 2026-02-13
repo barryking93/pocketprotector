@@ -29,6 +29,11 @@ pocketprotector::packages::repositories:
       name: debian-security-keyring.gpg
       source: '/usr/share/keyrings/debian-archive-keyring.pgp'
 
+pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
+  - "origin=Debian,codename=${distro_codename},label=Debian"
+  - "origin=Debian,codename=${distro_codename},label=Debian-security"
+  - "origin=Debian,codename=${distro_codename}-security,label=Debian-security"
+
 pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
 pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
 pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf

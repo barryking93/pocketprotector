@@ -21,11 +21,11 @@ pocketprotector::packages:
     ensure: present
 
 pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
-  - "${distro_id}:${distro_codename}"
-  - "${distro_id}:${distro_codename}-security"
-  - "${distro_id}ESMApps:${distro_codename}-apps-security"
-  - "${distro_id}ESM:${distro_codename}-infra-security"
-  - "${distro_id}:${distro_codename}-updates"
+  - "origin=Ubuntu,codename=${distro_codename}"
+  - "origin=Ubuntu,codename=${distro_codename}-security"
+  - "origin=Ubuntu,codename=${distro_codename}-apps-security"
+  - "origin=Ubuntu,codename=${distro_codename}-infra-security"
+  - "origin=Ubuntu,codename=${distro_codename}-updates"
 
 pocketprotector::puppet::server::packages:
   puppetdb-termini:
