@@ -4,7 +4,7 @@
 // from non-security sources (e.g. chromium). By allowing the release
 // pocket these get automatically pulled in.
 Unattended-Upgrade::Allowed-Origins {
-<% scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrade::allowedorigins"]).each do |allowedorigin| %>
+<% scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins"]).each do |allowedorigin| %>
         "<%= allowedorigin %>";
 <% end %>
 };
