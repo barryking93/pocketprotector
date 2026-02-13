@@ -6,6 +6,7 @@
 Unattended-Upgrade::Allowed-Origins {
 <% scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrade::allowedorigins"]).each do |allowedorigin| %>
         "<%= allowedorigin %>";
+<% end %>
 };
 
 // Python regular expressions, matching packages to exclude from upgrading
