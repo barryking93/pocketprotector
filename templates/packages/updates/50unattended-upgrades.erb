@@ -4,17 +4,8 @@
 // from non-security sources (e.g. chromium). By allowing the release
 // pocket these get automatically pulled in.
 Unattended-Upgrade::Allowed-Origins {
-	"${distro_id}:${distro_codename}";
-	"${distro_id}:${distro_codename}-security";
-	// Extended Security Maintenance; doesn't necessarily exist for
-	// every release and this system may not have it installed, but if
-	// available, the policy for updates is such that unattended-upgrades
-	// should also install from here by default.
-	"${distro_id}ESMApps:${distro_codename}-apps-security";
-	"${distro_id}ESM:${distro_codename}-infra-security";
-	"${distro_id}:${distro_codename}-updates";
-//	"${distro_id}:${distro_codename}-proposed";
-//	"${distro_id}:${distro_codename}-backports";
+<% scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrade::allowedorigins"]).each do |allowedorigin| %>
+        "<%= allowedorigin %>";
 };
 
 // Python regular expressions, matching packages to exclude from upgrading
@@ -91,7 +82,7 @@ Unattended-Upgrade::Remove-Unused-Dependencies "true";
 
 // Automatically reboot *WITHOUT CONFIRMATION* if
 //  the file /var/run/reboot-required is found after the upgrade
-Unattended-Upgrade::Automatic-Reboot "<%= scope().call_function('lookup',["pocketprotector::packages::apt::unattendedupgrade::reboot"]) %>";
+Unattended-Upgrade::Automatic-Reboot "<%= scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrade::reboot"]) %>";
 
 // Automatically reboot even if there are users currently logged in
 // when Unattended-Upgrade::Automatic-Reboot is set to true
@@ -100,7 +91,7 @@ Unattended-Upgrade::Automatic-Reboot "<%= scope().call_function('lookup',["pocke
 // If automatic reboot is enabled and needed, reboot at the specific
 // time instead of immediately
 //  Default: "now"
-Unattended-Upgrade::Automatic-Reboot-Time "<%= scope().call_function('lookup',["pocketprotector::packages::apt::unattendedupgrade::time"]) %>";
+Unattended-Upgrade::Automatic-Reboot-Time "<%= scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrade::time"]) %>";
 
 // Use apt bandwidth limit feature, this example limits the download
 // speed to 70kb/sec
