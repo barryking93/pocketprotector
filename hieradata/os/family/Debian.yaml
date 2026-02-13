@@ -147,8 +147,16 @@ pocketprotector::netsvc::nginx::services:
 
 pocketprotector::packages::provider: apt
 
-pocketprotector::packages::apt::unattendedupgrade::reboot: "true"
-pocketprotector::packages::apt::unattendedupgrade::time: "02:00"  
+pocketprotector::packages::updates::apt::unattendedupgrade::reboot: "true"
+pocketprotector::packages::updates::apt::unattendedupgrade::time: "02:00"  
+
+pocketprotector::packages::updates::apt::files::templates:
+  '/etc/apt/apt.conf.d/50unattended-upgrades':
+    content: pocketprotector/packages/updates/50unattended-upgrades.erb
+
+pocketprotector::packages::updates::apt::packages:
+  unattended-upgrades:
+    ensure: present
 
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver
 pocketprotector::puppet::server::puppetboard::docker: true
