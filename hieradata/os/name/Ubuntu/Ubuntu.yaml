@@ -26,7 +26,7 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
   - "origin=Ubuntu,codename=${distro_codename}-apps-security"
   - "origin=Ubuntu,codename=${distro_codename}-infra-security"
   - "origin=Ubuntu,codename=${distro_codename}-updates"
-  - "origin=Puppetlabs,,codename=${distro_codename}"
+  - "origin=Puppetlabs,codename=${distro_codename}"
 
 pocketprotector::puppet::server::packages:
   puppetdb-termini:
