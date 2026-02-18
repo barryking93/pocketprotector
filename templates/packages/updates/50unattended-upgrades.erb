@@ -4,8 +4,8 @@
 // from non-security sources (e.g. chromium). By allowing the release
 // pocket these get automatically pulled in.
 Unattended-Upgrade::Origins-Pattern {<% scope().call_function('lookup',["pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins",Puppet::Pops::Types::TypeParser.singleton.parse('Array'),'deep']).each do |allowedorigin| %>
-        "<%= allowedorigin %>";
-<% end %>};
+        "<%= allowedorigin %>";<% end %>
+;
 
 // Python regular expressions, matching packages to exclude from upgrading
 Unattended-Upgrade::Package-Blacklist {
