@@ -13,11 +13,7 @@ define pocketprotector::packages::repositories::apt::parse (
           location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
           release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
           repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
-          key      => {
-            'name'   => lookup("${sourceyaml}.${aptrepo}.key.name",undef,deep,undef),
-            'id'     => lookup("${sourceyaml}.${aptrepo}.key.id",undef,deep,undef),
-            'source' => lookup("${sourceyaml}.${aptrepo}.key.source",undef,deep,undef),
-          },
+          key      => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
 	  keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
       }
     }
