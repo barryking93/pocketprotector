@@ -1,8 +1,8 @@
 # templates/puppet/client/puppet.conf.erb
-# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 
-<% if @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
+<% if @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server::altname']) -%>
 [server]
   vardir = /opt/puppetlabs/server/data/puppetserver
   logdir = /var/log/puppetlabs/puppetserver
@@ -19,13 +19,13 @@
 <% end -%>
 [main]
   # environment, aka git branch
-  environment = <%= scope().call_function('hiera',['pocketprotector::puppet::branch']) %>
+  environment = <%= scope().call_function('lookup',['pocketprotector::puppet::branch']) %>
 
-<% if @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('hiera',['pocketprotector::puppet::server::altname']) -%>
+<% if @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server::altname']) -%>
   # alternate DNS names
-  dns_alt_names = <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
+  dns_alt_names = <%= scope().call_function('lookup',['pocketprotector::puppet::server']) %>,IP:127.0.0.1
 <% end -%>
 
 [agent]
-  server =  <%= scope().call_function('hiera',['pocketprotector::puppet::server']) %>
+  server =  <%= scope().call_function('lookup',['pocketprotector::puppet::server']) %>
   number_of_facts_soft_limit = 4096
