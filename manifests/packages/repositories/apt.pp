@@ -8,15 +8,26 @@ define pocketprotector::packages::repositories::apt::parse (
 ){
   if lookup($sourceyaml,undef,'deep',false) {
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
-      apt::source { 
-        $aptrepo:
-#          options  => lookup("${sourceyaml}.${aptrepo}.options",undef,deep,undef),
-          location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
-          release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
-          repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
-          key      => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
-#	  keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
-      }
+      # special handling for options
+      if lookup("${sourceyaml}.${aptrepo}.options",undef,'deep',false) {
+        apt::source { 
+          $aptrepo:
+            options  => lookup("${sourceyaml}.${aptrepo}.options",undef,deep,undef),
+            location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
+            release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
+            repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
+            key      => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
+            #keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
+        }
+      } else {
+        apt::source {
+          $aptrepo:
+            location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
+            release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
+            repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
+            key      => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
+            #keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
+        }
     }
   } else {
     notify{"pocketprotector::packages::repositories::apt::parse: lookup failed for ${sourceyaml}":}
