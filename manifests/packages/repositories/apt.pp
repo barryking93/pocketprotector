@@ -12,7 +12,13 @@ define pocketprotector::packages::repositories::apt::parse (
       if lookup("${sourceyaml}.${aptrepo}.options",undef,'deep',false) {
         apt::source { 
           $aptrepo:
-            options  => lookup("${sourceyaml}.${aptrepo}.options",undef,deep,undef),
+            options {
+              allow-insecure    => lookup("${sourceyaml}.${aptrepo}.options.allow-insecure",undef,deep,undef),
+              check-valid-until => lookup("${sourceyaml}.${aptrepo}.options.check-valid-until",undef,deep,undef),
+              arch              => lookup("${sourceyaml}.${aptrepo}.options.arch",undef,deep,undef),
+              signed-by         => lookup("${sourceyaml}.${aptrepo}.options.signed-by",undef,deep,undef),
+              trusted           => lookup("${sourceyaml}.${aptrepo}.options.trusted",undef,deep,undef),
+            }
             location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
             release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
             repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
