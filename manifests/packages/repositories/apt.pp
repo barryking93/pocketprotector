@@ -10,6 +10,7 @@ define pocketprotector::packages::repositories::apt::parse (
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
       apt::source {
         $aptrepo:
+          options  => lookup("${sourceyaml}.${aptrepo}.options",undef,deep,undef),
           location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
           release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
           repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
