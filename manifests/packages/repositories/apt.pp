@@ -28,6 +28,7 @@ define pocketprotector::packages::repositories::apt::parse (
             key      => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
             #keyring  => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
         }
+      }
     }
   } else {
     notify{"pocketprotector::packages::repositories::apt::parse: lookup failed for ${sourceyaml}":}
