@@ -1,8 +1,8 @@
 # manifests/monitoring/nagios/server.pp
 
 class pocketprotector::monitoring::nagios::server {
+  include apache
   include apache::mod::cgi
-  include apache::mod::prefork
   # install server packages
   pocketprotector::packages::parse{'pocketprotector::monitoring::nagios::server::packages':}
 
