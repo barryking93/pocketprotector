@@ -42,6 +42,8 @@ define pocketprotector::packages::parse (
 }
 
 class pocketprotector::packages {
+  Package { provider => lookup('pocketprotector::packages::provider') }
+
   include pocketprotector::packages::repositories
 
   if lookup('pocketprotector::packages', undef, 'deep', false) {
