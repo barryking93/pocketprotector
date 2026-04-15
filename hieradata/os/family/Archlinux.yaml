@@ -1,0 +1,5 @@
+# hierdata/os/family/Archlinux.yaml
+#
+
+pocketprotector::packages::provider: pacman
+
