@@ -3,3 +3,8 @@
 
 pocketprotector::packages::provider: pacman
 
+pocketprotector::security::password::enforcer: pwquality
+pocketprotector::security::password::packages::pwquality:
+  libpwquality:
+    ensure: present
+
