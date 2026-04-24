@@ -1,6 +1,14 @@
 # hierdata/os/family/Archlinux.yaml
 #
 
+pocketprotector::monitoring::snmp::packages:
+  net-snmp:
+    ensure: present
+
+pocketprotector::netsvc::ntp::packages:
+  chrony:
+    ensure: present
+
 pocketprotector::packages::provider: pacman
 
 pocketprotector::security::password::enforcer: pwquality
