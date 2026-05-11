@@ -37,6 +37,9 @@ class pocketprotector::roles {
             'templates': {
               pocketprotector::files::templates::parse{"pocketprotector::roles.${rolename}.templates":}
             }
+            'services':{
+              pocketprotector::services::parse{"pocketprotector::roles.${rolename}.services":}
+            }
             default: {}
           }
         }
