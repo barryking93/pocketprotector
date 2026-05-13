@@ -42,7 +42,7 @@ define pocketprotector::exec::parse (
 }
 
 #
-# crawl pocketprotector.execs in hieradata for user list
+# crawl pocketprotector execs in hieradata 
 #
 class pocketprotector::exec {
   pocketprotector::exec::parse{'pocketprotector::exec':}
