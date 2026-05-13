@@ -14,6 +14,7 @@ class pocketprotector {
   # files for baseline file rollouts
   include pocketprotector::groups
   include pocketprotector::files
+  include pocketprotector::services
   # puppet to ensure that this runs a second time
   include pocketprotector::puppet
   include pocketprotector::cron
