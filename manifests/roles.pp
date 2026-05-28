@@ -13,6 +13,9 @@ class pocketprotector::roles {
             'accounts': {
               pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
+            'cron': {
+              pocketprotector::cron::parse{"pocketprotector::roles.${rolename}.cron":}
+            }
             'exec': {
               pocketprotector::exec::parse{"pocketprotector::roles.${rolename}.exec":}
             }
