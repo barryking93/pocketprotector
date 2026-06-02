@@ -34,7 +34,7 @@ pocketprotector::puppet::server::packages:
   puppetserver:
     ensure: present
 
-ocketprotector::packages::repositories:
+pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
     release: "${distro_codename}" 
