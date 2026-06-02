@@ -1,5 +1,12 @@
 # hieradata/os/name/Ubuntu/26.04.yaml
 
+pocketprotector::gpu::nvidia::exec:
+  'download and dearmor nvidia apt repository key':
+    creates: /etc/apt/keyrings/nvidia.gpg
+    command: 'curl -s https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/Release.gpg | gpg --dearmor -o /etc/apt/keyrings/nvidia.gpg'
+    path:
+      - /usr/bin
+
 pocketprotector::gpu::nvidia::packages:
   cuda:
     ensure: latest
@@ -11,7 +18,6 @@ pocketprotector::gpu::nvidia::repository:
     repos: /
     key:
       name: nvidia.gpg
-      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/Release.gpg
 
 pocketprotector::monitoring::librenms::packages:
   acl:

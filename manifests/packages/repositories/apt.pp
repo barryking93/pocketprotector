@@ -18,6 +18,7 @@ define pocketprotector::packages::repositories::apt::parse (
           allow_insecure    => lookup("${sourceyaml}.${aptrepo}.allow_insecure",undef,deep,undef),
           allow_unsigned    => lookup("${sourceyaml}.${aptrepo}.allow_unsigned",undef,deep,undef),
           check_valid_until => lookup("${sourceyaml}.${aptrepo}.check_valid_until",undef,deep,undef),
+          require           => lookup("${sourceyaml}.${aptrepo}.require",undef,deep,undef),
       }
     }
   } else {
