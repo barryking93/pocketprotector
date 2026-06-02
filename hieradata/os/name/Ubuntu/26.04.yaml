@@ -11,7 +11,7 @@ pocketprotector::gpu::nvidia::repository:
     repos: /
     key:
       name: nvidia.gpg
-      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/3bf863cc.pub
+      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/60DF8A40.pub
 
 pocketprotector::monitoring::librenms::packages:
   acl:
