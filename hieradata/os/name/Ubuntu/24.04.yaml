@@ -1,4 +1,4 @@
-# hieradata/os/name/Ubuntu/22.04.yaml
+# hieradata/os/name/Ubuntu/24.04.yaml
 
 pocketprotector::gpu::nvidia::packages:
   cuda:
@@ -69,34 +69,3 @@ pocketprotector::monitoring::librenms::packages:
   traceroute: 
     ensure: present
 
-pocketprotector::packages::pin:
-  puppet-focal: '100'
-
-pocketprotector::packages::repositories:
-  puppet:
-    location: http://apt.puppetlabs.com
-    release: noble 
-    repos: puppet8
-    key:
-      name: puppetlabs-keyring.gpg
-      source: 'https://apt.puppetlabs.com/keyring.gpg'
-#      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
-#      source: https://pgp.mit.edu
-  ubuntu-main:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: noble
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  ubuntu-updates:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: noble-updates
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  ubuntu-security:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: noble-security
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5

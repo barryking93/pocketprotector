@@ -34,3 +34,30 @@ pocketprotector::puppet::server::packages:
   puppetserver:
     ensure: present
 
+ocketprotector::packages::repositories:
+  puppet:
+    location: http://apt.puppetlabs.com
+    release: "${distro_codename}" 
+    repos: puppet8
+    key:
+      name: puppetlabs-keyring.gpg
+      source: 'https://apt.puppetlabs.com/keyring.gpg'
+  ubuntu-main:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "${distro_codename}"
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-updates:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "${distro_codename}-updates"
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+  ubuntu-security:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "${distro_codename}-security"
+    repos: main universe multiverse restricted
+    key:
+      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+

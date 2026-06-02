@@ -1,4 +1,4 @@
-# hieradata/os/name/Ubuntu/22.04.yaml
+# hieradata/os/name/Ubuntu/26.04.yaml
 
 pocketprotector::gpu::nvidia::packages:
   cuda:
@@ -6,12 +6,12 @@ pocketprotector::gpu::nvidia::packages:
 
 pocketprotector::gpu::nvidia::repository:
   cuda:
-    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/
+    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/
     release: ''
     repos: /
     key:
       id: EB693B3035CD5710E231E123A4B469963BF863CC
-      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/3bf863cc.pub
+      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/3bf863cc.pub
 
 pocketprotector::monitoring::librenms::packages:
   acl:
@@ -68,7 +68,4 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
   traceroute: 
     ensure: present
-
-pocketprotector::packages::pin:
-  puppet-focal: '100'
 
