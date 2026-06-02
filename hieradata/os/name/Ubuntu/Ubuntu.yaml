@@ -47,17 +47,22 @@ pocketprotector::packages::repositories:
     release: "%{facts.os.distro.codename}"
     repos: main universe multiverse restricted
     key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-release.gpg
+      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
   ubuntu-updates:
     location: http://mirrors.kernel.org/ubuntu/
     release: "%{facts.os.distro.codename}-updates"
     repos: main universe multiverse restricted
     key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-release.gpg
+      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
   ubuntu-security:
     location: http://mirrors.kernel.org/ubuntu/
     release: "%{facts.os.distro.codename}-security"
     repos: main universe multiverse restricted
     key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-release.gpg
+      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
