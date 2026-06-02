@@ -49,7 +49,7 @@ pocketprotector::packages::repositories:
     key:
       #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
       name: ubuntu-release.gpg
-      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'
   ubuntu-updates:
     location: http://mirrors.kernel.org/ubuntu/
     release: "%{facts.os.distro.codename}-updates"
@@ -57,7 +57,7 @@ pocketprotector::packages::repositories:
     key:
       #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
       name: ubuntu-updates.gpg
-      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'
   ubuntu-security:
     location: http://mirrors.kernel.org/ubuntu/
     release: "%{facts.os.distro.codename}-security"
@@ -65,4 +65,4 @@ pocketprotector::packages::repositories:
     key:
       #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
       name: ubuntu-security.gpg
-      source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'
