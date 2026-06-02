@@ -56,7 +56,7 @@ pocketprotector::packages::repositories:
     repos: main universe multiverse restricted
     key:
       #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-      name: ubuntu-release.gpg
+      name: ubuntu-updates.gpg
       source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
   ubuntu-security:
     location: http://mirrors.kernel.org/ubuntu/
@@ -64,5 +64,5 @@ pocketprotector::packages::repositories:
     repos: main universe multiverse restricted
     key:
       #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-      name: ubuntu-release.gpg
+      name: ubuntu-security.gpg
       source: 'https://mirrors.edge.kernel.org/ubuntu/project/ubuntu-archive-keyring.gpg'
