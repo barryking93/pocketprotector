@@ -69,3 +69,12 @@ pocketprotector::monitoring::librenms::packages:
   traceroute: 
     ensure: present
 
+pocketprotector::packages::repositories:
+  puppet:
+    location: http://apt.puppetlabs.com
+    release: "%{facts.os.distro.codename}"
+    repos: puppet8
+    key:
+      name: puppetlabs-keyring.gpg
+      source: 'https://apt.puppetlabs.com/keyring.gpg'
+
