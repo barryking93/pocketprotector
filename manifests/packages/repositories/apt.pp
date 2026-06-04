@@ -8,15 +8,17 @@ define pocketprotector::packages::repositories::apt::parse (
 ){
   if lookup($sourceyaml,undef,'deep',false) {
     lookup($sourceyaml,undef,'deep',undef).each | String $aptrepo, Hash $aptrepohash | {
-      apt::source {
+      apt::source { 
         $aptrepo:
-          location => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
-          release  => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
-          repos    => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
-          key      => {
-            'id'     => lookup("${sourceyaml}.${aptrepo}.key.id",undef,deep,undef),
-            'source' => lookup("${sourceyaml}.${aptrepo}.key.source",undef,deep,undef),
-          };
+          location          => lookup("${sourceyaml}.${aptrepo}.location",undef,deep,undef),
+          release           => lookup("${sourceyaml}.${aptrepo}.release",undef,deep,undef),
+          repos             => lookup("${sourceyaml}.${aptrepo}.repos",undef,deep,undef),
+          key               => lookup("${sourceyaml}.${aptrepo}.key",undef,deep,undef),
+          #keyring          => lookup("${sourceyaml}.${aptrepo}.keyring",undef,deep,undef);
+          allow_insecure    => lookup("${sourceyaml}.${aptrepo}.allow_insecure",undef,deep,undef),
+          allow_unsigned    => lookup("${sourceyaml}.${aptrepo}.allow_unsigned",undef,deep,undef),
+          check_valid_until => lookup("${sourceyaml}.${aptrepo}.check_valid_until",undef,deep,undef),
+          require           => lookup("${sourceyaml}.${aptrepo}.require",undef,deep,undef),
       }
     }
   } else {

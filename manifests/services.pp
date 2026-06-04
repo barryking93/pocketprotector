@@ -37,3 +37,10 @@ define pocketprotector::services::parse (
   }
 }
 
+#
+# crawl pocketprotector services in hieradata 
+#
+class pocketprotector::services {
+  pocketprotector::services::parse{'pocketprotector::services':}
+}
+

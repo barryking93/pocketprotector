@@ -145,14 +145,18 @@ pocketprotector::netsvc::nginx::services:
     ensure: running
     enable: true
 
-pocketprotector::netsvc::ntp::servicename: ntp
-pocketprotector::netsvc::ntp::services:
-  ntp:
-    ensure: running
-    enable: true
-    #subscribe: File['/etc/ntp.conf']
-
 pocketprotector::packages::provider: apt
+
+pocketprotector::packages::updates::apt::unattendedupgrade::reboot: "true"
+pocketprotector::packages::updates::apt::unattendedupgrade::time: "02:00"  
+
+pocketprotector::packages::updates::apt::files::templates:
+  '/etc/apt/apt.conf.d/50unattended-upgrades':
+    content: pocketprotector/packages/updates/50unattended-upgrades.erb
+
+pocketprotector::packages::updates::apt::packages:
+  unattended-upgrades:
+    ensure: present
 
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver
 pocketprotector::puppet::server::puppetboard::docker: true

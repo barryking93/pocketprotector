@@ -5,18 +5,57 @@ pocketprotector::hpc::slurm::client::templates:
     content: pocketprotector/hpc/client/defaults.erb
 
 pocketprotector::netsvc::ntp::packages:
+  'ntp':
+    ensure: present
   'ntpdate':
     ensure: present
+pocketprotector::netsvc::ntp::servicename: ntp
+pocketprotector::netsvc::ntp::services:
+  ntp:
+    ensure: running
+    enable: true
+    #subscribe: File['/etc/ntp.conf']
 
 pocketprotector::packages:
   pciutils:
     ensure: present
 
-pocketprotector::packages::updates::apt::files::templates:
-  '/etc/apt/apt.conf.d/50unattended-upgrades':
-    content: pocketprotector/packages/updates/50unattended-upgrades.erb
+pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
+  - "origin=Ubuntu,codename=${distro_codename}"
+  - "origin=Ubuntu,codename=${distro_codename}-security"
+  - "origin=Ubuntu,codename=${distro_codename}-apps-security"
+  - "origin=Ubuntu,codename=${distro_codename}-infra-security"
+  - "origin=Ubuntu,codename=${distro_codename}-updates"
+  - "origin=Puppetlabs,codename=${distro_codename}"
 
-pocketprotector::packages::updates::apt::packages:
-  unattended-upgrades:
+pocketprotector::puppet::server::packages:
+  puppetdb-termini:
+    ensure: present
+  puppetserver:
     ensure: present
 
+pocketprotector::packages::repositories:
+  ubuntu-main:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "%{facts.os.distro.codename}"
+    repos: main universe multiverse restricted
+    key:
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-release.gpg
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'
+  ubuntu-updates:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "%{facts.os.distro.codename}-updates"
+    repos: main universe multiverse restricted
+    key:
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-updates.gpg
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'
+  ubuntu-security:
+    location: http://mirrors.kernel.org/ubuntu/
+    release: "%{facts.os.distro.codename}-security"
+    repos: main universe multiverse restricted
+    key:
+      #id: 630239CC130E1A7FD81A27B140976EAF437D05B5
+      name: ubuntu-security.gpg
+      source: 'https://archive.ubuntu.com/ubuntu/project/ubuntu-archive-keyring.gpg'

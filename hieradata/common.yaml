@@ -7,7 +7,8 @@ pocketprotector::packages::git: git
 
 pocketprotector::etc::hosts:
   - '127.0.0.1  localhost'
-  - "127.0.1.1  %{facts.networking.fqdn} %{facts.networking.hostname}"
+  - "%{lookup('pocketprotector::etc::hosts::defaultip')}  %{facts.networking.fqdn} %{facts.networking.hostname}"
+pocketprotector::etc::hosts::defaultip: 127.0.1.1
 
 pocketprotector::fs::nfs::defaults:
   fstype: nfs4
@@ -228,9 +229,6 @@ pocketprotector::netsvc::ntp::cron:
     hour: '0'
     minute: '0'
 
-pocketprotector::netsvc::ntp::packages:
-  'ntp':
-    ensure: present
 pocketprotector::netsvc::ntp::templates:
   '/etc/ntp.conf':
     content: pocketprotector/netsvc/ntp/ntp.conf.erb
@@ -241,8 +239,6 @@ pocketprotector::puppet::cron::client::command: '/opt/puppetlabs/bin/puppet agen
 pocketprotector::puppet::git::branch: main
 pocketprotector::puppet::client::packages:
   puppet-agent:
-    ensure: latest
-  puppetdb-termini:
     ensure: latest
 #pocketprotector::puppet::server::packages:
 #  puppetserver:

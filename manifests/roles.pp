@@ -13,6 +13,9 @@ class pocketprotector::roles {
             'accounts': {
               pocketprotector::accounts::parse{"pocketprotector::roles.${rolename}.accounts":}
             }
+            'cron': {
+              pocketprotector::cron::parse{"pocketprotector::roles.${rolename}.cron":}
+            }
             'exec': {
               pocketprotector::exec::parse{"pocketprotector::roles.${rolename}.exec":}
             }
@@ -23,9 +26,7 @@ class pocketprotector::roles {
               pocketprotector::groups::parse{"pocketprotector::roles.${rolename}.groups":}
             }
             'includes': {
-              lookup("pocketprotector::roles.${rolename}.includes", undef, 'deep', undef).each | String $includename | {
-                include $includename
-              }
+              include lookup("pocketprotector::roles.${rolename}.includes", Array[String], 'unique', [])
             }
             'mount': {
               pocketprotector::files::parse{"pocketprotector::roles.${rolename}.mount":}
@@ -38,6 +39,9 @@ class pocketprotector::roles {
             }
             'templates': {
               pocketprotector::files::templates::parse{"pocketprotector::roles.${rolename}.templates":}
+            }
+            'services':{
+              pocketprotector::services::parse{"pocketprotector::roles.${rolename}.services":}
             }
             default: {}
           }

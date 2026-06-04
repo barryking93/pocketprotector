@@ -1,0 +1,40 @@
+# hieradata/os/name/Debian/Debian.yaml
+#
+
+pocketprotector::netsvc::ntp::packages:
+  'chrony':
+    ensure: present
+  'ntpsec-ntpdate':
+    ensure: present
+pocketprotector::netsvc::ntp::servicename: chrony
+pocketprotector::netsvc::ntp::services:
+  chrony:
+    ensure: running
+    enable: true
+    #subscribe: File['/etc/ntp.conf']
+
+pocketprotector::packages::repositories:
+  debian:
+    location: http://deb.debian.org/debian
+    release: "%{facts.os.distro.codename}"
+    repos: main contrib non-free-firmware
+    key:
+      name: debian-keyring.gpg
+      source: '/usr/share/keyrings/debian-archive-keyring.pgp'
+  debian-security:
+    location: http://security.debian.org/debian-security/
+    release: "%{facts.os.distro.codename}-security"
+    repos: main contrib non-free-firmware
+    key:
+      name: debian-security-keyring.gpg
+      source: '/usr/share/keyrings/debian-archive-keyring.pgp'
+
+pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
+  - "origin=Debian,codename=${distro_codename},label=Debian"
+  - "origin=Debian,codename=${distro_codename},label=Debian-Security"
+  - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
+
+pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
+pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
+pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf
+

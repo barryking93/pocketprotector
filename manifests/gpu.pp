@@ -16,6 +16,9 @@ class pocketprotector::gpu::amd {
 
 # nvidia / CUDA support
 class pocketprotector::gpu::nvidia {
+  if lookup('pocketprotector::gpu::nvidia::exec',undef,undef,false) {
+    pocketprotector::exec::parse{'pocketprotector::gpu::nvidia::exec':}
+  }
   pocketprotector::packages::repositories::parse{'pocketprotector::gpu::nvidia::repository':}
   pocketprotector::packages::parse{'pocketprotector::gpu::nvidia::packages':}
 }
