@@ -1,4 +1,11 @@
-# hieradata/os/name/Ubuntu/24.04.yaml
+# hieradata/os/name/Ubuntu/26.04.yaml
+
+pocketprotector::gpu::nvidia::exec:
+  'download and dearmor nvidia apt repository key':
+    creates: /etc/apt/keyrings/nvidia.gpg
+    command: 'curl -s https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/60DF8A40.pub | gpg --dearmor -o /etc/apt/keyrings/nvidia.gpg'
+    path:
+      - /usr/bin
 
 pocketprotector::gpu::nvidia::packages:
   cuda:
@@ -6,12 +13,12 @@ pocketprotector::gpu::nvidia::packages:
 
 pocketprotector::gpu::nvidia::repository:
   cuda:
-    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/
+    location: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/
     release: ''
     repos: /
     key:
-      id: EB693B3035CD5710E231E123A4B469963BF863CC
-      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/3bf863cc.pub
+      name: nvidia.gpg
+      source: https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2604/x86_64/60DF8A40.pub
 
 pocketprotector::monitoring::librenms::packages:
   acl:
@@ -72,9 +79,9 @@ pocketprotector::monitoring::librenms::packages:
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
-    release: "%{facts.os.distro.codename}"
+    release: noble
     repos: puppet8
     key:
-      name: puppetlabs-keyring.gpg
+      name: puppetlabs.gpg
       source: 'https://apt.puppetlabs.com/keyring.gpg'
 
