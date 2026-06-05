@@ -160,19 +160,6 @@ pocketprotector::packages::repositories:
     gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
     enabled: 1
     gpgcheck: 1
-  sle-backports-debug-update:
-    enabled: 0
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/update/leap/$releasever/backports_debug/
-    type: NONE
-    keeppackages: 0
-  sle-backports-update:
-    enabled: 1
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/update/leap/$releasever/backports/
-    path: /
-    type: rpm-md
-    keeppackages: 0
   sle-debug-non-oss:
     enabled: 0
     autorefresh: 1
@@ -182,16 +169,6 @@ pocketprotector::packages::repositories:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/debug/distribution/leap/$releasever/repo/oss/
-    keeppackages: 0
-  sle-debug-update-non-oss:
-    enabled: 0
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/debug/update/leap/$releasever/non-oss/
-    keeppackages: 0
-  sle-debug-update:
-    enabled: 0
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/debug/update/leap/$releasever/oss/
     keeppackages: 0
   sle-non-oss:
     enabled: 1
@@ -207,38 +184,10 @@ pocketprotector::packages::repositories:
     path: /
     type: rpm-md
     keeppackages: 0
-  sle-debug-update:
-    enabled: 0
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/debug/update/leap/$releasever/sle/
-    path: /
-    type: rpm-md
-    keeppackages: 0
-  sle-update:
-    enabled: 1
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/update/leap/$releasever/sle/
-    path: /
-    type: rpm-md
-    keeppackages: 0
   sle-source-oss:
     enabled: 0
     autorefresh: 1
     baseurl: http://download.opensuse.org/source/distribution/leap/$releasever/repo/oss/
-    keeppackages: 0
-  sle-update-non-oss:
-    enabled: 1
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/update/leap/$releasever/non-oss/
-    path: /
-    type: rpm-md
-    keeppackages: 0
-  sle-update-oss:
-    enabled: 1
-    autorefresh: 1
-    baseurl: http://download.opensuse.org/update/leap/$releasever/oss
-    path: /
-    type: rpm-md
     keeppackages: 0
 
 pocketprotector::puppet::server::packages:
