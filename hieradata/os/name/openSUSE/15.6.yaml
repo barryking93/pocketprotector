@@ -1,5 +1,15 @@
 # hieradata/os/name/openSUSE/15.6.yaml
 
+pocketprotector::monitoring::librenms::repositories:
+  devel-languages-php:
+    enabled: 1
+    autorefresh: 1
+    baseurl: https://download.opensuse.org/repositories/devel:languages:php/openSUSE_Leap_$releasever/
+    type: NONE
+    keeppackages: 0
+    gpgcheck: 1
+    gpgkey: https://download.opensuse.org/repositories/devel:/languages:/php/openSUSE_Leap_$releasever/repodata/repomd.xml.key
+
 pocketprotector::packages::repositories:
   # update repos vanished in 16.0
   puppet:
