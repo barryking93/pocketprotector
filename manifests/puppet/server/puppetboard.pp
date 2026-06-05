@@ -42,11 +42,13 @@ class pocketprotector::puppet::server::puppetboard::native {
   #}
   class {
     'puppetboard':
-      python_version    => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
-      manage_virtualenv => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
-      secret_key        => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
-      #      extra_settings    => {
-      #  'SECRET_KEY'     => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
+      apache_confd          => lookup('pocketprotector::puppet::server::puppetboard::apache_confd',undef,undef,undef),
+      apache_service        => lookup('pocketprotector::puppet::server::puppetboard::apache_service',undef,undef,undef),
+      python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
+      manage_virtualenv     => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
+      secret_key            => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
+      #      extra_settings => {
+      #  'SECRET_KEY'       => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
       #};
     'puppetboard::apache::vhost':
       vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['networking']['fqdn']}"),
