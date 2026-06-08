@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 import os,sys
 Offline_nodes = int(os.popen('sinfo -R --state=down|tail -n +2|wc -l').read())
 if Offline_nodes==0:
