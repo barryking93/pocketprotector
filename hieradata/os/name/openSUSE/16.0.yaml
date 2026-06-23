@@ -25,6 +25,9 @@ pocketprotector::puppet::server::puppetboard::python_version: '3.13'
 
 puppetboard::python_version: '3.13'
 
+python::manage_pip_package: false
+python::version: 'python3'
+python::valid_versions: 'python3'
 python::pip::bootstrap::version: pip3
 python::pip::bootstrap::manage_python: false
-python::manage_pip_package: false
+

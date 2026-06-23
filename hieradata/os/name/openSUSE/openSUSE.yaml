@@ -21,12 +21,6 @@ pocketprotector::gpu::nvidia::packages:
   nvidia-driver-G06-kmp-default:
     ensure: present
 pocketprotector::gpu::nvidia::repository:
-  cuda:
-    name: cuda-opensuse
-    baseurl: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch
-    gpgkey: https://developer.download.nvidia.com/compute/cuda/repos/opensuse$releasever_major/$basearch/D42D0685.pub
-    enabled: 1
-    gpgcheck: 1
   nvidia:
     name: nvidia-opensuse-nonfree
     baseurl: https://download.nvidia.com/opensuse/leap/$releasever
@@ -185,5 +179,3 @@ pocketprotector::puppet::server::puppetboard::apache_service: apache2
 pocketprotector::puppet::server::puppetboard::manage_pip_package: false
 pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
 
-python::version: 'python3'
-python::valid_versions: 'python3'
