@@ -184,3 +184,6 @@ pocketprotector::puppet::server::puppetboard::apache_confd: /etc/apache2/sites-a
 pocketprotector::puppet::server::puppetboard::apache_service: apache2 
 pocketprotector::puppet::server::puppetboard::manage_pip_package: false
 pocketprotector::puppet::server::puppetboard::manage_virtualenv: false
+
+python::version: 'python3'
+python::valid_versions: 'python3'
