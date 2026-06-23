@@ -40,18 +40,17 @@ class pocketprotector::puppet::server::puppetboard::native {
   #    version       => 'pip3',
   #    manage_python => lookup('pocketprotector::python::pip3::manage_python',undef,undef,true),
   #}
+
   class {
     'puppetboard':
       apache_confd          => lookup('pocketprotector::puppet::server::puppetboard::apache_confd',undef,undef,undef),
       apache_service        => lookup('pocketprotector::puppet::server::puppetboard::apache_service',undef,undef,undef),
-      python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
+      manage_pip_package    => lookup('pocketprotector::puppet::server::puppetboard::manage_pip_package',undef,undef,true),
       manage_virtualenv     => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
+      python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
       secret_key            => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
-      #      extra_settings => {
-      #  'SECRET_KEY'       => lookup('pocketprotector::puppet::server::puppetboard::secret_key')
-      #};
     'puppetboard::apache::vhost':
-      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['networking']['fqdn']}"),
       port       => 80,
+      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['networking']['fqdn']}"),
   }
 }
