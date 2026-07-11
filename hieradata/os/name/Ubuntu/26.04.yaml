@@ -76,6 +76,12 @@ pocketprotector::monitoring::librenms::packages:
   traceroute: 
     ensure: present
 
+pocketprotector::netsvc::ntp::packages:
+  'ntpsec':
+    ensure: present
+  'ntpsec-ntpdate':
+    ensure: present
+
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
