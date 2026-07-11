@@ -4,11 +4,6 @@ pocketprotector::hpc::slurm::client::templates:
   '/etc/default/slurmd':
     content: pocketprotector/hpc/client/defaults.erb
 
-pocketprotector::netsvc::ntp::packages:
-  'ntp':
-    ensure: present
-  'ntpdate':
-    ensure: present
 pocketprotector::netsvc::ntp::servicename: ntp
 pocketprotector::netsvc::ntp::services:
   ntp:

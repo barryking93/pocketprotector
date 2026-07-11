@@ -72,6 +72,12 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present
 pocketprotector::monitoring::librenms::repositories: ppa:ondrej/php
 
+pocketprotector::netsvc::ntp::packages:
+  'ntp':
+    ensure: present
+  'ntpdate':
+    ensure: present
+
 pocketprotector::packages::repositories:
   puppet:
     location: http://apt.puppetlabs.com
