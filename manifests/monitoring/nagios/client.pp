@@ -21,6 +21,8 @@ class pocketprotector::monitoring::nagios::client {
     }
 
     # configure nrpe
+    $nrpe_commands = lookup('pocketprotector::monitoring::nagios::client::commands',undef,'deep',undef)
+
     file {
       lookup('pocketprotector::monitoring::nagios::client::configfile'):
         mode    => '0444',
