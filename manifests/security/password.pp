@@ -41,6 +41,8 @@ class pocketprotector::security::password::pwquality {
   #  $passpol_$policyname = $policyvalue
   #}
 
+  $password_policies = lookup('pocketprotector::security::password::policy',undef,'deep',undef)
+
   pocketprotector::packages::parse{'pocketprotector::security::password::packages::pwquality':}
   pocketprotector::files::templates::parse{'pocketprotector::security::password::pwquality::templates':}
 }
