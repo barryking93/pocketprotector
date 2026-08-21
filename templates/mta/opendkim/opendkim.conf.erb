@@ -1,5 +1,5 @@
 # templates/mta/opendkim/opendkim.conf.erb
-# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 
 # This is a configuration for signing and verifying.See opendkim.conf(5) and
@@ -51,7 +51,7 @@ SigningTable        refile:/etc/opendkim/signing.table
 # using a local socket with MTAs that access the socket as a non-privileged
 # user (for example, Postfix). You may need to add user "postfix" to group
 # "opendkim" in that case.
-<% if scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
+<% if scope().call_function('lookup',['pocketprotector::mta::default']) == 'postfix' -%>
 UserID                  opendkim:postfix
 <% else -%>
 UserID                  opendkim
@@ -62,7 +62,7 @@ UMask                   007
 # it must be ensured that the socket is accessible. In Debian, Postfix runs in
 # a chroot in /var/spool/postfix, therefore a Unix socket would have to be
 # configured as shown on the last line below.
-<% if scope().call_function('hiera',['pocketprotector::mta::default']) == 'postfix' -%>
+<% if scope().call_function('lookup',['pocketprotector::mta::default']) == 'postfix' -%>
 Socket                  local:/var/spool/postfix/opendkim/opendkim.sock
 <% else -%>
 Socket                  local:/run/opendkim/opendkim.sock

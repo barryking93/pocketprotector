@@ -1,5 +1,5 @@
 # templates/puppet/server/r10k.yaml.erb
-# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 
 # The location to use for storing cached Git repos
@@ -10,5 +10,5 @@
   # This will clone the git repository and instantiate an environment per
   # branch in /etc/puppetlabs/code/environments
   :my-org:
-    remote: '<%= scope().call_function('hiera',['pocketprotector::puppet::server::git::url']) %>'
+    remote: '<%= scope().call_function('lookup',['pocketprotector::puppet::server::git::url']) %>'
     basedir: '/etc/puppetlabs/code/environments'
