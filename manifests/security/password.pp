@@ -43,11 +43,11 @@ class pocketprotector::security::password::pwquality {
 
   pocketprotector::packages::parse{'pocketprotector::security::password::packages::pwquality':}
 
-  $password_policies = lookup('pocketprotector::security::password::policy',undef,'deep',undef)
+  $password_policies = lookup('pocketprotector::security::password::policy', undef, 'deep', undef)
 
   file {
     '/etc/security/pwquality.conf':
-      content => pocketprotector/security/password/pwquality.conf.erb
+      content => template('pocketprotector/security/password/pwquality.conf.erb')
   }
 
 }
