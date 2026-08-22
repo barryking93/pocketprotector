@@ -263,7 +263,4 @@ pocketprotector::security::password::policy:
   ocredit: -1
   ucredit: -1
 
-pocketprotector::security::password::pwquality::templates:
-  '/etc/security/pwquality.conf':
-    content: pocketprotector/security/password/pwquality.conf.erb
 
