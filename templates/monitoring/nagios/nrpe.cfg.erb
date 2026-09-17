@@ -1,5 +1,5 @@
 # templates/monitoring/nagios/nrpe.cfg.erb
-# <%= scope().call_function('hiera',['pocketprotector::managed']) %>
+# <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 # the NRPE config file
 # part of the nagios monitoring suite
@@ -16,7 +16,7 @@ log_facility=daemon
 debug=0
 
 # PID FILE
-pid_file=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::pid']) %>
+pid_file=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::client::pid']) %>
 
 # PORT NUMBER
 # Port number we should wait for connections on.
@@ -35,8 +35,8 @@ server_port=5666
 #listen_queue_size=5
 
 # NRPE USER / GROUP
-nrpe_user=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::user']) %>
-nrpe_group=<%= scope().call_function('hiera',['pocketprotector::monitoring::nagios::group']) %>
+nrpe_user=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::user']) %>
+nrpe_group=<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::group']) %>
 
 # ALLOWED HOST ADDRESSES
 allowed_hosts=127.0.0.1,::1,<%= scope().call_function('lookup',['pocketprotector::monitoring::nagios::server::ip']) %>
@@ -59,6 +59,6 @@ dont_blame_nrpe=1
 #
 # Unlike Nagios, the command line cannot contain macros - it must be
 # typed exactly as it should be executed.
-<% scope().call_function('hiera',['pocketprotector::monitoring::nagios::client::commands','Hash','deep']).each do |commandname,commandline| -%>
+<% @nrpe_commands.each do |commandname,commandline| -%>
 command[<%= commandname %>]=<%= commandline %>
 <% end %>

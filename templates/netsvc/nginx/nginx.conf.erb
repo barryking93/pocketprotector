@@ -2,16 +2,16 @@
 # <%= scope().call_function('lookup',['pocketprotector::managed']) %>
 #
 
-user <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config.user','String','deep']) %>;
-worker_processes <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config.worker_processes','String','deep']) %>;
-worker_rlimit_nofile <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config.worker_rlimit_nofile','String','deep']) %>;
+user <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config.user','String','deep']) %>;
+worker_processes <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config.worker_processes','String','deep']) %>;
+worker_rlimit_nofile <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config.worker_rlimit_nofile','String','deep']) %>;
 
-pid <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config.pid','String','deep']) %>;
+pid <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config.pid','String','deep']) %>;
 include /etc/nginx/modules-enabled/*.conf;
 
 events {
-  accept_mutex <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config::events.accept_mutex','String','deep']) %>;
-  accept_mutex_delay <% scope().call_function('hiera',['pocketprotector::netsvc::nginx::config::events.accept_mutex','String','deep']) %>;
+  accept_mutex <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config::events.accept_mutex','String','deep']) %>;
+  accept_mutex_delay <% scope().call_function('lookup',['pocketprotector::netsvc::nginx::config::events.accept_mutex','String','deep']) %>;
   worker_connections 1024;
 }
 

@@ -64,6 +64,6 @@
 # /etc/passwd file.
 # Enabled if the option is present.
 # local_users_only
-<% scope().call_function('hiera',['pocketprotector::security::password::policy','String','deep']).each do |passpol_name, passpol_val| -%>
+<% @password_policies.each do |passpol_name, passpol_val| -%>
 <%= passpol_name %> = <%= passpol_val %>
 <% end %>
