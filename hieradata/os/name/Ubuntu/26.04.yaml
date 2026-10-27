@@ -49,6 +49,10 @@ pocketprotector::monitoring::librenms::packages:
     ensure: present 
   php-json: 
     ensure: present
+  php-mbstring:
+    ensure: present
+  php-mysql:
+    ensure: present    
   php-snmp: 
     ensure: present
   php-xml: 
@@ -58,6 +62,8 @@ pocketprotector::monitoring::librenms::packages:
   rrdtool: 
     ensure: present
   unzip: 
+    ensure: present
+  python3-command-runner:
     ensure: present
   python3-pymysql: 
     ensure: present
