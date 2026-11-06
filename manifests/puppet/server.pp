@@ -21,13 +21,15 @@ class pocketprotector::puppet::server {
       weekday => '0';
   }
 
-  exec {
-    'install r10k':
-      command => '/opt/puppetlabs/puppet/bin/gem install r10k',
-      creates => '/opt/puppetlabs/puppet/bin/r10k';
-    'deploy r10k':
-      command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
-      refreshonly => 'true',
+  if lookup('pocketprotector::puppet::prefix::bin') == '/opt/puppetlabs/bin' {
+    exec {
+      'install r10k':
+        command => '/opt/puppetlabs/puppet/bin/gem install r10k',
+        creates => '/opt/puppetlabs/puppet/bin/r10k';
+      'deploy r10k':
+        command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
+        refreshonly => 'true',
+    }
   }
 
   $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
