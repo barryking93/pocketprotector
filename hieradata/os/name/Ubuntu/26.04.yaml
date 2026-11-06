@@ -88,16 +88,15 @@ pocketprotector::netsvc::ntp::packages:
   'ntpsec-ntpdate':
     ensure: present
 
-pocketprotector::packages::repositories:
-  puppet:
-    location: http://apt.puppetlabs.com
-    release: noble
-    repos: puppet8
-    key:
-      name: puppetlabs.gpg
-      source: 'https://apt.puppetlabs.com/keyring.gpg'
+#pocketprotector::packages::repositories:
+#  puppet:
+#    location: http://apt.puppetlabs.com
+#    release: noble
+#    repos: puppet8
+#    key:
+#      name: puppetlabs.gpg
+#      source: 'https://apt.puppetlabs.com/keyring.gpg'
 
-#pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
-#pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
-#pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf
+pocketprotector::puppet::prefix::cfg: /etc/puppet
+pocketprotector::puppet::prefix::bin: /usr/bin
 

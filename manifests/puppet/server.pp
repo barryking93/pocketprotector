@@ -30,7 +30,14 @@ class pocketprotector::puppet::server {
       refreshonly => 'true',
   }
 
+  $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
+
   file {
+    "${puppetcfgprefix}/puppetdb.conf":
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0644',
+      content => template('pocketprotector/puppet/server/puppetdb.conf.erb');
     lookup('pocketprotector::puppet::server::defaults'):
       mode    => '0644',
       content => template('pocketprotector/puppet/server/defaults.erb'),

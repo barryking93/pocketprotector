@@ -34,7 +34,4 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
   - "origin=Debian,codename=${distro_codename},label=Debian-Security"
   - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
 
-pocketprotector::puppet::cron::client::command: '/usr/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
-pocketprotector::puppet::client::configfile: /etc/puppet/puppet.conf
-pocketprotector::puppet::client::configpuppetdb: /etc/puppet/puppetdb.conf
 

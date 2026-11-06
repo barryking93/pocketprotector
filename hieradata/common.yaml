@@ -233,9 +233,6 @@ pocketprotector::netsvc::ntp::templates:
   '/etc/ntp.conf':
     content: pocketprotector/netsvc/ntp/ntp.conf.erb
 
-pocketprotector::puppet::client::configfile: /etc/puppetlabs/puppet/puppet.conf
-pocketprotector::puppet::client::configpuppetdb: /etc/puppetlabs/puppet/puppetdb.conf
-pocketprotector::puppet::cron::client::command: '/opt/puppetlabs/bin/puppet agent --no-daemonize --onetime --splay --splaylimit 180 > /dev/null'
 pocketprotector::puppet::git::branch: main
 pocketprotector::puppet::client::packages:
   puppet-agent:
@@ -247,6 +244,9 @@ pocketprotector::puppet::client::packages:
 #  puppetdb:
 #    ensure: latest
 pocketprotector::puppet::client::servicename: puppet
+pocketprotector::puppet::client::cron::splaytime: '180'
+pocketprotector::puppet::prefix::cfg: /etc/puppet
+pocketprotector::puppet::prefix::bin: /usr/bin
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
 pocketprotector::puppet::server::report::directory::tidy: true
