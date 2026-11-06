@@ -19,7 +19,7 @@
 <% end -%>
 [main]
   # environment, aka git branch
-  environment = <%= scope().call_function('lookup',['pocketprotector::puppet::branch']) %>
+  environment = <%= scope().call_function('lookup',['pocketprotector::puppet::git::branch']) %>
 
 <% if @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server::altname']) -%>
   # alternate DNS names

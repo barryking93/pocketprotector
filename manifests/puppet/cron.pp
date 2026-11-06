@@ -25,12 +25,12 @@ class pocketprotector::puppet::cron::server {
   $puppet_branch = lookup('pocketprotector::puppet::git::branch')
   $puppetbinprefix = lookup('pocketprotector::puppet::prefix::bin')
   $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
-
+  $puppetcodeprefix = lookup('pocketprotector::puppet::prefix::code')
 
   cron {
     # run-puppet syntax is different for servers for bootstrap purposes
     'puppet':
-      command => "bash -c \"${puppetbinprefix}/r10k deploy environment -p > /dev/null 2>&1;${puppetbinprefix}/puppet apply ${puppetcfgprefix}/code/environments/${puppet_branch}/manifests/ --environment ${puppet_branch}\" > /dev/null 2>&1",
+      command => "bash -c \"${puppetbinprefix}/r10k deploy environment -p > /dev/null 2>&1;${puppetbinprefix}/puppet apply ${puppetcodeprefix}/environments/${puppet_branch}/manifests/ --environment ${puppet_branch}\" > /dev/null 2>&1",
       user    => 'root',
       minute  => '*/10',
       hour    => '*',
