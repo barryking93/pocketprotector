@@ -246,6 +246,7 @@ pocketprotector::puppet::client::packages:
 pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::client::cron::splaytime: '180'
 pocketprotector::puppet::prefix::cfg: /etc/puppet
+pocketprotector::puppet::prefix::code: /etc/puppet/code
 pocketprotector::puppet::prefix::bin: /usr/bin
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/

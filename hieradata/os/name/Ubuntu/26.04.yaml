@@ -97,6 +97,3 @@ pocketprotector::netsvc::ntp::packages:
 #      name: puppetlabs.gpg
 #      source: 'https://apt.puppetlabs.com/keyring.gpg'
 
-pocketprotector::puppet::prefix::cfg: /etc/puppet
-pocketprotector::puppet::prefix::bin: /usr/bin
-

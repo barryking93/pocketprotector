@@ -11,4 +11,4 @@
   # branch in <%= scope().call_function('lookup',['pocketprotector::puppet::prefix::cfg']) %>/code/environments
   :my-org:
     remote: '<%= scope().call_function('lookup',['pocketprotector::puppet::server::git::url']) %>'
-    basedir: '<%= scope().call_function('lookup',['pocketprotector::puppet::prefix::cfg']) %>/code/environments'
+    basedir: '<%= scope().call_function('lookup',['pocketprotector::puppet::prefix::code']) %>/environments'
