@@ -1,8 +1,11 @@
 # puppet client cron jobs
 class pocketprotector::puppet::cron::client {
+  $puppetbinprefix = lookup('pocketprotector::puppet::prefix::bin')
+  $puppetsplaytime = lookup('pocketprotector::puppet::client::cron::splaytime')
+
   cron {
     'puppet':
-      command => lookup('pocketprotector::puppet::cron::client::command'),
+      command => "${puppetbinprefix}/puppet agent --no-daemonize --onetime --splay --splaylimit ${puppetsplaytime} > /dev/null",
       user    => 'root',
       minute  => [0,30],
       hour    => '*',
@@ -20,11 +23,14 @@ class pocketprotector::puppet::cron::client {
 # puppet server cron jobs
 class pocketprotector::puppet::cron::server {
   $puppet_branch = lookup('pocketprotector::puppet::git::branch')
+  $puppetbinprefix = lookup('pocketprotector::puppet::prefix::bin')
+  $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
+
 
   cron {
     # run-puppet syntax is different for servers for bootstrap purposes
     'puppet':
-      command => "bash -c \"/opt/puppetlabs/puppet/bin/r10k deploy environment -p > /dev/null 2>&1;/opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/${puppet_branch}/manifests/ --environment ${puppet_branch}\" > /dev/null 2>&1",
+      command => "bash -c \"${puppetbinprefix}/r10k deploy environment -p > /dev/null 2>&1;${puppetbinprefix}/puppet apply /etc/puppetlabs/code/environments/${puppet_branch}/manifests/ --environment ${puppet_branch}\" > /dev/null 2>&1",
       user    => 'root',
       minute  => '*/10',
       hour    => '*',

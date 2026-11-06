@@ -87,3 +87,6 @@ pocketprotector::packages::repositories:
       name: puppetlabs-keyring.gpg
       source: 'https://apt.puppetlabs.com/keyring.gpg'
 
+pocketprotector::puppet::prefix::cfg: /etc/puppetlabs/puppet
+pocketprotector::puppet::prefix::bin: /opt/puppetlabs/bin
+
