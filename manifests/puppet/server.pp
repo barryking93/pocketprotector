@@ -10,7 +10,6 @@ class pocketprotector::puppet::server {
   include pocketprotector::puppet::server::puppetboard
 
   pocketprotector::packages::parse{'pocketprotector::puppet::client::packages':}
-  pocketprotector::packages::repositories::parse('pocketprotector::puppet::server::repositories':}
 
   $puppetbinprefix = lookup('pocketprotector::puppet::prefix::bin')
   $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
