@@ -100,7 +100,7 @@ pocketprotector::netsvc::ntp::packages:
 pocketprotector::puppet::server::repositories:
   postgresql:
     location: https://apt.postgresql.org/pub/repos/apt
-    release: %{facts.os.distro.codename} 
+    release: "%{facts.os.distro.codename}"
     repos: main
     key:
       name: postgres.asc 
