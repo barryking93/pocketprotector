@@ -105,6 +105,7 @@ pocketprotector::packages::repositories:
     key:
       id: 630239CC130E1A7FD81A27B140976EAF437D05B5
 
+pocketprotector::puppet::puppetdb::database::managerepo: true
 pocketprotector::puppet::prefix::cfg: /etc/puppetlabs/puppet
 pocketprotector::puppet::prefix::code: /etc/puppetlabs/code
 pocketprotector::puppet::prefix::bin: /opt/puppetlabs/bin
