@@ -36,4 +36,3 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
 
 pocketprotector::puppet::puppetdb::globals::confdir: /etc/puppet
 pocketprotector::puppet::puppetdb::master::puppet_confdir: /etc/puppet
-/etc/puppetdb/ssl 
