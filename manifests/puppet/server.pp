@@ -57,9 +57,4 @@ class pocketprotector::puppet::server {
       ]
   }
 
-  service {
-    lookup('pocketprotector::puppet::server::servicename'):
-      ensure => 'running',
-      enable => 'true'
-  }
 }
