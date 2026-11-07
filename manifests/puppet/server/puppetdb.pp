@@ -6,6 +6,8 @@
 
 class pocketprotector::puppet::server::puppetdb {
   class {
+    'puppetdb':
+      manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,'false');
     'puppetdb::server':
       database_name      => lookup('pocketprotector::puppet::puppetdb::database::name',undef,undef,'puppetdb'),
       database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
