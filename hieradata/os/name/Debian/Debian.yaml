@@ -37,3 +37,5 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
 pocketprotector::puppet::puppetdb::globals::confdir: /etc/puppet
 pocketprotector::puppet::puppetdb::master::terminus_package: puppet-terminus-puppetdb
 pocketprotector::puppet::puppetdb::confdir: /etc/puppetdb
+pocketprotector::puppet::puppetdb::vardir: /var/lib/puppetdb
+
