@@ -10,9 +10,6 @@ class pocketprotector::puppet::server::puppetdb {
       listen_addresses    => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
       manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
       postgres_version    => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef);
-    'puppetdb::globals':
-      puppet_confdir => lookup('pocketprotector::puppet::puppetdb::globals::confdir',undef,undef,undef),
-      version        => lookup('pocketprotector::puppet::puppetdb::globals::version',undef,undef,undef);
     'puppetdb::master::config':
       puppetdb_server                => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_server',undef,undef,undef),
       puppetdb_port                  => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_port',undef,undef,undef),
