@@ -31,8 +31,6 @@ class pocketprotector::puppet::server::puppetdb {
       puppetdb_startup_timeout       => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_startup_timeout',undef,undef,undef),
       test_url                       => lookup('pocketprotector::puppet::puppetdb::master::test_url',undef,undef,undef),
       restart_puppet                 => lookup('pocketprotector::puppet::puppetdb::master::restart_puppet',undef,undef,undef);
-    'puppetdb::master::routes':
-      puppet_confdir => lookup('pocketprotector::puppet::prefix::cfg',undef,undef,undef);
     'puppetdb::server':
       database_name      => lookup('pocketprotector::puppet::puppetdb::database::name',undef,undef,'puppetdb'),
       database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
