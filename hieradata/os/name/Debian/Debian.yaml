@@ -35,4 +35,3 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
   - "origin=Debian,codename=${distro_codename}-security,label=Debian-Security"
 
 pocketprotector::puppet::puppetdb::globals::confdir: /etc/puppet
-pocketprotector::puppet::puppetdb::master::puppet_confdir: /etc/puppet
