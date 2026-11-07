@@ -13,6 +13,9 @@ class pocketprotector::puppet::server {
   # packages managed by modules
   #pocketprotector::packages::parse{'pocketprotector::puppet::server::packages':}
 
+  $puppetbinprefix = lookup('pocketprotector::puppet::prefix::bin')
+  $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
+
   cron {
     'clean up puppetserver reports cache':
       command => 'find /opt/puppetlabs/puppet/cache/reports/ -type f -ctime +90 -delete',
@@ -26,13 +29,13 @@ class pocketprotector::puppet::server {
       'install r10k':
         command => '/opt/puppetlabs/puppet/bin/gem install r10k',
         creates => '/opt/puppetlabs/puppet/bin/r10k';
-      'deploy r10k':
-        command     => '/opt/puppetlabs/puppet/bin/r10k deploy environment -p',
-        refreshonly => 'true',
     }
   }
-
-  $puppetcfgprefix = lookup('pocketprotector::puppet::prefix::cfg')
+  exec {
+    'deploy r10k':
+      command     => "${puppetbinprefix}/r10k deploy environment -p",
+      refreshonly => 'true',
+  }
 
   file {
     "${puppetcfgprefix}/puppetdb.conf":
