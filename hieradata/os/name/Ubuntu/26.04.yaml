@@ -97,3 +97,12 @@ pocketprotector::netsvc::ntp::packages:
 #      name: puppetlabs.gpg
 #      source: 'https://apt.puppetlabs.com/keyring.gpg'
 
+pocketprotector::puppet::server::repositories:
+  postgresql:
+    location: https://apt.postgresql.org/pub/repos/apt
+    release: %{facts.os.distro.codename} 
+    repos: main
+    key:
+      name: postgres.asc 
+      source: 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
+  
