@@ -5,10 +5,11 @@
 #
 
 class pocketprotector::puppet::server::puppetdb {
+  puppetdbram = lookup('pocketprotector::puppet::puppetdb::database::maxram')
+
   class {
     'puppetdb':
       manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false);
-    'puppetdb::master::config':
     'puppetdb::server':
       database_name      => lookup('pocketprotector::puppet::puppetdb::database::name',undef,undef,'puppetdb'),
       database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
