@@ -8,7 +8,7 @@ class pocketprotector::puppet::server::puppetdb {
   class {
     'puppetdb::globals':
       puppet_confdir => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef),
-      version        => lookup('pocketprotector::puppet::puppetdb::globals::version',undef,undef,undef)
+      version        => lookup('pocketprotector::puppet::puppetdb::globals::version',undef,undef,undef);
     'puppetdb::database::postgresql':
       listen_addresses    => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
       manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
