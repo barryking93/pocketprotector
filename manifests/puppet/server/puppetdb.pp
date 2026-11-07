@@ -5,7 +5,7 @@
 #
 
 class pocketprotector::puppet::server::puppetdb {
-  puppetdbram = lookup('pocketprotector::puppet::puppetdb::database::maxram')
+  $puppetdbram = lookup('pocketprotector::puppet::puppetdb::database::maxram')
 
   class {
     'puppetdb':
