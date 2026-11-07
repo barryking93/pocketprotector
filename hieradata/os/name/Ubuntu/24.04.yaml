@@ -89,3 +89,9 @@ pocketprotector::puppet::prefix::cfg: /etc/puppetlabs/puppet
 pocketprotector::puppet::prefix::code: /etc/puppetlabs/code
 pocketprotector::puppet::prefix::bin: /opt/puppetlabs/bin
 
+pocketprotector::puppet::server::logdir: /var/log/puppetlabs/puppetserver
+pocketprotector::puppet::server::pidfile: /var/run/puppetlabs/puppetserver/puppetserver.pid
+pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
+pocketprotector::puppet::server::rundir: /var/run/puppetlabs/puppetserver
+pocketprotector::puppet::server::vardir: /opt/puppetlabs/server/data/puppetserver
+

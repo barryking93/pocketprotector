@@ -4,11 +4,11 @@
 
 <% if @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server']) or @facts['networking']['fqdn'] == scope().call_function('lookup',['pocketprotector::puppet::server::altname']) -%>
 [server]
-  vardir = /opt/puppetlabs/server/data/puppetserver
-  logdir = /var/log/puppetlabs/puppetserver
-  rundir = /var/run/puppetlabs/puppetserver
-  pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
-  codedir = /etc/puppetlabs/code
+  vardir = <%= scope().call_function('lookup',['+pocketprotector::puppet::server::vardir']) %>
+  logdir = <%= scope().call_function('lookup',['+pocketprotector::puppet::server::logdir']) %>
+  rundir = <%= scope().call_function('lookup',['+pocketprotector::puppet::server::rundir']) %>
+  pidfile = <%= scope().call_function('lookup',['+pocketprotector::puppet::server::pidfile']) %>
+  codedir = <%= scope().call_function('lookup',['pocketprotector::puppet::prefix::code']) %>
 
   # PuppetDB
   storeconfigs = true
