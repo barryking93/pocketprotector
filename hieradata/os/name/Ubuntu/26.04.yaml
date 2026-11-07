@@ -105,4 +105,4 @@ pocketprotector::puppet::server::repositories:
     key:
       name: postgres.asc 
       source: 'https://www.postgresql.org/media/keys/ACCC4CF8.asc'
-  
+pocketprotector::puppet::puppetdb::vardir: /var/lib/puppetdb
