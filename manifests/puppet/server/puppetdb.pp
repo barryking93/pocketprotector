@@ -13,7 +13,7 @@ class pocketprotector::puppet::server::puppetdb {
       ssl_set_cert_paths => true;
     'puppetdb::database::postgresql':
       listen_addresses => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
-      manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false);
+      manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
       postgres_version => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef);
     'puppetdb::master::routes':
       puppet_confdir => lookup('pocketprotector::puppet::prefix::cfg',undef,undef,undef),
