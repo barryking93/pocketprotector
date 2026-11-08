@@ -39,6 +39,7 @@ class pocketprotector::puppet::server::puppetdb {
       database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
       confdir            => lookup('pocketprotector::puppet::puppetdb::confdir',undef,undef,undef),
       java_args          => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') },
+      java_bin           => lookup('pocketprotector::puppet::puppetdb::server::java_bin',undef,undef,undef),
       ssl_set_cert_paths => true,
       vardir             => lookup('pocketprotector::puppet::puppetdb::vardir',undef,undef,undef);
   }
