@@ -12,6 +12,7 @@ class pocketprotector::puppet::server::puppetdb {
     'puppetdb::database::postgresql':
       listen_addresses    => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
       manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
+      password_encryption => lookup('pocketprotector::puppet::puppetdb::database::password_encryption',undef,undef,undef),
       postgres_version    => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef);
     'puppetdb::master::config':
       puppetdb_server                => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_server',undef,undef,undef),
