@@ -36,11 +36,11 @@ class pocketprotector::puppet::server {
   }
 
   file {
-    "${puppetcfgprefix}/puppetdb.conf":
-      owner   => 'root',
-      group   => 'root',
-      mode    => '0644',
-      content => template('pocketprotector/puppet/server/puppetdb.conf.erb');
+    #    "${puppetcfgprefix}/puppetdb.conf":
+    #  owner   => 'root',
+    #  group   => 'root',
+    #  mode    => '0644',
+    #  content => template('pocketprotector/puppet/server/puppetdb.conf.erb');
     lookup('pocketprotector::puppet::server::defaults'):
       mode    => '0644',
       content => template('pocketprotector/puppet/server/defaults.erb'),
@@ -57,9 +57,4 @@ class pocketprotector::puppet::server {
       ]
   }
 
-  service {
-    lookup('pocketprotector::puppet::server::servicename'):
-      ensure => 'running',
-      enable => 'true'
-  }
 }
