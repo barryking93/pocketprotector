@@ -235,8 +235,10 @@ pocketprotector::netsvc::ntp::templates:
 
 pocketprotector::puppet::git::branch: main
 pocketprotector::puppet::client::packages:
-  puppet-agent:
+  openvox-agent:
     ensure: latest
+  puppet-agent:
+    ensure: absent
 #pocketprotector::puppet::server::packages:
 #  puppetserver:
 #    ensure: latest
@@ -248,8 +250,14 @@ pocketprotector::puppet::client::cron::splaytime: '180'
 pocketprotector::puppet::prefix::cfg: /etc/puppet
 pocketprotector::puppet::prefix::code: /etc/puppet/code
 pocketprotector::puppet::prefix::bin: /usr/bin
+pocketprotector::puppet::puppetdb::master::terminus_package: openvoxdb-termini
 pocketprotector::puppet::server::javaargs: -Xms256m -Xmx256m -Djruby.logger.class=com.puppetlabs.jruby_utils.jruby.Slf4jLogger
 pocketprotector::puppet::server::logdir: /var/log/puppetserver
+pocketprotector::puppet::server::packages:
+  openvoxdb-termini:
+    ensure: present
+  openvox-server:
+    ensure: present
 pocketprotector::puppet::server::pidfile: /var/run/puppetserver/puppetserver.pid
 pocketprotector::puppet::server::report::directory: /var/lib/puppetserver/reports
 pocketprotector::puppet::server::report::directory::tidy: true

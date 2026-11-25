@@ -24,12 +24,19 @@ pocketprotector::packages::updates::apt::unattendedupgrades::allowedorigins:
   - "origin=Puppetlabs,codename=${distro_codename}"
 
 pocketprotector::puppet::server::packages:
-  puppetdb-termini:
-    ensure: present
+  puppet-termini:
+    ensure: absent
   puppetserver:
-    ensure: present
+    ensure: absent
 
 pocketprotector::packages::repositories:
+  openvox:
+    location: http://apt.voxpopuli.org
+    release: "ubuntu%{facts.os.distro.codename}"
+    repos: openvox9
+    key:
+      name: openvox-keyring.gpg
+      source: 'https://apt.voxpupuli.org/openvox-keyring.gpg'
   ubuntu-main:
     location: http://mirrors.kernel.org/ubuntu/
     release: "%{facts.os.distro.codename}"
