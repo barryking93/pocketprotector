@@ -6,8 +6,6 @@
 
 class pocketprotector::puppet::server::puppetdb {
   class {
-    'openvoxdb':
-      confdir       => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef);
     'openvoxdb::master::config':
       puppetdb_server                => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_server',undef,undef,undef),
       puppetdb_port                  => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_port',undef,undef,undef),
