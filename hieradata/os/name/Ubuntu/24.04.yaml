@@ -75,19 +75,7 @@ pocketprotector::netsvc::ntp::packages:
   'ntpdate':
     ensure: present
 
-pocketprotector::packages::repositories:
-  puppet:
-    location: http://apt.puppetlabs.com
-    release: "%{facts.os.distro.codename}"
-    repos: puppet8
-    key:
-      name: puppetlabs-keyring.gpg
-      source: 'https://apt.puppetlabs.com/keyring.gpg'
-
 pocketprotector::puppet::puppetdb::database::managerepo: true
-pocketprotector::puppet::prefix::cfg: /etc/puppetlabs/puppet
-pocketprotector::puppet::prefix::code: /etc/puppetlabs/code
-pocketprotector::puppet::prefix::bin: /opt/puppetlabs/bin
 pocketprotector::puppet::server::logdir: /var/log/puppetlabs/puppetserver
 pocketprotector::puppet::server::pidfile: /var/run/puppetlabs/puppetserver/puppetserver.pid
 pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/

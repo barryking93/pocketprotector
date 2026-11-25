@@ -20,12 +20,6 @@ pocketprotector::monitoring::librenms::repositories:
 
 pocketprotector::packages::repositories:
   # update repos vanished in 16.0
-  puppet:
-    name: puppet-release
-    baseurl: http://yum.puppet.com/puppet8/sles/$releasever_major/$basearch
-    gpgkey: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-2025-04-06-puppet-release
-    enabled: 1
-    gpgcheck: 1
   sle-backports-debug-update:
     enabled: 0
     autorefresh: 1

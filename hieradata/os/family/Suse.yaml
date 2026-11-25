@@ -90,6 +90,10 @@ pocketprotector::packages:
 
 pocketprotector::packages::provider: zypper
 
+pocketprotector::puppet::client::packages:
+  openvox-agent:
+    ensure: latest
+
 pocketprotector::puppet::server::packages:
   python3-virtualenv:
 pocketprotector::puppet::server::defaults: /etc/sysconfig/puppetserver

@@ -46,7 +46,7 @@ class pocketprotector::puppet::server::puppetboard::native {
       apache_confd          => lookup('pocketprotector::puppet::server::puppetboard::apache_confd',undef,undef,undef),
       apache_service        => lookup('pocketprotector::puppet::server::puppetboard::apache_service',undef,undef,undef),
       manage_virtualenv     => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
-      python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version'),
+      python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version',undef,undef,undef),
       secret_key            => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
     'puppetboard::apache::vhost':
       port       => 80,

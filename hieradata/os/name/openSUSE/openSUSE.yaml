@@ -138,6 +138,13 @@ pocketprotector::packages:
 pocketprotector::packages::provider: zypper
 
 pocketprotector::packages::repositories:
+  openvox:
+    baseurl: 'https://yum.voxpupuli.org/openvox9/sles/%{facts.os.release.major}/$basearch'
+    gpgkey: 'https://yum.voxpupuli.org/GPG-KEY-openvox.pub'
+    enabled: 1
+    autorefresh: 1
+    gpgcheck: 1
+    type: 'rpm-md'    
   sle-debug-non-oss:
     enabled: 0
     autorefresh: 1

@@ -78,44 +78,9 @@ pocketprotector::netsvc::ntp::packages:
   'ntpdate':
     ensure: present
 
-pocketprotector::packages::repositories:
-  puppet:
-    location: http://apt.puppetlabs.com
-    release: focal
-    repos: puppet8
-    key:
-      id: D6811ED3ADEEB8441AF5AA8F4528B6CD9E61EF26
-      source: https://pgp.mit.edu
-  ubuntu-main:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: focal
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  ubuntu-updates:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: focal-updates
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-  ubuntu-security:
-    location: http://mirrors.kernel.org/ubuntu/
-    release: focal-security
-    repos: main universe multiverse restricted
-    key:
-      id: 630239CC130E1A7FD81A27B140976EAF437D05B5
-
 pocketprotector::puppet::puppetdb::database::managerepo: true
-pocketprotector::puppet::prefix::cfg: /etc/puppetlabs/puppet
-pocketprotector::puppet::prefix::code: /etc/puppetlabs/code
-pocketprotector::puppet::prefix::bin: /opt/puppetlabs/bin
-pocketprotector::puppet::server::logdir: /var/log/puppetlabs/puppetserver
 pocketprotector::puppet::server::packages:
   python3.8-venv:
-pocketprotector::puppet::server::pidfile: /var/run/puppetlabs/puppetserver/puppetserver.pid
 pocketprotector::puppet::server::puppetboard::python_version: '3.8'
-pocketprotector::puppet::server::report::directory: /opt/puppetlabs/server/data/puppetserver/reports/
-pocketprotector::puppet::server::rundir: /var/run/puppetlabs/puppetserver
-pocketprotector::puppet::server::vardir: /opt/puppetlabs/server/data/puppetserver
 
 
