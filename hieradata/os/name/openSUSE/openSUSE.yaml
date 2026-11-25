@@ -139,9 +139,8 @@ pocketprotector::packages::provider: zypper
 
 pocketprotector::packages::repositories:
   openvox:
-    name: 'OpenVox 9 Repository sles %{facts.os.release.major} - $basearch'
-    baseurl: 'https://voxpupuli.org/%{facts.os.release.major}/$basearch'
-    gpgkey: 'https://voxpupuli.org'
+    baseurl: 'https://https://yum.voxpupuli.org/openvox9/sles/%{facts.os.release.major}/$basearch'
+    gpgkey: 'https://yum.voxpupuli.org/GPG-KEY-openvox.pub'
     enabled: 1
     autorefresh: 1
     gpgcheck: 1
