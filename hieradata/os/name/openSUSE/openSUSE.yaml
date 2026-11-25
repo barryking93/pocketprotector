@@ -138,6 +138,11 @@ pocketprotector::packages:
 pocketprotector::packages::provider: zypper
 
 pocketprotector::packages::repositories:
+  openvox:
+    enabled: 1
+    autorefresh: 1
+    baseurl: https://yum.voxpupuli.org/openvox9/sles/$releasever_major/
+    keeppackages: 0
   sle-debug-non-oss:
     enabled: 0
     autorefresh: 1
