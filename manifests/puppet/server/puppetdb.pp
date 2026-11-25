@@ -7,7 +7,8 @@
 class pocketprotector::puppet::server::puppetdb {
   class {
     'openvoxdb':
-      confdir => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef);
+      confdir => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef),
+      database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost');
     'openvoxdb::database::postgresql':
       listen_addresses    => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
       manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
@@ -36,7 +37,6 @@ class pocketprotector::puppet::server::puppetdb {
       restart_puppet                 => lookup('pocketprotector::puppet::puppetdb::master::restart_puppet',undef,undef,undef);
     'openvoxdb::server':
       database_name      => lookup('pocketprotector::puppet::puppetdb::database::name',undef,undef,undef),
-      database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost'),
       confdir            => lookup('pocketprotector::puppet::puppetdb::confdir',undef,undef,undef),
       java_args          => { '-Xmx' => lookup('pocketprotector::puppet::puppetdb::database::maxram',undef,undef,'2g') },
       java_bin           => lookup('pocketprotector::puppet::puppetdb::server::java_bin',undef,undef,undef),
