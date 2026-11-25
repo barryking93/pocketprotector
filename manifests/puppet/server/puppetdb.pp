@@ -7,13 +7,8 @@
 class pocketprotector::puppet::server::puppetdb {
   class {
     'openvoxdb':
-      confdir => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef),
-      database_host      => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost');
-    'openvoxdb::database::postgresql':
-      listen_addresses    => lookup('pocketprotector::puppet::puppetdb::database::listen_addresses',undef,undef,'localhost'),
-      manage_package_repo => lookup('pocketprotector::puppet::puppetdb::database::managerepo',undef,undef,false),
-      password_encryption => lookup('pocketprotector::puppet::puppetdb::database::password_encryption',undef,undef,undef),
-      postgres_version    => lookup('pocketprotector::puppet::puppetdb::database::version',undef,undef,undef);
+      confdir       => lookup('pocketprotector::puppet::puppetdb::globals::puppet_confdir',undef,undef,undef),
+      database_host => lookup('pocketprotector::puppet::puppetdb::database::hostname',undef,undef,'localhost');
     'openvoxdb::master::config':
       puppetdb_server                => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_server',undef,undef,undef),
       puppetdb_port                  => lookup('pocketprotector::puppet::puppetdb::master::puppetdb_port',undef,undef,undef),
