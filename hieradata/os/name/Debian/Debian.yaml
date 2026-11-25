@@ -29,8 +29,8 @@ pocketprotector::packages::repositories:
       name: debian-security-keyring.gpg
       source: '/usr/share/keyrings/debian-archive-keyring.pgp'
   openvox:
-    location: http://apt.voxpopuli.org
-    release: "debian%{facts.os.distro.codename}"
+    location: https://apt.voxpupuli.org
+    release: "debian%{facts.os.release.major}"
     repos: openvox9
     key:
       name: openvox-keyring.gpg

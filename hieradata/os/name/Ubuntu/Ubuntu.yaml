@@ -31,8 +31,8 @@ pocketprotector::puppet::server::packages:
 
 pocketprotector::packages::repositories:
   openvox:
-    location: http://apt.voxpopuli.org
-    release: "ubuntu%{facts.os.distro.codename}"
+    location: https://apt.voxpupuli.org
+    release: "ubuntu%{facts.os.release.major}"
     repos: openvox9
     key:
       name: openvox-keyring.gpg
