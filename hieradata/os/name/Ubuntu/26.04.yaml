@@ -88,6 +88,8 @@ pocketprotector::netsvc::ntp::packages:
   'ntpsec-ntpdate':
     ensure: present
 
+pocketprotector::puppet::server::puppetboard::python_version: 3.14
+
 #pocketprotector::packages::repositories:
 #  puppet:
 #    location: http://apt.puppetlabs.com

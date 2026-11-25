@@ -32,7 +32,7 @@ class pocketprotector::puppet::server::puppetboard::docker {
 }
 
 class pocketprotector::puppet::server::puppetboard::native {
-  #  include pocketprotector::apache
+  include pocketprotector::apache
 
   # set pip3 as pip provider
   #class {
@@ -48,8 +48,8 @@ class pocketprotector::puppet::server::puppetboard::native {
       manage_virtualenv     => lookup('pocketprotector::puppet::server::puppetboard::manage_virtualenv',undef,undef,true),
       python_version        => lookup('pocketprotector::puppet::server::puppetboard::python_version',undef,undef,undef),
       secret_key            => lookup('pocketprotector::puppet::server::puppetboard::secret_key');
-    #    'puppetboard::apache::vhost':
-    #  port       => 80,
-    #  vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['networking']['fqdn']}"),
+    'puppetboard::apache::vhost':
+      port       => 80,
+      vhost_name => lookup('pocketprotector::puppet::server::puppetboard::hostname', undef, 'first', "${facts['networking']['fqdn']}"),
   }
 }
