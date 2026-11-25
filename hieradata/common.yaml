@@ -234,17 +234,6 @@ pocketprotector::netsvc::ntp::templates:
     content: pocketprotector/netsvc/ntp/ntp.conf.erb
 
 pocketprotector::puppet::git::branch: main
-pocketprotector::puppet::client::packages:
-  openvox-agent:
-    ensure: latest
-  puppet-agent:
-    ensure: absent
-#pocketprotector::puppet::server::packages:
-#  puppetserver:
-#    ensure: latest
-# puppetdb package controlled by own module
-#  puppetdb:
-#    ensure: latest
 pocketprotector::puppet::client::servicename: puppet
 pocketprotector::puppet::client::cron::splaytime: '180'
 pocketprotector::puppet::prefix::cfg: /etc/puppet

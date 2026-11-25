@@ -11,6 +11,12 @@ pocketprotector::netsvc::ntp::packages:
 
 pocketprotector::packages::provider: pacman
 
+pocketprotector::puppet::client::packages:
+  openvox-agent-bin:
+    ensure: latest
+  puppet:
+    ensure: absent
+
 pocketprotector::security::password::enforcer: pwquality
 pocketprotector::security::password::packages::pwquality:
   libpwquality:

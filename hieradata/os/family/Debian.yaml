@@ -158,6 +158,11 @@ pocketprotector::packages::updates::apt::packages:
   unattended-upgrades:
     ensure: present
 
+pocketprotector::puppet::client::packages:
+  openvox-agent:
+    ensure: latest
+  puppet-agent:
+    ensure: absent
 pocketprotector::puppet::server::defaults: /etc/default/puppetserver
 pocketprotector::puppet::server::puppetboard::docker: true
 
